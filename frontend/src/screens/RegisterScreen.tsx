@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
-// import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ setScreen }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +23,7 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      setScreen("main");
     }
   }, [navigate, userInfo]);
 
@@ -37,7 +36,7 @@ const RegisterScreen = () => {
       try {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate("/");
+        setScreen("main");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -95,7 +94,10 @@ const RegisterScreen = () => {
 
       <Row className="py-3">
         <Col>
-          Already have an account? <Link to={`/login`}>Login</Link>
+          Already have an account?
+          <Button onClick={() => setScreen("sign in")} variant="light">
+            Sign In
+          </Button>
         </Col>
       </Row>
     </FormContainer>

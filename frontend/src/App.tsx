@@ -1,6 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
 import { useRef, useState } from "react";
 import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
+import AuthContainer from "./components/AuthContainer";
 
 const App = () => {
   const [numBits, setNumBits] = useState<number>(100);
@@ -28,14 +29,13 @@ const App = () => {
             justifyContent: "center"
           }}
         >
-          <div className="outer">
-            <button>hi</button>
+          <div className="outer" style={{ textAlign: "center", flex: 1 }}>
             <p>{`Num Bits: ${numBits}`}</p>
             <button onClick={addBit}>Add Bit</button>
           </div>
           <PhaserGame ref={phaserRef} numBits={numBits} addBit={addBit} />
-          <div className="outer">
-            <button>hey</button>
+          <div className="outer" style={{ textAlign: "center", flex: 1 }}>
+            <AuthContainer></AuthContainer>
           </div>
         </div>
       </div>

@@ -74,6 +74,8 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
       };
     }, [ref, numBits]);
 
-    return <div id="game-container"></div>;
+    return (
+      <div id="game-container" style={{ flex: 1, textAlign: "center" }}></div>
+    );
   }
 );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 
-const LoginScreen = () => {
+const LoginScreen = ({ setScreen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +21,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      setScreen("main");
     }
   }, [navigate, userInfo]);
 
@@ -30,7 +30,7 @@ const LoginScreen = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      setScreen("main");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -75,7 +75,10 @@ const LoginScreen = () => {
 
       <Row className="py-3">
         <Col>
-          New Customer? <Link to="/register">Register</Link>
+          New Customer?
+          <Button onClick={() => setScreen("register")} variant="light">
+            Register
+          </Button>
         </Col>
       </Row>
     </FormContainer>
