@@ -1,4 +1,5 @@
 import path from "path";
+import cors from 'cors';
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
@@ -9,9 +10,18 @@ import userRoutes from "./routes/userRoutes";
 
 const port = process.env.PORT || 5000;
 
+const frontEndUrl = process.env.FRONTEND_URL;
+
 connectDB();
 
 const app = express();
+
+const corsOptions = {
+  origin: frontEndUrl,
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +42,10 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running....");
   });
 }
+
+app.get('/up-check', (_req, res: any) => {
+  res.status(200).send("<h1>AUTOHACK IDLE BACKEND OPERATION NORMAL</h1>").end();
+});
 
 app.use(notFound);
 app.use(errorHandler);
