@@ -4,10 +4,7 @@
   "description": "An incremental game for lazy coders",
   "main": "server.js",
   "scripts": {
-    "tsc": "tsc",
-    "postinstall": "npm run tsc",
     "server": "ts-node-dev --respawn --pretty --transpile-only ./backend/server.ts",
-    "server-old": "nodemon backend/server.js",
     "client": "npm run dev --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
