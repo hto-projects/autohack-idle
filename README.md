@@ -20,3 +20,8 @@ Boiler-plate starter code was taken from these repositories:
 
 - [MERN Authentication Starter - Brad Traversy](https://github.com/bradtraversy/mern-auth)
 - [Phaser React TypeScript Template](https://github.com/phaserjs/template-react-ts)
+
+## Learning
+[Refs in React](https://react.dev/learn/manipulating-the-dom-with-refs)
+[`forwardRef` in React](https://www.youtube.com/watch?v=-vw6uG1JSEA)
+

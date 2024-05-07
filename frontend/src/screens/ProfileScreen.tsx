@@ -9,21 +9,16 @@ import { useUpdateUserMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 
 const ProfileScreen = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const { userInfo } = useSelector((state: any) => state.auth);
+
+  const [email, setEmail] = useState(userInfo ? userInfo.email : "");
+  const [name, setName] = useState(userInfo ? userInfo.name : "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
 
-  const { userInfo } = useSelector((state: any) => state.auth);
-
   const [updateProfile, { isLoading }] = useUpdateUserMutation();
-
-  useEffect(() => {
-    setName(userInfo.name);
-    setEmail(userInfo.email);
-  }, [userInfo.email, userInfo.name]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

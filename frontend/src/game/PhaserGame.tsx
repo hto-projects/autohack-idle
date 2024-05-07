@@ -2,21 +2,22 @@ import { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
 import StartGame from "./main";
 import { EventBus } from "./EventBus";
 import { Scene } from "phaser";
+import { useDispatch, useSelector } from "react-redux";
+import { addBit } from "../slices/gameDataSlice";
+import { IGameData, GameVariable } from "../../../shared/types";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
   scene: Scene | null;
-  numBits: number;
-  addBit: () => void;
 }
 
-interface IProps {
-  numBits: number;
-  addBit: () => number;
-}
+interface IProps {}
 
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
-  function PhaserGame({ numBits, addBit }, ref) {
+  function PhaserGame(props, ref) {
+    const gameData: IGameData = useSelector((state: any) => state.gameData);
+    const dispatch = useDispatch();
+
     const game = useRef<Phaser.Game | null>(null!);
 
     useLayoutEffect(() => {
@@ -26,16 +27,12 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
         if (typeof ref === "function") {
           ref({
             game: game.current,
-            scene: null,
-            numBits: numBits,
-            addBit: addBit
+            scene: null
           });
         } else if (ref) {
           ref.current = {
             game: game.current,
-            scene: null,
-            numBits: numBits,
-            addBit: addBit
+            scene: null
           };
         }
       }
@@ -52,7 +49,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
 
     useEffect(() => {
       EventBus.on("add-bit", () => {
-        addBit();
+        dispatch(addBit());
       });
 
       return () => {
@@ -61,18 +58,22 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
     });
 
     useEffect(() => {
-      EventBus.emit("change-bits", numBits);
-    }, [numBits, ref]);
+      EventBus.emit("change-bits", gameData.numBits);
+    }, [gameData.numBits, ref]);
 
     useEffect(() => {
       EventBus.on("current-scene-ready", () => {
-        EventBus.emit("change-bits", numBits);
+        EventBus.emit("change-bits", gameData.numBits);
+        EventBus.emit("change-rates", {
+          bitCheckInterval: 500,
+          bitAppearanceProbability: 0.5
+        });
       });
 
       return () => {
         EventBus.removeListener("current-scene-ready");
       };
-    }, [ref, numBits]);
+    }, [ref, gameData.numBits]);
 
     return (
       <div id="game-container" style={{ flex: 1, textAlign: "center" }}></div>
