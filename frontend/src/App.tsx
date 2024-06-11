@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
 import AuthContainer from "./components/Auth/AuthContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { addBit } from "./slices/gameDataSlice";
+import { addBit, sellData } from "./slices/gameDataSlice";
 import BoxContainer from "./components/BoxContainer";
 import Box from "./components/Box";
 import { setGameData } from "./slices/gameDataSlice";
@@ -68,10 +68,9 @@ const App = () => {
           </Box>
           <Box smallIcon={"B"}>
             <p>{`Num Bits: ${gameData.numBits}`}</p>
-            <button onClick={() => dispatch(addBit())}>Add Bit</button>
-            {userInfo && <button onClick={saveGameClicked}>Save</button>}
-            {userInfo && <button onClick={loadGameClicked}>Load</button>}
+            <p>{`Currency Amount: ${gameData.currencyAmount}`}</p>
             <UpgradesContainer></UpgradesContainer>
+            <button onClick={() => dispatch(sellData())}>Sell Data</button>
           </Box>
         </BoxContainer>
       </div>

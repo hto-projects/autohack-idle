@@ -23,9 +23,11 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Double Checks",
     description: "Check for bits twice as often",
     picture: "🔍🔍",
-    cost: 100,
+    cost: 10,
     variableAffected: GameVariable.BitCheckInterval,
     variableMod: VariableModFunction.Multiply,
     modValue: .5
   },
 ];
+
+export const allUpgrades: IUpgrade[] = starterUpgrades;

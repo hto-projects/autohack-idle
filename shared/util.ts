@@ -1,4 +1,5 @@
 import { GameVariable, IUpgrade, VariableModFunction } from "./types";
+import { allUpgrades } from "./upgrades";
 
 const runMod = (modFun: VariableModFunction, modVal: number, input: number): number => {
   switch (modFun) {
@@ -11,11 +12,11 @@ const runMod = (modFun: VariableModFunction, modVal: number, input: number): num
   }
 }
 
-export const calculateVariableValue = (upgrades: IUpgrade[], variable: GameVariable): number => {
-  const upgradesForVariable: IUpgrade[] = upgrades.filter(up => up.variableAffected === variable);
+export const calculateVariableValue = (upgrades: string[], variable: GameVariable): number => {
+  const upgradesForVariable: IUpgrade[] = allUpgrades.filter(up => upgrades.includes(up.name) && up.variableAffected === variable);
 
   let variableValue: number = NaN;
-  for (let i = 0; i = upgradesForVariable.length; i++) {
+  for (let i = 0; i < upgradesForVariable.length; i++) {
     const currentUpgrade: IUpgrade = upgradesForVariable[i];
 
     variableValue = runMod(currentUpgrade.variableMod, currentUpgrade.modValue, variableValue);

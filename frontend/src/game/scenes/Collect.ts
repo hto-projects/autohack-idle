@@ -1,5 +1,7 @@
 import { GameObjects, Scene } from 'phaser';
 import { EventBus } from '../EventBus';
+import { calculateVariableValue } from '../../../../shared/util';
+import { GameVariable } from '../../../../shared/types';
 
 export class Collect extends Scene {
   numBitsText: GameObjects.Text;
@@ -72,6 +74,23 @@ export class Collect extends Scene {
         loop: true
       });
     });
+
+    EventBus.on("upgrade-purchased", (upgrades) => {
+      const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
+      const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
+
+      if (this.bitAppearEvent) {
+        this.time.removeEvent(this.bitAppearEvent);
+      }
+
+      this.bitAppearEvent = this.time.addEvent({
+        callback: this.maybeAddBit,
+        args: [bap],
+        callbackScope: this,
+        delay: bci,
+        loop: true
+      });
+    })
 
     EventBus.emit('current-scene-ready', this);
   }

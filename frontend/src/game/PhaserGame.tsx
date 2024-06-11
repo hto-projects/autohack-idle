@@ -5,6 +5,7 @@ import { Scene } from "phaser";
 import { useDispatch, useSelector } from "react-redux";
 import { addBit } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
+import { calculateVariableValue } from "../../../shared/util";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -64,9 +65,17 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
     useEffect(() => {
       EventBus.on("current-scene-ready", () => {
         EventBus.emit("change-bits", gameData.numBits);
+        const bci = calculateVariableValue(
+          gameData.upgrades,
+          GameVariable.BitCheckInterval
+        );
+        const bap = calculateVariableValue(
+          gameData.upgrades,
+          GameVariable.BitAppearanceProbability
+        );
         EventBus.emit("change-rates", {
-          bitCheckInterval: 500,
-          bitAppearanceProbability: 0.5
+          bitCheckInterval: bci,
+          bitAppearanceProbability: bap
         });
       });
 

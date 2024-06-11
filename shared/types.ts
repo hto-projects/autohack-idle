@@ -22,9 +22,9 @@ export interface IUpgrade {
 }
 
 export enum UpgradeStatus {
-  Owned,
-  Available,
-  Unavailable
+  Owned = "owned",
+  Available = "available",
+  Unavailable = "unavailable"
 }
 
 export interface IGameData {

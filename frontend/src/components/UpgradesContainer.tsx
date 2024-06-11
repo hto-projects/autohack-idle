@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Upgrade from "./Upgrade";
 import { IGameData, IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { IGameState } from "../store";
+import { purchaseUpgrade } from "../slices/gameDataSlice";
 
 const UpgradesContainer = () => {
   const upgradesState = useSelector((state: IGameState) => state.upgrades);
@@ -9,6 +10,8 @@ const UpgradesContainer = () => {
   const gameData: IGameData = useSelector(
     (state: IGameState) => state.gameData
   );
+
+  const dispatch = useDispatch();
 
   const getStatusForUpgrade = (up: IUpgrade): UpgradeStatus => {
     if (gameData.upgrades.includes(up.name)) {
@@ -22,13 +25,20 @@ const UpgradesContainer = () => {
     return UpgradeStatus.Unavailable;
   };
 
+  const attemptPurchase = (up: IUpgrade) => {
+    if (gameData.currencyAmount >= up.cost) {
+      dispatch(purchaseUpgrade({ upgradeToPurchase: up }));
+    }
+  };
+
   return (
-    <div className="upgrades-container">
+    <div className="upgrades-container" style={{ marginBottom: "20px" }}>
       {upgrades.map((up) => (
         <Upgrade
           up={up}
           status={getStatusForUpgrade(up)}
           key={up.name}
+          onBuy={attemptPurchase}
         ></Upgrade>
       ))}
     </div>

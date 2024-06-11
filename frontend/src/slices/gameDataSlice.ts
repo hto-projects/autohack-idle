@@ -3,6 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IGameData } from "../../../shared/types";
 import { apiSlice } from './apiSlice';
+import { EventBus } from "../game/EventBus";
 const GAME_API_PATH = "/api/game-data"
 
 const initialState: IGameData = {
@@ -18,6 +19,15 @@ export const gameDataSlice = createSlice({
   reducers: {
     addBit: (state) => {
       state.numBits += 1;
+    },
+    sellData: (state) => {
+      state.currencyAmount += state.numBits / 10.0;
+      state.numBits = 0;
+    },
+    purchaseUpgrade: (state, action) => {
+      state.currencyAmount -= action.payload.upgradeToPurchase.cost;
+      state.upgrades.push(action.payload.upgradeToPurchase.name);
+      EventBus.emit("upgrade-purchased", state.upgrades);
     },
     setGameData: (state, action) => {
       state.currencyAmount = action.payload.currencyAmount;
@@ -52,5 +62,5 @@ export const {
   useLoadGameMutation
 } = gameDataApiSlice;
 
-export const { addBit, setGameData } = gameDataSlice.actions;
+export const { addBit, setGameData, sellData, purchaseUpgrade } = gameDataSlice.actions;
 export default gameDataSlice.reducer;
