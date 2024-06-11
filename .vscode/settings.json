@@ -4,5 +4,6 @@
   "editor.tabSize": 2,
   "prettier.configPath": ".prettierrc",
   "prettier.ignorePath": ".prettierignore",
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "terminal.integrated.defaultProfile.windows": "Git Bash"
 }
