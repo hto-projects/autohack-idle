@@ -21,3 +21,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+frontend/vite.config.js
+frontend/vite.config.d.ts
