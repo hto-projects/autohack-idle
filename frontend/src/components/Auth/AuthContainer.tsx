@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useLogoutMutation } from "../slices/usersApiSlice";
-import { logout } from "../slices/authSlice";
+import { useLogoutMutation } from "../../slices/usersApiSlice";
+import { logout } from "../../slices/authSlice";
 import MainAuth from "./MainAuth";
 import { useState } from "react";
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+import Login from "./Login";
+import Register from "./Register";
 
 const AuthContainer = () => {
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -15,14 +15,10 @@ const AuthContainer = () => {
 
   switch (screenShowing) {
     case "sign in":
-      screenComponent = (
-        <LoginScreen setScreen={setScreenShowing}></LoginScreen>
-      );
+      screenComponent = <Login setScreen={setScreenShowing}></Login>;
       break;
     case "register":
-      screenComponent = (
-        <RegisterScreen setScreen={setScreenShowing}></RegisterScreen>
-      );
+      screenComponent = <Register setScreen={setScreenShowing}></Register>;
       break;
     default:
       screenComponent = (

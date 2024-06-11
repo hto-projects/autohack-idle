@@ -4,7 +4,6 @@ import { EventBus } from '../EventBus';
 export class MainMenu extends Scene {
   title: GameObjects.Text;
   numBitsText: GameObjects.Text;
-  logoTween: Phaser.Tweens.Tween | null;
   nextButton: GameObjects.Rectangle;
 
   constructor() {

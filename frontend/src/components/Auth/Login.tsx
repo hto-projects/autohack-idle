@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
+import FormContainer from "../FormContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../slices/usersApiSlice";
-import { setCredentials } from "../slices/authSlice";
+import { useLoginMutation } from "../../slices/usersApiSlice";
+import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
-import Loader from "../components/Loader";
+import Loader from "../Loader";
 
-const LoginScreen = ({ setScreen }) => {
+const Login = ({ setScreen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -85,4 +85,4 @@ const LoginScreen = ({ setScreen }) => {
   );
 };
 
-export default LoginScreen;
+export default Login;

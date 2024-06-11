@@ -2,7 +2,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
-import AuthContainer from "./components/AuthContainer";
+import AuthContainer from "./components/Auth/AuthContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { addBit } from "./slices/gameDataSlice";
 import BoxContainer from "./components/BoxContainer";
@@ -13,7 +13,7 @@ import {
   useLoadGameMutation
 } from "./slices/gameDataSlice";
 import { IGameData } from "../../shared/types";
-import ProfileScreen from "./screens/ProfileScreen";
+import Profile from "./components/Auth/Profile";
 import UpgradesContainer from "./components/UpgradesContainer";
 
 const App = () => {
@@ -64,7 +64,7 @@ const App = () => {
         <BoxContainer>
           <Box smallIcon={"A"}>
             <AuthContainer></AuthContainer>
-            <ProfileScreen></ProfileScreen>
+            <Profile></Profile>
           </Box>
           <Box smallIcon={"B"}>
             <p>{`Num Bits: ${gameData.numBits}`}</p>
