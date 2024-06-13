@@ -1,7 +1,7 @@
-import { GameObjects, Scene } from 'phaser';
-import { EventBus } from '../EventBus';
-import { calculateVariableValue } from '../../../../shared/util';
-import { GameVariable } from '../../../../shared/types';
+import { GameObjects, Scene } from "phaser";
+import { EventBus } from "../EventBus";
+import { calculateVariableValue } from "../../../../shared/util";
+import { GameVariable } from "../../../../shared/types";
 
 export class Collect extends Scene {
   numBitsText: GameObjects.Text;
@@ -10,12 +10,14 @@ export class Collect extends Scene {
   bitAppearEvent: any;
 
   constructor() {
-    super('Collect');
+    super("Collect");
   }
 
   getRandomBitPosition() {
-    const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-    const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+    const screenCenterX =
+      this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    const screenCenterY =
+      this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
     return {
       xPos: screenCenterX + (-150 + Math.random() * 300),
@@ -26,7 +28,8 @@ export class Collect extends Scene {
   addNewBit() {
     const { xPos, yPos } = this.getRandomBitPosition();
     const newClickyBit = this.add.text(xPos, yPos, "1", {
-      color: "#ffffff", fontSize: 20
+      color: "#ffffff",
+      fontSize: 20
     });
 
     newClickyBit.setInteractive();
@@ -41,18 +44,33 @@ export class Collect extends Scene {
   create() {
     const screenTopY = this.cameras.main.worldView.y;
     const screenBottomY = screenTopY + this.cameras.main.height;
-    const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    const screenCenterX =
+      this.cameras.main.worldView.x + this.cameras.main.width / 2;
     const dataFontSize = 16;
     const backFontSize = 16;
 
     this.cameras.main.setBackgroundColor("#000000");
 
-    this.numBitsText = this.add.text(screenCenterX, screenTopY + dataFontSize, `hm`, {
-      fontFamily: 'consolas', fontSize: dataFontSize, color: '#ffffff',
-      align: 'center'
-    }).setOrigin(0.5).setDepth(100);
+    this.numBitsText = this.add
+      .text(screenCenterX, screenTopY + dataFontSize, `hm`, {
+        fontFamily: "consolas",
+        fontSize: dataFontSize,
+        color: "#ffffff",
+        align: "center"
+      })
+      .setOrigin(0.5)
+      .setDepth(100);
 
-    this.backButton = this.add.text(screenCenterX + 100, screenBottomY - backFontSize * 2 - 10, "back", { backgroundColor: "#0000FF", padding: { x: 10, y: 10 }, fontSize: backFontSize });
+    this.backButton = this.add.text(
+      screenCenterX + 100,
+      screenBottomY - backFontSize * 2 - 10,
+      "back",
+      {
+        backgroundColor: "#0000FF",
+        padding: { x: 10, y: 10 },
+        fontSize: backFontSize
+      }
+    );
     this.backButton.setInteractive();
     this.backButton.on("pointerdown", this.backButtonClicked.bind(this));
 
@@ -76,8 +94,14 @@ export class Collect extends Scene {
     });
 
     EventBus.on("upgrade-purchased", (upgrades) => {
-      const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
-      const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
+      const bci = calculateVariableValue(
+        upgrades,
+        GameVariable.BitCheckInterval
+      );
+      const bap = calculateVariableValue(
+        upgrades,
+        GameVariable.BitAppearanceProbability
+      );
 
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
@@ -90,9 +114,9 @@ export class Collect extends Scene {
         delay: bci,
         loop: true
       });
-    })
+    });
 
-    EventBus.emit('current-scene-ready', this);
+    EventBus.emit("current-scene-ready", this);
   }
 
   maybeAddBit(bitAppearanceProb) {
@@ -104,6 +128,6 @@ export class Collect extends Scene {
   backButtonClicked() {
     EventBus.removeListener("change-bits");
     EventBus.removeListener("change-rates");
-    this.scene.start('MainMenu');
+    this.scene.start("MainMenu");
   }
 }
