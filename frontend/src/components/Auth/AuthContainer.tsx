@@ -33,7 +33,7 @@ const AuthContainer = () => {
 
   return (
     <div>
-      <h2>User Information</h2>
+      <h2>User Informaton</h2>
       {screenComponent}
     </div>
   );

@@ -33,6 +33,7 @@ const UpgradesContainer = () => {
 
   return (
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
+      <h3>Upgrads</h3>
       {upgrades.map((up) => (
         <Upgrade
           up={up}

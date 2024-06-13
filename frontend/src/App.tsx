@@ -64,11 +64,10 @@ const App = () => {
         <BoxContainer>
           <Box smallIcon={"A"}>
             <AuthContainer></AuthContainer>
-            <Profile></Profile>
           </Box>
           <Box smallIcon={"B"}>
-            <p>{`Num Bits: ${gameData.numBits}`}</p>
-            <p>{`Currency Amount: ${gameData.currencyAmount}`}</p>
+            <p>{`Numer of Bits: ${gameData.numBits}`}</p>
+            <p>{`Curency Amount: ${gameData.currencyAmount}`}</p>
             <UpgradesContainer></UpgradesContainer>
             <button onClick={() => dispatch(sellData())}>Sell Data</button>
           </Box>
