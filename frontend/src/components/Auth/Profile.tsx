@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 // import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import FormContainer from "../FormContainer";
 import { toast } from "react-toastify";
 import Loader from "../Loader";
 import { useUpdateUserMutation } from "../../slices/usersApiSlice";
@@ -41,7 +40,7 @@ const Profile = () => {
     }
   };
   return (
-    <FormContainer>
+    <div>
       <h1>Update Profile</h1>
 
       <Form onSubmit={submitHandler}>
@@ -89,7 +88,7 @@ const Profile = () => {
 
         {isLoading && <Loader />}
       </Form>
-    </FormContainer>
+    </div>
   );
 };
 

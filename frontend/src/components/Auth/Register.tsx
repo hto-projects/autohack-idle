@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../FormContainer";
 import Loader from "../Loader";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +42,7 @@ const Register = ({ setScreen }) => {
     }
   };
   return (
-    <FormContainer>
+    <div>
       <h1>Register</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="my-2" controlId="name">
@@ -100,7 +99,7 @@ const Register = ({ setScreen }) => {
           </Button>
         </Col>
       </Row>
-    </FormContainer>
+    </div>
   );
 };
 

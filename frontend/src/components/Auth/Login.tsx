@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../FormContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
@@ -37,7 +36,7 @@ const Login = ({ setScreen }) => {
   };
 
   return (
-    <FormContainer>
+    <div>
       <h1>Sign In</h1>
 
       <Form onSubmit={submitHandler}>
@@ -81,7 +80,7 @@ const Login = ({ setScreen }) => {
           </Button>
         </Col>
       </Row>
-    </FormContainer>
+    </div>
   );
 };
 
