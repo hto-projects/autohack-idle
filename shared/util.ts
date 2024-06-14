@@ -1,5 +1,22 @@
-import { GameVariable, IUpgrade, VariableModFunction } from "./types";
+import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction } from "./types";
 import { allUpgrades } from "./upgrades";
+
+function pluck<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
+  const arrCop: Array<T> = arr;
+  arr = [];
+
+  let retVal: T | null = null;
+  for (let i = 0; i < arrCop.length; i++) {
+    const currentVal = arrCop[i];
+    if (pred(currentVal)) {
+      retVal = currentVal;
+    } else {
+      arr.push(currentVal);
+    }
+  }
+
+  return retVal;
+}
 
 const runMod = (modFun: VariableModFunction, modVal: number, input: number): number => {
   switch (modFun) {
@@ -10,17 +27,25 @@ const runMod = (modFun: VariableModFunction, modVal: number, input: number): num
     case VariableModFunction.Set:
       return modVal;
   }
-}
+};
 
-export const calculateVariableValue = (upgrades: string[], variable: GameVariable): number => {
-  const upgradesForVariable: IUpgrade[] = allUpgrades.filter(up => upgrades.includes(up.name) && up.variableAffected === variable);
+export const calculateVariableValue = (ownedUpgradeNames: string[], variable: GameVariable): number => {
+  const ownedUpgrades: IUpgrade[] = allUpgrades.filter((up) => ownedUpgradeNames.includes(up.name));
+  const effectsForVariable: IUpgradeEffect[] = ownedUpgrades.flatMap((up) =>
+    up.effects.filter((e) => e.variableAffected === variable)
+  );
 
-  let variableValue: number = NaN;
-  for (let i = 0; i < upgradesForVariable.length; i++) {
-    const currentUpgrade: IUpgrade = upgradesForVariable[i];
+  const setEffect = pluck(effectsForVariable, (ef) => ef.variableMod === VariableModFunction.Set);
+  if (!setEffect) {
+    return NaN;
+  }
 
-    variableValue = runMod(currentUpgrade.variableMod, currentUpgrade.modValue, variableValue);
+  let variableValue: number = setEffect.modValue;
+  for (let i = 0; i < effectsForVariable.length; i++) {
+    const currentEffect: IUpgradeEffect = effectsForVariable[i];
+
+    variableValue = runMod(currentEffect.variableMod, currentEffect.modValue, variableValue);
   }
 
   return variableValue;
-}
+};
