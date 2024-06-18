@@ -21,9 +21,7 @@ const AuthContainer = () => {
       screenComponent = <Register setScreen={setScreenShowing}></Register>;
       break;
     default:
-      screenComponent = (
-        <MainAuth userInfo={userInfo} setScreen={setScreenShowing}></MainAuth>
-      );
+      screenComponent = <MainAuth userInfo={userInfo} setScreen={setScreenShowing}></MainAuth>;
   }
 
   const dispatch = useDispatch();
@@ -33,7 +31,7 @@ const AuthContainer = () => {
 
   return (
     <div>
-      <h2>User Informaton</h2>
+      <h2>User Information</h2>
       {screenComponent}
     </div>
   );
