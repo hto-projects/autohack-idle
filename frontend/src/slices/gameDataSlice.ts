@@ -1,10 +1,8 @@
-
-
 import { createSlice } from "@reduxjs/toolkit";
 import { IGameData } from "../../../shared/types";
-import { apiSlice } from './apiSlice';
+import { apiSlice } from "./apiSlice";
 import { EventBus } from "../game/EventBus";
-const GAME_API_PATH = "/api/game-data"
+const GAME_API_PATH = "/api/game-data";
 
 const initialState: IGameData = {
   numBits: 0,
@@ -19,6 +17,9 @@ export const gameDataSlice = createSlice({
   reducers: {
     addBit: (state) => {
       state.numBits += 1;
+    },
+    addBits: (state, action) => {
+      state.numBits += action.payload.additionalBits;
     },
     sellData: (state) => {
       state.currencyAmount += state.numBits / 10.0;
@@ -43,24 +44,21 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
       query: (data) => ({
         credentials: "include",
         url: `${GAME_API_PATH}/save`,
-        method: 'POST',
-        body: data,
-      }),
+        method: "POST",
+        body: data
+      })
     }),
     loadGame: builder.mutation({
       query: () => ({
         credentials: "include",
         url: `${GAME_API_PATH}/load`,
-        method: 'GET',
-      }),
-    }),
-  }),
+        method: "GET"
+      })
+    })
+  })
 });
 
-export const {
-  useSaveGameMutation,
-  useLoadGameMutation
-} = gameDataApiSlice;
+export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
 
-export const { addBit, setGameData, sellData, purchaseUpgrade } = gameDataSlice.actions;
+export const { addBit, addBits, setGameData, sellData, purchaseUpgrade } = gameDataSlice.actions;
 export default gameDataSlice.reducer;
