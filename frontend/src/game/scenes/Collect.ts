@@ -68,7 +68,7 @@ export class Collect extends Scene {
 
     this.clickyBits = [];
     EventBus.on("change-bits", (bits: number) => {
-      this.numBitsText.setText(`daata: ${bits} bits`);
+      this.numBitsText.setText(`data: ${bits} bits`);
     });
 
     EventBus.on("change-rates", (data) => {
