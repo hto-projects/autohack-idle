@@ -7,9 +7,7 @@ import { purchaseUpgrade } from "../slices/gameDataSlice";
 const UpgradesContainer = () => {
   const upgradesState = useSelector((state: IGameState) => state.upgrades);
   const upgrades: IUpgrade[] = upgradesState.availableUpgrades;
-  const gameData: IGameData = useSelector(
-    (state: IGameState) => state.gameData
-  );
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
 
   const dispatch = useDispatch();
 
@@ -33,14 +31,9 @@ const UpgradesContainer = () => {
 
   return (
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
-      <h3>Upgrads</h3>
+      <h3>Upgrades</h3>
       {upgrades.map((up) => (
-        <Upgrade
-          up={up}
-          status={getStatusForUpgrade(up)}
-          key={up.name}
-          onBuy={attemptPurchase}
-        ></Upgrade>
+        <Upgrade up={up} status={getStatusForUpgrade(up)} key={up.name} onBuy={attemptPurchase}></Upgrade>
       ))}
     </div>
   );
