@@ -1,5 +1,5 @@
 import GameDataModel from "../models/gameDataModel";
-import { IGameData } from "../../shared/types"
+import { IGameData } from "../../shared/types";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel";
 
@@ -23,15 +23,12 @@ export const saveGame = asyncHandler(async (req: any, res) => {
         newData.userEmail = req.user.email;
         await newData.save();
       }
-
       res.status(200).send();
-
     } catch (e) {
       res.status(500);
       console.log(e);
       throw new Error("Internal issue....");
     }
-
   } else {
     res.status(400);
     throw new Error("User not found");
@@ -54,7 +51,6 @@ export const loadGame = asyncHandler(async (req: any, res) => {
         res.status(400);
         throw new Error("Data for user not found");
       }
-
     } catch (e) {
       res.status(500);
       throw new Error("Internal issue....");

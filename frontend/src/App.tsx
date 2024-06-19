@@ -28,7 +28,8 @@ const App = () => {
             <AuthContainer></AuthContainer>
           </Box>
           <Box smallIcon={"B"}>
-            <p>Number of Bits: {gameData.numBits}</p>
+            <p> Current Number of Bits: {gameData.numBits}</p>
+            <p> Total Number of Bits: {gameData.totalNumBits}</p>
             <p>Currency Amount: {gameData.currencyAmount}</p>
             <UpgradesContainer></UpgradesContainer>
             <button onClick={() => dispatch(sellData())}>Sell Data</button>

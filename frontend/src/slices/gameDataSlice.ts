@@ -6,6 +6,7 @@ const GAME_API_PATH = "/api/game-data";
 
 const initialState: IGameData = {
   numBits: 0,
+  totalNumBits: 0,
   currencyAmount: 0,
   userEmail: "",
   upgrades: []
@@ -17,11 +18,14 @@ export const gameDataSlice = createSlice({
   reducers: {
     addBit: (state) => {
       state.numBits += 1;
+      state.totalNumBits += 1;
     },
     addBits: (state, action) => {
       state.numBits += action.payload.additionalBits;
+      state.totalNumBits += action.payload.additionalBits;
     },
     sellData: (state) => {
+      state.totalNumBits = state.numBits;
       state.currencyAmount += state.numBits / 10.0;
       state.numBits = 0;
     },
