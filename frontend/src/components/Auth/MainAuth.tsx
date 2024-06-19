@@ -32,7 +32,7 @@ const MainAuth = ({ userInfo, setScreen }) => {
       ) : (
         <>
           <Button onClick={() => setScreen("sign in")} variant="light">
-            Sine In
+            Sign In
           </Button>
           <Button onClick={() => setScreen("register")} variant="light">
             Register
