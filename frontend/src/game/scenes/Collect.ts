@@ -34,6 +34,7 @@ export class Collect extends Scene {
     newClickyBit.on("pointerdown", () => {
       EventBus.emit("add-bit");
       newClickyBit.removeFromDisplayList();
+      newClickyBit.removeInteractive();
     });
 
     this.clickyBits.push(newClickyBit);
