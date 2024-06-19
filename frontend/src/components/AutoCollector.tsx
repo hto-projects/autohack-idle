@@ -27,11 +27,13 @@ const AutoCollector = () => {
 
   const dispatch = useDispatch();
 
+  let bitsText = autoBitAmount > 1 ? "bits" : "bit";
+
   return (
     <div className="auto-collector">
       <h2>🤖</h2>
       <p>
-        You are currently collecting {autoBitAmount} bit(s) every {autoBitInterval} milliseconds.
+        You are currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
       </p>
     </div>
   );
