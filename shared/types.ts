@@ -37,3 +37,9 @@ export interface IGameData {
   userEmail: string;
   upgrades: string[];
 }
+
+export interface RGBTriple {
+  r: number;
+  g: number;
+  b: number;
+}
