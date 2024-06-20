@@ -16,16 +16,11 @@ export const gameDataSlice = createSlice({
   name: "gameData",
   initialState: initialState,
   reducers: {
-    addBit: (state) => {
-      state.numBits += 1;
-      state.totalNumBits += 1;
-    },
     addBits: (state, action) => {
       state.numBits += action.payload.additionalBits;
       state.totalNumBits += action.payload.additionalBits;
     },
     sellData: (state) => {
-      state.totalNumBits = state.numBits;
       state.currencyAmount += state.numBits / 10.0;
       state.numBits = 0;
     },
@@ -64,5 +59,5 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
 
-export const { addBit, addBits, setGameData, sellData, purchaseUpgrade } = gameDataSlice.actions;
+export const { addBits, setGameData, sellData, purchaseUpgrade } = gameDataSlice.actions;
 export default gameDataSlice.reducer;
