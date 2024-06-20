@@ -1,7 +1,7 @@
 import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction } from "./types";
 import { allUpgrades } from "./upgrades";
 
-function pluck<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
+export function pluck<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
   const arrCop: Array<T> = arr;
   arr = [];
 
