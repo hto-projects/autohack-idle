@@ -1,4 +1,5 @@
 import { IUpgrade, UpgradeStatus } from "../../../shared/types";
+import { RGBTripleToCSS } from "../../../shared/util";
 
 interface IUpgradeProps {
   up: IUpgrade;
@@ -7,22 +8,35 @@ interface IUpgradeProps {
   currencyAmount: number;
 }
 
-interface RGBTriple {
-  r: number;
-  g: number;
-  b: number;
-}
-const defUn = { r: 179, g: 176, b: 176 };
-const defAv = { r: 25, g: 224, b: 224 };
+const bgUnavailableRGBT = { r: 179, g: 176, b: 176 };
+const bgAvailableRGBT = { r: 0, g: 255, b: 255 };
+const bgOwnedRGBT = { r: 100, g: 255, b: 0 };
+
+const bgAvailableCSS = RGBTripleToCSS(bgAvailableRGBT);
+const bgOwnedCSS = RGBTripleToCSS(bgOwnedRGBT);
 
 const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
   let bgColor = undefined;
-  if (status === "unavailable") {
-    const difference = { r: defUn.r - defAv.r, g: defUn.g - defAv.g, b: defUn.b - defAv.b };
-    let percentage = currencyAmount / up.cost;
-    bgColor = `rgb(${defUn.r - percentage * difference.r} ${defUn.g - percentage * difference.g} ${
-      defUn.b - percentage * difference.b
-    })`;
+  switch (status) {
+    case "unavailable":
+      let percentage = currencyAmount / up.cost;
+      const bgNew = {
+        r: bgUnavailableRGBT.r - percentage * (bgUnavailableRGBT.r - bgAvailableRGBT.r),
+        g: bgUnavailableRGBT.g - percentage * (bgUnavailableRGBT.g - bgAvailableRGBT.g),
+        b: bgUnavailableRGBT.b - percentage * (bgUnavailableRGBT.b - bgAvailableRGBT.b)
+      };
+      bgColor = RGBTripleToCSS(bgNew);
+      console.log(bgColor);
+      break;
+    case "available":
+      bgColor = bgAvailableCSS;
+      break;
+    case "owned":
+      bgColor = bgOwnedCSS;
+      break;
+    default:
+      console.log(`Upgrade ${up} has invalid status ${status}`);
+      break;
   }
 
   return (

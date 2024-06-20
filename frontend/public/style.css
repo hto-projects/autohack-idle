@@ -105,13 +105,14 @@ body {
   border-radius: 12px;
   margin-bottom: 2%;
 
-  &.status-owned {
+  /* background-color information is currently being stored in the Upgrade component */
+  /* &.status-owned {
     background-color: rgb(100, 255, 0);
   }
   &.status-available {
     background-color: rgb(25, 224, 224);
   }
-  /* &.status-unavailable {
+  &.status-unavailable {
     background-color: rgb(179, 176, 176);
   } */
 }
