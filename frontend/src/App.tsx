@@ -30,7 +30,7 @@ const App = () => {
           <Box smallIcon={"B"}>
             <p> Current Number of Bits: {gameData.numBits}</p>
             <p> Total Number of Bits: {gameData.totalNumBits}</p>
-            <p>Currency Amount: {gameData.currencyAmount}</p>
+            <p>Currency Amount: {Number(gameData.currencyAmount.toFixed(1))}</p>
             <UpgradesContainer></UpgradesContainer>
             <button onClick={() => dispatch(sellData())}>Sell Data</button>
             <AutoCollector></AutoCollector>
