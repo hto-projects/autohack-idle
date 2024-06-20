@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IGameData } from "../../../shared/types";
 import { apiSlice } from "./apiSlice";
 import { EventBus } from "../game/EventBus";
+import upgradesSlice from "./upgradesSlice";
 const GAME_API_PATH = "/api/game-data";
 
 const initialState: IGameData = {
@@ -22,7 +23,7 @@ export const gameDataSlice = createSlice({
       state.numBits += action.payload.additionalBits;
     },
     sellData: (state) => {
-      state.currencyAmount += state.numBits / 10.0;
+      state.currencyAmount += Number((state.numBits / 10.0).toFixed(1));
       state.numBits = 0;
     },
     purchaseUpgrade: (state, action) => {
@@ -34,6 +35,10 @@ export const gameDataSlice = createSlice({
       state.currencyAmount = action.payload.currencyAmount;
       state.numBits = action.payload.numBits;
       state.upgrades = action.payload.upgrades;
+    },
+    resetGameData: (state) => {
+      state.currencyAmount = 0;
+      state.numBits = 0;
     }
   }
 });
@@ -60,5 +65,5 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
 
-export const { addBit, addBits, setGameData, sellData, purchaseUpgrade } = gameDataSlice.actions;
+export const { addBit, addBits, setGameData, sellData, purchaseUpgrade, resetGameData } = gameDataSlice.actions;
 export default gameDataSlice.reducer;
