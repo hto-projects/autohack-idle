@@ -42,7 +42,7 @@ export class MainMenu extends Scene {
     this.nextButton = this.add.rectangle(screenCenterX, 100, 100, 50, 0);
     this.nextButton.setInteractive();
     this.nextButton.on("pointerdown", this.nextButtonClicked.bind(this));
-    this.resetButton = this.add.rectangle(screenCenterX, 600, 100, 50, 0);
+    this.resetButton = this.add.rectangle(screenCenterX, 600, 100, 50, 0xfff00);
     this.resetButton.setInteractive();
     this.resetButton.on("pointerdown", this.resetButtonClicked.bind(this));
     EventBus.on("change-bits", (bits: number) => {
