@@ -11,16 +11,27 @@ export enum VariableModFunction {
   Set
 }
 
+export enum imageType {
+  string,
+  jpg,
+  png
+}
+
 export interface IUpgradeEffect {
   variableAffected: GameVariable;
   variableMod: VariableModFunction;
   modValue: number;
 }
 
+interface IUpgradeImage {
+  image: string;
+  type: imageType;
+}
+
 export interface IUpgrade {
   name: string;
   description: string;
-  picture: string;
+  picture: IUpgradeImage;
   cost: number;
   effects: IUpgradeEffect[];
 }
