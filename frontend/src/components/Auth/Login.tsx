@@ -7,7 +7,7 @@ import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
 import Loader from "../Loader";
 
-function Login({ setScreen }) {
+export default function Login({ setScreen }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -78,5 +78,3 @@ function Login({ setScreen }) {
     </div>
   );
 }
-
-export default Login;

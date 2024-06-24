@@ -7,7 +7,7 @@ import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 
-function AuthContainer() {
+export default function AuthContainer() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const [screenShowing, setScreenShowing] = useState<string>();
 
@@ -36,5 +36,3 @@ function AuthContainer() {
     </div>
   );
 }
-
-export default AuthContainer;

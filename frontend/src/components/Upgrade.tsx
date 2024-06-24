@@ -6,7 +6,7 @@ interface IUpgradeProps {
   onBuy: (up: IUpgrade) => void;
 }
 
-function Upgrade({ up, status, onBuy }: IUpgradeProps) {
+export default function Upgrade({ up, status, onBuy }: IUpgradeProps) {
   return (
     <div
       className={`upgrade status-${status}`}
@@ -18,5 +18,3 @@ function Upgrade({ up, status, onBuy }: IUpgradeProps) {
     </div>
   );
 }
-
-export default Upgrade;

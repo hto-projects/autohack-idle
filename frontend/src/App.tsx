@@ -10,7 +10,7 @@ import { IGameData } from "../../shared/types";
 import UpgradesContainer from "./components/UpgradesContainer";
 import AutoCollector from "./components/AutoCollector";
 
-function App() {
+export default function App() {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
   const dispatch = useDispatch();
 
@@ -39,5 +39,3 @@ function App() {
     </>
   );
 }
-
-export default App;

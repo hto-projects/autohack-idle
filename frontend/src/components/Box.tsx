@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Box({ children, smallIcon }) {
+export default function Box({ children, smallIcon }) {
   const onMobile = window.innerWidth < 600;
   const [open, setOpen] = useState<boolean>(!onMobile);
   return (
@@ -15,5 +15,3 @@ function Box({ children, smallIcon }) {
     </>
   );
 }
-
-export default Box;

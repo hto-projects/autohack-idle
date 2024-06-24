@@ -7,7 +7,7 @@ import Loader from "../Loader";
 import { useUpdateUserMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
 
-function Profile() {
+export default function Profile() {
   const { userInfo } = useSelector((state: any) => state.auth);
 
   const [email, setEmail] = useState(userInfo ? userInfo.email : "");
@@ -91,5 +91,3 @@ function Profile() {
     </div>
   );
 }
-
-export default Profile;
