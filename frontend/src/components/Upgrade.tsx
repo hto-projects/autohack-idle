@@ -6,7 +6,7 @@ interface IUpgradeProps {
   onBuy: (up: IUpgrade) => void;
 }
 
-const Upgrade = ({ up, status, onBuy }: IUpgradeProps) => {
+function Upgrade({ up, status, onBuy }: IUpgradeProps) {
   return (
     <div
       className={`upgrade status-${status}`}
@@ -17,6 +17,6 @@ const Upgrade = ({ up, status, onBuy }: IUpgradeProps) => {
       <span style={{ fontWeight: "bold" }}>{up.name}</span> ({status})
     </div>
   );
-};
+}
 
 export default Upgrade;

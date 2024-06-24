@@ -7,7 +7,7 @@ import { useRegisterMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
 
-const Register = ({ setScreen }) => {
+function Register({ setScreen }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -101,6 +101,6 @@ const Register = ({ setScreen }) => {
       </Row>
     </div>
   );
-};
+}
 
 export default Register;

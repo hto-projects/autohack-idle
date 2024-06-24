@@ -4,7 +4,7 @@ import { IGameData, IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { IGameState } from "../store";
 import { purchaseUpgrade } from "../slices/gameDataSlice";
 
-const UpgradesContainer = () => {
+function UpgradesContainer() {
   const upgradesState = useSelector((state: IGameState) => state.upgrades);
   const upgrades: IUpgrade[] = upgradesState.availableUpgrades;
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
@@ -37,6 +37,6 @@ const UpgradesContainer = () => {
       ))}
     </div>
   );
-};
+}
 
 export default UpgradesContainer;
