@@ -33,7 +33,13 @@ export default function UpgradesContainer() {
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
       <h3>Upgrades</h3>
       {upgrades.map((up) => (
-        <Upgrade up={up} status={getStatusForUpgrade(up)} key={up.name} onBuy={attemptPurchase}></Upgrade>
+        <Upgrade
+          up={up}
+          status={getStatusForUpgrade(up)}
+          key={up.name}
+          onBuy={attemptPurchase}
+          currencyAmount={gameData.currencyAmount}
+        ></Upgrade>
       ))}
     </div>
   );
