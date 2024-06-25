@@ -1,4 +1,4 @@
-import { IUpgrade, UpgradeStatus } from "../../../shared/types";
+import { IUpgrade, UpgradeStatus, IRGBTriple } from "../../../shared/types";
 import { RGBTripleToCSS } from "../../../shared/util";
 import UpgradeImage from "./UpgradeImage";
 
@@ -9,9 +9,9 @@ interface IUpgradeProps {
   currencyAmount: number;
 }
 
-const bgUnavailableRGBT = { r: 179, g: 176, b: 176 };
-const bgAvailableRGBT = { r: 0, g: 255, b: 255 };
-const bgOwnedRGBT = { r: 100, g: 255, b: 0 };
+const bgUnavailableRGBT: IRGBTriple = { r: 179, g: 176, b: 176 };
+const bgAvailableRGBT: IRGBTriple = { r: 0, g: 255, b: 255 };
+const bgOwnedRGBT: IRGBTriple = { r: 100, g: 255, b: 0 };
 
 const bgAvailableCSS = RGBTripleToCSS(bgAvailableRGBT);
 const bgOwnedCSS = RGBTripleToCSS(bgOwnedRGBT);

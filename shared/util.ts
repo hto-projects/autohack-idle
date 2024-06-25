@@ -1,4 +1,4 @@
-import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction, RGBTriple } from "./types";
+import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction, IRGBTriple } from "./types";
 import { allUpgrades } from "./upgrades";
 
 function pluck<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
@@ -50,6 +50,6 @@ export function calculateVariableValue(ownedUpgradeNames: string[], variable: Ga
   return variableValue;
 }
 
-export function RGBTripleToCSS(triple: RGBTriple): string {
+export function RGBTripleToCSS(triple: IRGBTriple): string {
   return `rgb(${Math.floor(triple.r)}, ${Math.floor(triple.g)}, ${Math.floor(triple.b)})`;
 }

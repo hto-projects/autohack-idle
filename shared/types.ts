@@ -11,7 +11,7 @@ export enum VariableModFunction {
   Set
 }
 
-export enum imageType {
+export enum ImageType {
   string,
   jpg,
   png
@@ -25,7 +25,7 @@ export interface IUpgradeEffect {
 
 export interface IUpgradeImage {
   image: string;
-  type: imageType;
+  type: ImageType;
 }
 
 export interface IUpgrade {
@@ -49,7 +49,7 @@ export interface IGameData {
   upgrades: string[];
 }
 
-export interface RGBTriple {
+export interface IRGBTriple {
   r: number;
   g: number;
   b: number;

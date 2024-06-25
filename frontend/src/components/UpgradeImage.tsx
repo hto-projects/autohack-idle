@@ -1,8 +1,12 @@
-import { imageType, IUpgradeImage } from "../../../shared/types";
+import { ImageType, IUpgradeImage } from "../../../shared/types";
 
-export default function UpgradeImage({ picture }) {
+interface IUpgradeImageProps {
+  picture: IUpgradeImage;
+}
+
+export default function UpgradeImage({ picture }: IUpgradeImageProps) {
   switch (picture.type) {
-    case imageType.string:
+    case ImageType.string:
       return picture.image;
       break;
     default:
