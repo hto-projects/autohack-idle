@@ -7,7 +7,7 @@ import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
 import Loader from "../Loader";
 
-const Login = ({ setScreen }) => {
+export default function Login({ setScreen }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -60,12 +60,7 @@ const Login = ({ setScreen }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button
-          disabled={isLoading}
-          type="submit"
-          variant="primary"
-          className="mt-3"
-        >
+        <Button disabled={isLoading} type="submit" variant="primary" className="mt-3">
           Sign In
         </Button>
       </Form>
@@ -82,6 +77,4 @@ const Login = ({ setScreen }) => {
       </Row>
     </div>
   );
-};
-
-export default Login;
+}
