@@ -1,7 +1,7 @@
-import { ImageType, IUpgradeImage } from "../../../shared/types";
+import { ImageType, IAppImage } from "../../../shared/types";
 
 interface IUpgradeImageProps {
-  picture: IUpgradeImage;
+  picture: IAppImage;
 }
 
 export default function UpgradeImage({ picture }: IUpgradeImageProps) {

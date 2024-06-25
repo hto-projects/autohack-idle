@@ -23,7 +23,7 @@ export interface IUpgradeEffect {
   modValue: number;
 }
 
-export interface IUpgradeImage {
+export interface IAppImage {
   image: string;
   type: ImageType;
 }
@@ -31,7 +31,7 @@ export interface IUpgradeImage {
 export interface IUpgrade {
   name: string;
   description: string;
-  picture: IUpgradeImage;
+  picture: IAppImage;
   cost: number;
   effects: IUpgradeEffect[];
 }
