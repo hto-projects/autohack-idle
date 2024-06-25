@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IGameData } from "../../../shared/types";
+import { IGameData, UpgradeStatus } from "../../../shared/types";
 import { apiSlice } from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import upgradesSlice from "./upgradesSlice";
@@ -11,7 +11,6 @@ const initialState: IGameData = {
   userEmail: "",
   upgrades: []
 };
-
 export const gameDataSlice = createSlice({
   name: "gameData",
   initialState: initialState,
@@ -39,6 +38,7 @@ export const gameDataSlice = createSlice({
     resetGameData: (state) => {
       state.currencyAmount = 0;
       state.numBits = 0;
+      state.upgrades = [];
     }
   }
 });
