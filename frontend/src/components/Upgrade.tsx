@@ -1,5 +1,6 @@
-import { IUpgrade, UpgradeStatus, imageType } from "../../../shared/types";
+import { IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { RGBTripleToCSS } from "../../../shared/util";
+import UpgradeImage from "./UpgradeImage";
 
 interface IUpgradeProps {
   up: IUpgrade;
@@ -16,7 +17,11 @@ const bgAvailableCSS = RGBTripleToCSS(bgAvailableRGBT);
 const bgOwnedCSS = RGBTripleToCSS(bgOwnedRGBT);
 
 const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
-  let bgColor = undefined;
+  let bgColor: string = null;
+  let percentageText: string = null;
+  let onClickEvent: () => void = null;
+  let nameText: string = up.name;
+
   switch (status) {
     case "unavailable":
       let percentage = currencyAmount / up.cost;
@@ -26,13 +31,18 @@ const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
         b: bgUnavailableRGBT.b - percentage * (bgUnavailableRGBT.b - bgAvailableRGBT.b)
       };
       bgColor = RGBTripleToCSS(bgNew);
-      console.log(bgColor);
+      percentageText = `${Math.trunc(percentage * 100)}%`;
       break;
     case "available":
       bgColor = bgAvailableCSS;
+      percentageText = "100%";
+      onClickEvent = () => {
+        confirm("You sure?") && onBuy(up);
+      };
       break;
     case "owned":
       bgColor = bgOwnedCSS;
+      nameText = null;
       break;
     default:
       console.log(`Upgrade ${up} has invalid status ${status}`);
@@ -40,14 +50,11 @@ const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
   }
 
   return (
-    <div
-      className={`upgrade status-${status}`}
-      onClick={() => {
-        confirm("You sure?") && onBuy(up);
-      }}
-      style={{ background: bgColor }}
-    >
-      <span style={{ fontWeight: "bold" }}>{up.name}</span> ({status})
+    <div className={`upgrade status-${status}`} onClick={onClickEvent} style={{ background: bgColor }}>
+      <span className="upgrade-image">
+        <UpgradeImage picture={up.picture}></UpgradeImage>
+      </span>{" "}
+      {nameText} {percentageText}
     </div>
   );
 };

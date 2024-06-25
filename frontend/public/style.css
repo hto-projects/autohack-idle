@@ -105,15 +105,21 @@ body {
 .upgrade {
   border-radius: 12px;
   margin-bottom: 2%;
+  font-weight: bold;
 
   /* background-color information is currently being stored in the Upgrade component */
   /* &.status-owned {
     background-color: rgb(100, 255, 0);
-  }
-  &.status-available {
-    background-color: rgb(25, 224, 224);
-  }
-  &.status-unavailable {
-    background-color: rgb(179, 176, 176);
   } */
+  /* &.status-available {
+    background-color: rgb(25, 224, 224);
+  } */
+  &.status-unavailable {
+    /* background-color: rgb(179, 176, 176); */
+    color: gray;
+  }
+}
+
+.upgrade.status-unavailable > .upgrade-image {
+  opacity: 0.2;
 }

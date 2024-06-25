@@ -23,7 +23,7 @@ export interface IUpgradeEffect {
   modValue: number;
 }
 
-interface IUpgradeImage {
+export interface IUpgradeImage {
   image: string;
   type: imageType;
 }
