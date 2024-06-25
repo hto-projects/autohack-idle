@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-export default function Box({ children, smallIcon }) {
+const Box = ({ children, smallIcon }) => {
   const onMobile = window.innerWidth < 600;
   const [open, setOpen] = useState<boolean>(!onMobile);
   return (
     <>
-      <div className={`closed-box ${!open && "showing"}`} onClick={() => setOpen(true)}>
+      <div
+        className={`closed-box ${!open && "showing"}`}
+        onClick={() => setOpen(true)}
+      >
         {smallIcon}
       </div>
       <div className={`open-box ${open && "showing"}`}>
@@ -14,4 +17,6 @@ export default function Box({ children, smallIcon }) {
       </div>
     </>
   );
-}
+};
+
+export default Box;

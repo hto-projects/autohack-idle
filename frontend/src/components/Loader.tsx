@@ -1,6 +1,6 @@
 import { Spinner } from "react-bootstrap";
 
-export default function Loader() {
+const Loader = () => {
   return (
     <Spinner
       animation="border"
@@ -13,4 +13,6 @@ export default function Loader() {
       }}
     ></Spinner>
   );
-}
+};
+
+export default Loader;

@@ -18,7 +18,7 @@ function pluck<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
   return retVal;
 }
 
-function runMod(modFun: VariableModFunction, modVal: number, input: number): number {
+const runMod = (modFun: VariableModFunction, modVal: number, input: number): number => {
   switch (modFun) {
     case VariableModFunction.Add:
       return input + modVal;
@@ -27,9 +27,9 @@ function runMod(modFun: VariableModFunction, modVal: number, input: number): num
     case VariableModFunction.Set:
       return modVal;
   }
-}
+};
 
-export function calculateVariableValue(ownedUpgradeNames: string[], variable: GameVariable): number {
+export const calculateVariableValue = (ownedUpgradeNames: string[], variable: GameVariable): number => {
   const ownedUpgrades: IUpgrade[] = allUpgrades.filter((up) => ownedUpgradeNames.includes(up.name));
   const effectsForVariable: IUpgradeEffect[] = ownedUpgrades.flatMap((up) =>
     up.effects.filter((e) => e.variableAffected === variable)
@@ -48,7 +48,7 @@ export function calculateVariableValue(ownedUpgradeNames: string[], variable: Ga
   }
 
   return variableValue;
-}
+};
 
 export function RGBTripleToCSS(triple: RGBTriple): string {
   return `rgb(${Math.floor(triple.r)}, ${Math.floor(triple.g)}, ${Math.floor(triple.b)})`;
