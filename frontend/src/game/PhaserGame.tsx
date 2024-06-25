@@ -3,7 +3,7 @@ import StartGame from "./main";
 import { EventBus } from "./EventBus";
 import { Scene } from "phaser";
 import { useDispatch, useSelector } from "react-redux";
-import { addBit } from "../slices/gameDataSlice";
+import { addBits } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
@@ -57,9 +57,10 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
       EventBus.removeListener("reset-game-data");
     };
   });
+
   useEffect(() => {
     EventBus.on("add-bit", () => {
-      dispatch(addBit());
+      dispatch(addBits({ additionalBits: 1 }));
     });
 
     return () => {

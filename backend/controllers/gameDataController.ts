@@ -14,7 +14,7 @@ export const saveGame = asyncHandler(async (req: any, res) => {
 
       if (existingData) {
         existingData.numBits = gameData.numBits;
-        existingData.currencyAmount = Number(gameData.currencyAmount.toFixed(1));
+        existingData.currencyAmount = gameData.currencyAmount;
         existingData.upgrades = gameData.upgrades;
 
         await existingData.save();
@@ -23,7 +23,6 @@ export const saveGame = asyncHandler(async (req: any, res) => {
         newData.userEmail = req.user.email;
         await newData.save();
       }
-
       res.status(200).send();
     } catch (e) {
       res.status(500);
