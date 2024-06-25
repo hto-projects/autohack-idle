@@ -22,7 +22,7 @@ export const gameDataSlice = createSlice({
       state.numBits += action.payload.additionalBits;
     },
     sellData: (state) => {
-      state.currencyAmount += Number((state.numBits / 10.0).toFixed(1));
+      state.currencyAmount += state.numBits / 10.0;
       state.numBits = 0;
     },
     purchaseUpgrade: (state, action) => {
@@ -35,11 +35,7 @@ export const gameDataSlice = createSlice({
       state.numBits = action.payload.numBits;
       state.upgrades = action.payload.upgrades;
     },
-    resetGameData: (state) => {
-      state.currencyAmount = 0;
-      state.numBits = 0;
-      state.upgrades = [];
-    }
+    resetGameData: (state) => initialState
   }
 });
 
