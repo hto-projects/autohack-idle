@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../../slices/usersApiSlice";
 import { logout } from "../../slices/authSlice";
 
-const MainAuth = ({ userInfo, setScreen }) => {
+export default function MainAuth({ userInfo, setScreen }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,6 +41,4 @@ const MainAuth = ({ userInfo, setScreen }) => {
       )}
     </div>
   );
-};
-
-export default MainAuth;
+}

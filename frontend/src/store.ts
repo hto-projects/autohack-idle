@@ -1,18 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slices/authSlice';
-import gameDataReducer from './slices/gameDataSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./slices/authSlice";
+import gameDataReducer from "./slices/gameDataSlice";
 import upgradesSlice from "./slices/upgradesSlice";
-import { apiSlice } from './slices/apiSlice';
-import throttle from 'lodash/throttle';
-import { IGameData, IUpgrade } from '../../shared/types';
+import { apiSlice } from "./slices/apiSlice";
+import throttle from "lodash/throttle";
+import { IGameData, IUpgrade } from "../../shared/types";
 
 export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
-  upgrades: { availableUpgrades: IUpgrade[] }
-};
+  upgrades: { availableUpgrades: IUpgrade[] };
+}
 
-const loadState = () => {
+function loadState() {
   try {
     const serializedState = localStorage.getItem("state");
     if (serializedState === null) {
@@ -25,10 +25,10 @@ const loadState = () => {
   }
 }
 
-const saveState = (state: IGameState) => {
+function saveState(state: IGameState) {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem("state", serializedState);
   } catch (e) {
     console.log(e);
   }
@@ -42,14 +42,15 @@ const store = configureStore({
     gameData: gameDataReducer,
     upgrades: upgradesSlice.reducer
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,
   preloadedState: loadedState
 });
 
-store.subscribe(throttle(() => {
-  saveState(store.getState());
-}, 1000));
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  }, 1000)
+);
 
 export default store;

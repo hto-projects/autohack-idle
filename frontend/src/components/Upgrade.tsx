@@ -9,14 +9,14 @@ interface IUpgradeProps {
   currencyAmount: number;
 }
 
-const bgUnavailableRGBT = { r: 179, g: 176, b: 176 };
+export default function bgUnavailableRGBT = { r: 179, g: 176, b: 176 };
 const bgAvailableRGBT = { r: 0, g: 255, b: 255 };
 const bgOwnedRGBT = { r: 100, g: 255, b: 0 };
 
 const bgAvailableCSS = RGBTripleToCSS(bgAvailableRGBT);
 const bgOwnedCSS = RGBTripleToCSS(bgOwnedRGBT);
 
-const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
+const Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeProps) {
   let bgColor: string = null;
   let percentageText: string = null;
   let onClickEvent: () => void = null;
@@ -57,6 +57,4 @@ const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
       {nameText} {percentageText}
     </div>
   );
-};
-
-export default Upgrade;
+}
