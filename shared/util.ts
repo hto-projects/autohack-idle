@@ -3,7 +3,7 @@ import { allUpgrades } from "./upgrades";
 
 export function pluckOne<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
   const arrCop: Array<T> = [...arr];
-  arr = [];
+  arr.length = 0;
 
   let retVal: T | null = null;
   for (let i = 0; i < arrCop.length; i++) {
