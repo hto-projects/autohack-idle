@@ -58,3 +58,5 @@ export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeP
     </div>
   );
 }
+
+export default Upgrade;

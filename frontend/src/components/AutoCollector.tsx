@@ -4,7 +4,7 @@ import { calculateVariableValue } from "../../../shared/util";
 import { addBits } from "../slices/gameDataSlice";
 import { useEffect } from "react";
 
-export default function AutoCollector() {
+const AutoCollector = () => {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
   const autoBitAmount: number = calculateVariableValue(gameData.upgrades, GameVariable.AutoBitGatheringAmount);
   const autoBitInterval: number = calculateVariableValue(gameData.upgrades, GameVariable.AutoBitGatheringInterval);
@@ -37,4 +37,6 @@ export default function AutoCollector() {
       </p>
     </div>
   );
-}
+};
+
+export default AutoCollector;

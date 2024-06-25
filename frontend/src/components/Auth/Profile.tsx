@@ -7,7 +7,7 @@ import Loader from "../Loader";
 import { useUpdateUserMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
 
-export default function Profile() {
+const Profile = () => {
   const { userInfo } = useSelector((state: any) => state.auth);
 
   const [email, setEmail] = useState(userInfo ? userInfo.email : "");
@@ -90,4 +90,6 @@ export default function Profile() {
       </Form>
     </div>
   );
-}
+};
+
+export default Profile;
