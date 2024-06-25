@@ -61,6 +61,6 @@ export class MainMenu extends Scene {
 
   //Function left empty that triggers on button click
   storeButtonClicked() {
-    confirm("Feature adding soon!");
+    confirm("Store coming soon!");
   }
 }
