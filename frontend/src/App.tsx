@@ -28,8 +28,9 @@ export default function App() {
             <AuthContainer></AuthContainer>
           </Box>
           <Box smallIcon={"B"}>
-            <p>Number of Bits: {gameData.numBits}</p>
-            <p>Currency Amount: {Number(gameData.currencyAmount.toFixed(1))}</p>
+            <p> Current Number of Bits: {gameData.numBits}</p>
+            <p> Lifetime Bits: {gameData.totalNumBits}</p>
+            <p>Currency Amount: {Number(gameData.currencyAmount)}</p>
             <UpgradesContainer></UpgradesContainer>
             <button onClick={() => dispatch(sellData())}>Sell Data</button>
             <AutoCollector></AutoCollector>
