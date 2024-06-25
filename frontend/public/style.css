@@ -101,3 +101,17 @@ body {
     border-radius: 100%;
   }
 }
+
+.upgrade {
+  border-radius: 12px;
+  margin-bottom: 2%;
+  font-weight: bold;
+
+  &.status-unavailable {
+    color: gray;
+  }
+}
+
+.upgrade.status-unavailable > .upgrade-image {
+  opacity: 0.2;
+}
