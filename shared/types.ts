@@ -33,6 +33,7 @@ export enum UpgradeStatus {
 
 export interface IGameData {
   numBits: number;
+  totalNumBits: number;
   currencyAmount: number;
   userEmail: string;
   upgrades: string[];

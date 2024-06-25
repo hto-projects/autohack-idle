@@ -10,7 +10,7 @@ import { IGameData } from "../../shared/types";
 import UpgradesContainer from "./components/UpgradesContainer";
 import AutoCollector from "./components/AutoCollector";
 
-const App = () => {
+export default function App() {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
   const dispatch = useDispatch();
 
@@ -28,7 +28,8 @@ const App = () => {
             <AuthContainer></AuthContainer>
           </Box>
           <Box smallIcon={"B"}>
-            <p>Number of Bits: {gameData.numBits}</p>
+            <p> Current Number of Bits: {gameData.numBits}</p>
+            <p> Lifetime Bits: {gameData.totalNumBits}</p>
             <p>Currency Amount: {Number(gameData.currencyAmount.toFixed(1))}</p>
             <UpgradesContainer></UpgradesContainer>
             <button onClick={() => dispatch(sellData())}>Sell Data</button>
@@ -38,6 +39,4 @@ const App = () => {
       </div>
     </>
   );
-};
-
-export default App;
+}
