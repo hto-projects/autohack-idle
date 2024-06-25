@@ -16,7 +16,7 @@ const bgOwnedRGBT = { r: 100, g: 255, b: 0 };
 const bgAvailableCSS = RGBTripleToCSS(bgAvailableRGBT);
 const bgOwnedCSS = RGBTripleToCSS(bgOwnedRGBT);
 
-const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
+export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeProps) {
   let bgColor: string = null;
   let percentageText: string = null;
   let onClickEvent: () => void = null;
@@ -57,6 +57,4 @@ const Upgrade = ({ up, status, onBuy, currencyAmount }: IUpgradeProps) => {
       {nameText} {percentageText}
     </div>
   );
-};
-
-export default Upgrade;
+}

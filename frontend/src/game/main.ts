@@ -15,8 +15,8 @@ const config: Phaser.Types.Core.GameConfig = {
   scene: [Boot, Preloader, MainMenu, Collect]
 };
 
-const StartGame = (parent: string) => {
+function StartGame(parent: string) {
   return new Game({ ...config, parent });
-};
+}
 
 export default StartGame;
