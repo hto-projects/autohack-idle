@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBits } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
-import upgradesSlice from "../slices/upgradesSlice";
 import { resetGameData } from "../slices/gameDataSlice";
 import { resetUpgrades } from "../slices/upgradesSlice";
 
