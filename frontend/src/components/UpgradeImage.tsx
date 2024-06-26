@@ -7,12 +7,12 @@ interface IUpgradeImageProps {
 export default function UpgradeImage({ picture }: IUpgradeImageProps) {
   switch (picture.type) {
     case ImageType.string:
-      return picture.image.join("");
+      return picture.imageArr.join("");
       break;
     case ImageType.png:
       return (
         <span className="upgrade-image">
-          {picture.image.map((image) => (
+          {picture.imageArr.map((image) => (
             <img
               src={`public/assets/${image}.png`}
               alt={image}
