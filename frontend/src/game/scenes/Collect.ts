@@ -1,6 +1,6 @@
 import { GameObjects, Scene } from "phaser";
 import { EventBus } from "../EventBus";
-import { calculateVariableValue } from "../../../../shared/util";
+import { calculateVariableValue, pluckOne } from "../../../../shared/util";
 import { GameVariable } from "../../../../shared/types";
 
 export class Collect extends Scene {
@@ -33,8 +33,8 @@ export class Collect extends Scene {
     newClickyBit.setInteractive();
     newClickyBit.on("pointerdown", () => {
       EventBus.emit("add-bit");
-      newClickyBit.removeFromDisplayList();
-      newClickyBit.removeInteractive();
+      const collectedBit: GameObjects.Text = pluckOne(this.clickyBits, (bitObj) => bitObj === newClickyBit);
+      collectedBit.destroy();
     });
 
     this.clickyBits.push(newClickyBit);

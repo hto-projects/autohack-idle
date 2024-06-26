@@ -6,6 +6,7 @@ export class MainMenu extends Scene {
   numBitsText: GameObjects.Text;
   nextButton: GameObjects.Rectangle;
   learnButton: GameObjects.Rectangle;
+  resetButton: GameObjects.Rectangle;
 
   constructor() {
     super("MainMenu");
@@ -43,6 +44,10 @@ export class MainMenu extends Scene {
     this.nextButton.setInteractive();
     this.nextButton.on("pointerdown", this.nextButtonClicked.bind(this));
 
+    this.resetButton = this.add.rectangle(screenCenterX, 600, 100, 50, 0xff000f);
+    this.resetButton.setInteractive();
+    this.resetButton.on("pointerdown", this.resetButtonClicked.bind(this));
+
     this.learnButton = this.add.rectangle(screenCenterX, 500, 100, 50, 0xffa500);
     this.learnButton.setInteractive();
     this.learnButton.on("pointerdown", this.learnButtonClicked.bind(this));
@@ -61,5 +66,9 @@ export class MainMenu extends Scene {
 
   learnButtonClicked() {
     confirm("Hacking portal coming soon!");
+  }
+  resetButtonClicked() {
+    confirm("This will reset all game data, proceed?");
+    EventBus.emit("reset-game-data");
   }
 }
