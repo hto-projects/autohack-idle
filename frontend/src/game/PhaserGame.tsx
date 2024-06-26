@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBits } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
+import upgradesSlice from "../slices/upgradesSlice";
 import { resetGameData } from "../slices/gameDataSlice";
+import { resetUpgrades } from "../slices/upgradesSlice";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -51,6 +53,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   useEffect(() => {
     EventBus.on("reset-game-data", () => {
       dispatch(resetGameData());
+      dispatch(resetUpgrades());
     });
 
     return () => {
