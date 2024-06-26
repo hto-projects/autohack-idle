@@ -5,7 +5,6 @@ import { GameVariable } from "../../../../shared/types";
 
 export class Collect extends Scene {
   numBitsText: GameObjects.Text;
-  backButton: GameObjects.Text;
   clickyBits: Array<GameObjects.Text>;
   bitAppearEvent: any;
 
@@ -18,7 +17,7 @@ export class Collect extends Scene {
     const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
     return {
-      xPos: screenCenterX + (-150 + Math.random() * 300),
+      xPos: screenCenterX + (-250 + Math.random() * 500),
       yPos: screenCenterY + (-200 + Math.random() * 400)
     };
   }
@@ -58,14 +57,6 @@ export class Collect extends Scene {
       })
       .setOrigin(0.5)
       .setDepth(100);
-
-    this.backButton = this.add.text(screenCenterX + 100, screenBottomY - backFontSize * 2 - 10, "back", {
-      backgroundColor: "#0000FF",
-      padding: { x: 10, y: 10 },
-      fontSize: backFontSize
-    });
-    this.backButton.setInteractive();
-    this.backButton.on("pointerdown", this.backButtonClicked.bind(this));
 
     this.clickyBits = [];
     EventBus.on("change-bits", (bits: number) => {
@@ -110,11 +101,5 @@ export class Collect extends Scene {
     if (Math.random() < bitAppearanceProb) {
       this.addNewBit();
     }
-  }
-
-  backButtonClicked() {
-    EventBus.removeListener("change-bits");
-    EventBus.removeListener("change-rates");
-    this.scene.start("MainMenu");
   }
 }

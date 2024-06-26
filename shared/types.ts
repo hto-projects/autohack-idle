@@ -17,6 +17,12 @@ export enum ImageType {
   png
 }
 
+export enum AppType {
+  Collector = "Collector",
+  Store = "Store",
+  Upgrades = "Upgrades"
+}
+
 export interface IAppImage {
   image: string;
   type: ImageType;

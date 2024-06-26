@@ -1,6 +1,5 @@
 import { Boot } from "./scenes/Boot";
 import { Collect } from "./scenes/Collect";
-import { MainMenu } from "./scenes/MainMenu";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
 
@@ -8,11 +7,11 @@ import { Preloader } from "./scenes/Preloader";
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
   type: AUTO,
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: 500,
+  height: 400,
   parent: "game-container",
   backgroundColor: "#028af8",
-  scene: [Boot, Preloader, MainMenu, Collect]
+  scene: [Boot, Preloader, Collect]
 };
 
 function StartGame(parent: string) {
