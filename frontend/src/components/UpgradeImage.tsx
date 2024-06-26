@@ -9,16 +9,16 @@ export default function UpgradeImage({ picture }: IUpgradeImageProps) {
   let imageElements: any = undefined;
   switch (picture.type) {
     case ImageType.string:
-      imageElements = picture.imageArr.join("");
+      imageElements = picture.image;
       break;
     case ImageType.png:
-      imageElements = picture.imageArr.map((image) => (
+      imageElements = (
         <img
-          src={`public/assets/${image}.png`}
-          alt={image.replace("/", "_")}
+          src={`public/assets/${picture.image}.png`}
+          alt={picture.image.replace("/", "_")}
           style={{ verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%" }}
         ></img>
-      ));
+      );
       break;
     default:
       console.log(`imageType: ${picture.type} is currently unsupported`);

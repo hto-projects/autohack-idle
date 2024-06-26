@@ -51,7 +51,10 @@ export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeP
 
   return (
     <div className={`upgrade status-${status}`} onClick={onClickEvent} style={{ background: bgColor }}>
-      <UpgradeImage picture={up.picture}></UpgradeImage> {nameText} {percentageText}
+      {up.pictureArr.map((pic) => (
+        <UpgradeImage picture={pic}></UpgradeImage>
+      ))}
+      {nameText} {percentageText}
     </div>
   );
 }

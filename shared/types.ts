@@ -18,7 +18,7 @@ export enum ImageType {
 }
 
 export interface IAppImage {
-  imageArr: string[];
+  image: string;
   type: ImageType;
 }
 
@@ -31,7 +31,7 @@ export interface IUpgradeEffect {
 export interface IUpgrade {
   name: string;
   description: string;
-  picture: IAppImage;
+  pictureArr: IAppImage[];
   cost: number;
   effects: IUpgradeEffect[];
 }
