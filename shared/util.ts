@@ -1,14 +1,14 @@
-import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction } from "./types";
+import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction, IRGBTriple } from "./types";
 import { allUpgrades } from "./upgrades";
 
-function pluck<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
-  const arrCop: Array<T> = arr;
-  arr = [];
+export function pluckOne<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
+  const arrCop: Array<T> = [...arr];
+  arr.length = 0;
 
   let retVal: T | null = null;
   for (let i = 0; i < arrCop.length; i++) {
     const currentVal = arrCop[i];
-    if (pred(currentVal)) {
+    if (!retVal && pred(currentVal)) {
       retVal = currentVal;
     } else {
       arr.push(currentVal);
@@ -35,7 +35,7 @@ export function calculateVariableValue(ownedUpgradeNames: string[], variable: Ga
     up.effects.filter((e) => e.variableAffected === variable)
   );
 
-  const setEffect = pluck(effectsForVariable, (ef) => ef.variableMod === VariableModFunction.Set);
+  const setEffect = pluckOne(effectsForVariable, (ef) => ef.variableMod === VariableModFunction.Set);
   if (!setEffect) {
     return NaN;
   }
@@ -48,4 +48,8 @@ export function calculateVariableValue(ownedUpgradeNames: string[], variable: Ga
   }
 
   return variableValue;
+}
+
+export function RGBTripleToCSS(triple: IRGBTriple): string {
+  return `rgb(${Math.floor(triple.r)}, ${Math.floor(triple.g)}, ${Math.floor(triple.b)})`;
 }
