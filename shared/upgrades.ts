@@ -2,19 +2,6 @@ import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types"
 
 export const starterUpgrades: IUpgrade[] = [
   {
-    name: "test",
-    description: "Once every second, look to see if there are any bits available for harvesting",
-    picture: { imageArr: ["wip_coin_1"], type: ImageType.png },
-    cost: 0.4,
-    effects: [
-      {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
-  {
     name: "Check for Bits",
     description: "Once every second, look to see if there are any bits available for harvesting",
     picture: { imageArr: ["🔍"], type: ImageType.string },
@@ -50,19 +37,6 @@ export const starterUpgrades: IUpgrade[] = [
         variableAffected: GameVariable.BitCheckInterval,
         variableMod: VariableModFunction.Multiply,
         modValue: 0.5
-      }
-    ]
-  },
-  {
-    name: "testtttt",
-    description: "Once every second, look to see if there are any bits available for harvesting",
-    picture: { imageArr: ["coin_32", "coin_32"], type: ImageType.png },
-    cost: 0.4,
-    effects: [
-      {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
       }
     ]
   },
