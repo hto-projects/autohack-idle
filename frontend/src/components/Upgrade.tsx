@@ -51,10 +51,7 @@ export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeP
 
   return (
     <div className={`upgrade status-${status}`} onClick={onClickEvent} style={{ background: bgColor }}>
-      <span className="upgrade-image">
-        <UpgradeImage picture={up.picture}></UpgradeImage>
-      </span>{" "}
-      {nameText} {percentageText}
+      <UpgradeImage picture={up.picture}></UpgradeImage> {nameText} {percentageText}
     </div>
   );
 }
