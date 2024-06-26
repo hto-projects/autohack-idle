@@ -5,6 +5,7 @@ export class MainMenu extends Scene {
   title: GameObjects.Text;
   numBitsText: GameObjects.Text;
   nextButton: GameObjects.Rectangle;
+  resetButton: GameObjects.Rectangle;
   authButton: GameObjects.Rectangle;
 
   constructor() {
@@ -43,6 +44,10 @@ export class MainMenu extends Scene {
     this.nextButton.setInteractive();
     this.nextButton.on("pointerdown", this.nextButtonClicked.bind(this));
 
+    this.resetButton = this.add.rectangle(screenCenterX, 600, 100, 50, 0xff000f);
+    this.resetButton.setInteractive();
+    this.resetButton.on("pointerdown", this.resetButtonClicked.bind(this));
+
     this.authButton = this.add.rectangle(1100, 300, 150, 50, 0x4a412a);
     this.add.text(1050, 293, "Player Info");
     this.authButton.setInteractive();
@@ -58,6 +63,10 @@ export class MainMenu extends Scene {
   nextButtonClicked() {
     EventBus.removeListener("change-bits");
     this.scene.start("Collect");
+  }
+  resetButtonClicked() {
+    confirm("This will reset all game data, proceed?");
+    EventBus.emit("reset-game-data");
   }
 
   authButtonClicked() {
