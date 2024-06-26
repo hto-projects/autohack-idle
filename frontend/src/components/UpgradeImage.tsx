@@ -7,16 +7,10 @@ interface IUpgradeImageProps {
 export default function UpgradeImage({ picture }: IUpgradeImageProps) {
   switch (picture.type) {
     case ImageType.string:
-      return picture.image;
+      return picture.image.join("");
       break;
     case ImageType.png:
       return (
-        // <img
-        //   src={`public/assets/${picture.image}.png`}
-        //   alt={picture.image}
-        //   style={{ verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%" }}
-        // ></img>
-
         <span className="upgrade-image">
           {picture.image.map((image) => (
             <img
