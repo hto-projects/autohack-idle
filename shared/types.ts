@@ -17,21 +17,21 @@ export enum ImageType {
   png
 }
 
+export interface IAppImage {
+  image: string;
+  type: ImageType;
+}
+
 export interface IUpgradeEffect {
   variableAffected: GameVariable;
   variableMod: VariableModFunction;
   modValue: number;
 }
 
-export interface IAppImage {
-  image: string;
-  type: ImageType;
-}
-
 export interface IUpgrade {
   name: string;
   description: string;
-  picture: IAppImage;
+  pictureArr: IAppImage[];
   cost: number;
   effects: IUpgradeEffect[];
 }

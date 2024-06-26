@@ -57,7 +57,8 @@ export class MainMenu extends Scene {
     this.scene.start("Collect");
   }
   resetButtonClicked() {
-    confirm("This will reset all game data, proceed?");
-    EventBus.emit("reset-game-data");
+    if (confirm("This will reset all game data, proceed?")) {
+      EventBus.emit("reset-game-data");
+    }
   }
 }
