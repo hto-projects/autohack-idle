@@ -18,7 +18,7 @@ export enum ImageType {
 }
 
 export interface IAppImage {
-  image: string[];
+  imageArr: string[];
   type: ImageType;
 }
 
