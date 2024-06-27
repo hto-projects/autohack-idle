@@ -8,6 +8,7 @@ export class Collect extends Scene {
   backButton: GameObjects.Text;
   clickyBits: Array<GameObjects.Text>;
   bitAppearEvent: any;
+  sweeper: GameObjects.Rectangle;
 
   constructor() {
     super("Collect");
@@ -31,13 +32,28 @@ export class Collect extends Scene {
     });
 
     newClickyBit.setInteractive();
+    this.physics.add.existing(newClickyBit, false);
     newClickyBit.on("pointerdown", () => {
-      EventBus.emit("add-bit");
-      const collectedBit: GameObjects.Text = pluckOne(this.clickyBits, (bitObj) => bitObj === newClickyBit);
-      collectedBit.destroy();
+      this.collectBit(newClickyBit);
     });
 
     this.clickyBits.push(newClickyBit);
+  }
+
+  update() {
+    this.sweeper.x = this.input.activePointer.x;
+    this.sweeper.y = this.input.activePointer.y;
+
+    if (this.input.activePointer.isDown) {
+      this.sweeper.setVisible(true);
+      for (const bit of this.clickyBits) {
+        if (this.physics && this.physics.overlap(this.sweeper, bit)) {
+          this.collectBit(bit);
+        }
+      }
+    } else {
+      this.sweeper.setVisible(false);
+    }
   }
 
   create() {
@@ -48,6 +64,9 @@ export class Collect extends Scene {
     const backFontSize = 16;
 
     this.cameras.main.setBackgroundColor("#000000");
+
+    this.sweeper = this.add.rectangle(0, 0, 50, 50, 0xff00ff);
+    this.physics.add.existing(this.sweeper, false);
 
     this.numBitsText = this.add
       .text(screenCenterX, screenTopY + dataFontSize, `hm`, {
@@ -64,12 +83,18 @@ export class Collect extends Scene {
       padding: { x: 10, y: 10 },
       fontSize: backFontSize
     });
+
     this.backButton.setInteractive();
     this.backButton.on("pointerdown", this.backButtonClicked.bind(this));
 
     this.clickyBits = [];
     EventBus.on("change-bits", (bits: number) => {
       this.numBitsText.setText(`data: ${bits} bits`);
+    });
+
+    EventBus.on("change-sweeper-size", (squareDimension: number) => {
+      this.sweeper.width = squareDimension;
+      this.sweeper.height = squareDimension;
     });
 
     EventBus.on("change-rates", (data) => {
@@ -110,6 +135,12 @@ export class Collect extends Scene {
     if (Math.random() < bitAppearanceProb) {
       this.addNewBit();
     }
+  }
+
+  collectBit(bit: GameObjects.Text) {
+    EventBus.emit("add-bit");
+    const collectedBit: GameObjects.Text = pluckOne(this.clickyBits, (bitObj) => bitObj === bit);
+    collectedBit.destroy();
   }
 
   backButtonClicked() {

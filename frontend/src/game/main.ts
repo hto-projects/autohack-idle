@@ -7,6 +7,9 @@ import { Preloader } from "./scenes/Preloader";
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
   type: AUTO,
+  physics: {
+    default: "arcade"
+  },
   width: "95%",
   height: "100%",
   parent: "game-container",
