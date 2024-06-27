@@ -1,13 +1,9 @@
 import React from "react";
 import { IGameData } from "../../../../shared/types";
-import { useDispatch, useSelector } from "react-redux";
-import { IRefPhaserGame, PhaserGame } from "../../game/PhaserGame";
-import UpgradesContainer from "../UpgradesContainer";
-import { sellData } from "../../slices/gameDataSlice";
-import AutoCollector from "../AutoCollector";
+import { useSelector } from "react-redux";
 
 interface TaskbarProps {
-  // Add any props you need here
+  //This is how we will pass things into taskbar later
 }
 
 const Taskbar: React.FC<TaskbarProps> = () => {

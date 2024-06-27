@@ -1,6 +1,5 @@
 import React from "react";
 import { AppType } from "../../../../shared/types";
-import { PhaserGame } from "../../game/PhaserGame";
 import UpgradeAppScreen from "./Screens/UpgradeAppScreen";
 import BitMinerUpgradeScreen from "./Screens/BitMinerAppScreen";
 
@@ -10,18 +9,13 @@ interface AppWindowProps {
 }
 
 const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
-  let foo = null;
-  if (open === AppType.Collector) {
-  } else {
-    foo = <p>Current open: {open}</p>;
-  }
-
+  let appWindowElements = null;
   switch (open) {
     case AppType.Collector:
-      foo = <BitMinerUpgradeScreen></BitMinerUpgradeScreen>;
+      appWindowElements = <BitMinerUpgradeScreen></BitMinerUpgradeScreen>;
       break;
     case AppType.Upgrades:
-      foo = <UpgradeAppScreen></UpgradeAppScreen>;
+      appWindowElements = <UpgradeAppScreen></UpgradeAppScreen>;
       break;
     case AppType.Store:
       break;
@@ -42,7 +36,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
         }}
       >
         <h1>{open}</h1>
-        {foo}
+        {appWindowElements}
         <p>
           <button onClick={() => setOpen(null)}>Close</button>
         </p>
