@@ -17,14 +17,22 @@ const Desktop: React.FC = () => {
   //  References to the PhaserGame component (game and scene are exposed)
   const phaserRef = useRef<IRefPhaserGame | null>(null);
 
-  return (
-    <div id="desktop" style={{ background: "black", width: "100%", height: "100%" }}>
-      <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>
+  let display = null;
+  if (openWindow === null) {
+    display = (
       <div style={{ padding: "20px", display: "flex", gap: "10px" }}>
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
       </div>
+    );
+  } else {
+    display = <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
+  }
+
+  return (
+    <div id="desktop" style={{ background: "black", width: "100%", height: "100%" }}>
+      {display}
     </div>
   );
 };

@@ -1,5 +1,8 @@
 import React from "react";
 import { AppType } from "../../../../shared/types";
+import { PhaserGame } from "../../game/PhaserGame";
+import UpgradeAppScreen from "./Screens/UpgradeAppScreen";
+import BitMinerUpgradeScreen from "./Screens/BitMinerAppScreen";
 
 interface AppWindowProps {
   open: AppType;
@@ -7,8 +10,21 @@ interface AppWindowProps {
 }
 
 const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
-  if (open === null) {
-    return <></>;
+  let foo = null;
+  if (open === AppType.Collector) {
+  } else {
+    foo = <p>Current open: {open}</p>;
+  }
+
+  switch (open) {
+    case AppType.Collector:
+      foo = <BitMinerUpgradeScreen></BitMinerUpgradeScreen>;
+      break;
+    case AppType.Upgrades:
+      foo = <UpgradeAppScreen></UpgradeAppScreen>;
+      break;
+    case AppType.Store:
+      break;
   }
 
   return (
@@ -25,8 +41,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
           color: "white"
         }}
       >
-        <h1>WINDOW!</h1>
-        <p>Current open: {open}</p>
+        <h1>{open}</h1>
+        {foo}
         <p>
           <button onClick={() => setOpen(null)}>Close</button>
         </p>
