@@ -2,11 +2,7 @@ import React from "react";
 import { IGameData } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 
-interface TaskbarProps {
-  //This is how we will pass things into taskbar later
-}
-
-const Taskbar: React.FC<TaskbarProps> = () => {
+const Taskbar: React.FC = () => {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
   return (
     <div

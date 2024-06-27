@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import UpgradesContainer from "../../UpgradesContainer";
 import { useDispatch } from "react-redux";
 import { sellData } from "../../../slices/gameDataSlice";
