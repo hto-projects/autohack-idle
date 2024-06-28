@@ -1,6 +1,6 @@
 import { IUpgrade, UpgradeStatus, IRGBTriple } from "../../../shared/types";
 import { RGBTripleToCSS } from "../../../shared/util";
-import UpgradeImage from "./UpgradeImage";
+import { UpgradeImage } from "./Image";
 
 interface IUpgradeProps {
   up: IUpgrade;
