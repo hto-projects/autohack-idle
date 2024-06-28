@@ -1,10 +1,11 @@
+import { CSSProperties, HTMLProps } from "react";
 import { ImageType, IAppImage } from "../../../shared/types";
 
 // imgStyle's type should be an interface for the style properties of an <img> tag but I can't find it
 interface ImageProps {
-  className: any;
+  className: HTMLProps<HTMLElement>["className"];
   picture: IAppImage;
-  imgStyle?: any;
+  imgStyle?: CSSProperties;
 }
 
 interface ImageWrapperProps {
