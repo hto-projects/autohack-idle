@@ -1,7 +1,6 @@
-import { CSSProperties, HTMLProps } from "react";
+import { CSSProperties, HTMLProps, ReactNode } from "react";
 import { ImageType, IAppImage } from "../../../shared/types";
 
-// imgStyle's type should be an interface for the style properties of an <img> tag but I can't find it
 interface ImageProps {
   className: HTMLProps<HTMLElement>["className"];
   picture: IAppImage;
@@ -13,8 +12,7 @@ interface ImageWrapperProps {
 }
 
 export function Image({ className, picture, imgStyle }: ImageProps) {
-  // imageElements is currently type "any" because TS had issues assigning type "Element[]" to the type "string | Element[]"
-  let imageElements: any = <></>;
+  let imageElements: ReactNode = null;
   switch (picture.type) {
     case ImageType.string:
       imageElements = picture.image;
