@@ -12,13 +12,13 @@ interface ImageWrapperProps {
 }
 
 export function Image({ className, picture, imgStyle }: ImageProps) {
-  let imageElements: ReactNode = null;
+  let imageNode: ReactNode = null;
   switch (picture.type) {
     case ImageType.string:
-      imageElements = picture.image;
+      imageNode = picture.image;
       break;
     case ImageType.png:
-      imageElements = (
+      imageNode = (
         <img src={`public/assets/${picture.image}.png`} alt={picture.image.replace("/", "_")} style={imgStyle}></img>
       );
       break;
@@ -26,7 +26,7 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
       console.log(`imageType: ${picture.type} is currently unsupported`);
   }
 
-  return <span className={className}>{imageElements}</span>;
+  return <span className={className}>{imageNode}</span>;
 }
 
 export function UpgradeImage({ picture }: ImageWrapperProps) {
