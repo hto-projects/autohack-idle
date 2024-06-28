@@ -59,14 +59,6 @@ export class Collect extends Scene {
       .setOrigin(0.5)
       .setDepth(100);
 
-    this.backButton = this.add.text(screenCenterX + 100, screenBottomY - backFontSize * 2 - 10, "back", {
-      backgroundColor: "#0000FF",
-      padding: { x: 10, y: 10 },
-      fontSize: backFontSize
-    });
-    this.backButton.setInteractive();
-    this.backButton.on("pointerdown", this.backButtonClicked.bind(this));
-
     this.clickyBits = [];
     EventBus.on("change-bits", (bits: number) => {
       this.numBitsText.setText(`data: ${bits} bits`);
@@ -110,11 +102,5 @@ export class Collect extends Scene {
     if (Math.random() < bitAppearanceProb) {
       this.addNewBit();
     }
-  }
-
-  backButtonClicked() {
-    EventBus.removeListener("change-bits");
-    EventBus.removeListener("change-rates");
-    this.scene.start("MainMenu");
   }
 }
