@@ -3,6 +3,8 @@ import { EventBus } from "../EventBus";
 import { calculateVariableValue, pluckOne } from "../../../../shared/util";
 import { GameVariable } from "../../../../shared/types";
 
+class clickiestBit extends Phaser.Physics.Arcade.Sprite {}
+
 export class Collect extends Scene {
   numBitsText: GameObjects.Text;
   backButton: GameObjects.Text;
@@ -37,6 +39,8 @@ export class Collect extends Scene {
       collectedBit.destroy();
     });
 
+    this.physics.add.existing(newClickyBit);
+
     this.clickyBits.push(newClickyBit);
   }
 
@@ -45,7 +49,6 @@ export class Collect extends Scene {
     const screenBottomY = screenTopY + this.cameras.main.height;
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     const dataFontSize = 16;
-    const backFontSize = 16;
 
     this.cameras.main.setBackgroundColor("#000000");
 
@@ -96,6 +99,17 @@ export class Collect extends Scene {
     });
 
     EventBus.emit("current-scene-ready", this);
+  }
+
+  update() {
+    // for (let clickyBit of this.clickyBits) {
+    //   if (clickyBit.text === "1") {
+    //     clickyBit.text = "0";
+    //   } else {
+    //     clickyBit.text = "1";
+    //   }
+    //   clickyBit.y += 1;
+    // }
   }
 
   maybeAddBit(bitAppearanceProb) {

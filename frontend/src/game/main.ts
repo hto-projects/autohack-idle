@@ -11,6 +11,15 @@ const config: Phaser.Types.Core.GameConfig = {
   height: "100%",
   parent: "game-container",
   backgroundColor: "#028af8",
+  physics: {
+    default: "arcade",
+    arcade: {
+      // gravity: {
+      //   x: 0,
+      //   y: 100
+      // }
+    }
+  },
   scene: [Boot, Preloader, Collect]
 };
 
