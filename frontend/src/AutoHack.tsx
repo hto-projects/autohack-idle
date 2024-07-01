@@ -1,7 +1,7 @@
 import Desktop from "./components/DesktopApps/Desktop";
 import Taskbar from "./components/DesktopApps/Taskbar";
-import VerticalBar from "./components/verticalbar";
-import HorizontalBar from "./components/HorizontalBar";
+import VerticalBar from "./components/DesktopApps/VerticalBar";
+import HorizontalBar from "./components/DesktopApps/HorizontalBar";
 
 export default function AutoHack() {
   return (
