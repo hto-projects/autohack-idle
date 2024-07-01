@@ -17,10 +17,10 @@ export enum ImageType {
   png
 }
 
-export interface IUpgradeEffect {
-  variableAffected: GameVariable;
-  variableMod: VariableModFunction;
-  modValue: number;
+export enum AppType {
+  Collector = "Collector",
+  Store = "Store",
+  Upgrades = "Upgrades"
 }
 
 export interface IAppImage {
@@ -28,10 +28,16 @@ export interface IAppImage {
   type: ImageType;
 }
 
+export interface IUpgradeEffect {
+  variableAffected: GameVariable;
+  variableMod: VariableModFunction;
+  modValue: number;
+}
+
 export interface IUpgrade {
   name: string;
   description: string;
-  picture: IAppImage;
+  pictureArr: IAppImage[];
   cost: number;
   effects: IUpgradeEffect[];
 }

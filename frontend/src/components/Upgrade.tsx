@@ -1,6 +1,6 @@
 import { IUpgrade, UpgradeStatus, IRGBTriple } from "../../../shared/types";
 import { RGBTripleToCSS } from "../../../shared/util";
-import UpgradeImage from "./UpgradeImage";
+import { UpgradeImage } from "./Image";
 
 interface IUpgradeProps {
   up: IUpgrade;
@@ -51,9 +51,9 @@ export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeP
 
   return (
     <div className={`upgrade status-${status}`} onClick={onClickEvent} style={{ background: bgColor }}>
-      <span className="upgrade-image">
-        <UpgradeImage picture={up.picture}></UpgradeImage>
-      </span>{" "}
+      {up.pictureArr.map((pic) => (
+        <UpgradeImage picture={pic}></UpgradeImage>
+      ))}
       {nameText} {percentageText}
     </div>
   );

@@ -1,6 +1,8 @@
 import { GameObjects, Scene } from "phaser";
 import { EventBus } from "../EventBus";
-
+import upgradesSlice from "../../slices/upgradesSlice";
+import UpgradesContainer from "../../components/UpgradesContainer";
+import { calculateVariableValue } from "../../../../shared/util";
 export class MainMenu extends Scene {
   title: GameObjects.Text;
   numBitsText: GameObjects.Text;
@@ -57,7 +59,8 @@ export class MainMenu extends Scene {
     this.scene.start("Collect");
   }
   resetButtonClicked() {
-    confirm("This will reset all game data, proceed?");
-    EventBus.emit("reset-game-data");
+    if (confirm("This will reset all game data, proceed?")) {
+      EventBus.emit("reset-game-data");
+    }
   }
 }

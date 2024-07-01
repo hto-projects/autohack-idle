@@ -9,7 +9,12 @@ const initialState: { availableUpgrades: IUpgrade[] } = {
 const upgradesSlice = createSlice({
   name: "upgrades",
   initialState: initialState,
-  reducers: {}
+  reducers: {
+    resetUpgrades(state) {
+      state.availableUpgrades = starterUpgrades;
+    }
+  }
 });
 
 export default upgradesSlice;
+export const { resetUpgrades } = upgradesSlice.actions;
