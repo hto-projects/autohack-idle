@@ -20,7 +20,7 @@ const Desktop: React.FC = () => {
   }
 
   return (
-    <div id="desktop" style={{ background: "black", width: "100%", height: "100%" }}>
+    <div id="desktop" style={{ background: "cornflowerblue", width: "100%", height: "100%" }}>
       {display}
     </div>
   );

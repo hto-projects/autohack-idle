@@ -8,13 +8,14 @@ interface AppShortcutProps {
 
 const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen }) => {
   return (
-    <div
-      style={{ color: "black", background: "red", width: "100px", height: "100px" }}
-      onClick={() => {
-        setOpen(appType);
-      }}
-    >
-      App: {appType}
+    <div style={{ textAlign: "center" }}>
+      <div
+        style={{ color: "black", background: "red", width: "100px", height: "100px" }}
+        onClick={() => {
+          setOpen(appType);
+        }}
+      ></div>
+      {appType}
     </div>
   );
 };
