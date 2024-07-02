@@ -20,7 +20,8 @@ export enum ImageType {
 export enum AppType {
   Collector = "Collector",
   Store = "Store",
-  Upgrades = "Upgrades"
+  Upgrades = "Upgrades",
+  Learn = "Learn"
 }
 
 export interface IAppImage {
