@@ -31,7 +31,7 @@ export default function AutoCollector() {
 
   return (
     <div className="auto-collector">
-      <h2 style={{ textAlign: "center" }}>🤖</h2>
+      <h2>🤖</h2>
       <p>
         You are currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
       </p>
