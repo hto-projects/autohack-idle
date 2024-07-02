@@ -22,7 +22,8 @@ export enum AppType {
   Store = "Store",
   Upgrades = "Upgrades",
   Learn = "Learn",
-  Authentication = "Authentication"
+  Authentication = "Authentication",
+  Settings = "Settings"
 }
 
 export interface IAppImage {
