@@ -1,6 +1,7 @@
 import React from "react";
 import { IGameData } from "../../../../shared/types";
 import { useSelector } from "react-redux";
+import AutoCollector from "../AutoCollector";
 
 const Taskbar: React.FC = () => {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
@@ -18,6 +19,7 @@ const Taskbar: React.FC = () => {
       }}
     >
       <p>
+        <AutoCollector></AutoCollector>
         bits: {gameData.numBits} ||| lifetime: {gameData.totalNumBits} ||| currency:{" "}
         {Number(gameData.currencyAmount.toFixed(1))}
       </p>
