@@ -21,7 +21,8 @@ export enum AppType {
   Collector = "Collector",
   Store = "Store",
   Upgrades = "Upgrades",
-  Learn = "Learn"
+  Learn = "Learn",
+  Authentication = "Authentication"
 }
 
 export interface IAppImage {

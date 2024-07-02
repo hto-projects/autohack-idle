@@ -14,6 +14,7 @@ const Desktop: React.FC = () => {
         <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Learn} setOpen={setOpenWindow}></AppShortcut>
+        <AppShortcut appType={AppType.Authentication} setOpen={setOpenWindow}></AppShortcut>
       </div>
     );
   } else {
