@@ -21,6 +21,8 @@ export enum AppType {
   Collector = "Collector",
   Store = "Store",
   Upgrades = "Upgrades",
+  Learn = "Learn",
+  Authentication = "Authentication",
   Settings = "Settings"
 }
 
