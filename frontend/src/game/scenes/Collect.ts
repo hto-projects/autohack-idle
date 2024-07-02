@@ -50,7 +50,7 @@ export class Collect extends Scene {
     this.cameras.main.setBackgroundColor("#000000");
 
     this.numBitsText = this.add
-      .text(screenCenterX, screenTopY + dataFontSize, `hm`, {
+      .text(screenCenterX, screenTopY + dataFontSize, `Get the bits`, {
         fontFamily: "consolas",
         fontSize: dataFontSize,
         color: "#ffffff",
@@ -69,7 +69,7 @@ export class Collect extends Scene {
 
     this.clickyBits = [];
     EventBus.on("change-bits", (bits: number) => {
-      this.numBitsText.setText(`data: ${bits} bits`);
+      // this.numBitsText.setText(`data: ${bits} bits`);
     });
 
     EventBus.on("change-rates", (data) => {
