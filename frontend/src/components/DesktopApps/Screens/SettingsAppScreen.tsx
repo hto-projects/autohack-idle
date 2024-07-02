@@ -6,8 +6,12 @@ export default function SettingsAppScreen() {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <button onClick={() => confirm("test") && dispatch(resetGameData()) && dispatch(resetUpgrades())}>Reset</button>
-    </>
+    <button
+      onClick={() =>
+        confirm("This will reset all data, proceed?") && dispatch(resetGameData()) && dispatch(resetUpgrades())
+      }
+    >
+      Reset
+    </button>
   );
 }
