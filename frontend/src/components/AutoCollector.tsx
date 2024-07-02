@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { GameVariable, IGameData } from "../../../../shared/types";
-import { calculateVariableValue } from "../../../../shared/util";
-import { addBits } from "../../slices/gameDataSlice";
+import { GameVariable, IGameData } from "../../../shared/types";
+import { calculateVariableValue } from "../../../shared/util";
+import { addBits } from "../slices/gameDataSlice";
 import { useEffect } from "react";
 
 export default function AutoCollector() {
