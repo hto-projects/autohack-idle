@@ -1,4 +1,5 @@
 import { Boot } from "./scenes/Boot";
+import { Collect2 } from "./scenes/Collect2";
 import { Collect } from "./scenes/Collect";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
@@ -18,9 +19,10 @@ const config: Phaser.Types.Core.GameConfig = {
       //   x: 0,
       //   y: 100
       // }
+      debug: true
     }
   },
-  scene: [Boot, Preloader, Collect]
+  scene: [Boot, Preloader, Collect, Collect2]
 };
 
 function StartGame(parent: string) {

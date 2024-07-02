@@ -1,16 +1,21 @@
 import { GameObjects, Scene } from "phaser";
+import ClickableBit from "../ClickableBit";
 import { EventBus } from "../EventBus";
-import { calculateVariableValue, pluckOne } from "../../../../shared/util";
 import { GameVariable } from "../../../../shared/types";
+import { calculateVariableValue, pluckOne } from "../../../../shared/util";
 
-export class Collect extends Scene {
+export class Collect2 extends Scene {
   numBitsText: GameObjects.Text;
-  backButton: GameObjects.Text;
-  clickyBits: Array<GameObjects.Text>;
+  // clickyBits: Array<ClickableBit>;
   bitAppearEvent: any;
 
   constructor() {
-    super("Collect");
+    super("Collect2");
+  }
+  maybeAddBit(bitAppearanceProb) {
+    if (Math.random() < bitAppearanceProb) {
+      this.addNewBit();
+    }
   }
 
   getRandomBitPosition() {
@@ -25,27 +30,15 @@ export class Collect extends Scene {
 
   addNewBit() {
     const { xPos, yPos } = this.getRandomBitPosition();
-    const newClickyBit = this.add.text(xPos, yPos, "1", {
-      color: "#ffffff",
-      fontSize: 20
-    });
-    newClickyBit.setInteractive();
-    newClickyBit.on("pointerdown", () => {
-      EventBus.emit("add-bit");
-      const collectedBit: GameObjects.Text = pluckOne(this.clickyBits, (bitObj) => bitObj === newClickyBit);
-      collectedBit.destroy();
-    });
-    this.physics.add.existing(newClickyBit);
-    this.clickyBits.push(newClickyBit);
+    new ClickableBit(this, xPos, yPos);
   }
-
   create() {
     const screenTopY = this.cameras.main.worldView.y;
     const screenBottomY = screenTopY + this.cameras.main.height;
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     const dataFontSize = 16;
 
-    this.cameras.main.setBackgroundColor("#000000");
+    this.cameras.main.setBackgroundColor("#100000");
 
     this.numBitsText = this.add
       .text(screenCenterX, screenTopY + dataFontSize, `hm`, {
@@ -57,9 +50,8 @@ export class Collect extends Scene {
       .setOrigin(0.5)
       .setDepth(100);
 
-    this.clickyBits = [];
     EventBus.on("change-bits", (bits: number) => {
-      this.numBitsText.setText(`data: ${bits} bits`);
+      this.numBitsText.setText(`aata: ${bits} bits`);
     });
 
     EventBus.on("change-rates", (data) => {
@@ -96,20 +88,5 @@ export class Collect extends Scene {
     EventBus.emit("current-scene-ready", this);
   }
 
-  update() {
-    // for (let clickyBit of this.clickyBits) {
-    //   if (clickyBit.text === "1") {
-    //     clickyBit.text = "0";
-    //   } else {
-    //     clickyBit.text = "1";
-    //   }
-    //   clickyBit.y += 1;
-    // }
-  }
-
-  maybeAddBit(bitAppearanceProb) {
-    if (Math.random() < bitAppearanceProb) {
-      this.addNewBit();
-    }
-  }
+  update() {}
 }
