@@ -112,10 +112,4 @@ const updateUserProfile = asyncHandler(async (req: any, res) => {
     throw new Error("User not found");
   }
 });
-export {
-  authUser,
-  registerUser,
-  logoutUser,
-  getUserProfile,
-  updateUserProfile
-};
+export { authUser, registerUser, logoutUser, getUserProfile, updateUserProfile };
