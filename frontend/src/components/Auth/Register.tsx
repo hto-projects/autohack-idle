@@ -61,6 +61,7 @@ export default function Register({ setScreen }) {
             type="email"
             placeholder="Enter email"
             value={email}
+            maxLength={64}
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
