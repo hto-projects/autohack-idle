@@ -40,13 +40,11 @@ export default class ClickableBit extends GameObjects.Text {
     } else {
       this.charsetI++;
     }
-    console.log("change");
     this.setText(ClickableBit.charset[this.charsetI]);
   }
 
   destroyObj() {
     if (this) {
-      console.log("delete");
       ClickableBit.arr.splice(ClickableBit.arr.indexOf(this), 1);
       this.destroy();
     }

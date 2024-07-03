@@ -87,6 +87,5 @@ export class Collect extends Scene {
     const { xPos, yPos } = this.getRandomBitPosition();
     const newBit = new ClickableBit(this, xPos, yPos);
     this.clickyBits.push(newBit);
-    console.log("created");
   }
 }
