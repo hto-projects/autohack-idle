@@ -8,6 +8,7 @@ export class Collect extends Scene {
   clickyBits: Array<ClickableBit> = [];
   bitAppearEvent: any;
   accrewedTime: number = 0;
+  changeTextTime: number = 500;
 
   constructor() {
     super("Collect");
@@ -51,14 +52,15 @@ export class Collect extends Scene {
   }
 
   update(time: number, delta: number) {
-    const changeTextTime = 500;
     this.accrewedTime += delta;
-    if (this.accrewedTime > changeTextTime) {
+
+    if (this.accrewedTime > this.changeTextTime) {
+      this.accrewedTime %= this.changeTextTime;
       for (let bit of this.clickyBits) {
         bit.changeText();
       }
-      this.accrewedTime = 0;
     }
+
     for (let bit of this.clickyBits) {
       if (bit.toDestroy) {
         bit.destroyObj();
@@ -66,7 +68,7 @@ export class Collect extends Scene {
     }
   }
 
-  maybeAddBit(bitAppearanceProb) {
+  maybeAddBit(bitAppearanceProb: number) {
     if (Math.random() < bitAppearanceProb) {
       this.addNewBit();
     }
