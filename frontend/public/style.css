@@ -1,3 +1,35 @@
+@font-face {
+  font-family: PixeloidMono;
+  src: url(/assets/PixeloidMono.ttf);
+}
+
+* {
+  font-family: PixeloidMono;
+}
+
+#start-screen {
+  background-color: #000000;
+  color: #66ff33;
+  text-align: center;
+  font-size: 40px;
+  justify-content: center;
+}
+
+#space {
+  height: 300px;
+}
+
+#space2 {
+  height: 200px;
+}
+
+#playButton {
+  color: #66ff33;
+  background: none;
+  border: none;
+  font-size: 30px;
+}
+
 body {
   margin: 0;
   padding: 0;
