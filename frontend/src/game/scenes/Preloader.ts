@@ -12,6 +12,6 @@ export class Preloader extends Scene {
   }
 
   create() {
-    this.scene.start("Collect2");
+    this.scene.start("Collect");
   }
 }

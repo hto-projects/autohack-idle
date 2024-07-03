@@ -1,5 +1,4 @@
 import { Boot } from "./scenes/Boot";
-import { Collect2 } from "./scenes/Collect2";
 import { Collect } from "./scenes/Collect";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
@@ -15,14 +14,10 @@ const config: Phaser.Types.Core.GameConfig = {
   physics: {
     default: "arcade",
     arcade: {
-      // gravity: {
-      //   x: 0,
-      //   y: 100
-      // }
-      debug: true
+      // debug: true // Creates a border for all bounding boxes
     }
   },
-  scene: [Boot, Preloader, Collect, Collect2]
+  scene: [Boot, Preloader, Collect]
 };
 
 function StartGame(parent: string) {

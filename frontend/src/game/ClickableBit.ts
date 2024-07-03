@@ -13,7 +13,6 @@ export default class ClickableBit extends GameObjects.Text {
     this.setInteractive();
     this.on("pointerdown", () => {
       EventBus.emit("add-bit");
-      // this.destroyObj();
       this.toDestroy = true;
     });
 
@@ -21,8 +20,7 @@ export default class ClickableBit extends GameObjects.Text {
     scene.physics.add.existing(this);
 
     this.startheight = 0;
-    // ClickableBit.charset = ["0", "1"];
-    this.init(); // this.changeText();
+    this.init();
   }
 
   init() {
@@ -31,10 +29,7 @@ export default class ClickableBit extends GameObjects.Text {
       y: { from: this.startheight, to: this.startheight + 1000 },
       duration: 5000,
       onComplete: () => {
-        // ClickableBit.array = ClickableBit.array.filter((elem) => elem !== this);
-        // this.destroyObj();
         this.toDestroy = true;
-        // console.log(ClickableBit.arr);
       }
     });
   }
@@ -54,7 +49,6 @@ export default class ClickableBit extends GameObjects.Text {
       console.log("delete");
       ClickableBit.arr.splice(ClickableBit.arr.indexOf(this), 1);
       this.destroy();
-      // console.log(ClickableBit.array);
     }
   }
 }
