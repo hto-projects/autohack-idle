@@ -58,11 +58,10 @@ export class Collect extends Scene {
         bit.changeText();
       }
       this.accrewedTime = 0;
-
-      for (let bit of this.clickyBits) {
-        if (bit.toDestroy) {
-          bit.destroyObj();
-        }
+    }
+    for (let bit of this.clickyBits) {
+      if (bit.toDestroy) {
+        bit.destroyObj();
       }
     }
   }

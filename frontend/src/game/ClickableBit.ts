@@ -27,7 +27,7 @@ export default class ClickableBit extends GameObjects.Text {
     this.scene.tweens.add({
       targets: this,
       y: { from: this.startheight, to: this.startheight + 1000 },
-      duration: 5000,
+      duration: 10000,
       onComplete: () => {
         this.toDestroy = true;
       }
