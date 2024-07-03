@@ -147,3 +147,9 @@ body {
 .upgrade.status-unavailable > .upgrade-image {
   opacity: 0.2;
 }
+
+pre,
+pre > code,
+pre > code > span {
+  font-family: monospace;
+}
