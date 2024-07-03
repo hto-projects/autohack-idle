@@ -9,13 +9,37 @@ const Desktop: React.FC = () => {
   let display = null;
   if (openWindow === null) {
     display = (
-      <div style={{ padding: "20px", display: "flex", gap: "10px" }}>
-        <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Learn} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Authentication} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut>
+      <div style={{ padding: "20px", display: "flex", gap: "20px" }}>
+        <AppShortcut
+          appType={AppType.Collector}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/favicon70x.png"}
+        ></AppShortcut>
+        <AppShortcut
+          appType={AppType.Store}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/StoreIcon1.png"}
+        ></AppShortcut>
+        <AppShortcut
+          appType={AppType.Upgrades}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/upgradesprite.png"}
+        ></AppShortcut>
+        <AppShortcut
+          appType={AppType.Learn}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/LearnAppIcon64.png"}
+        ></AppShortcut>
+        <AppShortcut
+          appType={AppType.Authentication}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/UserInfoAppIcon32Maybe.png"}
+        ></AppShortcut>
+        <AppShortcut
+          appType={AppType.Settings}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/SettingsApp.png"}
+        ></AppShortcut>
       </div>
     );
   } else {
@@ -23,7 +47,7 @@ const Desktop: React.FC = () => {
   }
 
   return (
-    <div id="desktop" style={{ background: "black", width: "100%", height: "100%" }}>
+    <div id="desktop" style={{ background: "green", width: "100%", height: "100%" }}>
       {display}
     </div>
   );
