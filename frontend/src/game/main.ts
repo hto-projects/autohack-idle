@@ -11,6 +11,12 @@ const config: Phaser.Types.Core.GameConfig = {
   height: "100%",
   parent: "game-container",
   backgroundColor: "#028af8",
+  physics: {
+    default: "arcade",
+    arcade: {
+      // debug: true // Creates a border for all bounding boxes
+    }
+  },
   scene: [Boot, Preloader, Collect]
 };
 
