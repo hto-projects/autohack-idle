@@ -21,28 +21,31 @@ export default function LearnContainer({ children }) {
     setChap2Vis(false);
   }
 
+  const [visibleElement, setVisibleElement] = React.useState("chapterSelect");
+  let foo = undefined;
+
+  switch (visibleElement) {
+    case "chapterSelect":
+      foo = (
+        <div>
+          <button onClick={openChapterOne}> Chapter 1: Collect All Upgrade</button>
+          <button onClick={openChapterTwo}> Chapter 2 </button>
+        </div>
+      );
+      break;
+    case "chapterOne":
+      foo = <ChapterOne></ChapterOne>;
+      break;
+    case "chapterTwo":
+      foo = <ChapterTwo></ChapterTwo>;
+      break;
+  }
   return (
     <div className={`learnContainer ${open && "showing"}`}>
-      <div>
-        <button onClick={openChapterOne}> Chapter 1: Collect All Upgrade</button>
-        <button onClick={openChapterTwo}> Chapter 2 </button>
-      </div>
-      {chap1Vis && (
-        <div>
-          <button onClick={closeChapter} style={{ marginTop: ".5%" }}>
-            Close Chapter
-          </button>
-          <ChapterOne></ChapterOne>
-        </div>
-      )}
-      {chap2Vis && (
-        <div>
-          <button onClick={closeChapter} style={{ marginTop: ".5%" }}>
-            Close Chapter
-          </button>
-          <ChapterTwo></ChapterTwo>
-        </div>
-      )}
+      {foo}
+      <button onClick={() => setVisibleElement("chapterSelect")} style={{ marginTop: ".5%" }}>
+        Close Chapter
+      </button>
     </div>
   );
 }
