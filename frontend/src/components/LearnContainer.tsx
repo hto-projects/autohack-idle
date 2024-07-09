@@ -31,8 +31,7 @@ export default function LearnContainer({ children }) {
       {chap1Vis && (
         <div>
           <button onClick={closeChapter} style={{ marginTop: ".5%" }}>
-            {" "}
-            Close Chapter{" "}
+            Close Chapter
           </button>
           <ChapterOne></ChapterOne>
         </div>
@@ -41,8 +40,7 @@ export default function LearnContainer({ children }) {
       {chap2Vis && (
         <div>
           <button onClick={closeChapter} style={{ marginTop: ".5%" }}>
-            {" "}
-            Close Chapter{" "}
+            Close Chapter
           </button>
           <ChapterTwo></ChapterTwo>
         </div>

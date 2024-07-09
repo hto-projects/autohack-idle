@@ -36,8 +36,7 @@ export default function ChapterOne() {
       {less1Vis && (
         <div>
           <button onClick={closeLesson} style={{ marginTop: ".5%" }}>
-            {" "}
-            Close Lesson{" "}
+            Close Lesson
           </button>
           <C1L1> </C1L1>
         </div>
@@ -46,8 +45,7 @@ export default function ChapterOne() {
       {less2Vis && (
         <div>
           <button onClick={closeLesson} style={{ marginTop: ".5%" }}>
-            {" "}
-            Close Lesson{" "}
+            Close Lesson
           </button>
           <C1L2> </C1L2>
         </div>
