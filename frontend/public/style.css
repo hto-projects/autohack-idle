@@ -147,3 +147,28 @@ body {
 .upgrade.status-unavailable > .upgrade-image {
   opacity: 0.2;
 }
+
+.syntax {
+  color: lightblue;
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.chapterText {
+  text-align: center;
+  color: white;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+
+.learnContainer {
+  text-align: center;
+  color: white;
+}
+
+.normalLesson {
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 5%;
+}
