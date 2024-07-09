@@ -27,7 +27,6 @@ export default function LearnContainer({ children }) {
         <button onClick={openChapterOne}> Chapter 1: Collect All Upgrade</button>
         <button onClick={openChapterTwo}> Chapter 2 </button>
       </div>
-
       {chap1Vis && (
         <div>
           <button onClick={closeChapter} style={{ marginTop: ".5%" }}>
@@ -36,7 +35,6 @@ export default function LearnContainer({ children }) {
           <ChapterOne></ChapterOne>
         </div>
       )}
-
       {chap2Vis && (
         <div>
           <button onClick={closeChapter} style={{ marginTop: ".5%" }}>

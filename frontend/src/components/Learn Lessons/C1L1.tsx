@@ -1,9 +1,7 @@
 export default function C1L1({ children }) {
   return (
     <div className={`normalLesson ${open && "showing"}`} style={{ color: "white" }}>
-      <h3 style={{ color: "white", textAlign: "left", marginLeft: "-3%", marginRight: "-3%" }}>
-        Lesson 1: Buttons in HTML
-      </h3>
+      <h3 style={{ color: "white", textAlign: "left" }}>Lesson 1: Buttons in HTML</h3>
 
       <p>
         In this lesson you will learn how to code a button that will allow you to collect all bits available. This will
