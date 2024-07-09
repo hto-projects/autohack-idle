@@ -21,7 +21,9 @@ const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => 
             background: shownIcon,
             width: "120px",
             height: "120px",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
+            marginLeft: "auto",
+            marginRight: "auto"
           }}
           onClick={() => {
             setOpen(appType);

@@ -16,15 +16,15 @@ const Desktop: React.FC = () => {
           icon={"assets/AppIcons/favicon70x.png"}
         ></AppShortcut>
         <AppShortcut
-          appType={AppType.Store}
-          setOpen={setOpenWindow}
-          icon={"assets/AppIcons/StoreIcon1.png"}
-        ></AppShortcut>
-        <AppShortcut
           appType={AppType.Upgrades}
           setOpen={setOpenWindow}
           icon={"assets/AppIcons/upgradesprite.png"}
         ></AppShortcut>
+        {/* <AppShortcut
+          appType={AppType.Store}
+          setOpen={setOpenWindow}
+          icon={"assets/AppIcons/StoreIcon1.png"}
+        ></AppShortcut> */}
         <AppShortcut
           appType={AppType.Learn}
           setOpen={setOpenWindow}
@@ -47,7 +47,7 @@ const Desktop: React.FC = () => {
   }
 
   return (
-    <div id="desktop" style={{ background: "green", width: "100%", height: "100%" }}>
+    <div id="desktop" style={{ background: "blue", width: "100%", height: "100%" }}>
       {display}
     </div>
   );
