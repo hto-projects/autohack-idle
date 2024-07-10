@@ -1,7 +1,7 @@
 export default function C1L2() {
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "white" }}>
-      <h3 style={{ color: "white", textAlign: "left", marginLeft: "-3%", marginRight: "-3%" }}>
+    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+      <h3 style={{ color: "black", textAlign: "left", marginLeft: "-3%", marginRight: "-3%" }}>
         Lesson 2: Functions in JavaScript
       </h3>
 
@@ -16,7 +16,7 @@ export default function C1L2() {
         code in the button element.
       </p>
 
-      <h6 style={{ color: "lightgray", marginLeft: "5%" }}> Sample Code: </h6>
+      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
       <div className={`syntax ${open && "showing"}`}>
         <span> function collectAll() &#123;&#125; </span>
       </div>
@@ -30,7 +30,7 @@ export default function C1L2() {
         code that the function is representing.
       </p>
 
-      <h6 style={{ color: "lightgray", marginLeft: "5%" }}> Sample Code: </h6>
+      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
       <div className="syntax">
         <p>
           <span> function collectAll() </span> &#123;

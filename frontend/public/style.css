@@ -149,7 +149,7 @@ body {
 }
 
 .syntax {
-  color: lightblue;
+  color: black;
   text-align: left;
   margin-left: 10%;
   margin-right: 10%;
@@ -167,7 +167,7 @@ body {
 
 .chapterText {
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .normalLesson {
