@@ -38,7 +38,7 @@ export const learnObj: ILearnModule = {
     },
     {
       name: "Coming Soon",
-      description: "Coming Soon.",
+      description: "Not here yet!",
       lessons: []
     }
   ]

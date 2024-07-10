@@ -39,27 +39,3 @@ export default function LearnButtonSelector({ titleElements, lessons }: LearnBut
 
   return selectorNode;
 }
-
-// const foo: ILesson = {
-//   name: "Buttons in HTML",
-//   element: <C1L1></C1L1>
-// };
-
-// const bar: LearnButtonSelectorProps = {
-//   titleElements: (
-//     <div className={"chapterText"}>
-//       <h2> Chapter 1: Adding A Collect All Upgrade </h2>
-//       <p> Complete this chapter to learn how to code an upgrade that allows you to collect all bits available. </p>
-//     </div>
-//   ),
-//   lessons: [
-//     {
-//       name: "Buttons in HTML",
-//       element: <C1L1></C1L1>
-//     },
-//     {
-//       name: "Functions in Javascript",
-//       element: <C1L2></C1L2>
-//     }
-//   ]
-// };
