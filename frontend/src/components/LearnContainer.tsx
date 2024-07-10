@@ -1,6 +1,6 @@
 import { useState, ReactNode } from "react";
-import LearnButtonSelector from "./LearnButtonSelector";
-import { ILearnModule } from "./Learn Lessons/learnObj";
+import LearnLessonContainer from "./LearnLessonContainer";
+import { ILearnModule } from "./Learn Lessons/LearnAppDirectory";
 
 interface LearnContainerProps {
   learnObj: ILearnModule;
@@ -29,7 +29,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
     const chapter = learnObj.chapters[visibleChapter];
     node = (
       <>
-        <LearnButtonSelector
+        <LearnLessonContainer
           titleElements={
             <div>
               <h3>{chapter.name}</h3>
@@ -37,7 +37,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
             </div>
           }
           lessons={chapter.lessons}
-        ></LearnButtonSelector>
+        ></LearnLessonContainer>
         <button onClick={() => setVisibleChapter(-1)} style={{ marginTop: ".5%" }}>
           Close Chapter
         </button>

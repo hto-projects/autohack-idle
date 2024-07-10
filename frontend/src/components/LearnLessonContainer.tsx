@@ -1,12 +1,12 @@
 import { useState, ReactNode } from "react";
-import { ILesson } from "./Learn Lessons/learnObj";
+import { ILesson } from "./Learn Lessons/LearnAppDirectory";
 
-interface LearnButtonSelectorProps {
+interface LearnLessonContainerProps {
   titleElements: ReactNode;
   lessons: ILesson[];
 }
 
-export default function LearnButtonSelector({ titleElements, lessons }: LearnButtonSelectorProps) {
+export default function LearnLessonContainer({ titleElements, lessons }: LearnLessonContainerProps) {
   const [visibleLesson, setVisibleLesson] = useState(-1);
   let selectorNode: ReactNode = undefined;
 
