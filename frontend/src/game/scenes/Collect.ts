@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import ClickableBit from "../ClickableBit";
 import { EventBus } from "../EventBus";
-import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "../../../../shared/types";
+import { GameVariable } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 
 export class Collect extends Scene {
@@ -10,7 +10,7 @@ export class Collect extends Scene {
   accrewedTime: number = 0;
   changeTextTime: number = 500;
   sweeper: Phaser.GameObjects.Rectangle;
-  bitSweeperSize: number = GameVariable.BitSweeperSize;
+  bitSweeperSize: number = 0;
 
   constructor() {
     super("Collect");
@@ -25,6 +25,11 @@ export class Collect extends Scene {
     ClickableBit.arr = this.clickyBits;
 
     EventBus.on("change-rates", (data) => {
+      if (this.bitSweeperSize != data.bitSweeperSize) {
+        this.bitSweeperSize = data.bitSweeperSize;
+        this.sweeper.width = this.bitSweeperSize;
+        this.sweeper.height = this.bitSweeperSize;
+      }
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
       }
@@ -41,7 +46,7 @@ export class Collect extends Scene {
       const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
       const sweepCheck = calculateVariableValue(upgrades, GameVariable.BitSweeperSize);
-      this.bitSweeperSize = sweepCheck;
+
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
       }
@@ -59,11 +64,15 @@ export class Collect extends Scene {
   }
 
   update(time: number, delta: number) {
-    this.sweeper.x = this.input.activePointer.x;
-    this.sweeper.y = this.input.activePointer.y;
     this.sweeper.setVisible(false);
 
-    while (this.bitSweeperSize != 0) {
+    this.sweeper.width = this.bitSweeperSize;
+    this.sweeper.height = this.bitSweeperSize;
+
+    this.sweeper.x = this.input.activePointer.x - 20;
+    this.sweeper.y = this.input.activePointer.y - 20;
+
+    if (this.bitSweeperSize > 0) {
       if (this.input.activePointer.isDown) {
         this.sweeper.setVisible(true);
         for (let bit of this.clickyBits) {
@@ -74,7 +83,6 @@ export class Collect extends Scene {
         }
       }
     }
-
     this.accrewedTime += delta;
 
     if (this.accrewedTime > this.changeTextTime) {

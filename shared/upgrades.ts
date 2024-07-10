@@ -62,12 +62,12 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Bit Sweeper",
     description: "Drag and hold your mouse around the screen and collect bits",
     pictureArr: [{ image: "🧹", type: ImageType.string }],
-    cost: 0,
+    cost: 15,
     effects: [
       {
         variableAffected: GameVariable.BitSweeperSize,
         variableMod: VariableModFunction.Set,
-        modValue: 10
+        modValue: 50
       }
     ]
   }
