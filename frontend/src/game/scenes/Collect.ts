@@ -63,9 +63,6 @@ export class Collect extends Scene {
   }
 
   update(time: number, delta: number) {
-    this.sweeper.width = this.bitSweeperSize;
-    this.sweeper.height = this.bitSweeperSize;
-
     this.sweeper.x = this.input.activePointer.x - this.bitSweeperSize / 2.3;
     this.sweeper.y = this.input.activePointer.y - this.bitSweeperSize / 2.3;
 
