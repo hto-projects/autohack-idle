@@ -67,7 +67,7 @@ export const starterUpgrades: IUpgrade[] = [
       {
         variableAffected: GameVariable.BitSweeperSize,
         variableMod: VariableModFunction.Set,
-        modValue: 50
+        modValue: 30
       }
     ]
   }

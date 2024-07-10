@@ -45,7 +45,6 @@ export class Collect extends Scene {
     EventBus.on("upgrade-purchased", (upgrades) => {
       const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
-      const sweepCheck = calculateVariableValue(upgrades, GameVariable.BitSweeperSize);
 
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
@@ -64,13 +63,11 @@ export class Collect extends Scene {
   }
 
   update(time: number, delta: number) {
-    this.sweeper.setVisible(false);
-
     this.sweeper.width = this.bitSweeperSize;
     this.sweeper.height = this.bitSweeperSize;
 
-    this.sweeper.x = this.input.activePointer.x - 20;
-    this.sweeper.y = this.input.activePointer.y - 20;
+    this.sweeper.x = this.input.activePointer.x - this.bitSweeperSize / 2.3;
+    this.sweeper.y = this.input.activePointer.y - this.bitSweeperSize / 2.3;
 
     if (this.bitSweeperSize > 0) {
       if (this.input.activePointer.isDown) {
@@ -81,6 +78,8 @@ export class Collect extends Scene {
             EventBus.emit("add-bit");
           }
         }
+      } else {
+        this.sweeper.setVisible(false);
       }
     }
     this.accrewedTime += delta;
