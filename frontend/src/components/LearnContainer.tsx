@@ -32,7 +32,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
         <LearnButtonSelector
           titleElements={
             <div>
-              {chapter.name}
+              <h3>{chapter.name}</h3>
               <p>{chapter.description}</p>
             </div>
           }
