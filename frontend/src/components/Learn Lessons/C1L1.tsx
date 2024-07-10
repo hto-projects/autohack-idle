@@ -1,4 +1,4 @@
-export default function C1L1({ children }) {
+export default function C1L1() {
   return (
     <div className={`normalLesson ${open && "showing"}`} style={{ color: "white" }}>
       <h3 style={{ color: "white", textAlign: "left" }}>Lesson 1: Buttons in HTML</h3>

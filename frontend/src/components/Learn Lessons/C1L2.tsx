@@ -1,4 +1,4 @@
-export default function C1L2({ children }) {
+export default function C1L2() {
   return (
     <div className={`normalLesson ${open && "showing"}`} style={{ color: "white" }}>
       <h3 style={{ color: "white", textAlign: "left", marginLeft: "-3%", marginRight: "-3%" }}>

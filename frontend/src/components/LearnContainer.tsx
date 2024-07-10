@@ -1,51 +1,59 @@
-import React from "react";
-import ChapterOne from "./Learn Lessons/ChapterOne";
+import { useState, ReactNode } from "react";
 import ChapterTwo from "./Learn Lessons/ChapterTwo";
+import LearnButtonSelector from "./LearnButtonSelector";
+import C1L1 from "./Learn Lessons/C1L1";
+import C1L2 from "./Learn Lessons/C1L2";
 
 export default function LearnContainer({ children }) {
-  const [chap1Vis, setChap1Vis] = React.useState(false);
-  const [chap2Vis, setChap2Vis] = React.useState(false);
+  const [visibleChapter, setVisibleChapter] = useState("chapterSelect");
+  let learnNode: ReactNode = undefined;
 
-  function openChapterOne() {
-    setChap1Vis(true);
-    setChap2Vis(false);
-  }
-
-  function openChapterTwo() {
-    setChap2Vis(true);
-    setChap1Vis(false);
-  }
-
-  function closeChapter() {
-    setChap1Vis(false);
-    setChap2Vis(false);
-  }
-
-  const [visibleElement, setVisibleElement] = React.useState("chapterSelect");
-  let foo = undefined;
-
-  switch (visibleElement) {
+  switch (visibleChapter) {
     case "chapterSelect":
-      foo = (
-        <div>
-          <button onClick={openChapterOne}> Chapter 1: Collect All Upgrade</button>
-          <button onClick={openChapterTwo}> Chapter 2 </button>
-        </div>
+      learnNode = (
+        <>
+          <button onClick={() => setVisibleChapter("chapterOne")}> Chapter 1: Collect All Upgrade</button>
+          <button onClick={() => setVisibleChapter("chapterOne")}> Chapter 2 </button>
+        </>
       );
       break;
     case "chapterOne":
-      foo = <ChapterOne></ChapterOne>;
+      learnNode = (
+        <LearnButtonSelector
+          titleElements={
+            <div className={"chapterText"}>
+              <h2> Chapter 1: Adding A Collect All Upgrade </h2>
+              <p>
+                Complete this chapter to learn how to code an upgrade that allows you to collect all bits available.
+              </p>
+            </div>
+          }
+          lessons={[
+            {
+              name: "Buttons in HTML",
+              element: <C1L1></C1L1>
+            },
+            {
+              name: "Functions in Javascript",
+              element: <C1L2></C1L2>
+            }
+          ]}
+        ></LearnButtonSelector>
+      );
       break;
     case "chapterTwo":
-      foo = <ChapterTwo></ChapterTwo>;
+      learnNode = <ChapterTwo></ChapterTwo>;
       break;
   }
+
   return (
-    <div className={`learnContainer ${open && "showing"}`}>
-      {foo}
-      <button onClick={() => setVisibleElement("chapterSelect")} style={{ marginTop: ".5%" }}>
-        Close Chapter
-      </button>
+    <div className={"learnContainer"}>
+      {learnNode}
+      {visibleChapter !== "chapterSelect" && (
+        <button onClick={() => setVisibleChapter("chapterSelect")} style={{ marginTop: ".5%" }}>
+          Close Chapter
+        </button>
+      )}
     </div>
   );
 }

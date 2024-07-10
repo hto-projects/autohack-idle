@@ -22,8 +22,8 @@ export default function ChapterOne() {
   }
 
   return (
-    <div>
-      <div className={`chapterText ${open && "showing"}`}>
+    <>
+      <div className={"chapterText"}>
         <h2> Chapter 1: Adding A Collect All Upgrade </h2>
         <p> Complete this chapter to learn how to code an upgrade that allows you to collect all bits available. </p>
       </div>
@@ -38,7 +38,7 @@ export default function ChapterOne() {
           <button onClick={closeLesson} style={{ marginTop: ".5%" }}>
             Close Lesson
           </button>
-          <C1L1> </C1L1>
+          <C1L1></C1L1>
         </div>
       )}
 
@@ -47,9 +47,9 @@ export default function ChapterOne() {
           <button onClick={closeLesson} style={{ marginTop: ".5%" }}>
             Close Lesson
           </button>
-          <C1L2> </C1L2>
+          <C1L2></C1L2>
         </div>
       )}
-    </div>
+    </>
   );
 }
