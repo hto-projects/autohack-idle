@@ -1,7 +1,5 @@
 import React from "react";
 import { AppType } from "../../../../shared/types";
-import { Button } from "react-bootstrap";
-import { url } from "inspector";
 
 interface AppShortcutProps {
   appType: AppType;
