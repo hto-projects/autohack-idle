@@ -9,7 +9,7 @@ const Taskbar: React.FC = () => {
     <div
       id="taskbar"
       style={{
-        background: "grey",
+        background: "darkblue",
         width: "100%",
         height: "100%",
         color: "white",

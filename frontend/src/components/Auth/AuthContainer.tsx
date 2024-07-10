@@ -29,10 +29,5 @@ export default function AuthContainer() {
 
   const [logoutApiCall] = useLogoutMutation();
 
-  return (
-    <div style={{ textAlign: "center" }}>
-      <h2>User Information</h2>
-      {screenComponent}
-    </div>
-  );
+  return <div style={{ textAlign: "center" }}>{screenComponent}</div>;
 }

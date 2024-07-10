@@ -1,19 +1,19 @@
 export default function C1L1() {
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "white" }}>
-      <h3 style={{ color: "white", textAlign: "left" }}>Lesson 1: Buttons in HTML</h3>
+    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+      <h3 style={{ color: "black", textAlign: "left" }}>Lesson 1: Buttons in HTML</h3>
 
       <p>
         In this lesson you will learn how to code a button that will allow you to collect all bits available. This will
         be done in HTML.
       </p>
 
-      <h6 style={{ color: "lightgray", marginLeft: "5%" }}> Sample Code: </h6>
+      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
       <div className="syntax">
         <span> &lt;button&gt; Click Me &lt;/button&gt; </span>
       </div>
 
-      <h6 style={{ color: "lightgray", marginLeft: "5%" }}> Sample Output: </h6>
+      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Output: </h6>
       <button style={{ marginLeft: "10%" }}> Click Me </button>
 
       <p>
@@ -22,12 +22,12 @@ export default function C1L1() {
         currently do anything because we didn't tell it what to do.
       </p>
 
-      <h6 style={{ color: "lightgray", marginLeft: "5%" }}> Sample Code: </h6>
+      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
       <div className="syntax">
         <span> &lt;button onclick = “collectAll()”&gt; Collect All &lt;/button&gt; </span>
       </div>
 
-      <h6 style={{ color: "lightgray", marginLeft: "5%" }}> Sample Output: </h6>
+      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Output: </h6>
       <button style={{ marginLeft: "10%" }}> Collect All </button>
 
       <p>

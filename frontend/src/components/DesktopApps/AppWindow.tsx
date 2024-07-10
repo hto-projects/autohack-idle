@@ -5,6 +5,7 @@ import BitMinerUpgradeScreen from "./Screens/BitMinerAppScreen";
 import LearnAppScreen from "./Screens/LearnAppScreen";
 import AuthContainer from "../Auth/AuthContainer";
 import SettingsAppScreen from "./Screens/SettingsAppScreen";
+import TitleBar from "./Screens/TitleBar";
 
 interface AppWindowProps {
   open: AppType;
@@ -34,25 +35,29 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
   }
 
   return (
-    <div style={{ width: "100%", height: "100%", background: "black", padding: "20px" }}>
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          background: "purple",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          color: "white"
-        }}
-      >
-        <h1>{open}</h1>
-        {appWindowElements}
-        <p>
-          <button onClick={() => setOpen(null)}>Close</button>
-        </p>
-      </div>
+    <div
+      style={{
+        width: "80%",
+        height: "80%",
+        background: "lightgrey",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        color: "black",
+        position: "absolute",
+        zIndex: "1",
+        left: "10%",
+        top: "10%",
+        border: "1px solid gray"
+      }}
+    >
+      <TitleBar open={open} setOpen={() => setOpen(null)}></TitleBar>
+
+      {appWindowElements}
+      {/* <p>
+        <button onClick={}>Close</button>
+      </p> */}
     </div>
   );
 };

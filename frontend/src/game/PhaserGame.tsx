@@ -92,5 +92,5 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     };
   }, [ref, gameData.numBits]);
 
-  return <div id="game-container" style={{ flex: 1, textAlign: "center" }}></div>;
+  return <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "80%" }}></div>;
 });
