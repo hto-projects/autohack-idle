@@ -79,9 +79,11 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
       EventBus.emit("change-bits", gameData.numBits);
       const bci = calculateVariableValue(gameData.upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(gameData.upgrades, GameVariable.BitAppearanceProbability);
+      const sweepCheck = calculateVariableValue(gameData.upgrades, GameVariable.BitSweeperSize);
       EventBus.emit("change-rates", {
         bitCheckInterval: bci,
-        bitAppearanceProbability: bap
+        bitAppearanceProbability: bap,
+        bitSweeperSize: sweepCheck
       });
     });
 
