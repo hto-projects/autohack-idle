@@ -2,7 +2,8 @@ export enum GameVariable {
   BitCheckInterval,
   BitAppearanceProbability,
   AutoBitGatheringAmount,
-  AutoBitGatheringInterval
+  AutoBitGatheringInterval,
+  BitSweeperSize = 0
 }
 
 export enum VariableModFunction {

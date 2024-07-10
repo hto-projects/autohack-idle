@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import ClickableBit from "../ClickableBit";
 import { EventBus } from "../EventBus";
-import { GameVariable } from "../../../../shared/types";
+import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 
 export class Collect extends Scene {
@@ -9,12 +9,18 @@ export class Collect extends Scene {
   bitAppearEvent: any;
   accrewedTime: number = 0;
   changeTextTime: number = 500;
+  sweeper: Phaser.GameObjects.Rectangle;
+  bitSweeperSize: number = GameVariable.BitSweeperSize;
 
   constructor() {
     super("Collect");
   }
 
   create() {
+    this.sweeper = this.add.rectangle(0, 0, this.bitSweeperSize, this.bitSweeperSize, 0xff00ff);
+
+    this.physics.add.existing(this.sweeper, false);
+
     this.cameras.main.setBackgroundColor("#100000");
     ClickableBit.arr = this.clickyBits;
 
@@ -34,7 +40,8 @@ export class Collect extends Scene {
     EventBus.on("upgrade-purchased", (upgrades) => {
       const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
-
+      const sweepCheck = calculateVariableValue(upgrades, GameVariable.BitSweeperSize);
+      this.bitSweeperSize = sweepCheck;
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
       }
@@ -52,6 +59,22 @@ export class Collect extends Scene {
   }
 
   update(time: number, delta: number) {
+    this.sweeper.x = this.input.activePointer.x;
+    this.sweeper.y = this.input.activePointer.y;
+    this.sweeper.setVisible(false);
+
+    while (this.bitSweeperSize != 0) {
+      if (this.input.activePointer.isDown) {
+        this.sweeper.setVisible(true);
+        for (let bit of this.clickyBits) {
+          if (this.physics.overlap(this.sweeper, bit)) {
+            bit.destroyObj();
+            EventBus.emit("add-bit");
+          }
+        }
+      }
+    }
+
     this.accrewedTime += delta;
 
     if (this.accrewedTime > this.changeTextTime) {
