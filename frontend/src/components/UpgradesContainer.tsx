@@ -16,6 +16,12 @@ export default function UpgradesContainer() {
       return UpgradeStatus.Owned;
     }
 
+    for (let x of up.preReqs) {
+      if (!gameData.upgrades.includes(x)) {
+        return UpgradeStatus.Hidden;
+      }
+    }
+
     if (gameData.currencyAmount >= up.cost) {
       return UpgradeStatus.Available;
     }
@@ -31,15 +37,22 @@ export default function UpgradesContainer() {
 
   return (
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
-      {upgrades.map((up) => (
-        <Upgrade
-          up={up}
-          status={getStatusForUpgrade(up)}
-          key={up.name}
-          onBuy={attemptPurchase}
-          currencyAmount={gameData.currencyAmount}
-        ></Upgrade>
-      ))}
+      {upgrades
+        .filter((up) => {
+          if (getStatusForUpgrade(up) === UpgradeStatus.Hidden) {
+            return false;
+          }
+          return true;
+        })
+        .map((up) => (
+          <Upgrade
+            up={up}
+            status={getStatusForUpgrade(up)}
+            key={up.name}
+            onBuy={attemptPurchase}
+            currencyAmount={gameData.currencyAmount}
+          ></Upgrade>
+        ))}
     </div>
   );
 }
