@@ -106,8 +106,8 @@ export class Collect extends Scene {
     const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
     return {
-      xPos: screenCenterX + (-150 + Math.random() * 300),
-      yPos: screenCenterY + (-200 + Math.random() * 400)
+      xPos: screenCenterX + (-500 + Math.random() * 1000),
+      yPos: screenCenterY + (-1 + Math.random() * 1)
     };
   }
 
