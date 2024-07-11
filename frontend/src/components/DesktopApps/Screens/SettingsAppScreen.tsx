@@ -1,9 +1,12 @@
-import { resetGameData } from "../../../slices/gameDataSlice";
+import { addBits, resetGameData } from "../../../slices/gameDataSlice";
 import { useDispatch } from "react-redux";
 import { resetUpgrades } from "../../../slices/upgradesSlice";
-
 export default function SettingsAppScreen() {
   const dispatch = useDispatch();
+
+  function Money() {
+    dispatch(addBits({ additionalBits: 1000 }));
+  }
 
   return (
     <>
@@ -12,6 +15,7 @@ export default function SettingsAppScreen() {
       >
         Reset
       </button>
+      <button onClick={Money}>Unlimited Bits</button>
     </>
   );
 }
