@@ -18,6 +18,7 @@ export default class ClickableBit extends GameObjects.Text {
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
+    this.body.bounce.set(2);
 
     this.startheight = 0;
     this.init();
@@ -43,10 +44,10 @@ export default class ClickableBit extends GameObjects.Text {
     this.setText(ClickableBit.charset[this.charsetI]);
   }
 
-  destroyObj() {
+  destroy() {
     if (this) {
       ClickableBit.arr.splice(ClickableBit.arr.indexOf(this), 1);
-      this.destroy();
+      super.destroy();
     }
   }
 }

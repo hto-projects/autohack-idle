@@ -3,6 +3,8 @@ import ClickableBit from "../ClickableBit";
 import { EventBus } from "../EventBus";
 import { GameVariable } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
+import { ImageProps } from "react-bootstrap";
+import computerVirus from "../Virus";
 
 export class Collect extends Scene {
   clickyBits: Array<ClickableBit> = [];
@@ -11,6 +13,8 @@ export class Collect extends Scene {
   changeTextTime: number = 500;
   sweeper: Phaser.GameObjects.Rectangle;
   bitSweeperSize: number = 0;
+  bitGroup: Phaser.GameObjects.Group;
+  virusGroup: Phaser.GameObjects.Group;
 
   constructor() {
     super("Collect");
@@ -18,11 +22,17 @@ export class Collect extends Scene {
 
   create() {
     this.sweeper = this.add.rectangle(0, 0, this.bitSweeperSize, this.bitSweeperSize, 0xff00ff);
+    this.bitGroup = new Phaser.GameObjects.Group(this);
+    this.virusGroup = new Phaser.GameObjects.Group(this);
 
     this.physics.add.existing(this.sweeper, false);
 
     this.cameras.main.setBackgroundColor("#100000");
     ClickableBit.arr = this.clickyBits;
+    computerVirus.bitArr = this.clickyBits;
+
+    const virus = new computerVirus(this, 400, 400, this.bitGroup);
+    this.virusGroup.add(virus);
 
     EventBus.on("change-rates", (data) => {
       if (this.bitSweeperSize != data.bitSweeperSize) {
@@ -71,7 +81,7 @@ export class Collect extends Scene {
         this.sweeper.setVisible(true);
         for (let bit of this.clickyBits) {
           if (this.physics.overlap(this.sweeper, bit)) {
-            bit.destroyObj();
+            bit.destroy();
             EventBus.emit("add-bit");
           }
         }
@@ -90,7 +100,24 @@ export class Collect extends Scene {
 
     for (let bit of this.clickyBits) {
       if (bit.toDestroy) {
-        bit.destroyObj();
+        bit.destroy();
+      }
+    }
+
+    for (const bit of this.bitGroup.getChildren()) {
+      for (const virus of this.virusGroup.getChildren()) {
+        if (this.physics.overlap(bit, virus)) {
+          const newVirus = new computerVirus(this, bit.body.position.x, bit.body.position.y, this.virusGroup);
+          bit.destroy();
+          this.virusGroup.add(newVirus);
+        }
+      }
+    }
+    for (const currentVirus of this.virusGroup.getChildren()) {
+      for (const otherVirus of this.virusGroup.getChildren()) {
+        if (this.physics.overlap(currentVirus, otherVirus)) {
+          this.physics.add.collider(currentVirus, otherVirus);
+        }
       }
     }
   }
@@ -115,5 +142,6 @@ export class Collect extends Scene {
     const { xPos, yPos } = this.getRandomBitPosition();
     const newBit = new ClickableBit(this, xPos, yPos);
     this.clickyBits.push(newBit);
+    this.bitGroup.add(newBit);
   }
 }
