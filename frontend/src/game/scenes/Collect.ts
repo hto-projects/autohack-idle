@@ -16,7 +16,7 @@ export class Collect extends Scene {
   bitGroup: Phaser.GameObjects.Group;
   virusGroup: Phaser.GameObjects.Group;
   virusArray: Array<computerVirus> = [];
-  virusSpawnVar: number = 100;
+  virusSpawnVar: number = 1;
 
   constructor() {
     super("Collect");
@@ -156,7 +156,7 @@ export class Collect extends Scene {
     this.bitGroup.add(newBit);
   }
   collectedBit() {
-    if (Math.random() < this.virusSpawnVar) {
+    if (Math.random() <= this.virusSpawnVar) {
       const newVirus = new computerVirus(this, Phaser.Math.Between(0, 1000), 0, this.bitGroup);
       this.virusGroup.add(newVirus);
     }
