@@ -79,7 +79,7 @@ export const starterUpgrades: IUpgrade[] = [
   {
     name: "Quadruple Checks",
     preReqs: ["Double Checks"],
-    description: "Check for bits twice as often",
+    description: "Check for bits 4 times as often",
     pictureArr: [{ image: "🔍🔍🔍🔍", type: ImageType.string }],
     cost: 40,
     effects: [
@@ -93,7 +93,7 @@ export const starterUpgrades: IUpgrade[] = [
   {
     name: "Octuple Checks",
     preReqs: ["Quadruple Checks"],
-    description: "Check for bits twice as often",
+    description: "Check for bits 8 times as often",
     pictureArr: [{ image: "🔍🔍🔍🔍🔍🔍🔍🔍", type: ImageType.string }],
     cost: 160,
     effects: [
