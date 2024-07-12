@@ -17,6 +17,7 @@ export class Collect extends Scene {
   virusGroup: Phaser.GameObjects.Group;
   virusArray: Array<computerVirus> = [];
   virusSpawnVar: number = 1;
+  virusMaxSpawn: number = 10;
 
   constructor() {
     super("Collect");
@@ -116,13 +117,11 @@ export class Collect extends Scene {
     for (const bit of this.bitGroup.getChildren()) {
       for (const virus of this.virusGroup.getChildren()) {
         if (this.physics.overlap(bit, virus)) {
-          const newVirus = new computerVirus(this, bit.body.position.x, bit.body.position.y, this.virusGroup);
+          let xPosition = bit.body.position.x;
+          let yPosition = bit.body.position.y;
           bit.destroy();
-          this.virusGroup.add(newVirus);
-          if (this.virusGroup.getLength() > 10) {
-            const staleVirus = this.virusGroup.getFirstAlive();
-            this.destroyVirus(staleVirus);
-          }
+          this.createVirus(xPosition, yPosition);
+          //these variables are passed in because the poistion itself was giving an error, but if I pass it to a varaible it doesn't
         }
       }
     }
@@ -157,10 +156,20 @@ export class Collect extends Scene {
   }
   collectedBit() {
     if (Math.random() <= this.virusSpawnVar) {
-      const newVirus = new computerVirus(this, Phaser.Math.Between(0, 1000), 0, this.bitGroup);
+      this.createVirus();
+    }
+  }
+
+  createVirus(bitXPosition?: number, bitYPosition?: number) {
+    if (bitXPosition != undefined) {
+      const newVirus = new computerVirus(this, bitXPosition, bitYPosition, this.virusGroup);
+      this.virusGroup.add(newVirus);
+    } else {
+      const newVirus = new computerVirus(this, Phaser.Math.Between(0, 1000), 0, this.virusGroup);
       this.virusGroup.add(newVirus);
     }
-    if (this.virusGroup.getLength() > 10) {
+
+    if (this.virusGroup.getLength() > this.virusMaxSpawn) {
       const staleVirus = this.virusGroup.getFirstAlive();
       this.destroyVirus(staleVirus);
     }
