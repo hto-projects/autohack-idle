@@ -13,6 +13,7 @@ export default class ClickableBit extends GameObjects.Text {
     this.setInteractive();
     this.on("pointerdown", () => {
       EventBus.emit("add-bit");
+      scene.collectedBit();
       this.toDestroy = true;
     });
     scene.add.existing(this);

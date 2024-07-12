@@ -16,6 +16,7 @@ export class Collect extends Scene {
   bitGroup: Phaser.GameObjects.Group;
   virusGroup: Phaser.GameObjects.Group;
   virusArray: Array<computerVirus> = [];
+  virusSpawnVar: number = 100;
 
   constructor() {
     super("Collect");
@@ -28,7 +29,12 @@ export class Collect extends Scene {
       frameRate: 3.5,
       repeat: -1
     });
-
+    this.anims.create({
+      key: "VirusDeath",
+      frames: this.anims.generateFrameNumbers("VirusDeath", { start: 0, end: 12 }),
+      frameRate: 3.5,
+      repeat: 0
+    });
     this.sweeper = this.add.rectangle(0, 0, this.bitSweeperSize, this.bitSweeperSize, 0xff00ff);
     this.bitGroup = new Phaser.GameObjects.Group(this);
     this.virusGroup = new Phaser.GameObjects.Group(this);
@@ -37,14 +43,6 @@ export class Collect extends Scene {
 
     this.cameras.main.setBackgroundColor("#100000");
     ClickableBit.arr = this.clickyBits;
-
-    const virus = new computerVirus(
-      this,
-      Phaser.Math.Between(-1000, 1000),
-      Phaser.Math.Between(-500, -1000),
-      this.bitGroup
-    );
-    this.virusGroup.add(virus);
 
     EventBus.on("change-rates", (data) => {
       if (this.bitSweeperSize != data.bitSweeperSize) {
@@ -88,18 +86,17 @@ export class Collect extends Scene {
     this.sweeper.x = this.input.activePointer.x - this.bitSweeperSize / 2.3;
     this.sweeper.y = this.input.activePointer.y - this.bitSweeperSize / 2.3;
 
-    if (this.bitSweeperSize > 0) {
-      if (this.input.activePointer.isDown) {
-        this.sweeper.setVisible(true);
-        for (let bit of this.clickyBits) {
-          if (this.physics.overlap(this.sweeper, bit)) {
-            bit.destroy();
-            EventBus.emit("add-bit");
-          }
+    if (this.input.activePointer.isDown && this.bitSweeperSize > 0) {
+      this.sweeper.setVisible(true);
+      for (let bit of this.clickyBits) {
+        if (this.physics.overlap(this.sweeper, bit)) {
+          bit.destroy();
+          EventBus.emit("add-bit");
+          this.collectedBit();
         }
-      } else {
-        this.sweeper.setVisible(false);
       }
+    } else {
+      this.sweeper.setVisible(false);
     }
     this.accrewedTime += delta;
 
@@ -124,7 +121,7 @@ export class Collect extends Scene {
           this.virusGroup.add(newVirus);
           if (this.virusGroup.getLength() > 10) {
             const staleVirus = this.virusGroup.getFirstAlive();
-            staleVirus.destroy();
+            this.destroyVirus(staleVirus);
           }
         }
       }
@@ -157,5 +154,19 @@ export class Collect extends Scene {
     const newBit = new ClickableBit(this, xPos, 1);
     this.clickyBits.push(newBit);
     this.bitGroup.add(newBit);
+  }
+  collectedBit() {
+    if (Math.random() < this.virusSpawnVar) {
+      const newVirus = new computerVirus(this, Phaser.Math.Between(0, 1000), 0, this.bitGroup);
+      this.virusGroup.add(newVirus);
+    }
+    if (this.virusGroup.getLength() > 10) {
+      const staleVirus = this.virusGroup.getFirstAlive();
+      this.destroyVirus(staleVirus);
+    }
+  }
+  destroyVirus(destroyedVirus) {
+    //Diverting all the destroyed viruses here so I can put the animation in later
+    destroyedVirus.destroy();
   }
 }

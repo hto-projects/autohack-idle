@@ -11,14 +11,22 @@ export default class computerVirus extends GameObjects.Sprite {
     scene.physics.add.existing(this);
 
     this.anims.play("VIRUS");
-    this.body.velocity.x = Phaser.Math.Between(-200, 200);
-    this.body.velocity.y = Phaser.Math.Between(-200, 200);
-    this.body.setGravityY(100);
+    this.body.velocity.x = this.randomVelocity();
+    this.body.setGravityY(200);
     this.body.collideWorldBounds = true;
     this.body.bounce.set(1);
     this.setInteractive();
     this.on("pointerdown", () => {
-      this.destroy();
+      scene.destroyVirus(this);
     });
+  }
+  randomVelocity() {
+    let givenVelocity;
+    if (Math.random() > 0.5) {
+      givenVelocity = Phaser.Math.Between(50, 200);
+    } else {
+      givenVelocity = Phaser.Math.Between(-50, -200);
+    }
+    return givenVelocity;
   }
 }
