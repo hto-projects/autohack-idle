@@ -15,12 +15,20 @@ export class Collect extends Scene {
   bitSweeperSize: number = 0;
   bitGroup: Phaser.GameObjects.Group;
   virusGroup: Phaser.GameObjects.Group;
+  virusArray: Array<computerVirus> = [];
 
   constructor() {
     super("Collect");
   }
 
   create() {
+    this.anims.create({
+      key: "VIRUS",
+      frames: this.anims.generateFrameNumbers("Virus", { start: 0, end: 2 }),
+      frameRate: 3.5,
+      repeat: -1
+    });
+
     this.sweeper = this.add.rectangle(0, 0, this.bitSweeperSize, this.bitSweeperSize, 0xff00ff);
     this.bitGroup = new Phaser.GameObjects.Group(this);
     this.virusGroup = new Phaser.GameObjects.Group(this);
@@ -29,9 +37,13 @@ export class Collect extends Scene {
 
     this.cameras.main.setBackgroundColor("#100000");
     ClickableBit.arr = this.clickyBits;
-    computerVirus.bitArr = this.clickyBits;
 
-    const virus = new computerVirus(this, 400, 400, this.bitGroup);
+    const virus = new computerVirus(
+      this,
+      Phaser.Math.Between(-1000, 1000),
+      Phaser.Math.Between(-500, -1000),
+      this.bitGroup
+    );
     this.virusGroup.add(virus);
 
     EventBus.on("change-rates", (data) => {
@@ -110,6 +122,10 @@ export class Collect extends Scene {
           const newVirus = new computerVirus(this, bit.body.position.x, bit.body.position.y, this.virusGroup);
           bit.destroy();
           this.virusGroup.add(newVirus);
+          if (this.virusGroup.getLength() > 10) {
+            const staleVirus = this.virusGroup.getFirstAlive();
+            staleVirus.destroy();
+          }
         }
       }
     }

@@ -15,11 +15,8 @@ export default class ClickableBit extends GameObjects.Text {
       EventBus.emit("add-bit");
       this.toDestroy = true;
     });
-
     scene.add.existing(this);
     scene.physics.add.existing(this);
-    this.body.bounce.set(2);
-
     this.startheight = 0;
     this.init();
   }

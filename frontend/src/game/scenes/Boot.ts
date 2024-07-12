@@ -5,9 +5,7 @@ export class Boot extends Scene {
     super("Boot");
   }
 
-  preload() {
-    this.load.image("Virus", "assets/Viruses/Virus_64x64.png");
-  }
+  preload() {}
 
   create() {
     this.scene.start("Preloader");
