@@ -146,17 +146,15 @@ export class Collect extends Scene {
 
   getRandomBitPosition() {
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-    const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
     return {
-      xPos: screenCenterX + (-150 + Math.random() * 300),
-      yPos: screenCenterY + (-200 + Math.random() * 400)
+      xPos: screenCenterX + (-500 + Math.random() * 1000)
     };
   }
 
   addNewBit() {
-    const { xPos, yPos } = this.getRandomBitPosition();
-    const newBit = new ClickableBit(this, xPos, yPos);
+    const { xPos } = this.getRandomBitPosition();
+    const newBit = new ClickableBit(this, xPos, 1);
     this.clickyBits.push(newBit);
     this.bitGroup.add(newBit);
   }
