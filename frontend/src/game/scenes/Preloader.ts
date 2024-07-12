@@ -13,7 +13,7 @@ export class Preloader extends Scene {
       frameWidth: 48,
       frameHeight: 48
     });
-    this.load.spritesheet("VirusDeath", "Viruses/Virus-R-Death-SpriteSheet.png", {
+    this.load.spritesheet("VIRUSDEATH", "Viruses/Virus-R-Death-SpriteSheet.png", {
       frameWidth: 48,
       frameHeight: 48
     });

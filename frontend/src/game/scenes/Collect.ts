@@ -31,8 +31,8 @@ export class Collect extends Scene {
       repeat: -1
     });
     this.anims.create({
-      key: "VirusDeath",
-      frames: this.anims.generateFrameNumbers("VirusDeath", { start: 0, end: 12 }),
+      key: "VIRUSDEATH",
+      frames: this.anims.generateFrameNumbers("VIRUSDEATH", { start: 0, end: 12 }),
       frameRate: 3.5,
       repeat: 0
     });
@@ -161,6 +161,7 @@ export class Collect extends Scene {
   }
 
   createVirus(bitXPosition?: number, bitYPosition?: number) {
+    let newVirus;
     if (bitXPosition != undefined) {
       const newVirus = new computerVirus(this, bitXPosition, bitYPosition, this.virusGroup);
       this.virusGroup.add(newVirus);
@@ -174,8 +175,14 @@ export class Collect extends Scene {
       this.destroyVirus(staleVirus);
     }
   }
+
   destroyVirus(destroyedVirus) {
+    let animationlessVirus = destroyedVirus;
     //Diverting all the destroyed viruses here so I can put the animation in later
-    destroyedVirus.destroy();
+    animationlessVirus.anims.remove("VIRUS");
+    animationlessVirus.anims.play("VIRUSDEATH");
+    this.time.delayedCall(9000, () => {
+      animationlessVirus.destroy();
+    });
   }
 }
