@@ -7,7 +7,7 @@ import { ImageProps } from "react-bootstrap";
 import computerVirus from "../Virus";
 import { Collision } from "matter";
 
-export class Collect extends Scene {
+export class extends Scene {
   clickyBits: Array<ClickableBit> = [];
   bitAppearEvent: any;
   accrewedTime: number = 0;
@@ -41,7 +41,7 @@ export class Collect extends Scene {
     this.bitGroup = new Phaser.GameObjects.Group(this);
     this.virusGroup = new Phaser.GameObjects.Group(this);
     this.physics.add.collider(this.virusGroup, this.virusGroup);
-    this.physics.add.overlap(this.virusGroup, this.bitGroup, this.bitCollision());
+    this.physics.add.overlap(this.virusGroup, this.bitGroup, this.bitOverlap());
 
     this.physics.add.existing(this.sweeper, false);
 
@@ -170,7 +170,7 @@ export class Collect extends Scene {
     });
   }
 
-  bitCollision() {
+  bitOverlap() {
     return (virus, bit) => {
       this.createVirus(bit.body.position.x, bit.body.position.y);
       console.log("foo");
