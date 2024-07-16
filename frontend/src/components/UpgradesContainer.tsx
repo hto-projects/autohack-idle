@@ -16,7 +16,7 @@ export default function UpgradesContainer() {
       return UpgradeStatus.Owned;
     }
 
-    for (let x of up.preReqs) {
+    for (const x of up.preReqs) {
       if (!gameData.upgrades.includes(x)) {
         return UpgradeStatus.Hidden;
       }
@@ -38,12 +38,7 @@ export default function UpgradesContainer() {
   return (
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
       {upgrades
-        .filter((up) => {
-          if (getStatusForUpgrade(up) === UpgradeStatus.Hidden) {
-            return false;
-          }
-          return true;
-        })
+        .filter((up) => getStatusForUpgrade(up) !== UpgradeStatus.Hidden)
         .map((up) => (
           <Upgrade
             up={up}
