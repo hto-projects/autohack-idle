@@ -5,6 +5,7 @@ import { GameVariable } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 import { ImageProps } from "react-bootstrap";
 import computerVirus from "../Virus";
+import { Collision } from "matter";
 
 export class Collect extends Scene {
   clickyBits: Array<ClickableBit> = [];
@@ -32,7 +33,7 @@ export class Collect extends Scene {
     });
     this.anims.create({
       key: "VIRUSDEATH",
-      frames: this.anims.generateFrameNumbers("VIRUSDEATH", { start: 0, end: 12 }),
+      frames: this.anims.generateFrameNumbers("VIRUSDEATH", { start: 0, end: 10 }),
       frameRate: 3.5,
       repeat: 0
     });
@@ -178,10 +179,11 @@ export class Collect extends Scene {
 
   destroyVirus(destroyedVirus) {
     let animationlessVirus = destroyedVirus;
-    //Diverting all the destroyed viruses here so I can put the animation in later
+    this.virusGroup.remove(destroyedVirus);
+    animationlessVirus.removeAllListeners();
     animationlessVirus.anims.remove("VIRUS");
     animationlessVirus.anims.play("VIRUSDEATH");
-    this.time.delayedCall(9000, () => {
+    this.time.delayedCall(5000, () => {
       animationlessVirus.destroy();
     });
   }
