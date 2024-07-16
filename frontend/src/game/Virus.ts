@@ -3,13 +3,13 @@ import { EventBus } from "./EventBus";
 import ClickableBit from "./ClickableBit";
 import { ChildProcess } from "child_process";
 
-export default class computerVirus extends GameObjects.Sprite {
+export default class computerVirus extends Physics.Arcade.Sprite {
   testVar: number;
-  constructor(scene: Scene, x: number, y: number, colliderGroup: Phaser.GameObjects.Group) {
+  constructor(scene: Scene, x: number, y: number, addedVirus?) {
     super(scene, x, y, "Virus");
     scene.add.existing(this);
     scene.physics.add.existing(this);
-
+    this.body = this.body as Physics.Arcade.Body;
     this.anims.play("VIRUS");
     this.body.velocity.x = this.randomVelocity();
     this.body.setGravityY(200);

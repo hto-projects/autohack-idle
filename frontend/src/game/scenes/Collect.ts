@@ -17,9 +17,9 @@ export class Collect extends Scene {
   bitGroup: Phaser.GameObjects.Group;
   virusGroup: Phaser.GameObjects.Group;
   virusArray: Array<computerVirus> = [];
-  virusSpawnVar: number = 1;
+  virusSpawnVar: number = 0.5;
   virusMaxSpawn: number = 10;
-
+  virusCollision: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback;
   constructor() {
     super("Collect");
   }
@@ -40,6 +40,8 @@ export class Collect extends Scene {
     this.sweeper = this.add.rectangle(0, 0, this.bitSweeperSize, this.bitSweeperSize, 0xff00ff);
     this.bitGroup = new Phaser.GameObjects.Group(this);
     this.virusGroup = new Phaser.GameObjects.Group(this);
+    this.physics.add.collider(this.virusGroup, this.virusGroup);
+    this.physics.add.overlap(this.virusGroup, this.bitGroup, this.bitCollision());
 
     this.physics.add.existing(this.sweeper, false);
 
@@ -114,25 +116,6 @@ export class Collect extends Scene {
         bit.destroy();
       }
     }
-
-    for (const bit of this.bitGroup.getChildren()) {
-      for (const virus of this.virusGroup.getChildren()) {
-        if (this.physics.overlap(bit, virus)) {
-          let xPosition = bit.body.position.x;
-          let yPosition = bit.body.position.y;
-          bit.destroy();
-          this.createVirus(xPosition, yPosition);
-          //these variables are passed in because the poistion itself was giving an error, but if I pass it to a varaible it doesn't
-        }
-      }
-    }
-    for (const currentVirus of this.virusGroup.getChildren()) {
-      for (const otherVirus of this.virusGroup.getChildren()) {
-        if (this.physics.overlap(currentVirus, otherVirus)) {
-          this.physics.add.collider(currentVirus, otherVirus);
-        }
-      }
-    }
   }
 
   maybeAddBit(bitAppearanceProb: number) {
@@ -162,7 +145,6 @@ export class Collect extends Scene {
   }
 
   createVirus(bitXPosition?: number, bitYPosition?: number) {
-    let newVirus;
     if (bitXPosition != undefined) {
       const newVirus = new computerVirus(this, bitXPosition, bitYPosition, this.virusGroup);
       this.virusGroup.add(newVirus);
@@ -186,5 +168,13 @@ export class Collect extends Scene {
     this.time.delayedCall(5000, () => {
       animationlessVirus.destroy();
     });
+  }
+
+  bitCollision() {
+    return (virus, bit) => {
+      this.createVirus(bit.body.position.x, bit.body.position.y);
+      console.log("foo");
+      bit.destroy();
+    };
   }
 }
