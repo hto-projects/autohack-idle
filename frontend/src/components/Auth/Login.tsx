@@ -69,7 +69,7 @@ export default function Login({ setScreen }) {
 
       <Row className="py-3">
         <Col>
-          New Customer?
+          New User?
           <Button onClick={() => setScreen("register")} variant="light">
             Register
           </Button>
