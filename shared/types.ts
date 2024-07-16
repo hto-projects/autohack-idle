@@ -3,7 +3,8 @@ export enum GameVariable {
   BitAppearanceProbability,
   AutoBitGatheringAmount,
   AutoBitGatheringInterval,
-  BitSweeperSize
+  BitSweeperSize,
+  ButtonAvailable
 }
 
 export enum VariableModFunction {
@@ -13,7 +14,7 @@ export enum VariableModFunction {
 }
 
 export enum ImageType {
-  String,
+  string,
   Jpg,
   Png
 }

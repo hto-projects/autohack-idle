@@ -8,6 +8,7 @@ import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
 import { resetUpgrades } from "../slices/upgradesSlice";
+import { CollectAll } from "./scenes/Collect";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -21,6 +22,12 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   const dispatch = useDispatch();
 
   const game = useRef<Phaser.Game | null>(null!);
+
+  var visible = false;
+
+  if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable) === 1) {
+    var visible = true;
+  }
 
   useLayoutEffect(() => {
     if (game.current === null) {
@@ -92,5 +99,18 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     };
   }, [ref, gameData.numBits]);
 
-  return <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "80%" }}></div>;
+  function collectAll() {
+    if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable) === 1) {
+      CollectAll();
+    }
+  }
+
+  return (
+    <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
+      <button style={{ visibility: visible ? "visible" : "hidden" }} onClick={collectAll}>
+        Collect All
+      </button>
+      <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "90%" }}></div>
+    </div>
+  );
 });

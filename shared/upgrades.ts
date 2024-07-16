@@ -103,6 +103,20 @@ export const starterUpgrades: IUpgrade[] = [
         modValue: 0.5
       }
     ]
+  },
+  {
+    name: "Collect All",
+    preReqs: [],
+    description: "Collects all bits on screen",
+    pictureArr: [{ image: "💰", type: ImageType.string }],
+    cost: 200,
+    effects: [
+      {
+        variableAffected: GameVariable.ButtonAvailable,
+        variableMod: VariableModFunction.Set,
+        modValue: 1
+      }
+    ]
   }
 ];
 
