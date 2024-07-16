@@ -3,11 +3,9 @@ import ClickableBit from "../ClickableBit";
 import { EventBus } from "../EventBus";
 import { GameVariable } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
-import { ImageProps } from "react-bootstrap";
 import computerVirus from "../Virus";
-import { Collision } from "matter";
 
-export class extends Scene {
+export class Collect extends Scene {
   clickyBits: Array<ClickableBit> = [];
   bitAppearEvent: any;
   accrewedTime: number = 0;
@@ -41,7 +39,7 @@ export class extends Scene {
     this.bitGroup = new Phaser.GameObjects.Group(this);
     this.virusGroup = new Phaser.GameObjects.Group(this);
     this.physics.add.collider(this.virusGroup, this.virusGroup);
-    this.physics.add.overlap(this.virusGroup, this.bitGroup, this.bitOverlap());
+    this.physics.add.overlap(this.virusGroup, this.bitGroup, this.bitCollision());
 
     this.physics.add.existing(this.sweeper, false);
 
@@ -170,7 +168,7 @@ export class extends Scene {
     });
   }
 
-  bitOverlap() {
+  bitCollision() {
     return (virus, bit) => {
       this.createVirus(bit.body.position.x, bit.body.position.y);
       console.log("foo");

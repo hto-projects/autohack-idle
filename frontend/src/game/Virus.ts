@@ -1,4 +1,4 @@
-import { GameObjects, Physics, Scene } from "phaser";
+import { Physics, Scene } from "phaser";
 
 export default class computerVirus extends Physics.Arcade.Sprite {
   testVar: number;
