@@ -14,10 +14,10 @@ interface ImageWrapperProps {
 export function Image({ className, picture, imgStyle }: ImageProps) {
   let imageNode: ReactNode = null;
   switch (picture.type) {
-    case ImageType.string:
+    case ImageType.String:
       imageNode = picture.image;
       break;
-    case ImageType.png:
+    case ImageType.Png:
       imageNode = (
         <img src={`public/assets/${picture.image}.png`} alt={picture.image.replace("/", "_")} style={imgStyle}></img>
       );
