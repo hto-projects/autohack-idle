@@ -14,7 +14,7 @@ export enum VariableModFunction {
 }
 
 export enum ImageType {
-  string,
+  String,
   Jpg,
   Png
 }

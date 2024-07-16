@@ -108,7 +108,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Collect All",
     preReqs: [],
     description: "Collects all bits on screen",
-    pictureArr: [{ image: "💰", type: ImageType.string }],
+    pictureArr: [{ image: "💰", type: ImageType.String }],
     cost: 200,
     effects: [
       {
