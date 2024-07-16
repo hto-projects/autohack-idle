@@ -3,7 +3,7 @@ import { AppType } from "../../../../shared/types";
 import UpgradeAppScreen from "./screens/UpgradeAppScreen";
 import BitMinerUpgradeScreen from "./screens/BitMinerAppScreen";
 import LearnAppScreen from "./screens/LearnAppScreen";
-import AuthContainer from "../authdd/AuthContainer";
+import AuthContainer from "../auth/AuthContainer";
 import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
 

@@ -5,8 +5,8 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store.js";
 import { Provider } from "react-redux";
-import Profile from "./components/authdd/Profile.js";
-import PrivateRoute from "./components/authdd/PrivateRoute.js";
+import Profile from "./components/auth/Profile.js";
+import PrivateRoute from "./components/auth/PrivateRoute.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
