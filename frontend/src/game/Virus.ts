@@ -1,7 +1,4 @@
 import { GameObjects, Physics, Scene } from "phaser";
-import { EventBus } from "./EventBus";
-import ClickableBit from "./ClickableBit";
-import { ChildProcess } from "child_process";
 
 export default class computerVirus extends Physics.Arcade.Sprite {
   testVar: number;
