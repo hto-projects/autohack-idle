@@ -16,7 +16,7 @@ export class Collect extends Scene {
   virusGroup: Phaser.GameObjects.Group;
   virusArray: Array<computerVirus> = [];
   virusSpawnVar: number = 0.5;
-  virusMaxSpawn: number = 10;
+  virusMaxSpawn: number = 20;
   virusCollision: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback;
   constructor() {
     super("Collect");
