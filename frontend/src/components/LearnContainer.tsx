@@ -1,6 +1,6 @@
 import { useState, ReactNode } from "react";
 import LearnLessonContainer from "./LearnLessonContainer";
-import { ILearnModule } from "./Learn Lessons/LearnAppDirectory";
+import { ILearnModule } from "./learn_lessons/LearnAppDirectory";
 
 interface LearnContainerProps {
   learnObj: ILearnModule;

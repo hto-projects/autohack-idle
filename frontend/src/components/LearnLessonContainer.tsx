@@ -1,5 +1,5 @@
 import { useState, ReactNode } from "react";
-import { ILesson } from "./Learn Lessons/LearnAppDirectory";
+import { ILesson } from "./learn_lessons/LearnAppDirectory";
 
 interface LearnLessonContainerProps {
   titleElements: ReactNode;
