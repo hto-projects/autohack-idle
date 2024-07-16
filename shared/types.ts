@@ -13,9 +13,9 @@ export enum VariableModFunction {
 }
 
 export enum ImageType {
-  string,
-  jpg,
-  png
+  String,
+  Jpg,
+  Png
 }
 
 export enum AppType {
@@ -44,12 +44,14 @@ export interface IUpgrade {
   pictureArr: IAppImage[];
   cost: number;
   effects: IUpgradeEffect[];
+  preReqs: string[];
 }
 
 export enum UpgradeStatus {
   Owned = "owned",
   Available = "available",
-  Unavailable = "unavailable"
+  Unavailable = "unavailable",
+  Hidden = "hidden"
 }
 
 export interface IGameData {

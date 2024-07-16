@@ -3,6 +3,7 @@ import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types"
 export const starterUpgrades: IUpgrade[] = [
   {
     name: "Check for Bits",
+    preReqs: [],
     description: "Once every second, look to see if there are any bits available for harvesting",
     pictureArr: [{ image: "🔍", type: ImageType.string }],
     cost: 0,
@@ -16,6 +17,7 @@ export const starterUpgrades: IUpgrade[] = [
   },
   {
     name: "Chance for Bits",
+    preReqs: [],
     description: "When checking for bits, succeed in finding one 50% of the time",
     pictureArr: [{ image: "❇", type: ImageType.string }],
     cost: 0,
@@ -29,6 +31,7 @@ export const starterUpgrades: IUpgrade[] = [
   },
   {
     name: "Double Checks",
+    preReqs: [],
     description: "Check for bits twice as often",
     pictureArr: [{ image: "🔍🔍", type: ImageType.string }],
     cost: 10,
@@ -42,6 +45,7 @@ export const starterUpgrades: IUpgrade[] = [
   },
   {
     name: "Al the Auto-Collector",
+    preReqs: [],
     description: "Hire an A.I. intern to collect bits for you",
     pictureArr: [{ image: "🤖", type: ImageType.string }],
     cost: 2,
@@ -60,6 +64,7 @@ export const starterUpgrades: IUpgrade[] = [
   },
   {
     name: "Bit Sweeper",
+    preReqs: [],
     description: "Drag and hold your mouse around the screen and collect bits",
     pictureArr: [{ image: "🧹", type: ImageType.string }],
     cost: 15,
@@ -68,6 +73,34 @@ export const starterUpgrades: IUpgrade[] = [
         variableAffected: GameVariable.BitSweeperSize,
         variableMod: VariableModFunction.Set,
         modValue: 30
+      }
+    ]
+  },
+  {
+    name: "Quadruple Checks",
+    preReqs: ["Double Checks"],
+    description: "Check for bits 4 times as often",
+    pictureArr: [{ image: "🔍🔍🔍🔍", type: ImageType.string }],
+    cost: 40,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
+      }
+    ]
+  },
+  {
+    name: "Octuple Checks",
+    preReqs: ["Quadruple Checks"],
+    description: "Check for bits 8 times as often",
+    pictureArr: [{ image: "🔍🔍🔍🔍🔍🔍🔍🔍", type: ImageType.string }],
+    cost: 160,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
       }
     ]
   }
