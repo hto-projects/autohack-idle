@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IGameData, UpgradeStatus } from "../../../shared/types";
 import { apiSlice } from "./apiSlice";
 import { EventBus } from "../game/EventBus";
-import upgradesSlice from "./upgradesSlice";
 const GAME_API_PATH = "/api/game-data";
 
 const initialState: IGameData = {
@@ -12,6 +11,7 @@ const initialState: IGameData = {
   userEmail: "",
   upgrades: []
 };
+
 export const gameDataSlice = createSlice({
   name: "gameData",
   initialState: initialState,
@@ -59,6 +59,5 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-
 export const { addBits, setGameData, sellData, purchaseUpgrade, resetGameData } = gameDataSlice.actions;
 export default gameDataSlice.reducer;
