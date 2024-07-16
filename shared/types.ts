@@ -44,12 +44,14 @@ export interface IUpgrade {
   pictureArr: IAppImage[];
   cost: number;
   effects: IUpgradeEffect[];
+  preReqs: string[];
 }
 
 export enum UpgradeStatus {
   Owned = "owned",
   Available = "available",
-  Unavailable = "unavailable"
+  Unavailable = "unavailable",
+  Hidden = "hidden"
 }
 
 export interface IGameData {
