@@ -51,7 +51,7 @@ export default function AutoCollector() {
           Al is currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
         </p>
       </dialog>
-      <button>🤖</button>
+      <button style={{ fontSize: 25 }}>🤖</button>
     </div>
   );
 }
