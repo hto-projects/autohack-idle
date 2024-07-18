@@ -1,5 +1,6 @@
-import { RIGHT } from "phaser";
 import { AppType } from "../../../../../shared/types";
+import { useEffect, useRef } from "react";
+import { useKeyDown } from "../../../../frontend-util";
 
 interface TitleBarProps {
   open: AppType;
@@ -7,32 +8,23 @@ interface TitleBarProps {
 }
 
 export default function TitleBar({ open, setOpen }: TitleBarProps) {
-  const name = open;
+  useKeyDown(setOpen, ["Escape"]);
 
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        alignItems: "right",
         backgroundColor: "#9caf88",
         width: "100%",
-        height: "8%",
-        justifyContent: "center",
         textAlign: "right",
-        marginBottom: "20px"
+        marginBottom: "10px"
       }}
     >
-      <h1 style={{ alignSelf: "center" }}>{name}</h1>
-
-      <div
-        style={{
-          justifyContent: "right",
-          width: "85%"
-        }}
-      >
-        <button style={{ textAlign: "center", backgroundColor: "red", color: "white" }} onClick={() => setOpen()}>
-          X
+      <div style={{ marginLeft: "1%", textAlign: "center", verticalAlign: "middle", fontSize: "18px" }}>{open}</div>
+      <div style={{ width: "100%" }}>
+        <button style={{ textAlign: "center", backgroundColor: "red", color: "white" }} onClick={setOpen}>
+          Close
         </button>
       </div>
     </div>
