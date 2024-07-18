@@ -43,10 +43,10 @@ export default class Bit extends GameObjects.Text {
     this.setText(Bit.charset[this.charsetI]);
   }
 
-  collect() {
+  collect(spawnVirus = true) {
     this.destroy();
     EventBus.emit("add-bit");
-    if (Math.random() <= Bit.scene.virusSpawnVar) {
+    if (spawnVirus && Math.random() <= Bit.scene.virusSpawnVar) {
       Bit.scene.createVirus();
     }
   }

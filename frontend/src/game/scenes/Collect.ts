@@ -95,6 +95,10 @@ export class Collect extends Scene {
       });
     });
 
+    EventBus.on("collect-all", () => {
+      this.collectAll();
+    });
+
     EventBus.emit("current-scene-ready", this);
   }
 
@@ -144,15 +148,19 @@ export class Collect extends Scene {
       this.virusGroup.add(newVirus);
     }
   }
-}
 
-// Won't let me destroy the elements of the array unless I use the for...let statement, so I used a break statment to make the inner for loop get rid of one bit at a time and the outer for loop to get rid of all bits. Not efficient but it works......
-export function CollectAll() {
-  // for (let i = ClickableBit.arr.length; i > 0; i--) {
-  //   for (let bit of ClickableBit.arr) {
-  //     bit.destroyObj();
-  //     EventBus.emit("add-bit");
-  //     break;
-  //   }
-  // }
+  collectAll() {
+    const collectAllHelper = (count: number) => {
+      const bit = this.bitGroup.getFirstAlive() as Bit;
+      if (bit) {
+        bit.collect(false);
+      }
+      this.time.delayedCall(100, () => {
+        if (count > 0) {
+          collectAllHelper(--count);
+        }
+      });
+    };
+    collectAllHelper(this.bitGroup.getLength());
+  }
 }
