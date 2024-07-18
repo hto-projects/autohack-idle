@@ -9,6 +9,14 @@ export class Preloader extends Scene {
 
   preload() {
     this.load.setPath("assets");
+    this.load.spritesheet("virusSprite", "Viruses/VirusSprite.png", {
+      frameWidth: 48,
+      frameHeight: 48
+    });
+    this.load.spritesheet("virusDeathSprite", "Viruses/Virus-R-Death-SpriteSheet.png", {
+      frameWidth: 48,
+      frameHeight: 48
+    });
   }
 
   create() {
