@@ -23,7 +23,7 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
       <div style={{ marginLeft: "1%", textAlign: "center", verticalAlign: "middle", fontSize: "18px" }}>{open}</div>
       <div style={{ width: "100%" }}>
         <button style={{ textAlign: "center", backgroundColor: "red", color: "white" }} onClick={setOpen}>
-          Close
+          X
         </button>
       </div>
     </div>
