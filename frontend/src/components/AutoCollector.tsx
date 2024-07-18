@@ -26,15 +26,29 @@ export default function AutoCollector() {
   }
 
   const dispatch = useDispatch();
+  const dialog = document.querySelector("dialog");
+  const showButton = document.querySelector("dialog + button");
+  const closeButton = document.querySelector("dialog button");
 
   let bitsText = autoBitAmount > 1 ? "bits" : "bit";
 
+  // showButton.addEventListener("click", () => {
+  //   dialog.showModal();
+  // });
+
+  // closeButton.addEventListener("click", () => {
+  //   dialog.close();
+  // });
+
   return (
     <div className="auto-collector">
-      <h2>🤖</h2>
-      <p>
-        You are currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
-      </p>
+      <dialog>
+        <button>Close</button>
+        <p>
+          Al is currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
+        </p>
+      </dialog>
+      <button>🤖</button>
     </div>
   );
 }
