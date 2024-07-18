@@ -31,14 +31,17 @@ export default function AutoCollector() {
   const closeButton = document.querySelector("dialog button");
 
   let bitsText = autoBitAmount > 1 ? "bits" : "bit";
+  if (showButton) {
+    showButton.addEventListener("click", () => {
+      dialog.showModal();
+    });
+  }
 
-  // showButton.addEventListener("click", () => {
-  //   dialog.showModal();
-  // });
-
-  // closeButton.addEventListener("click", () => {
-  //   dialog.close();
-  // });
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+    });
+  }
 
   return (
     <div className="auto-collector">
