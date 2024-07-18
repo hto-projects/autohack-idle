@@ -1,5 +1,4 @@
 import { AppType } from "../../../../../shared/types";
-import { useEffect, useRef } from "react";
 import { useKeyDown } from "../../../../frontend-util";
 
 interface TitleBarProps {
