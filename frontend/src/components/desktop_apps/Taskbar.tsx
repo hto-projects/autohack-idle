@@ -19,8 +19,7 @@ const Taskbar: React.FC = () => {
       }}
     >
       <p style={{ textAlign: "center" }}>
-        bits: {gameData.numBits} ||| lifetime: {gameData.totalNumBits} ||| CodeCash:{" "}
-        {Number(gameData.currencyAmount.toFixed(1))}
+        bits: {gameData.numBits} ||| CodeCash: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
       <AutoCollector></AutoCollector>
     </div>
