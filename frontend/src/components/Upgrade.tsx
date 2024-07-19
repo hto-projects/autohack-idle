@@ -54,7 +54,7 @@ export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeP
       {up.pictureArr.map((pic) => (
         <UpgradeImage picture={pic}></UpgradeImage>
       ))}
-      {nameText} {percentageText}
+      {/* {nameText} {percentageText} */}
     </div>
   );
 }

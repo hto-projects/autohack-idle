@@ -8,6 +8,7 @@ export default function UpgradesContainer() {
   const upgradesState = useSelector((state: IGameState) => state.upgrades);
   const upgrades: IUpgrade[] = upgradesState.availableUpgrades;
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
+  console.log(gameData);
 
   const dispatch = useDispatch();
 
@@ -34,6 +35,9 @@ export default function UpgradesContainer() {
       dispatch(purchaseUpgrade({ upgradeToPurchase: up }));
     }
   };
+
+  // const ownedUpgrades: IUpgrade[];
+  // const visibleUpgrades: IUpgrade[];
 
   return (
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
