@@ -9,7 +9,7 @@ const Taskbar: React.FC = () => {
     <div
       id="taskbar"
       style={{
-        background: "darkblue",
+        background: "grey",
         width: "100%",
         height: "100%",
         color: "white",
@@ -18,7 +18,7 @@ const Taskbar: React.FC = () => {
         alignItems: "center"
       }}
     >
-      <p style={{ textAlign: "center", marginLeft: 50 }}>
+      <p style={{ textAlign: "center", marginRight: 1100 }}>
         Bits: {gameData.numBits}
         <br></br>CodeCash: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
