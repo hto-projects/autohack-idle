@@ -1,6 +1,17 @@
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+SyntaxHighlighter.registerLanguage("javascript", js);
+
 export default function C1L2() {
+  const syntax1 = `function collectAll() {}`;
+  const syntax2 = `function collectAll() {
+    prompt("You have collected all of the available bits!”);
+    return;
+  }`;
+
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+    <div className={`normalLesson ${open && "showing"}`} style={{ color: "black" }}>
       <h3 style={{ color: "black", textAlign: "left", marginLeft: "-3%", marginRight: "-3%" }}>
         Lesson 2: Functions in JavaScript
       </h3>
@@ -16,10 +27,16 @@ export default function C1L2() {
         code in the button element.
       </p>
 
-      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
-      <div className={`syntax ${open && "showing"}`}>
-        <span> function collectAll() &#123;&#125; </span>
-      </div>
+      <h6 className="sample"> Sample Code: </h6>
+      <SyntaxHighlighter
+        language="javascript"
+        style={githubGist}
+        className="syntax"
+        showLineNumbers="true"
+        showInlineLineNumbers="true"
+      >
+        {syntax1}
+      </SyntaxHighlighter>
 
       <p>
         To create a function, you first start with the word function, then the name of the function, and then
@@ -30,18 +47,16 @@ export default function C1L2() {
         code that the function is representing.
       </p>
 
-      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
-      <div className="syntax">
-        <p>
-          <span> function collectAll() </span> &#123;
-        </p>
-        <p>
-          <span> prompt("You have collected all of the available bits!”); </span>
-        </p>
-        <p>
-          <span> return; </span> &#125;
-        </p>
-      </div>
+      <h6 className="sample"> Sample Code: </h6>
+      <SyntaxHighlighter
+        language="javascript"
+        style={githubGist}
+        className="syntax"
+        showLineNumbers="true"
+        showInlineLineNumbers="true"
+      >
+        {syntax2}
+      </SyntaxHighlighter>
 
       <p>
         I have now added a prompt, which is a pop-up on the user's screen, that tells the user all available bits were
