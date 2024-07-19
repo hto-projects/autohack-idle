@@ -4,12 +4,12 @@ import gameDataSlice from "./slices/gameDataSlice";
 import upgradesSlice from "./slices/upgradesSlice";
 import apiSlice from "./slices/apiSlice";
 import throttle from "lodash/throttle";
-import { IGameData, IUpgrade } from "../../shared/types";
+import { IGameData, IUpgradesData } from "../../shared/types";
 
 export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
-  upgrades: { availableUpgrades: IUpgrade[] };
+  upgrades: IUpgradesData;
 }
 
 function loadState() {

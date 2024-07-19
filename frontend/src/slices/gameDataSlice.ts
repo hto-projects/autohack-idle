@@ -12,7 +12,7 @@ const initialState: IGameData = {
   upgrades: []
 };
 
-export const gameDataSlice = createSlice({
+const gameDataSlice = createSlice({
   name: "gameData",
   initialState: initialState,
   reducers: {
@@ -38,7 +38,7 @@ export const gameDataSlice = createSlice({
   }
 });
 
-export const gameDataApiSlice = apiSlice.injectEndpoints({
+const gameDataApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     saveGame: builder.mutation({
       query: (data) => ({

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUpgrade } from "../../../shared/types";
 import { starterUpgrades } from "../../../shared/upgrades";
+import { IUpgradesData } from "../../../shared/types";
 
-const initialState: { availableUpgrades: IUpgrade[] } = {
+const initialState: IUpgradesData = {
   availableUpgrades: starterUpgrades
 };
 
