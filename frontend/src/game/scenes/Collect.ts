@@ -13,7 +13,7 @@ export class Collect extends Scene {
   screenCenterY: number;
   bitSweeperSize: number = 0;
   virusSpawnVar: number = 0.5;
-  virusMaxSpawn: number = 5;
+  virusMaxSpawn: number = 10;
   bitAppearEvent: any;
   accrewedTime: number = 0;
   changeTextTime: number = 500;
@@ -123,6 +123,11 @@ export class Collect extends Scene {
       this.accrewedTime %= this.changeTextTime;
       for (const bit of this.bitGroup.getChildren() as Bit[]) {
         bit.changeText();
+      }
+      for (const virus of this.virusGroup.getChildren() as Virus[]) {
+        if (Math.abs(virus.body.velocity.y) < 100 && virus.y > this.cameras.main.height - 50) {
+          virus.setVelocityY(-500);
+        }
       }
     }
   }
