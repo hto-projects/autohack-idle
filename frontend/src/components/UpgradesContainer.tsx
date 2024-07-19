@@ -9,6 +9,8 @@ export default function UpgradesContainer() {
   const upgrades: IUpgrade[] = upgradesState.availableUpgrades;
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   console.log(gameData);
+  console.log(upgradesState);
+  console.log(upgrades);
 
   const dispatch = useDispatch();
 
