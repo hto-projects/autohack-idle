@@ -13,7 +13,7 @@ export class Collect extends Scene {
   screenCenterY: number;
   bitSweeperSize: number = 0;
   virusSpawnVar: number = 0.5;
-  virusMaxSpawn: number = 10;
+  virusMaxSpawn: number = 5;
   bitAppearEvent: any;
   accrewedTime: number = 0;
   changeTextTime: number = 500;
