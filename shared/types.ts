@@ -62,6 +62,10 @@ export interface IGameData {
   upgrades: string[];
 }
 
+export interface IUpgradesData {
+  availableUpgrades: IUpgrade[];
+}
+
 export interface IRGBTriple {
   r: number;
   g: number;
