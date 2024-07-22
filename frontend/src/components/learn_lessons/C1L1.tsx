@@ -1,5 +1,5 @@
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export default function C1L1() {
   const syntax1 = `<button> Click Me </button>;`;
@@ -16,7 +16,7 @@ export default function C1L1() {
       </p>
 
       <h6 className="sample"> Sample Code: </h6>
-      <SyntaxHighlighter style={githubGist} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
         {syntax1}
       </SyntaxHighlighter>
 
@@ -30,7 +30,7 @@ export default function C1L1() {
       </p>
 
       <h6 className="sample"> Sample Code: </h6>
-      <SyntaxHighlighter style={githubGist} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
         {syntax2}
       </SyntaxHighlighter>
 

@@ -1,5 +1,5 @@
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 SyntaxHighlighter.registerLanguage("javascript", js);
 
@@ -30,7 +30,7 @@ export default function C1L2() {
       <h6 className="sample"> Sample Code: </h6>
       <SyntaxHighlighter
         language="javascript"
-        style={githubGist}
+        style={anOldHope}
         className="syntax"
         showLineNumbers="true"
         showInlineLineNumbers="true"
@@ -50,7 +50,7 @@ export default function C1L2() {
       <h6 className="sample"> Sample Code: </h6>
       <SyntaxHighlighter
         language="javascript"
-        style={githubGist}
+        style={anOldHope}
         className="syntax"
         showLineNumbers="true"
         showInlineLineNumbers="true"
