@@ -149,8 +149,6 @@ body {
 }
 
 .syntax {
-  color: black;
-  text-align: left;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -174,4 +172,9 @@ body {
   text-align: left;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.sample {
+  color: darkGreen;
+  margin-left: 5%;
 }
