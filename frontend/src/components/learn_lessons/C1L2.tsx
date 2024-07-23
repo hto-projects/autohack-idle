@@ -6,7 +6,7 @@ SyntaxHighlighter.registerLanguage("javascript", js);
 export default function C1L2() {
   const syntax1 = `function collectAll() {}`;
   const syntax2 = `function collectAll() {
-    prompt("You have collected all of the available bits!”);
+    prompt("You have collected all of the available bits!");
     return;
   }`;
 
