@@ -118,6 +118,54 @@ export const starterUpgrades: IUpgrade[] = [
         modValue: 1
       }
     ]
+  },
+  {
+    name: "Sexdecuple Checks",
+    preReqs: ["Octuple Checks"],
+    description: "Check for bits 16 times as often",
+    pictureArr: [{ image: "🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍", type: ImageType.String }],
+    cost: 320,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
+      }
+    ]
+  },
+  {
+    name: "Tridogintuple Checks",
+    preReqs: ["Sexdecuple Checks"],
+    description: "Check for bits 32 times as often",
+    pictureArr: [{ image: "🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍", type: ImageType.String }],
+    cost: 640,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
+      }
+    ]
+  },
+  {
+    name: "Sexaquadgintuiple Checks",
+    preReqs: ["Tridogintuple Checks"],
+    description: "Check for bits 64 times as often",
+    pictureArr: [
+      {
+        image:
+          "🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍",
+        type: ImageType.String
+      }
+    ],
+    cost: 1280,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
+      }
+    ]
   }
 ];
 
