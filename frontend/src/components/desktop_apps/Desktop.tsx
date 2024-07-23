@@ -11,7 +11,7 @@ const Desktop: React.FC = () => {
   return (
     <div id="desktop" style={{ background: "blue", width: "100%", height: "100%" }}>
       <div style={{ padding: "20px", display: "flex", gap: "20px" }}>
-        <AppShortcut icon={"question"} appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
+        <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
         {/* <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Learn} setOpen={setOpenWindow}></AppShortcut>
