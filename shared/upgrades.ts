@@ -107,7 +107,7 @@ export const starterUpgrades: IUpgrade[] = [
   },
   {
     name: "Collect All",
-    preReqs: ["Make a Collect All Button"],
+    preReqs: ["Make a Collect All Button", "Test"],
     description: "Collects all bits on screen",
     pictureArr: [{ image: "💰", type: ImageType.String }],
     cost: 200,
