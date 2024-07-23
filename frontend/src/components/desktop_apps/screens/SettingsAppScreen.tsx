@@ -9,9 +9,7 @@ export default function SettingsAppScreen() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
 
   function addBitsButton() {
-    let additionalBitsAmount = prompt(
-      "Enter the amount of Bits you want. Don't click cancel or you will make 2 developers very sad"
-    );
+    let additionalBitsAmount = prompt("Enter the amount of Bits you want.");
     if (additionalBitsAmount === null) {
       return;
     }
