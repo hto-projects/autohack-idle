@@ -38,7 +38,10 @@ export default function LearnLessonContainer({ titleElements, lessons, closeChap
             <h3 style={{ color: "black", textAlign: "left" }}>
               Lesson {visibleLesson + 1}: {lesson.name}
             </h3>
-            <button onClick={() => setVisibleLesson(-1)} style={{ marginBottom: "10px" }}>
+            <button
+              onClick={() => setVisibleLesson(-1)}
+              style={{ marginBottom: "10px", marginRight: "3px", marginLeft: "3px" }}
+            >
               Close Lesson
             </button>
             <button onClick={closeChapter} style={{ marginBottom: "10px" }}>
