@@ -4,12 +4,13 @@ import gameDataSlice from "./slices/gameDataSlice";
 import upgradesSlice from "./slices/upgradesSlice";
 import apiSlice from "./slices/apiSlice";
 import throttle from "lodash/throttle";
-import { IGameData, IUpgradesData } from "../../shared/types";
+import { IGameData } from "../../shared/types";
 
 export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
-  upgrades: IUpgradesData;
+  // upgrades: IUpgradesData;
+  completedPuzzles?: { solvedPuzzles };
 }
 
 function loadState() {

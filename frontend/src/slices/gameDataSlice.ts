@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IGameData } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
+import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
+
 import { starterUpgrades } from "../../../shared/upgrades";
 
 const GAME_API_PATH = "/api/game-data";
@@ -14,7 +16,8 @@ const initialState: IGameData = {
   acquired: [],
   purchasable: [],
   unavailable: [],
-  uncategorized: starterUpgrades
+  uncategorized: starterUpgrades,
+  savedSolvedPuzzles: []
 };
 
 const gameDataSlice = createSlice({
@@ -66,6 +69,12 @@ const gameDataSlice = createSlice({
         }
       }
     },
+    puzzzleSolve: (state, action) => {
+      if (!state.savedSolvedPuzzles.includes(action.payload)) {
+        state.savedSolvedPuzzles.push(action.payload);
+        state.upgrades.push(action.payload);
+      }
+    },
     resetGameData: (_state) => initialState
     // Not being used currently?
     // setGameData: (state, action) => {
@@ -97,5 +106,5 @@ const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, sellData, purchaseUpgrade, resetGameData } = gameDataSlice.actions;
+export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzzleSolve } = gameDataSlice.actions;
 export default gameDataSlice;

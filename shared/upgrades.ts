@@ -1,3 +1,4 @@
+import { gameDataSlice } from "../frontend/src/slices/gameDataSlice";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
 export const starterUpgrades: IUpgrade[] = [
@@ -109,7 +110,7 @@ export const starterUpgrades: IUpgrade[] = [
   },
   {
     name: "Collect All",
-    preReqs: [],
+    preReqs: ["Make a Collect All Button", "Test"],
     description: "Collects all bits on screen",
     pictureArr: [{ image: "💰", type: ImageType.String }],
     cost: 200,
