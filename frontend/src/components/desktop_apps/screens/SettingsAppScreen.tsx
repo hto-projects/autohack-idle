@@ -12,6 +12,9 @@ export default function SettingsAppScreen() {
     let additionalBitsAmount = prompt(
       "Enter the amount of Bits you want. Don't click cancel or you will make 2 developers very sad"
     );
+    if (additionalBitsAmount === null) {
+      return;
+    }
     if (gameData.numBits === Number.MAX_VALUE) {
       alert("Sorry, no can do");
     } else {
