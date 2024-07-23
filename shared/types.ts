@@ -59,11 +59,17 @@ export interface IGameData {
   totalNumBits: number;
   currencyAmount: number;
   userEmail: string;
-  upgrades: string[];
+  acquired: IUpgrade[];
+  purchasable: IUpgrade[];
+  unavailable: IUpgrade[];
+  uncategorized: IUpgrade[];
 }
 
 export interface IUpgradesData {
-  availableUpgrades: IUpgrade[];
+  acquired: IUpgrade[];
+  purchasable: IUpgrade[];
+  unavailable: IUpgrade[];
+  uncategorized: IUpgrade[];
 }
 
 export interface IRGBTriple {

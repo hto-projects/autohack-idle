@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IGameData } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
+import { starterUpgrades } from "../../../shared/upgrades";
+
 const GAME_API_PATH = "/api/game-data";
 
 const initialState: IGameData = {
@@ -9,7 +11,10 @@ const initialState: IGameData = {
   totalNumBits: 0,
   currencyAmount: 0,
   userEmail: "",
-  upgrades: []
+  acquired: [],
+  purchasable: [],
+  unavailable: [],
+  uncategorized: starterUpgrades
 };
 
 const gameDataSlice = createSlice({
@@ -25,16 +30,49 @@ const gameDataSlice = createSlice({
       state.numBits = 0;
     },
     purchaseUpgrade: (state, action) => {
-      state.currencyAmount -= action.payload.upgradeToPurchase.cost;
-      state.upgrades.push(action.payload.upgradeToPurchase.name);
-      EventBus.emit("upgrade-purchased", state.upgrades);
+      const up = action.payload.upgradeToPurchase;
+      state.currencyAmount -= up.cost;
+      state.acquired.push(up);
+      state.purchasable.splice(state.purchasable.indexOf(up), 1);
+      EventBus.emit(
+        "upgrade-purchased",
+        state.acquired.map((up) => {
+          up.name;
+        })
+      );
     },
-    setGameData: (state, action) => {
-      state.currencyAmount = action.payload.currencyAmount;
-      state.numBits = action.payload.numBits;
-      state.upgrades = action.payload.upgrades;
+    categorizeUpgrades: (state) => {
+      while (state.uncategorized.length > 0) {
+        const currUp = state.uncategorized[0];
+        let hasPrereqs = true;
+        for (const prereq of currUp.preReqs) {
+          let prereqInAquired = false;
+          for (const acquired of state.acquired) {
+            if (prereq === acquired.name) {
+              prereqInAquired = true;
+              break;
+            }
+          }
+          if (!prereqInAquired) {
+            hasPrereqs = false;
+            break;
+          }
+        }
+        const [newPurchasable] = state.uncategorized.splice(0, 1);
+        if (hasPrereqs) {
+          state.purchasable.push(newPurchasable);
+        } else {
+          state.unavailable.push(newPurchasable);
+        }
+      }
     },
-    resetGameData: (state) => initialState
+    resetGameData: (_state) => initialState
+    // Not being used currently?
+    // setGameData: (state, action) => {
+    //   state.currencyAmount = action.payload.currencyAmount;
+    //   state.numBits = action.payload.numBits;
+    //   state.upgrades = action.payload.upgrades;
+    // },
   }
 });
 
@@ -59,5 +97,5 @@ const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, setGameData, sellData, purchaseUpgrade, resetGameData } = gameDataSlice.actions;
+export const { addBits, sellData, purchaseUpgrade, resetGameData } = gameDataSlice.actions;
 export default gameDataSlice;
