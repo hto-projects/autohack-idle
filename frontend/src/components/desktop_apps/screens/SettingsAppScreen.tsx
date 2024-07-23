@@ -12,7 +12,7 @@ export default function SettingsAppScreen() {
     let additionalBitsAmount = prompt("Enter the amount of Bits you want.");
     if (additionalBitsAmount === null) {
       return;
-    }
+    } // Courtesy of Arrowship
     if (gameData.numBits === Number.MAX_VALUE) {
       alert("Sorry, no can do");
     } else {
