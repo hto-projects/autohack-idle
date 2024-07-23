@@ -4,7 +4,11 @@ import { resetUpgrades } from "../../../slices/upgradesSlice";
 
 export default function SettingsAppScreen() {
   const dispatch = useDispatch();
-  const additionalBitsAmount = 1000;
+
+  function addBitsButton() {
+    let additionalBitsAmount = prompt("Enter the amount of Bits you want");
+    dispatch(addBits({ additionalBits: additionalBitsAmount }));
+  }
 
   return (
     <>
@@ -13,9 +17,7 @@ export default function SettingsAppScreen() {
       >
         Reset
       </button>
-      <button onClick={() => dispatch(addBits({ additionalBits: additionalBitsAmount }))}>
-        Add {additionalBitsAmount} Bits
-      </button>
+      <button onClick={() => addBitsButton()}>Add Bits</button>
     </>
   );
 }
