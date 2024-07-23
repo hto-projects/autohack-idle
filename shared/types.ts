@@ -24,7 +24,8 @@ export enum AppType {
   Upgrades = "Upgrades",
   Learn = "Learn",
   Authentication = "Authentication",
-  Settings = "Settings"
+  Settings = "Settings",
+  Puzzle = "Puzzle"
 }
 
 export interface IAppImage {
@@ -54,12 +55,24 @@ export enum UpgradeStatus {
   Hidden = "hidden"
 }
 
+export enum PuzzleSolvedStatus {
+  unsolved = " (unsolved)",
+  solved = " (solved)"
+}
+export enum SetCompletedStatus {
+  complete = " (complete)",
+  incomplete = " (incomplete)"
+}
+export interface IPuzzleData {
+  name: string;
+}
 export interface IGameData {
   numBits: number;
   totalNumBits: number;
   currencyAmount: number;
   userEmail: string;
   upgrades: string[];
+  savedSolvedPuzzles: string[];
 }
 
 export interface IRGBTriple {
