@@ -10,6 +10,7 @@ export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
   upgrades: { availableUpgrades: IUpgrade[] };
+  completedPuzzles?: { solvedPuzzles };
 }
 
 function loadState() {

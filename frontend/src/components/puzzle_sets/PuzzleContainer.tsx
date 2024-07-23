@@ -1,21 +1,40 @@
 import { useState, ReactNode } from "react";
-import { IPuzzle } from "./PuzzleAppDirectory";
+import { IPuzzle, IPuzzleSet, PuzzleAppDirectory } from "./PuzzleAppDirectory";
+import { IGameData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../../shared/types";
+import { useSelector } from "react-redux";
+import { IGameState } from "../../store";
 
-interface PuzzleContainerProps {
+export interface PuzzleContainerProps {
   titleElements: ReactNode;
   puzzles: IPuzzle[];
 }
 
-export default function LearnLessonContainer({ titleElements, puzzles: puzzles }: PuzzleContainerProps) {
-  const [visiblePuzzle, setVisiblePuzzle] = useState(-1);
+export default function PuzzleApp({ titleElements, puzzles }: PuzzleContainerProps) {
   let selectorNode: ReactNode = undefined;
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
+  const [visiblePuzzle, setVisiblePuzzle] = useState(-1);
+
+  const getPuzStatus = (checkedPuz: number, gameData: IGameData): PuzzleSolvedStatus => {
+    if (gameData.savedSolvedPuzzles.includes(puzzles[checkedPuz].name)) {
+      return PuzzleSolvedStatus.solved;
+    }
+    return PuzzleSolvedStatus.unsolved;
+  };
+  const getSetState = (checkedSet: number, gameData: IGameData): SetCompletedStatus => {
+    for (let i = 0; i < PuzzleAppDirectory.puzzleSets[checkedSet].puzzles.length; i++) {
+      if (getPuzStatus(i, gameData) === PuzzleSolvedStatus.unsolved) {
+        return SetCompletedStatus.incomplete;
+      }
+    }
+    return SetCompletedStatus.complete;
+  };
 
   if (visiblePuzzle === -1) {
     const buttons: ReactNode[] = [];
     for (let i = 0; i < puzzles.length; i++) {
       buttons.push(
         <button onClick={() => setVisiblePuzzle(i)}>
-          Puzzle {i + 1}: {puzzles[i].name}
+          Puzzle {i + 1}: {puzzles[i].name} {getPuzStatus(i, gameData)}
         </button>
       );
     }

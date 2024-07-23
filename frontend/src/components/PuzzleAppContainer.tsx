@@ -1,7 +1,10 @@
-import { useState, ReactNode } from "react";
-import { IPuzzleModule } from "./puzzle_sets/PuzzleAppDirectory";
+import { IPuzzle, IPuzzleModule, PuzzleAppDirectory } from "./puzzle_sets/PuzzleAppDirectory";
 import PuzzleContainer from "./puzzle_sets/PuzzleContainer";
-
+import { useState, ReactNode } from "react";
+import { IGameState } from "../store";
+import { useSelector } from "react-redux";
+import { IGameData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../shared/types";
+import { EventBus } from "../game/EventBus";
 interface PuzzleAppContainerProps {
   puzzleObj: IPuzzleModule;
 }

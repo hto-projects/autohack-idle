@@ -1,5 +1,13 @@
 import { ReactNode } from "react";
-import PuzzleSet1 from "./PuzzleSet1";
+import PuzzleSet1 from "./PuzzleSet1Puzzle1";
+import { IPuzzleData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../../shared/types";
+import gameDataSlice from "../../slices/gameDataSlice";
+import { IGameData } from "../../../../shared/types";
+import { IGameState } from "../../store";
+import { useSelector } from "react-redux";
+import PuzzleSet2 from "./PuzzleSet1Puzzle2";
+import PuzzleApp from "./PuzzleContainer";
+import { PuzzleContainerProps } from "./PuzzleContainer";
 
 export interface IPuzzle {
   name: string;
@@ -27,13 +35,22 @@ export const PuzzleAppDirectory: IPuzzleModule = {
         {
           name: "Make a Collect All Button",
           body: <PuzzleSet1></PuzzleSet1>
+        },
+        {
+          name: "Test",
+          body: <PuzzleSet2></PuzzleSet2>
         }
       ]
     },
     {
       name: "Coming Soon",
       description: "Not here yet!",
-      puzzles: []
+      puzzles: [
+        {
+          name: "est",
+          body: <PuzzleSet2></PuzzleSet2>
+        }
+      ]
     }
   ]
 };
