@@ -1,6 +1,12 @@
 import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction, IRGBTriple } from "./types";
 import { allUpgrades } from "./upgrades";
 
+export function flatByProp<T>(arr: Array<T>, prop: string) {
+  return arr.map((e) => {
+    e[prop];
+  });
+}
+
 export function pluckOne<T>(arr: Array<T>, pred: (thing: T) => Boolean): T | null {
   const arrCop: Array<T> = [...arr];
   arr.length = 0;
@@ -29,9 +35,8 @@ function runMod(modFun: VariableModFunction, modVal: number, input: number): num
   }
 }
 
-export function calculateVariableValue(ownedUpgradeNames: string[], variable: GameVariable): number {
-  const ownedUpgrades: IUpgrade[] = allUpgrades.filter((up) => ownedUpgradeNames.includes(up.name));
-  const effectsForVariable: IUpgradeEffect[] = ownedUpgrades.flatMap((up) =>
+export function calculateVariableValue(acquiredUpgrades: IUpgrade[], variable: GameVariable): number {
+  const effectsForVariable: IUpgradeEffect[] = acquiredUpgrades.flatMap((up) =>
     up.effects.filter((e) => e.variableAffected === variable)
   );
 
