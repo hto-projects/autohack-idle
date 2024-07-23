@@ -124,6 +124,11 @@ export class Collect extends Scene {
       for (const bit of this.bitGroup.getChildren() as Bit[]) {
         bit.changeText();
       }
+      for (const virus of this.virusGroup.getChildren() as Virus[]) {
+        if (Math.abs(virus.body.velocity.y) < 100 && virus.y > this.cameras.main.height - 50) {
+          virus.setVelocityY(-500);
+        }
+      }
     }
   }
 
