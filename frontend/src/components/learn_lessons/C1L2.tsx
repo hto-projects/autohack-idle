@@ -11,11 +11,7 @@ export default function C1L2() {
   }`;
 
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "black" }}>
-      <h3 style={{ color: "black", textAlign: "left", marginLeft: "-3%", marginRight: "-3%" }}>
-        Lesson 2: Functions in JavaScript
-      </h3>
-
+    <>
       <p>
         In this lesson you will learn how to code the function that is called when the Collect All button is clicked.
         This will be done in JavaScript.
@@ -64,6 +60,6 @@ export default function C1L2() {
         We can also return information, if we wanted, however, we do not need to for this function. Now, we need to have
         the function actually collect all of the available bits
       </p>
-    </div>
+    </>
   );
 }

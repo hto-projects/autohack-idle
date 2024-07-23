@@ -7,9 +7,7 @@ export default function C1L1() {
   const syntax2 = `<button onClick="collectAll()"> Collect All </button>;`;
 
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "black" }}>
-      <h3 style={{ color: "black", textAlign: "left" }}>Lesson 1: Buttons in HTML</h3>
-
+    <>
       <p>
         In this lesson you will learn how to code a button that will allow you to collect all bits available. This will
         be done in HTML.
@@ -45,6 +43,6 @@ export default function C1L1() {
         button. However, the computer still doesn't know what to do as we do not have a collectAll() function made. So,
         now we need to add collectAll() function to our code.
       </p>
-    </div>
+    </>
   );
 }

@@ -18,6 +18,10 @@ export interface ILearnModule {
   chapters: IChapter[];
 }
 
+export interface LessonProps {
+  title: string;
+}
+
 export const learnAppDirectory: ILearnModule = {
   titleNode: undefined,
   chapters: [
