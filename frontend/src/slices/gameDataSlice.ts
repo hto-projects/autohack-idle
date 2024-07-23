@@ -13,10 +13,12 @@ const initialState: IGameData = {
   totalNumBits: 0,
   currencyAmount: 0,
   userEmail: "",
-  acquired: [],
-  purchasable: [],
-  unavailable: [],
-  uncategorized: starterUpgrades,
+  ups: {
+    acquired: [],
+    purchasable: [],
+    unavailable: [],
+    uncategorized: starterUpgrades
+  },
   savedSolvedPuzzles: []
 };
 
@@ -33,24 +35,33 @@ const gameDataSlice = createSlice({
       state.numBits = 0;
     },
     purchaseUpgrade: (state, action) => {
-      const up = action.payload.upgradeToPurchase;
-      state.currencyAmount -= up.cost;
-      state.acquired.push(up);
-      state.purchasable.splice(state.purchasable.indexOf(up), 1);
+      const ups = state.ups;
+      const upgrade = action.payload.upgradeToPurchase;
+      state.currencyAmount -= upgrade.cost;
+      ups.acquired.push(upgrade);
+      ups.purchasable.splice(ups.purchasable.indexOf(upgrade), 1);
       EventBus.emit(
         "upgrade-purchased",
-        state.acquired.map((up) => {
+        ups.acquired.map((up) => {
           up.name;
         })
       );
     },
+    puzzleSolve: (state, action) => {
+      // const puz = action.payload.savedSolvedPuzzle;
+      // if (!state.savedSolvedPuzzles.includes(action.payload)) {
+      //   state.savedSolvedPuzzles.push(action.payload);
+      //   state.upgrades.push(action.payload);
+      // }
+    },
     categorizeUpgrades: (state) => {
-      while (state.uncategorized.length > 0) {
-        const currUp = state.uncategorized[0];
+      const ups = state.ups;
+      while (ups.uncategorized.length > 0) {
+        const currUp = ups.uncategorized[0];
         let hasPrereqs = true;
         for (const prereq of currUp.preReqs) {
           let prereqInAquired = false;
-          for (const acquired of state.acquired) {
+          for (const acquired of ups.acquired) {
             if (prereq === acquired.name) {
               prereqInAquired = true;
               break;
@@ -61,18 +72,12 @@ const gameDataSlice = createSlice({
             break;
           }
         }
-        const [newPurchasable] = state.uncategorized.splice(0, 1);
+        const [newPurchasable] = ups.uncategorized.splice(0, 1);
         if (hasPrereqs) {
-          state.purchasable.push(newPurchasable);
+          ups.purchasable.push(newPurchasable);
         } else {
-          state.unavailable.push(newPurchasable);
+          ups.unavailable.push(newPurchasable);
         }
-      }
-    },
-    puzzzleSolve: (state, action) => {
-      if (!state.savedSolvedPuzzles.includes(action.payload)) {
-        state.savedSolvedPuzzles.push(action.payload);
-        state.upgrades.push(action.payload);
       }
     },
     resetGameData: (_state) => initialState
@@ -106,5 +111,6 @@ const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzzleSolve } = gameDataSlice.actions;
+export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve } = gameDataSlice.actions;
+// export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve, setGameData } = gameDataSlice.actions;
 export default gameDataSlice;

@@ -6,8 +6,8 @@ import { useEffect } from "react";
 
 export default function AutoCollector() {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
-  const autoBitAmount: number = calculateVariableValue(gameData.upgrades, GameVariable.AutoBitGatheringAmount);
-  const autoBitInterval: number = calculateVariableValue(gameData.upgrades, GameVariable.AutoBitGatheringInterval);
+  const autoBitAmount: number = calculateVariableValue(gameData.ups.acquired, GameVariable.AutoBitGatheringAmount);
+  const autoBitInterval: number = calculateVariableValue(gameData.ups.acquired, GameVariable.AutoBitGatheringInterval);
 
   useEffect(() => {
     if (!(autoBitAmount && autoBitInterval)) {

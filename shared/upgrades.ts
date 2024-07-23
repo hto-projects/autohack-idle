@@ -1,4 +1,3 @@
-import { gameDataSlice } from "../frontend/src/slices/gameDataSlice";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
 export const starterUpgrades: IUpgrade[] = [

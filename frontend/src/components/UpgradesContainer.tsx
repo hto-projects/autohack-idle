@@ -5,31 +5,20 @@ import { IGameState } from "../store";
 import { purchaseUpgrade } from "../slices/gameDataSlice";
 
 export default function UpgradesContainer() {
-  const upgradesState = useSelector((state: IGameState) => state.upgrades);
-  const upgrades: IUpgrade[] = upgradesState.availableUpgrades;
+  // const upgradesState = useSelector((state: IGameState) => state.upgrades);
+  // const upgrades: IUpgrade[] = upgradesState.availableUpgrades;
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
+  const upgradesState = gameData.ups;
   console.log(gameData);
   console.log(upgradesState);
-  console.log(upgrades);
+  // console.log(upgrades);
+  // const acquiredUpgrades = upgradesState.acquired;
+  // const purchasableUpgrades = upgradesState.purchasable;
 
   const dispatch = useDispatch();
 
   const getStatusForUpgrade = (up: IUpgrade): UpgradeStatus => {
-    if (gameData.upgrades.includes(up.name)) {
-      return UpgradeStatus.Owned;
-    }
-
-    for (const x of up.preReqs) {
-      if (!gameData.upgrades.includes(x)) {
-        return UpgradeStatus.Hidden;
-      }
-    }
-
-    if (gameData.currencyAmount >= up.cost) {
-      return UpgradeStatus.Available;
-    }
-
-    return UpgradeStatus.Unavailable;
+    return gameData.currencyAmount >= up.cost ? UpgradeStatus.Available : UpgradeStatus.Unavailable;
   };
 
   const attemptPurchase = (up: IUpgrade) => {
@@ -43,7 +32,7 @@ export default function UpgradesContainer() {
 
   return (
     <div className="upgrades-container" style={{ marginBottom: "20px" }}>
-      {upgrades
+      {/* {upgrades
         .filter((up) => getStatusForUpgrade(up) !== UpgradeStatus.Hidden)
         .map((up) => (
           <Upgrade
@@ -53,7 +42,7 @@ export default function UpgradesContainer() {
             onBuy={attemptPurchase}
             currencyAmount={gameData.currencyAmount}
           ></Upgrade>
-        ))}
+        ))} */}
     </div>
   );
 }
