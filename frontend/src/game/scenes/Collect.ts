@@ -4,6 +4,7 @@ import { GameVariable } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 import Bit from "../Bit";
 import Virus from "../Virus";
+import gameDataSlice from "../../slices/gameDataSlice";
 
 export class Collect extends Scene {
   sweeper: Phaser.GameObjects.Rectangle;
@@ -17,6 +18,10 @@ export class Collect extends Scene {
   bitAppearEvent: any;
   accrewedTime: number = 0;
   changeTextTime: number = 500;
+
+  // EventBus.on("sellData2", () => {
+
+  // })
 
   constructor() {
     super("Collect");

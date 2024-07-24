@@ -3,6 +3,10 @@ import { IGameData, UpgradeStatus } from "../../../shared/types";
 import { apiSlice } from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
+import Virus from "../game/Virus";
+import { Collect } from "../game/scenes/Collect";
+
+Collect;
 
 const GAME_API_PATH = "/api/game-data";
 
@@ -23,9 +27,19 @@ export const gameDataSlice = createSlice({
       state.numBits += action.payload.additionalBits;
       state.totalNumBits += action.payload.additionalBits;
     },
-    sellData: (state) => {
+    sellData1: (state) => {
       state.currencyAmount += state.numBits / 10.0;
       state.numBits = 0;
+    },
+    sellData2: (state) => {
+      state.currencyAmount += state.numBits / 2.0;
+      state.numBits = 0;
+      EventBus.emit("sellData2");
+      //shadyOrganization();
+      // EventBus.on("sellData2", () => {
+      //   this.virusMaxSpawn += 1;
+      //   alert("it works!!");
+      // });
     },
     purchaseUpgrade: (state, action) => {
       state.currencyAmount -= action.payload.upgradeToPurchase.cost;
@@ -70,5 +84,6 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, setGameData, sellData, purchaseUpgrade, resetGameData, puzzzleSolve } = gameDataSlice.actions;
+export const { addBits, setGameData, sellData1, sellData2, purchaseUpgrade, resetGameData, puzzzleSolve } =
+  gameDataSlice.actions;
 export default gameDataSlice.reducer;
