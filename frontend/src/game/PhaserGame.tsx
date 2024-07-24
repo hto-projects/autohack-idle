@@ -8,7 +8,7 @@ import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
 import { resetUpgrades } from "../slices/upgradesSlice";
-import { CollectAll } from "./scenes/Collect";
+import { Collect } from "./scenes/Collect";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -100,8 +100,8 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   }, [ref, gameData.numBits]);
 
   function collectAll() {
-    if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable) === 1) {
-      CollectAll();
+    if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable)) {
+      EventBus.emit("collect-all");
     }
   }
 

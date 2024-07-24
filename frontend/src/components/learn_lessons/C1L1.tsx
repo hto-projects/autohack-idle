@@ -1,19 +1,24 @@
-export default function C1L1() {
-  return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
-      <h3 style={{ color: "black", textAlign: "left" }}>Lesson 1: Buttons in HTML</h3>
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+export default function C1L1() {
+  const syntax1 = `<button> Click Me </button>;`;
+
+  const syntax2 = `<button onClick="collectAll()"> Collect All </button>;`;
+
+  return (
+    <>
       <p>
         In this lesson you will learn how to code a button that will allow you to collect all bits available. This will
         be done in HTML.
       </p>
 
-      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
-      <div className="syntax">
-        <span> &lt;button&gt; Click Me &lt;/button&gt; </span>
-      </div>
+      <h6 className="sample"> Sample Code: </h6>
+      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+        {syntax1}
+      </SyntaxHighlighter>
 
-      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Output: </h6>
+      <h6 className="sample"> Sample Output: </h6>
       <button style={{ marginLeft: "10%" }}> Click Me </button>
 
       <p>
@@ -22,12 +27,12 @@ export default function C1L1() {
         currently do anything because we didn't tell it what to do.
       </p>
 
-      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Code: </h6>
-      <div className="syntax">
-        <span> &lt;button onclick = “collectAll()”&gt; Collect All &lt;/button&gt; </span>
-      </div>
+      <h6 className="sample"> Sample Code: </h6>
+      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+        {syntax2}
+      </SyntaxHighlighter>
 
-      <h6 style={{ color: "darkblue", marginLeft: "5%" }}> Sample Output: </h6>
+      <h6 className="sample"> Sample Output: </h6>
       <button style={{ marginLeft: "10%" }}> Collect All </button>
 
       <p>
@@ -38,6 +43,6 @@ export default function C1L1() {
         button. However, the computer still doesn't know what to do as we do not have a collectAll() function made. So,
         now we need to add collectAll() function to our code.
       </p>
-    </div>
+    </>
   );
 }

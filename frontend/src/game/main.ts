@@ -1,4 +1,4 @@
-import { Boot } from "./scenes/Boot";
+// import { Boot } from "./scenes/Boot";
 import { Collect } from "./scenes/Collect";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
@@ -17,11 +17,9 @@ const config: Phaser.Types.Core.GameConfig = {
       // debug: true // Creates a border for all bounding boxes
     }
   },
-  scene: [Boot, Preloader, Collect]
+  scene: [Preloader, Collect]
 };
 
-function StartGame(parent: string) {
+export default function StartGame(parent: string) {
   return new Game({ ...config, parent });
 }
-
-export default StartGame;

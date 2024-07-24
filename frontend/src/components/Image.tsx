@@ -23,7 +23,7 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
       );
       break;
     default:
-      console.log(`imageType: ${picture.type} is currently unsupported`);
+      console.log(`imageType: ${picture.type} is currently unsupported from picture: ${picture.image}`);
   }
 
   return <span className={className}>{imageNode}</span>;

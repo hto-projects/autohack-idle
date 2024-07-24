@@ -37,10 +37,8 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
             </div>
           }
           lessons={chapter.lessons}
+          closeChapter={() => setVisibleChapter(-1)}
         ></LearnLessonContainer>
-        <button onClick={() => setVisibleChapter(-1)} style={{ marginTop: ".5%" }}>
-          Close Chapter
-        </button>
       </>
     );
   }
