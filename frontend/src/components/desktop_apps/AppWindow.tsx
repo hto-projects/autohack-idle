@@ -6,6 +6,7 @@ import LearnAppScreen from "./screens/LearnAppScreen";
 import AuthContainer from "../auth/AuthContainer";
 import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
+import PuzzleAppScreen from "./screens/PuzzleAppScreen";
 
 interface AppWindowProps {
   open: AppType;
@@ -31,6 +32,9 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       break;
     case AppType.Settings:
       appWindowElements = <SettingsAppScreen></SettingsAppScreen>;
+      break;
+    case AppType.Puzzle:
+      appWindowElements = <PuzzleAppScreen></PuzzleAppScreen>;
       break;
   }
 
