@@ -3,6 +3,8 @@ import { GameVariable, IGameData } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { addBits } from "../slices/gameDataSlice";
 import { useEffect } from "react";
+import { UpgradeImage } from "./Image";
+import { ImageType } from "../../../shared/types";
 
 export default function AutoCollector() {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
@@ -51,7 +53,9 @@ export default function AutoCollector() {
           Al is currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
         </p>
       </dialog>
-      <button style={{ fontSize: 25 }}>🤖</button>
+      <button style={{ fontSize: 15 }}>
+        <UpgradeImage picture={{ image: "/upgrade_icons/big Al", type: ImageType.Png }}></UpgradeImage>
+      </button>
     </div>
   );
 }

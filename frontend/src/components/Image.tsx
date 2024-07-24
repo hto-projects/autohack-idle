@@ -34,7 +34,11 @@ export function UpgradeImage({ picture }: ImageWrapperProps) {
     <Image
       className={"upgrade-image"}
       picture={picture}
-      imgStyle={{ verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%" }}
+      imgStyle={
+        {
+          /*verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%"*/
+        }
+      }
     ></Image>
   );
 }

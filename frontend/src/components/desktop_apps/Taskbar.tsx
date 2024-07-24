@@ -2,6 +2,7 @@ import React from "react";
 import { IGameData } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import AutoCollector from "../AutoCollector";
+import AuthContainer from "../auth/AuthContainer";
 
 const Taskbar: React.FC = () => {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
@@ -18,7 +19,7 @@ const Taskbar: React.FC = () => {
         alignItems: "center"
       }}
     >
-      <p style={{ textAlign: "center", marginRight: 1100 }}>
+      <p style={{ textAlign: "center", marginRight: "70%", marginTop: "1%" }}>
         Bits: {gameData.numBits}
         <br></br>CodeCash: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
