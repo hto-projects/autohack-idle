@@ -19,10 +19,6 @@ export class Collect extends Scene {
   accrewedTime: number = 0;
   changeTextTime: number = 500;
 
-  // EventBus.on("sellData2", () => {
-
-  // })
-
   constructor() {
     super("Collect");
   }
@@ -73,6 +69,7 @@ export class Collect extends Scene {
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
       }
+      this.virusMaxSpawn = data.virusMaxSpawn;
 
       this.bitAppearEvent = this.time.addEvent({
         callback: this.maybeAddBit,

@@ -5,7 +5,7 @@ import { Scene } from "phaser";
 import { useDispatch, useSelector } from "react-redux";
 import { addBits } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
-import { calculateVariableValue } from "../../../shared/util";
+import { calculateVariableValue, calculateVirusMaxValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
 import { resetUpgrades } from "../slices/upgradesSlice";
 import { Collect } from "./scenes/Collect";
@@ -87,10 +87,12 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
       const bci = calculateVariableValue(gameData.upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(gameData.upgrades, GameVariable.BitAppearanceProbability);
       const sweepCheck = calculateVariableValue(gameData.upgrades, GameVariable.BitSweeperSize);
+      const virusMaxSpawn = calculateVirusMaxValue(gameData.trustySales, gameData.shadySales);
       EventBus.emit("change-rates", {
         bitCheckInterval: bci,
         bitAppearanceProbability: bap,
-        bitSweeperSize: sweepCheck
+        bitSweeperSize: sweepCheck,
+        virusMaxSpawn: virusMaxSpawn
       });
     });
 

@@ -73,6 +73,8 @@ export interface IGameData {
   userEmail: string;
   upgrades: string[];
   savedSolvedPuzzles: string[];
+  trustySales: number;
+  shadySales: number;
 }
 
 export interface IRGBTriple {
