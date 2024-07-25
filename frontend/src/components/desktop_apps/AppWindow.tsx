@@ -24,7 +24,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       break;
     case AppType.Store:
       break;
-    case AppType.Authentication:
+    case AppType.Login:
       appWindowElements = <AuthContainer></AuthContainer>;
       break;
     case AppType.Learn:

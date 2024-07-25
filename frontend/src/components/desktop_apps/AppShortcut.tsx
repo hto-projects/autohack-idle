@@ -5,10 +5,12 @@ interface AppShortcutProps {
   appType: AppType;
   setOpen: (at: AppType) => void;
   icon?: string;
+  useSmaller?: boolean;
 }
 
-const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => {
+const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon, useSmaller = false }) => {
   const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
+  const size = useSmaller ? "64px" : "120px";
 
   return (
     <div style={{ color: "white", textAlign: "center" }}>
@@ -16,8 +18,8 @@ const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => 
         style={{
           color: "white",
           background: shownIcon,
-          width: "120px",
-          height: "120px",
+          width: size,
+          height: size,
           backgroundSize: "cover",
           marginLeft: "auto",
           marginRight: "auto",

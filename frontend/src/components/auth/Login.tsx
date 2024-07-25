@@ -37,7 +37,7 @@ export default function Login({ setScreen }) {
 
   return (
     <div>
-      <h1>Sign In</h1>
+      <h1>Login</h1>
 
       <Form onSubmit={submitHandler}>
         <Form.Group className="my-2" controlId="email">
@@ -60,9 +60,7 @@ export default function Login({ setScreen }) {
           ></Form.Control>
         </Form.Group>
 
-        <Button disabled={isLoading} type="submit" variant="primary" className="mt-3">
-          Sign In
-        </Button>
+        <Button disabled={isLoading} type="submit" variant="primary" className="mt-3"></Button>
       </Form>
 
       {isLoading && <Loader />}
