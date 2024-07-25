@@ -64,6 +64,120 @@ export const starterUpgrades: IUpgrade[] = [
     ]
   },
   {
+    name: "Al the Auto-Collector, Upgraded ",
+    preReqs: ["Al the Auto-Collector"],
+    description: "Hire an upgraded A.I. intern to collect bits for you",
+    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    cost: 5,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 2
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V2",
+    preReqs: ["Al the Auto-Collector, Upgraded "],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 5
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V3",
+    preReqs: ["Al the Auto-Collector, Upgraded V2"],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    cost: 25,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 15
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V4",
+    preReqs: ["Al the Auto-Collector, Upgraded V3"],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    cost: 50,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 25
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V5",
+    preReqs: ["Al the Auto-Collector, Upgraded V4"],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    cost: 150,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 50
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Perfected",
+    preReqs: ["Al the Auto-Collector, Upgraded V5"],
+    description: "Perfected automation of bit collection",
+    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    cost: 1000,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 250
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
     name: "Bit Sweeper",
     preReqs: [],
     description: "Drag and hold your mouse around the screen and collect bits",
@@ -74,6 +188,20 @@ export const starterUpgrades: IUpgrade[] = [
         variableAffected: GameVariable.BitSweeperSize,
         variableMod: VariableModFunction.Set,
         modValue: 30
+      }
+    ]
+  },
+  {
+    name: "Sweeper Sensors",
+    preReqs: ["Bit Sweeper"],
+    description: "Expand the size of your bit broom by double",
+    pictureArr: [{ image: "🧹 x 2 ", type: ImageType.String }],
+    cost: 50,
+    effects: [
+      {
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 60
       }
     ]
   },
