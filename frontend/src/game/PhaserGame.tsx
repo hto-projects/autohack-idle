@@ -10,12 +10,14 @@ import { resetGameData } from "../slices/gameDataSlice";
 import { resetUpgrades } from "../slices/upgradesSlice";
 import { Collect } from "./scenes/Collect";
 
+interface IProps {}
+
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
   scene: Scene | null;
 }
 
-interface IProps {}
+let visible = false;
 
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
@@ -23,10 +25,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   const game = useRef<Phaser.Game | null>(null!);
 
-  var visible = false;
-
   if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
-    var visible = true;
   }
 
   useLayoutEffect(() => {
