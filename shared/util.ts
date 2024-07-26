@@ -1,7 +1,6 @@
 import { GameVariable, IUpgrade, IUpgradeEffect, VariableModFunction, IRGBTriple } from "./types";
-import { allUpgrades } from "./upgrades";
 
-export function flatByProp<T>(arr: Array<T>, prop: string) {
+export function flatObjByProp(arr: object[], prop: string): any[] {
   return arr.map((e) => {
     e[prop];
   });
@@ -36,12 +35,18 @@ function runMod(modFun: VariableModFunction, modVal: number, input: number): num
 }
 
 export function calculateVariableValue(acquiredUpgrades: IUpgrade[], variable: GameVariable): number {
-  const effectsForVariable: IUpgradeEffect[] = acquiredUpgrades.flatMap((up) =>
+  // const effectsForVariable: IUpgradeEffect[] = acquiredUpgrades.length
+  //   ? []
+  //   : acquiredUpgrades.flatMap((up) => {
+  //       return up.effects.filter((e) => e.variableAffected === variable);
+  //     });
+  const ownedUpgrades: IUpgrade[] = allUpgrades.filter((up) => ownedUpgradeNames.includes(up.name));
+  const effectsForVariable: IUpgradeEffect[] = ownedUpgrades.flatMap((up) =>
     up.effects.filter((e) => e.variableAffected === variable)
   );
-
   const setEffect = pluckOne(effectsForVariable, (ef) => ef.variableMod === VariableModFunction.Set);
   if (!setEffect) {
+    console.log("early exuit");
     return NaN;
   }
 
@@ -51,7 +56,7 @@ export function calculateVariableValue(acquiredUpgrades: IUpgrade[], variable: G
 
     variableValue = runMod(currentEffect.variableMod, currentEffect.modValue, variableValue);
   }
-
+  console.log(variableValue);
   return variableValue;
 }
 

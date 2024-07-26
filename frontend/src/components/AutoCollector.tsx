@@ -3,9 +3,10 @@ import { GameVariable, IGameData } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { addBits } from "../slices/gameDataSlice";
 import { useEffect } from "react";
+import { IGameState } from "../store";
 
 export default function AutoCollector() {
-  const gameData: IGameData = useSelector((state: any) => state.gameData);
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const autoBitAmount: number = calculateVariableValue(gameData.ups.acquired, GameVariable.AutoBitGatheringAmount);
   const autoBitInterval: number = calculateVariableValue(gameData.ups.acquired, GameVariable.AutoBitGatheringInterval);
 

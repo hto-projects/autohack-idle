@@ -42,7 +42,7 @@ export interface IUpgradeEffect {
 export interface IUpgrade {
   name: string;
   description: string;
-  pictureArr: IAppImage[];
+  picture: IAppImage;
   cost: number;
   effects: IUpgradeEffect[];
   preReqs: string[];

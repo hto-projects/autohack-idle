@@ -8,7 +8,6 @@ import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
 import { resetUpgrades } from "../slices/upgradesSlice";
-import { Collect } from "./scenes/Collect";
 
 interface IProps {}
 

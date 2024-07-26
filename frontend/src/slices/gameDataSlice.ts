@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IGameData } from "../../../shared/types";
+import { IGameData, IUpgrade } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
 
 import { starterUpgrades } from "../../../shared/upgrades";
-import { flatByProp } from "../../../shared/util";
+import { flatObjByProp } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
 
@@ -37,11 +37,22 @@ const gameDataSlice = createSlice({
     },
     purchaseUpgrade: (state, action) => {
       const ups = state.ups;
-      const upgrade = action.payload.upgradeToPurchase;
+      const upgrade = action.payload.upgradeToPurchase as IUpgrade;
       state.currencyAmount -= upgrade.cost;
       ups.acquired.push(upgrade);
-      ups.purchasable.splice(ups.purchasable.indexOf(upgrade), 1);
-      EventBus.emit("upgrade-purchased", flatByProp(ups.acquired, "name"));
+      console.log(upgrade);
+      let index = -1;
+      for (let i = 0; i < ups.purchasable.length; i++) {
+        if (upgrade.name == ups.purchasable[i].name) {
+          index = i;
+          break;
+        }
+      }
+      if (index == -1) {
+        console.log(`ERR: could not find index of upgrade: ${upgrade.name}`);
+      }
+      ups.purchasable.splice(index, 1);
+      EventBus.emit("upgrade-purchased", flatObjByProp(ups.acquired, "name"));
     },
     puzzleSolve: (state, action) => {
       // const puz = action.payload.savedSolvedPuzzle;
@@ -107,6 +118,7 @@ const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve } = gameDataSlice.actions;
+export const { addBits, sellData, purchaseUpgrade, categorizeUpgrades, resetGameData, puzzleSolve } =
+  gameDataSlice.actions;
 // export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve, setGameData } = gameDataSlice.actions;
 export default gameDataSlice;
