@@ -14,11 +14,11 @@ const foo: ItextBox[] = [
   },
   {
     name: "Collector",
-    body: "This is the collector app, its where you can collect bits to sell for cash. While open, every second you have a small chance to find a bit . Be careful though, because each time you collect a bit a virus has a chance to spawn which you destroy by clicking on it."
+    body: "This is the collector app, its where you can collect bits to sell for cash. While open, every second you have a small chance to find a bit. Be careful though, because each time you collect a bit a virus has a chance to spawn which you destroy by clicking on it."
   },
   {
     name: "Upgrades",
-    body: "This is the ugrades app . This is where you can buy upgrades to increase your chance to find bits, how fast you check for bits, or unlock completly new features. Some of these will be hidden until you unlock them either by buying upgrades or from a few other methods."
+    body: "This is the ugrades app. This is where you can buy upgrades to increase your chance to find bits, how fast you check for bits, or unlock completly new features. Some of these will be hidden until you unlock them either by buying upgrades or from a few other methods."
   },
   {
     name: "Learn",
@@ -44,7 +44,7 @@ export default function HelpAppContainer() {
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <div style={{ background: "green", height: "50%", width: "100%", display: "flex", flexDirection: "row" }}>
+      <div style={{ height: "50%", width: "100%", display: "flex", flexDirection: "row" }}>
         <div
           style={{
             height: "30%",
@@ -65,8 +65,10 @@ export default function HelpAppContainer() {
           <HelpAppImage picture={{ image: display.name.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
         </div>
       </div>
-      <div style={{ background: "orange", height: "50%", width: "100%", display: "flex" }}>
-        <text style={{ color: "black", visibility: "visible", fontSize: 20 }}>{display.body}</text>
+      <div style={{ height: "60%", width: "100%", display: "flex", marginTop: "20%" }}>
+        <text style={{ color: "black", visibility: "visible", fontSize: 20, marginLeft: "1%", marginRight: "2%" }}>
+          {display.body}
+        </text>
       </div>
     </div>
   );

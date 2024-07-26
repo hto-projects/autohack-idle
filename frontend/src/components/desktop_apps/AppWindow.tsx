@@ -40,6 +40,28 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       break;
     case AppType.Help:
       appWindowElements = <HelpAppScreen></HelpAppScreen>;
+      return (
+        <div
+          style={{
+            width: "32%",
+            height: "67%",
+            background: "lightgrey",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            color: "black",
+            position: "absolute",
+            zIndex: "1",
+            left: "65%",
+            top: "5%",
+            border: "1px solid gray"
+          }}
+        >
+          <TitleBar open={open} setOpen={() => setOpen(null)}></TitleBar>
+          {appWindowElements}
+        </div>
+      );
   }
 
   return (
