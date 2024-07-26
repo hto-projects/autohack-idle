@@ -23,7 +23,7 @@ export enum AppType {
   Store = "Store",
   Upgrades = "Upgrades",
   Learn = "Learn",
-  Authentication = "Authentication",
+  Login = "Login",
   Settings = "Settings",
   Puzzle = "Puzzle",
   Help = "Help"

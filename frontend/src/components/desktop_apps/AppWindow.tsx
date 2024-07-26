@@ -3,11 +3,10 @@ import { AppType } from "../../../../shared/types";
 import UpgradeAppScreen from "./screens/UpgradeAppScreen";
 import BitMinerUpgradeScreen from "./screens/BitMinerAppScreen";
 import LearnAppScreen from "./screens/LearnAppScreen";
-import AuthContainer from "../auth/AuthContainer";
+import LoginContainer from "../auth/LoginContainer";
 import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
 import PuzzleAppScreen from "./screens/PuzzleAppScreen";
-import HelpAppContainer from "./screens/help_screens/HelpAppContainer";
 import HelpAppScreen from "./screens/HelpAppScreen";
 
 interface AppWindowProps {
@@ -26,8 +25,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       break;
     case AppType.Store:
       break;
-    case AppType.Authentication:
-      appWindowElements = <AuthContainer></AuthContainer>;
+    case AppType.Login:
+      appWindowElements = <LoginContainer></LoginContainer>;
       break;
     case AppType.Learn:
       appWindowElements = <LearnAppScreen></LearnAppScreen>;
