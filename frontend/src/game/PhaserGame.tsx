@@ -25,7 +25,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   var visible = false;
 
-  if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable) === 1) {
+  if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
     var visible = true;
   }
 
@@ -84,9 +84,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   useEffect(() => {
     EventBus.on("current-scene-ready", () => {
       EventBus.emit("change-bits", gameData.numBits);
-      const bci = calculateVariableValue(gameData.upgrades, GameVariable.BitCheckInterval);
-      const bap = calculateVariableValue(gameData.upgrades, GameVariable.BitAppearanceProbability);
-      const sweepCheck = calculateVariableValue(gameData.upgrades, GameVariable.BitSweeperSize);
+      const bci = calculateVariableValue(gameData.ups.acquired, GameVariable.BitCheckInterval);
+      const bap = calculateVariableValue(gameData.ups.acquired, GameVariable.BitAppearanceProbability);
+      const sweepCheck = calculateVariableValue(gameData.ups.acquired, GameVariable.BitSweeperSize);
       EventBus.emit("change-rates", {
         bitCheckInterval: bci,
         bitAppearanceProbability: bap,
@@ -100,7 +100,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   }, [ref, gameData.numBits]);
 
   function collectAll() {
-    if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable)) {
+    if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable)) {
       EventBus.emit("collect-all");
     }
   }

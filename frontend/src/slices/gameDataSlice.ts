@@ -5,6 +5,7 @@ import { EventBus } from "../game/EventBus";
 import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
 
 import { starterUpgrades } from "../../../shared/upgrades";
+import { flatByProp } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
 
@@ -40,12 +41,7 @@ const gameDataSlice = createSlice({
       state.currencyAmount -= upgrade.cost;
       ups.acquired.push(upgrade);
       ups.purchasable.splice(ups.purchasable.indexOf(upgrade), 1);
-      EventBus.emit(
-        "upgrade-purchased",
-        ups.acquired.map((up) => {
-          up.name;
-        })
-      );
+      EventBus.emit("upgrade-purchased", flatByProp(ups.acquired, "name"));
     },
     puzzleSolve: (state, action) => {
       // const puz = action.payload.savedSolvedPuzzle;
