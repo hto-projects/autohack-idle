@@ -7,7 +7,7 @@ import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 
-export default function AuthContainer() {
+export default function LoginContainer() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const [screenShowing, setScreenShowing] = useState<string>();
 

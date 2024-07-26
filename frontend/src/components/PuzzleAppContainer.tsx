@@ -1,10 +1,9 @@
-import { IPuzzle, IPuzzleModule, PuzzleAppDirectory } from "./puzzle_sets/PuzzleAppDirectory";
+import { IPuzzleModule, PuzzleAppDirectory } from "./puzzle_sets/PuzzleAppDirectory";
 import PuzzleContainer from "./puzzle_sets/PuzzleContainer";
 import { useState, ReactNode } from "react";
 import { IGameState } from "../store";
 import { useSelector } from "react-redux";
-import { IGameData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../shared/types";
-import { EventBus } from "../game/EventBus";
+import { IGameData, SetCompletedStatus } from "../../../shared/types";
 interface PuzzleAppContainerProps {
   puzzleObj: IPuzzleModule;
 }
@@ -13,10 +12,7 @@ export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProp
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const [visiblePuzzleSets, setVisiblePuzzleSet] = useState(-1);
   let node: ReactNode = undefined;
-  let allPuzzArr = [];
   const getSetState = (checkedSet: number, gameData: IGameData): SetCompletedStatus => {
-    console.log(PuzzleAppDirectory.puzzleSets[checkedSet].puzzles);
-
     for (let i = 0; i < PuzzleAppDirectory.puzzleSets[checkedSet].puzzles.length; i++) {
       if (!gameData.savedSolvedPuzzles.includes(PuzzleAppDirectory.puzzleSets[checkedSet].puzzles[i].name)) {
         return SetCompletedStatus.incomplete;
