@@ -20,14 +20,6 @@ export default function PuzzleApp({ titleElements, puzzles }: PuzzleContainerPro
     }
     return PuzzleSolvedStatus.unsolved;
   };
-  const getSetState = (checkedSet: number, gameData: IGameData): SetCompletedStatus => {
-    for (let i = 0; i < PuzzleAppDirectory.puzzleSets[checkedSet].puzzles.length; i++) {
-      if (getPuzStatus(i, gameData) === PuzzleSolvedStatus.unsolved) {
-        return SetCompletedStatus.incomplete;
-      }
-    }
-    return SetCompletedStatus.complete;
-  };
 
   if (visiblePuzzle === -1) {
     const buttons: ReactNode[] = [];

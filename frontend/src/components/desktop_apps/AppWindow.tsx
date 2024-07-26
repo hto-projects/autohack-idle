@@ -7,6 +7,8 @@ import AuthContainer from "../auth/AuthContainer";
 import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
 import PuzzleAppScreen from "./screens/PuzzleAppScreen";
+import HelpAppContainer from "./screens/help_screens/HelpAppContainer";
+import HelpAppScreen from "./screens/HelpAppScreen";
 
 interface AppWindowProps {
   open: AppType;
@@ -36,6 +38,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
     case AppType.Puzzle:
       appWindowElements = <PuzzleAppScreen></PuzzleAppScreen>;
       break;
+    case AppType.Help:
+      appWindowElements = <HelpAppScreen></HelpAppScreen>;
   }
 
   return (
@@ -57,11 +61,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       }}
     >
       <TitleBar open={open} setOpen={() => setOpen(null)}></TitleBar>
-
       {appWindowElements}
-      {/* <p>
-        <button onClick={}>Close</button>
-      </p> */}
     </div>
   );
 };

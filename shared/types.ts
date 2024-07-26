@@ -25,7 +25,8 @@ export enum AppType {
   Learn = "Learn",
   Authentication = "Authentication",
   Settings = "Settings",
-  Puzzle = "Puzzle"
+  Puzzle = "Puzzle",
+  Help = "Help"
 }
 
 export interface IAppImage {
