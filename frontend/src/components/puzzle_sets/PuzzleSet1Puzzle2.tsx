@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { puzzzleSolve } from "../../slices/gameDataSlice";
+import { puzzleSolve } from "../../slices/gameDataSlice";
 import Form from "react-bootstrap/esm/Form";
 import { Button } from "react-bootstrap";
 
@@ -50,7 +50,7 @@ export default function PS1P2() {
     correctAnswer = correctAnswer.replace(/\s/g, "");
     if (puzzleAnswer == devAnswer || puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzzleSolve("Make a Collect All Function"));
+      dispatch(puzzleSolve("Make a Collect All Function"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

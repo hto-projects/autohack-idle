@@ -1,6 +1,5 @@
 import { addBits, puzzzleSolve, resetGameData } from "../../../slices/gameDataSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { resetUpgrades } from "../../../slices/upgradesSlice";
 import { IGameData } from "../../../../../shared/types";
 import { IGameState } from "../../../store";
 
@@ -27,11 +26,7 @@ export default function SettingsAppScreen() {
 
   return (
     <>
-      <button
-        onClick={() => confirm("This will reset all data ") && dispatch(resetGameData()) && dispatch(resetUpgrades())}
-      >
-        Reset
-      </button>
+      <button onClick={() => confirm("This will reset all data ") && dispatch(resetGameData())}>Reset</button>
 
       <button onClick={() => confirm("This will give you the Bits of your dreams ") && addBitsButton()}>
         Add Bits
