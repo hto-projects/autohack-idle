@@ -5,7 +5,7 @@ import { EventBus } from "../game/EventBus";
 import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
 
 import { starterUpgrades } from "../../../shared/upgrades";
-import { flatObjByProp } from "../../../shared/util";
+import { flatObjByProp, intersection } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
 
@@ -40,7 +40,6 @@ const gameDataSlice = createSlice({
       const upgrade = action.payload.upgradeToPurchase as IUpgrade;
       state.currencyAmount -= upgrade.cost;
       ups.acquired.push(upgrade);
-      console.log(upgrade);
       let index = -1;
       for (let i = 0; i < ups.purchasable.length; i++) {
         if (upgrade.name == ups.purchasable[i].name) {
@@ -50,9 +49,21 @@ const gameDataSlice = createSlice({
       }
       if (index == -1) {
         console.log(`ERR: could not find index of upgrade: ${upgrade.name}`);
+        return;
       }
       ups.purchasable.splice(index, 1);
-      EventBus.emit("upgrade-purchased", flatObjByProp(ups.acquired, "name"));
+      const purchasableBuffer: IUpgrade[] = [];
+      const acquiredUpNames = flatObjByProp(ups.acquired, "name");
+      for (let i = 0; i < ups.unavailable.length; i++) {
+        const currUp = ups.unavailable[i];
+        const intersect = intersection(acquiredUpNames, currUp.preReqs);
+        if (intersect.length == currUp.preReqs.length) {
+          const [newPurchasableUp] = ups.unavailable.splice(i, 1);
+          purchasableBuffer.push(newPurchasableUp);
+        }
+      }
+      ups.purchasable.push(...purchasableBuffer);
+      EventBus.emit("upgrade-purchased", ups.acquired);
     },
     puzzleSolve: (state, action) => {
       // const puz = action.payload.savedSolvedPuzzle;
