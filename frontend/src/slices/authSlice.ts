@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IAuthData } from "../../../shared/types";
 
-const initialState = {
+const initialState: IAuthData = {
   userInfo: localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null
 };
 

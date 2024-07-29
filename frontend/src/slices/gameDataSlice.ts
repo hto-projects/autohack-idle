@@ -1,13 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IGameData, IUpgrade } from "../../../shared/types";
+import { IUpgrade } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
-
 import { allUpgrades } from "../../../shared/upgrades";
 import { flatObjByProp, intersection } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
+
+export interface IUpgradesData {
+  acquired: IUpgrade[];
+  purchasable: IUpgrade[];
+  unavailable: IUpgrade[];
+  uncategorized: IUpgrade[];
+  // savedSolvedPuzzles: string[];
+}
+
+export interface IGameData {
+  numBits: number;
+  totalNumBits: number;
+  currencyAmount: number;
+  userEmail: string;
+  ups: IUpgradesData;
+  savedSolvedPuzzles: string[];
+}
 
 const initialState: IGameData = {
   numBits: 0,

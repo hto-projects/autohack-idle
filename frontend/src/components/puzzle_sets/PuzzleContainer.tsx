@@ -1,8 +1,9 @@
 import { useState, ReactNode } from "react";
 import { IPuzzle, IPuzzleSet, PuzzleAppDirectory } from "./PuzzleAppDirectory";
-import { IGameData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../../shared/types";
+import { PuzzleSolvedStatus, SetCompletedStatus } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
+import { IGameData } from "../../slices/gameDataSlice";
 
 export interface PuzzleContainerProps {
   titleElements: ReactNode;
