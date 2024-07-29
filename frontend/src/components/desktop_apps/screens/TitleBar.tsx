@@ -1,5 +1,7 @@
-import { AppType } from "../../../../../shared/types";
+import { useSelector } from "react-redux";
+import { AppType, IGameData, IStyleData } from "../../../../../shared/types";
 import { useKeyDown } from "../../../../frontend-util";
+import { IGameState } from "../../../store";
 
 interface TitleBarProps {
   open: AppType;
@@ -8,13 +10,16 @@ interface TitleBarProps {
 
 export default function TitleBar({ open, setOpen }: TitleBarProps) {
   useKeyDown(setOpen, ["Escape"]);
-  let taskbarColor = "#9caf88";
+  console.log("AAAAAAAAAAAAAAA");
+  const titleBarColor: string = useSelector((state: IGameState) => state.styleData.titleBarColor);
+  console.log(titleBarColor);
+  // const titleBarColor = styleData["titleBarColor"];
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        backgroundColor: taskbarColor,
+        backgroundColor: titleBarColor,
         width: "100%",
         textAlign: "right",
         marginBottom: "10px"

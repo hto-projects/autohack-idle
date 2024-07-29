@@ -71,6 +71,10 @@ export interface IPuzzleData {
   name: string;
 }
 
+export interface IStyleData {
+  titleBarColor: string;
+}
+
 export interface IGameData {
   numBits: number;
   totalNumBits: number;

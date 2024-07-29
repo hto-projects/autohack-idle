@@ -3,12 +3,14 @@ import authSlice from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
 import gameDataSlice from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
-import { IGameData } from "../../shared/types";
+import { IGameData, IStyleData } from "../../shared/types";
+import styleDataSlice from "./slices/styleDataSlice";
 
 export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
   completedPuzzles?: { solvedPuzzles };
+  styleData: IStyleData;
 }
 
 function loadState() {
@@ -38,7 +40,8 @@ const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authSlice.reducer,
-    gameData: gameDataSlice.reducer
+    gameData: gameDataSlice.reducer,
+    styleData: styleDataSlice.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,

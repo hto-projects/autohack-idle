@@ -1,6 +1,7 @@
 import { create } from "domain";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { setStyle } from "../../../slices/styleDataSlice";
 
 interface ICommand {
   input: string;
@@ -17,11 +18,13 @@ export default function TerminalAppScreen() {
     setPreviousCommands([...allPreviousCommands, command]);
     console.log(allPreviousCommands);
     return inputValue;
-    function generateResponse(takenInput) {
+    function generateResponse(takenInput: string) {
       let possibleCommands = ["titlebar/color/green"];
       if (possibleCommands.includes(takenInput)) {
+        dispatch(setStyle({ property: "titleBarColor", value: "green" }));
         return "Taskbar is now green";
       } else {
+        dispatch(setStyle({ property: "titleBarColor", value: "aqua" }));
         return "false";
       }
     }
