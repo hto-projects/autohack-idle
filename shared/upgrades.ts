@@ -1,20 +1,6 @@
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
-export const starterUpgrades: IUpgrade[] = [
-  {
-    name: "Check for Bits",
-    preReqs: [],
-    description: "Once every second, look to see if there are any bits available for harvesting",
-    picture: { image: "🔍", type: ImageType.String },
-    cost: 0,
-    effects: [
-      {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
+const other: IUpgrade[] = [
   {
     name: "Chance for Bits",
     preReqs: [],
@@ -30,19 +16,37 @@ export const starterUpgrades: IUpgrade[] = [
     ]
   },
   {
-    name: "Double Checks",
+    name: "Bit Sweeper",
     preReqs: [],
-    description: "Check for bits twice as often",
-    picture: { image: "1🔍", type: ImageType.String },
-    cost: 10,
+    description: "Drag and hold your mouse around the screen and collect bits",
+    picture: { image: "🧹", type: ImageType.String },
+    cost: 15,
     effects: [
       {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Multiply,
-        modValue: 0.5
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 30
       }
     ]
-  },
+  }
+];
+const learn: IUpgrade[] = [
+  {
+    name: "Collect All",
+    preReqs: ["Make a Collect All Button", "Test"],
+    description: "Collects all bits on screen",
+    picture: { image: "💰", type: ImageType.String },
+    cost: 200,
+    effects: [
+      {
+        variableAffected: GameVariable.ButtonAvailable,
+        variableMod: VariableModFunction.Set,
+        modValue: 1
+      }
+    ]
+  }
+];
+const al: IUpgrade[] = [
   {
     name: "Al the Auto-Collector",
     preReqs: [],
@@ -61,18 +65,34 @@ export const starterUpgrades: IUpgrade[] = [
         modValue: 1000
       }
     ]
-  },
+  }
+];
+const checks: IUpgrade[] = [
   {
-    name: "Bit Sweeper",
+    name: "Check for Bits",
     preReqs: [],
-    description: "Drag and hold your mouse around the screen and collect bits",
-    picture: { image: "🧹", type: ImageType.String },
-    cost: 15,
+    description: "Once every second, look to see if there are any bits available for harvesting",
+    picture: { image: "🔍", type: ImageType.String },
+    cost: 0,
     effects: [
       {
-        variableAffected: GameVariable.BitSweeperSize,
+        variableAffected: GameVariable.BitCheckInterval,
         variableMod: VariableModFunction.Set,
-        modValue: 30
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Double Checks",
+    preReqs: ["Check for Bits"],
+    description: "Check for bits twice as often",
+    picture: { image: "1🔍", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
       }
     ]
   },
@@ -101,20 +121,6 @@ export const starterUpgrades: IUpgrade[] = [
         variableAffected: GameVariable.BitCheckInterval,
         variableMod: VariableModFunction.Multiply,
         modValue: 0.5
-      }
-    ]
-  },
-  {
-    name: "Collect All",
-    preReqs: ["Make a Collect All Button", "Test"],
-    description: "Collects all bits on screen",
-    picture: { image: "💰", type: ImageType.String },
-    cost: 200,
-    effects: [
-      {
-        variableAffected: GameVariable.ButtonAvailable,
-        variableMod: VariableModFunction.Set,
-        modValue: 1
       }
     ]
   },
@@ -232,4 +238,4 @@ export const starterUpgrades: IUpgrade[] = [
   }
 ];
 
-export const allUpgrades: IUpgrade[] = starterUpgrades;
+export const allUpgrades: IUpgrade[] = [...checks, ...other, ...al, ...learn];
