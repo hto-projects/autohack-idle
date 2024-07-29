@@ -1,41 +1,55 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { puzzzleSolve } from "../../slices/gameDataSlice";
+import Form from "react-bootstrap/esm/Form";
+import { Button } from "react-bootstrap";
 
-export default function PuzzleSet2() {
+export default function PS1P2() {
   const [playerAnswer, setPlayerAnswer] = useState("");
-  const correctAnswer = "<button> Test </button>";
+  let correctAnswer = 'function collectAll() {prompt("You have collected all bits!"); return; }';
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
   const dispatch = useDispatch();
 
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+    <div
+      className={`normalLesson ${open && "showing"}`}
+      style={{ color: "grey", scrollBehavior: "smooth", overflow: "auto" }}
+    >
       <h3 style={{ color: "black", textAlign: "left" }}>Puzzle 2: Make a Collect All Button</h3>
-      <p>In this puzzle you will have to write a line of code to create a button that says "Collect All"</p>
+      <p>
+        In this puzzle you will have to write some code, in JavaScript, to create a collectAll() function. This funtion
+        should prompt the message "You have collected all bits!" and return nothing.
+      </p>
 
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="string"
-          id="answer"
-          name="textArea"
-          value={playerAnswer}
-          style={{ width: "80%", marginLeft: "10%" }}
-          onChange={(e) => setPlayerAnswer(e.target.value)}
-        ></input>
-        <button onClick={answerPuzzle}>Submit</button>
-      </form>
+      <Form>
+        <Form.Group onSubmit={(e) => e.preventDefault()}>
+          <Form.Label>Enter your code below: </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter code"
+            id="answer"
+            as="textarea"
+            rows={4}
+            value={playerAnswer}
+            onChange={(e) => setPlayerAnswer(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button onClick={answerPuzzle}> Check </Button>
+      </Form>
 
       <div>
-        <text style={{ color: "black", visibility: "visible" }}> {puzzleAnswerEffect.toString()} </text>{" "}
+        <p style={{ color: "black", visibility: "visible" }}> {puzzleAnswerEffect.toString()} </p>{" "}
       </div>
     </div>
   );
 
   function answerPuzzle() {
     let puzzleAnswer = playerAnswer;
+    puzzleAnswer = puzzleAnswer.replace(/\s/g, "");
+    correctAnswer = correctAnswer.replace(/\s/g, "");
     if (puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzzleSolve("Test"));
+      dispatch(puzzzleSolve("Make a Collect All Function"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

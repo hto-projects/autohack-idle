@@ -1,13 +1,10 @@
 import { ReactNode } from "react";
-import PuzzleSet1 from "./PuzzleSet1Puzzle1";
-import { IPuzzleData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../../shared/types";
-import gameDataSlice from "../../slices/gameDataSlice";
-import { IGameData } from "../../../../shared/types";
-import { IGameState } from "../../store";
-import { useSelector } from "react-redux";
-import PuzzleSet2 from "./PuzzleSet1Puzzle2";
-import PuzzleApp from "./PuzzleContainer";
-import { PuzzleContainerProps } from "./PuzzleContainer";
+import PS1P1 from "./PuzzleSet1Puzzle1";
+import PS1P2 from "./PuzzleSet1Puzzle2";
+import PS0PTest from "./PuzzleSet0PuzzleTest";
+import PS1P3 from "./PuzzleSet1Puzzle3";
+import PS1P4 from "./PuzzleSet1Puzzle4";
+import PS1PFinal from "./PuzzleSet1PuzzleFinal";
 
 export interface IPuzzle {
   name: string;
@@ -34,11 +31,23 @@ export const PuzzleAppDirectory: IPuzzleModule = {
       puzzles: [
         {
           name: "Make a Collect All Button",
-          body: <PuzzleSet1></PuzzleSet1>
+          body: <PS1P1></PS1P1>
         },
         {
-          name: "Test",
-          body: <PuzzleSet2></PuzzleSet2>
+          name: "Make a Collect All Function",
+          body: <PS1P2></PS1P2>
+        },
+        {
+          name: "Make a Bits Array",
+          body: <PS1P3></PS1P3>
+        },
+        {
+          name: "Make a For Loop to Collect all Bits",
+          body: <PS1P4></PS1P4>
+        },
+        {
+          name: "Make the Complete Collect All Upgrade",
+          body: <PS1PFinal></PS1PFinal>
         }
       ]
     },
@@ -47,8 +56,8 @@ export const PuzzleAppDirectory: IPuzzleModule = {
       description: "Not here yet!",
       puzzles: [
         {
-          name: "est",
-          body: <PuzzleSet2></PuzzleSet2>
+          name: "Test Puzzle",
+          body: <PS0PTest></PS0PTest>
         }
       ]
     }

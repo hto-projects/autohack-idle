@@ -1,30 +1,42 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { puzzzleSolve } from "../../slices/gameDataSlice";
+import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/esm/Form";
 
-export default function PuzzleSet1() {
+export default function PS1P1() {
   const [playerAnswer, setPlayerAnswer] = useState("");
-  const correctAnswer = "<button> Collect All </button>";
+  let correctAnswer = '<button onClick = "collectAll()"> Collect All </button>';
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
   const dispatch = useDispatch();
 
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+    <div
+      className={`normalLesson ${open && "showing"}`}
+      style={{ color: "grey", scrollBehavior: "smooth", overflow: "auto" }}
+    >
       <h3 style={{ color: "black", textAlign: "left" }}>Puzzle 1: Make a Collect All Button</h3>
-      <p>In this puzzle you will have to write a line of code to create a button that says "Collect All"</p>
+      <p>
+        In this puzzle you will have to write a line of code, in HTML, to create a button that says "Collect All". This
+        button should also call the "collectAll()" function when clicked. For this puzzle, assume that this function
+        already exists in the code base, and is within scope.
+      </p>
 
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="string"
-          id="answer"
-          name="textArea"
-          value={playerAnswer}
-          style={{ width: "80%", marginLeft: "10%" }}
-          onChange={(e) => setPlayerAnswer(e.target.value)}
-        ></input>
-        <button onClick={answerPuzzle}>Submit</button>
-      </form>
-
+      <Form>
+        <Form.Group onSubmit={(e) => e.preventDefault()}>
+          <Form.Label>Enter your code below: </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter code"
+            id="answer"
+            as="textarea"
+            rows={1}
+            value={playerAnswer}
+            onChange={(e) => setPlayerAnswer(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button onClick={answerPuzzle}> Check </Button>
+      </Form>
       <div>
         <text style={{ color: "black", visibility: "visible" }}> {puzzleAnswerEffect.toString()} </text>{" "}
       </div>
@@ -33,6 +45,8 @@ export default function PuzzleSet1() {
 
   function answerPuzzle() {
     let puzzleAnswer = playerAnswer;
+    puzzleAnswer = puzzleAnswer.replace(/\s/g, "");
+    correctAnswer = correctAnswer.replace(/\s/g, "");
     if (puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
       dispatch(puzzzleSolve("Make a Collect All Button"));
