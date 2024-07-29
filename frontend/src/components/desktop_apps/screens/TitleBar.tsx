@@ -8,13 +8,13 @@ interface TitleBarProps {
 
 export default function TitleBar({ open, setOpen }: TitleBarProps) {
   useKeyDown(setOpen, ["Escape"]);
-
+  let taskbarColor = "#9caf88";
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        backgroundColor: "#9caf88",
+        backgroundColor: taskbarColor,
         width: "100%",
         textAlign: "right",
         marginBottom: "10px"

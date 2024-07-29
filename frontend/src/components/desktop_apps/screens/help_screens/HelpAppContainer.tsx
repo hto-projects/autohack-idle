@@ -7,7 +7,7 @@ interface ItextBox {
   body: string;
 }
 
-const foo: ItextBox[] = [
+const currentText: ItextBox[] = [
   {
     name: "Help",
     body: "Hi! This is the help app and will provide brief descriptions and hints about the other parts of this game."
@@ -39,8 +39,8 @@ const foo: ItextBox[] = [
 ];
 
 export default function HelpAppContainer() {
-  let [currentDisplay, setCurrentDisplay] = useState(foo[0].name);
-  const [display] = foo.filter((app) => app.name == currentDisplay);
+  let [currentDisplay, setCurrentDisplay] = useState(currentText[0].name);
+  const [display] = currentText.filter((app) => app.name == currentDisplay);
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
@@ -52,7 +52,7 @@ export default function HelpAppContainer() {
             marginRight: "43%"
           }}
         >
-          {foo.map((app) => (
+          {currentText.map((app) => (
             <button
               style={{ marginTop: "20px", fontSize: 23, marginRight: "20px" }}
               onClick={() => setCurrentDisplay(app.name)}

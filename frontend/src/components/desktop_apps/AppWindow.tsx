@@ -8,6 +8,7 @@ import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
 import PuzzleAppScreen from "./screens/PuzzleAppScreen";
 import HelpAppScreen from "./screens/HelpAppScreen";
+import TerminalAppScreen from "./screens/TermialAppScreen";
 
 interface AppWindowProps {
   open: AppType;
@@ -61,6 +62,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
           {appWindowElements}
         </div>
       );
+    case AppType.Terminal:
+      appWindowElements = <TerminalAppScreen></TerminalAppScreen>;
   }
 
   return (
