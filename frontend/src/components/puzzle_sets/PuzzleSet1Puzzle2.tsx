@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { puzzzleSolve } from "../../slices/gameDataSlice";
+import { puzzleSolve } from "../../slices/gameDataSlice";
 
 export default function PuzzleSet2() {
   const [playerAnswer, setPlayerAnswer] = useState("");
@@ -35,7 +35,7 @@ export default function PuzzleSet2() {
     let puzzleAnswer = playerAnswer;
     if (puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzzleSolve("Test"));
+      dispatch(puzzleSolve("Test"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

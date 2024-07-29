@@ -1,15 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./slices/authSlice";
-import gameDataReducer from "./slices/gameDataSlice";
-import upgradesSlice from "./slices/upgradesSlice";
-import { apiSlice } from "./slices/apiSlice";
+import authSlice from "./slices/authSlice";
+import apiSlice from "./slices/apiSlice";
+import gameDataSlice from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
-import { IGameData, IUpgrade } from "../../shared/types";
+import { IGameData } from "../../shared/types";
 
 export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
-  upgrades: { availableUpgrades: IUpgrade[] };
   completedPuzzles?: { solvedPuzzles };
 }
 
@@ -39,9 +37,8 @@ const loadedState = loadState();
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-    auth: authReducer,
-    gameData: gameDataReducer,
-    upgrades: upgradesSlice.reducer
+    auth: authSlice.reducer,
+    gameData: gameDataSlice.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,

@@ -13,6 +13,8 @@ interface ImageWrapperProps {
 
 export function Image({ className, picture, imgStyle }: ImageProps) {
   let imageNode: ReactNode = null;
+  // console.log("picture");
+  // console.log(picture);
   switch (picture.type) {
     case ImageType.String:
       imageNode = picture.image;
@@ -30,6 +32,7 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
 }
 
 export function UpgradeImage({ picture }: ImageWrapperProps) {
+  // console.log("upgrade picture");
   return (
     <Image
       className={"upgrade-image"}
