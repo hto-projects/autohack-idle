@@ -4,7 +4,7 @@ import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
 
-import { starterUpgrades } from "../../../shared/upgrades";
+import { allUpgrades } from "../../../shared/upgrades";
 import { flatObjByProp, intersection } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
@@ -18,7 +18,7 @@ const initialState: IGameData = {
     acquired: [],
     purchasable: [],
     unavailable: [],
-    uncategorized: starterUpgrades
+    uncategorized: allUpgrades
   },
   savedSolvedPuzzles: []
 };
