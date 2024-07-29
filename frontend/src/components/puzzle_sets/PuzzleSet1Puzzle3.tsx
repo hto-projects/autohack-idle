@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { puzzzleSolve } from "../../slices/gameDataSlice";
+import { puzzleSolve } from "../../slices/gameDataSlice";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/esm/Form";
 
@@ -51,7 +51,7 @@ export default function PS1P3() {
     correctAnswer2 = correctAnswer2.replace(/\s/g, "");
     if (puzzleAnswer == devAnswer || puzzleAnswer == correctAnswer1 || puzzleAnswer == correctAnswer2) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzzleSolve("Make a Bits Array"));
+      dispatch(puzzleSolve("Make a Bits Array"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

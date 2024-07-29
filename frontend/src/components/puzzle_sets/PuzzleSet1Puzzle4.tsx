@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { puzzzleSolve } from "../../slices/gameDataSlice";
+import { puzzleSolve } from "../../slices/gameDataSlice";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/esm/Form";
 
@@ -52,7 +52,7 @@ export default function PS1P4() {
     correctAnswer = correctAnswer.replace(/\s/g, "");
     if (puzzleAnswer == devAnswer || puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzzleSolve("Make a For Loop to Collect all Bits"));
+      dispatch(puzzleSolve("Make a For Loop to Collect all Bits"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

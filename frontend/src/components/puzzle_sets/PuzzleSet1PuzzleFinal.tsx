@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { puzzzleSolve } from "../../slices/gameDataSlice";
+import { puzzleSolve } from "../../slices/gameDataSlice";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/esm/Form";
 
@@ -84,7 +84,7 @@ export default function PS1PFinal() {
     }
     if (puzHTML && puzJS) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzzleSolve("Make the Complete Collect All Upgrade"));
+      dispatch(puzzleSolve("Make the Complete Collect All Upgrade"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

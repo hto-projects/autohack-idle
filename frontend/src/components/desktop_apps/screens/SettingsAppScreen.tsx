@@ -1,4 +1,4 @@
-import { addBits, puzzzleSolve, resetGameData } from "../../../slices/gameDataSlice";
+import { addBits, puzzleSolve, resetGameData } from "../../../slices/gameDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IGameData } from "../../../../../shared/types";
 import { IGameState } from "../../../store";
@@ -35,11 +35,11 @@ export default function SettingsAppScreen() {
       <button
         onClick={() =>
           confirm("This solve all of puzzle set 1 ") &&
-          dispatch(puzzzleSolve("Make a Collect All Button")) &&
-          dispatch(puzzzleSolve("Make a Collect All Function")) &&
-          dispatch(puzzzleSolve("Make a Bits Array")) &&
-          dispatch(puzzzleSolve("Make a For Loop to Collect all Bits")) &&
-          dispatch(puzzzleSolve("Make the Complete Collect All Upgrade"))
+          dispatch(puzzleSolve("Make a Collect All Button")) &&
+          dispatch(puzzleSolve("Make a Collect All Function")) &&
+          dispatch(puzzleSolve("Make a Bits Array")) &&
+          dispatch(puzzleSolve("Make a For Loop to Collect all Bits")) &&
+          dispatch(puzzleSolve("Make the Complete Collect All Upgrade"))
         }
       >
         Solve Puzzle Set 1
