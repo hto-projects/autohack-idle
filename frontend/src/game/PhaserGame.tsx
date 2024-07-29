@@ -7,7 +7,6 @@ import { addBits } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
-import { resetUpgrades } from "../slices/upgradesSlice";
 
 interface IProps {}
 
@@ -57,7 +56,6 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   useEffect(() => {
     EventBus.on("reset-game-data", () => {
       dispatch(resetGameData());
-      dispatch(resetUpgrades());
     });
 
     return () => {
