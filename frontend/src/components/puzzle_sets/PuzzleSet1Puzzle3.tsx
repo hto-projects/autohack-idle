@@ -6,7 +6,7 @@ import Form from "react-bootstrap/esm/Form";
 
 export default function PS1P3() {
   const [playerAnswer, setPlayerAnswer] = useState("");
-  let correctAnswer = "Test";
+  let devAnswer = "dev";
   let correctAnswer1 = "const allBits = [Bit1, Bit2, Bit3];";
   let correctAnswer2 = "const allBits = []; allBits[0] = Bit1; allBits[1] = Bit2; allBits[2] = Bit3;";
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
@@ -47,10 +47,9 @@ export default function PS1P3() {
   function answerPuzzle() {
     let puzzleAnswer = playerAnswer;
     puzzleAnswer = puzzleAnswer.replace(/\s/g, "");
-    correctAnswer = correctAnswer.replace(/\s/g, "");
     correctAnswer1 = correctAnswer1.replace(/\s/g, "");
     correctAnswer2 = correctAnswer2.replace(/\s/g, "");
-    if (puzzleAnswer == correctAnswer || puzzleAnswer == correctAnswer1 || puzzleAnswer == correctAnswer2) {
+    if (puzzleAnswer == devAnswer || puzzleAnswer == correctAnswer1 || puzzleAnswer == correctAnswer2) {
       setPuzzleAnswer("Solved");
       dispatch(puzzzleSolve("Make a Bits Array"));
     } else {

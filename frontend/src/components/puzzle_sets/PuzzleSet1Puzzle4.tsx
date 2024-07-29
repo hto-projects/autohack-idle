@@ -6,6 +6,7 @@ import Form from "react-bootstrap/esm/Form";
 
 export default function PS1P4() {
   const [playerAnswer, setPlayerAnswer] = useState("");
+  let devAnswer = "dev";
   let correctAnswer = "for(int i = allBits.length-1; i >= 0; i--) { allBits[i].Collect(); } ";
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export default function PS1P4() {
     let puzzleAnswer = playerAnswer;
     puzzleAnswer = puzzleAnswer.replace(/\s/g, "");
     correctAnswer = correctAnswer.replace(/\s/g, "");
-    if (puzzleAnswer == correctAnswer) {
+    if (puzzleAnswer == devAnswer || puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
       dispatch(puzzzleSolve("Make a For Loop to Collect all Bits"));
     } else {

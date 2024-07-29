@@ -6,6 +6,7 @@ import Form from "react-bootstrap/esm/Form";
 
 export default function PS0PTest() {
   const [playerAnswer, setPlayerAnswer] = useState("");
+  let devAnswer = "dev";
   let correctAnswer = "Test";
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export default function PS0PTest() {
     let puzzleAnswer = playerAnswer;
     puzzleAnswer = puzzleAnswer.replace(/\s/g, "");
     correctAnswer = correctAnswer.replace(/\s/g, "");
-    if (puzzleAnswer == correctAnswer) {
+    if (puzzleAnswer == devAnswer || puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
       dispatch(puzzzleSolve("Test Puzzle"));
     } else {
