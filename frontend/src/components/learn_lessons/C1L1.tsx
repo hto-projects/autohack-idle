@@ -7,7 +7,7 @@ export default function C1L1() {
   const syntax2 = `<button onclick = “printAllPages()”> Print All </button>`;
 
   return (
-    <>
+    <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "85%", width: "100%" }}>
       <p>
         In this lesson you will learn how to code a button that will allow you to print all pages. This will be done in
         HTML.
@@ -47,6 +47,6 @@ export default function C1L1() {
         know what to do as we do not have a printAllPages function made. So, now we need to add a printAllPages function
         to our code.
       </p>
-    </>
+    </div>
   );
 }

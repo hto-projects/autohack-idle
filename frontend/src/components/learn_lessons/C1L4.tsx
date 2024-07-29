@@ -32,7 +32,7 @@ function printAllPages() {
 }`;
 
   return (
-    <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "30%", width: "100%" }}>
+    <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "85%", width: "100%" }}>
       <p>
         In this lesson you will learn about for loops and make a for loop that prints all of the pages in an array. This
         will be done in JavaScript.

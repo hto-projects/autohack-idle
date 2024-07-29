@@ -11,7 +11,7 @@ printPagesArray[2] = page3;`;
   const syntax2 = `const printPagesArray = [page1, page2, page3];`;
 
   return (
-    <>
+    <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "85%", width: "100%" }}>
       <p>In this lesson you will learn about arrays and how to make them. This will be done in JavaScript</p>
 
       <p>
@@ -61,6 +61,6 @@ printPagesArray[2] = page3;`;
         2 (position 3) of the array. The second block of code declares an array with 3 pages called printPagesArray,
         and, thus, creates and fills the array in one line.{" "}
       </p>
-    </>
+    </div>
   );
 }

@@ -12,7 +12,7 @@ export default function C1L2() {
 }`;
 
   return (
-    <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "75%", width: "100%" }}>
+    <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "80%", width: "100%" }}>
       <p>
         {" "}
         In this lesson you will learn about functions in JavaScript and how to make the printAllPages() function. This
