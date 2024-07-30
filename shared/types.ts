@@ -61,19 +61,6 @@ export enum PuzzleSolvedStatus {
   solved = " (solved)"
 }
 
-export enum SetCompletedStatus {
-  complete = " (complete)",
-  incomplete = " (incomplete)"
-}
-
-export interface IAuthData {
-  userInfo: any;
-}
-
-export interface IPuzzleData {
-  name: string;
-}
-
 export interface IRGBTriple {
   r: number;
   g: number;
