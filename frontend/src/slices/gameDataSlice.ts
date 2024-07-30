@@ -83,6 +83,7 @@ const gameDataSlice = createSlice({
       // Debugging
       if (state.solvedPuzzles.includes(action.payload)) {
         console.log("Puzzle already in set");
+        return;
       }
       state.solvedPuzzles.push(action.payload);
     },

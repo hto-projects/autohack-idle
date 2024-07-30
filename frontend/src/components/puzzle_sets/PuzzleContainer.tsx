@@ -4,6 +4,7 @@ import { PuzzleSolvedStatus } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
 import { IGameData } from "../../slices/gameDataSlice";
+import Puzzle from "./Puzzle";
 
 interface IPuzzleContainerProps {
   titleElements: ReactNode;
@@ -42,7 +43,7 @@ export default function PuzzleContainer({ titleElements, puzzles }: IPuzzleConta
     const puzzle = puzzles[visiblePuzzle];
     node = (
       <>
-        {puzzle.body}
+        <Puzzle index={visiblePuzzle} puzzle={puzzle}></Puzzle>
         <button onClick={() => setVisiblePuzzle(-1)} style={{ marginTop: ".5%" }}>
           Close Puzzle
         </button>

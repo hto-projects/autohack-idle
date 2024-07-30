@@ -4,7 +4,7 @@ import { puzzleSolve } from "../../slices/gameDataSlice";
 
 export default function PuzzleSet2() {
   const [playerAnswer, setPlayerAnswer] = useState("");
-  const correctAnswer = "<button> Test </button>";
+  const correctAnswer = "Test";
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
   const dispatch = useDispatch();
 
