@@ -13,9 +13,10 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
   if (visibleChapter === -1) {
     const buttons: ReactNode[] = [];
     for (let i = 0; i < learnObj.chapters.length; i++) {
+      const currChapter = learnObj.chapters[i].name;
       buttons.push(
-        <button onClick={() => setVisibleChapter(i)}>
-          Chapter {i + 1}: {learnObj.chapters[i].name}
+        <button key={currChapter} onClick={() => setVisibleChapter(i)}>
+          Chapter {i + 1}: {currChapter}
         </button>
       );
     }
