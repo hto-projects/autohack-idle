@@ -2,11 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IGameData, UpgradeStatus } from "../../../shared/types";
 import { apiSlice } from "./apiSlice";
 import { EventBus } from "../game/EventBus";
-import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
-import Virus from "../game/Virus";
-import { Collect } from "../game/scenes/Collect";
-
-Collect;
 
 const GAME_API_PATH = "/api/game-data";
 
@@ -16,7 +11,9 @@ const initialState: IGameData = {
   currencyAmount: 0,
   userEmail: "",
   upgrades: [],
-  savedSolvedPuzzles: []
+  savedSolvedPuzzles: [],
+  trustySales: 0,
+  shadySales: 0
 };
 
 export const gameDataSlice = createSlice({
@@ -27,9 +24,14 @@ export const gameDataSlice = createSlice({
       state.numBits += action.payload.additionalBits;
       state.totalNumBits += action.payload.additionalBits;
     },
-    sellData1: (state) => {
+    sellData: (state, action) => {
       state.currencyAmount += state.numBits / 10.0;
       state.numBits = 0;
+      if (action.payload.soldToTrusty) {
+        state.trustySales += 1;
+      } else {
+        state.shadySales += 1;
+      }
     },
     sellData2: (state) => {
       state.currencyAmount += state.numBits / 2.0;
@@ -79,6 +81,5 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, setGameData, sellData1, sellData2, purchaseUpgrade, resetGameData, puzzzleSolve } =
-  gameDataSlice.actions;
+export const { addBits, setGameData, sellData, purchaseUpgrade, resetGameData, puzzzleSolve } = gameDataSlice.actions;
 export default gameDataSlice.reducer;

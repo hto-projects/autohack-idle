@@ -75,6 +75,7 @@ export class Collect extends Scene {
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
       }
+      this.virusMaxSpawn = data.virusMaxSpawn;
 
       this.bitAppearEvent = this.time.addEvent({
         callback: this.maybeAddBit,
