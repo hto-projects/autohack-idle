@@ -35,11 +35,6 @@ export const gameDataSlice = createSlice({
       state.currencyAmount += state.numBits / 2.0;
       state.numBits = 0;
       EventBus.emit("sellData2");
-      //shadyOrganization();
-      // EventBus.on("sellData2", () => {
-      //   this.virusMaxSpawn += 1;
-      //   alert("it works!!");
-      // });
     },
     purchaseUpgrade: (state, action) => {
       state.currencyAmount -= action.payload.upgradeToPurchase.cost;

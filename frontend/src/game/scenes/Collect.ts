@@ -19,10 +19,6 @@ export class Collect extends Scene {
   accrewedTime: number = 0;
   changeTextTime: number = 500;
 
-  // EventBus.on("sellData2", () => {
-
-  // })
-
   constructor() {
     super("Collect");
   }
@@ -30,6 +26,12 @@ export class Collect extends Scene {
   create() {
     this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     // this.screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+
+    EventBus.on("sellData2", () => {
+      this.virusMaxSpawn += 1;
+      alert("it works!!");
+      console.log("whats wrong?");
+    });
 
     this.anims.create({
       key: "virusAnim",
