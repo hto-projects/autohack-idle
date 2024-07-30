@@ -2,17 +2,20 @@ import React from "react";
 import { IGameData } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import AutoCollector from "../AutoCollector";
+import { IGameState } from "../../store";
 
 const Taskbar: React.FC = () => {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
+  const taskBarColor: string = useSelector((state: IGameState) => state.styleData.color.taskbar);
+  const taskBarTextColor: string = useSelector((state: IGameState) => state.styleData.text.taskbar);
   return (
     <div
       id="taskbar"
       style={{
-        background: "darkblue",
+        background: taskBarColor,
         width: "100%",
         height: "100%",
-        color: "white",
+        color: taskBarTextColor,
         display: "flex",
         justifyContent: "center",
         alignItems: "center"

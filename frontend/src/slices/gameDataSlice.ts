@@ -99,12 +99,6 @@ const gameDataSlice = createSlice({
       }
     },
     resetGameData: (_state) => initialState
-    // Not being used currently?
-    // setGameData: (state, action) => {
-    //   state.currencyAmount = action.payload.currencyAmount;
-    //   state.numBits = action.payload.numBits;
-    //   state.upgrades = action.payload.upgrades;
-    // },
   }
 });
 

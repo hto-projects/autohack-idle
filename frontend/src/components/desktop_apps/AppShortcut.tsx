@@ -1,5 +1,7 @@
 import React from "react";
 import { AppType } from "../../../../shared/types";
+import { useSelector } from "react-redux";
+import { IGameState } from "../../store";
 
 interface AppShortcutProps {
   appType: AppType;
@@ -9,12 +11,12 @@ interface AppShortcutProps {
 
 const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => {
   const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
-
+  const appTextColor: string = useSelector((state: IGameState) => state.styleData.text.app);
   return (
-    <div style={{ color: "white", textAlign: "center" }}>
+    <div style={{ color: appTextColor, textAlign: "center" }}>
       <div
         style={{
-          color: "white",
+          color: appTextColor,
           background: shownIcon,
           width: "120px",
           height: "120px",

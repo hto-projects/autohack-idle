@@ -11,9 +11,8 @@ interface TitleBarProps {
 export default function TitleBar({ open, setOpen }: TitleBarProps) {
   useKeyDown(setOpen, ["Escape"]);
   console.log("AAAAAAAAAAAAAAA");
-  const titleBarColor: string = useSelector((state: IGameState) => state.styleData.titleBarColor);
-  console.log(titleBarColor);
-  // const titleBarColor = styleData["titleBarColor"];
+  const titleBarColor: string = useSelector((state: IGameState) => state.styleData.color.titlebar);
+  const titleBarTextColor: string = useSelector((state: IGameState) => state.styleData.text.titlebar);
   return (
     <div
       style={{
@@ -22,7 +21,8 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
         backgroundColor: titleBarColor,
         width: "100%",
         textAlign: "right",
-        marginBottom: "10px"
+        marginBottom: "10px",
+        color: titleBarTextColor
       }}
     >
       <div style={{ marginLeft: "1%", textAlign: "center", verticalAlign: "middle", fontSize: "18px" }}>{open}</div>

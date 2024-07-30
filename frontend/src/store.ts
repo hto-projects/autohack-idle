@@ -10,7 +10,7 @@ export interface IGameState {
   auth: { userInfo };
   gameData: IGameData;
   completedPuzzles?: { solvedPuzzles };
-  styleData: IStyleData;
+  styleData: any;
 }
 
 function loadState() {

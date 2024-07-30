@@ -1,7 +1,8 @@
 import { create } from "domain";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setStyle } from "../../../slices/styleDataSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setStyle, validStyleFunctions } from "../../../slices/styleDataSlice";
+import { IGameState } from "../../../store";
 
 interface ICommand {
   input: string;
@@ -10,7 +11,7 @@ interface ICommand {
 export default function TerminalAppScreen() {
   const dispatch = useDispatch();
   const [allPreviousCommands, setPreviousCommands] = useState<ICommand[]>([]);
-
+  const styleData = useSelector((state: IGameState) => state.styleData);
   const checkForCommands = () => {
     const inputElement = document.getElementById("command") as HTMLInputElement;
     const inputValue = inputElement.value;
@@ -19,12 +20,11 @@ export default function TerminalAppScreen() {
     console.log(allPreviousCommands);
     return inputValue;
     function generateResponse(takenInput: string) {
-      let possibleCommands = ["titlebar/color/green"];
-      if (possibleCommands.includes(takenInput)) {
-        dispatch(setStyle({ property: "titleBarColor", value: "green" }));
-        return "Taskbar is now green";
+      const [effect, target, value] = takenInput.split("/");
+      if (styleData[effect][target] !== undefined && validStyleFunctions[effect](value)) {
+        dispatch(setStyle({ effect: effect, target: target, value: value }));
+        return target + " " + effect + " is now " + value;
       } else {
-        dispatch(setStyle({ property: "titleBarColor", value: "aqua" }));
         return "false";
       }
     }
@@ -36,7 +36,7 @@ export default function TerminalAppScreen() {
         AutoHack Idle [Version 0.0.0.1] (c) Hyland Corporation
       </text>
       <div style={{ background: "black", width: "10%", height: "5%", display: "flex", flexDirection: "column" }}></div>
-      <text style={{ color: "yellow", width: "100%", marginLeft: "7px" }}>
+      <text style={{ color: "lightgreen", width: "100%", marginLeft: "7px" }}>
         {allPreviousCommands.map((e) => (
           <>
             {e.input}
