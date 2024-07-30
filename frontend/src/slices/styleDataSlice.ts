@@ -7,12 +7,22 @@ export const validStyleFunctions = {
   color: (strColor) => {
     var check = new Option().style;
     check.color = strColor;
-    return check.color == strColor.toLowerCase();
+    return check.color === strColor.toLowerCase();
   },
   text: (strColor) => {
     var check = new Option().style;
     check.color = strColor;
-    return check.color == strColor.toLowerCase();
+    return check.color === strColor.toLowerCase();
+  },
+  fontName: (fontType) => {
+    var check = new Option().style;
+    check.fontFamily = fontType;
+    return check.fontFamily === fontType;
+  },
+  fontSize: (pixelSize) => {
+    var check = new Option().style;
+    check.fontSize = pixelSize;
+    return check.fontSize === pixelSize;
   }
 };
 
@@ -28,6 +38,9 @@ const initialState = {
     taskbar: "white",
     app: "white",
     window
+  },
+  fontSize: {
+    app: "2px"
   }
 };
 

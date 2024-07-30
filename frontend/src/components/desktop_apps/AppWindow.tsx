@@ -19,6 +19,7 @@ interface AppWindowProps {
 
 const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
   const windowBackgroundColor: string = useSelector((state: IGameState) => state.styleData.color.window);
+  const windowTextSize: string = useSelector((state: IGameState) => state.styleData.fontSize.app);
   let appWindowElements = null;
   switch (open) {
     case AppType.Collector:

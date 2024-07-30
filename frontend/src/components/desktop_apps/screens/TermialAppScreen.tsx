@@ -21,7 +21,11 @@ export default function TerminalAppScreen() {
     return inputValue;
     function generateResponse(takenInput: string) {
       const [effect, target, value] = takenInput.split("/");
-      if (styleData[effect][target] !== undefined && validStyleFunctions[effect](value)) {
+      if (
+        styleData[effect] !== undefined &&
+        styleData[effect][target] !== undefined &&
+        validStyleFunctions[effect](value)
+      ) {
         dispatch(setStyle({ effect: effect, target: target, value: value }));
         return target + " " + effect + " is now " + value;
       } else {
