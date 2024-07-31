@@ -2,6 +2,8 @@ import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 SyntaxHighlighter.registerLanguage("javascript", js);
+import HTML from "react-syntax-highlighter/dist/esm/languages/hljs/vbscript-html";
+SyntaxHighlighter.registerLanguage("HTML", HTML);
 
 export default function C1L5() {
   const syntax1 = `<button onclick = “printAllPages()”> Print All </button>;`;
@@ -22,7 +24,13 @@ function printAllPages() {
         {" "}
         Sample Code (HTML):{" "}
       </h6>
-      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+      <SyntaxHighlighter
+        language="HTML"
+        style={anOldHope}
+        className="syntax"
+        showLineNumbers="true"
+        showInlineLineNumbers="true"
+      >
         {syntax1}
       </SyntaxHighlighter>
 
