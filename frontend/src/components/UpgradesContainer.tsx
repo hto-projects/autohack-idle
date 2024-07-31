@@ -1,17 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import Upgrade from "./Upgrade";
-import { IGameData, IUpgrade, UpgradeStatus } from "../../../shared/types";
+import { IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { IGameState } from "../store";
-import { categorizeUpgrades } from "../slices/gameDataSlice";
+import { IGameData } from "../slices/gameDataSlice";
 import { purchaseUpgrade } from "../slices/gameDataSlice";
 
 export default function UpgradesContainer() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const upgradesState = gameData.ups;
-  console.log(gameData);
-  console.log(upgradesState);
-  // const acquiredUpgrades = upgradesState.acquired;
-  // const purchasableUpgrades = upgradesState.purchasable;
 
   const dispatch = useDispatch();
 
@@ -24,7 +20,7 @@ export default function UpgradesContainer() {
 
   const attemptPurchase = (up: IUpgrade) => {
     if (gameData.currencyAmount >= up.cost) {
-      dispatch(purchaseUpgrade({ upgradeToPurchase: up }));
+      dispatch(purchaseUpgrade(up));
     }
   };
 

@@ -1,14 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./slices/authSlice";
+import { enableMapSet } from "immer";
+import authSlice, { IAuthData } from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
-import gameDataSlice from "./slices/gameDataSlice";
+import gameDataSlice, { IGameData } from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
-import { IGameData } from "../../shared/types";
 
 export interface IGameState {
-  auth: { userInfo };
+  auth: IAuthData;
   gameData: IGameData;
-  completedPuzzles?: { solvedPuzzles };
 }
 
 function loadState() {
@@ -17,7 +16,6 @@ function loadState() {
     if (serializedState === null) {
       return undefined;
     }
-
     return JSON.parse(serializedState);
   } catch (e) {
     return undefined;
