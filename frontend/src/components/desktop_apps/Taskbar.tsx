@@ -6,8 +6,8 @@ import { IGameState } from "../../store";
 
 const Taskbar: React.FC = () => {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
-  const taskBarColor: string = useSelector((state: IGameState) => state.styleData.color.taskbar);
-  const taskBarTextColor: string = useSelector((state: IGameState) => state.styleData.text.taskbar);
+  const taskBarColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
+  const taskBarTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
   return (
     <div
       id="taskbar"

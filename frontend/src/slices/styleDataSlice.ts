@@ -4,12 +4,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Taskbar from "../components/desktop_apps/Taskbar";
 
 export const validStyleFunctions = {
-  color: (strColor) => {
+  backgroundColor: (strColor) => {
     var check = new Option().style;
     check.color = strColor;
     return check.color === strColor.toLowerCase();
   },
-  text: (strColor) => {
+  textColor: (strColor) => {
     var check = new Option().style;
     check.color = strColor;
     return check.color === strColor.toLowerCase();
@@ -19,7 +19,7 @@ export const validStyleFunctions = {
     check.fontFamily = fontType;
     return check.fontFamily === fontType;
   },
-  fontSize: (pixelSize) => {
+  textSize: (pixelSize) => {
     var check = new Option().style;
     check.fontSize = pixelSize;
     return check.fontSize === pixelSize;
@@ -27,20 +27,20 @@ export const validStyleFunctions = {
 };
 
 const initialState = {
-  color: {
+  backgroundColor: {
     titlebar: "#9caf88",
     taskbar: "darkblue",
     desktop: "blue",
     window: "lightgrey"
   },
-  text: {
+  textColor: {
     titlebar: "black",
     taskbar: "white",
     app: "white",
     window
   },
-  fontSize: {
-    app: "2px"
+  textSize: {
+    app: "20px"
   }
 };
 

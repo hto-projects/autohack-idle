@@ -11,9 +11,10 @@ interface AppShortcutProps {
 
 const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => {
   const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
-  const appTextColor: string = useSelector((state: IGameState) => state.styleData.text.app);
+  const appTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.app);
+  const appTextSize: string = useSelector((state: IGameState) => state.styleData.textSize.app);
   return (
-    <div style={{ color: appTextColor, textAlign: "center" }}>
+    <div style={{ color: appTextColor, textAlign: "center", fontSize: appTextSize }}>
       <div
         style={{
           color: appTextColor,
@@ -24,7 +25,7 @@ const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => 
           marginLeft: "auto",
           marginRight: "auto",
           imageRendering: "pixelated",
-          fontSize: "2px"
+          fontSize: appTextSize
         }}
         onClick={() => {
           setOpen(appType);
