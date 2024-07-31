@@ -54,7 +54,7 @@ export default function AutoCollector() {
           Al is currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
         </p>
       </dialog>
-      <button style={{ fontSize: 15 }}>
+      <button style={{ fontSize: 25 }}>
         <UpgradeImage picture={{ image: "/upgrade_icons/big Al", type: ImageType.Png }}></UpgradeImage>
       </button>
     </div>
