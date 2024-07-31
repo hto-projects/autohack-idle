@@ -13,6 +13,9 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
   console.log("AAAAAAAAAAAAAAA");
   const titleBarColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.titlebar);
   const titleBarTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.titlebar);
+  const titleBarTextFont: string = useSelector((state: IGameState) => state.styleData.textFont.titlebar);
+  const titleBarTextSize: string = useSelector((state: IGameState) => state.styleData.textSize.titlebar);
+
   return (
     <div
       style={{
@@ -22,10 +25,21 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
         width: "100%",
         textAlign: "right",
         marginBottom: "10px",
-        color: titleBarTextColor
+        color: titleBarTextColor,
+        fontFamily: titleBarTextFont
       }}
     >
-      <div style={{ marginLeft: "1%", textAlign: "center", verticalAlign: "middle", fontSize: "18px" }}>{open}</div>
+      <div
+        style={{
+          marginLeft: "1%",
+          textAlign: "center",
+          verticalAlign: "middle",
+          fontSize: titleBarTextSize,
+          fontFamily: titleBarTextFont
+        }}
+      >
+        {open}
+      </div>
       <div style={{ width: "100%" }}>
         <button style={{ textAlign: "center", backgroundColor: "red", color: "white" }} onClick={setOpen}>
           X

@@ -11,8 +11,8 @@ const Desktop: React.FC = () => {
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
   const desktopColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
   return (
-    <div id="desktop" style={{ background: desktopColor, width: "100%", height: "100%" }}>
-      <div style={{ padding: "20px", display: "flex", gap: "20px" }}>
+    <div id="desktop" style={{ background: desktopColor, width: "100%", height: "100%", flexWrap: "wrap" }}>
+      <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
         {/* <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut> */}

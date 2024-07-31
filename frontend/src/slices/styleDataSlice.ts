@@ -14,14 +14,13 @@ export const validStyleFunctions = {
     check.color = strColor;
     return check.color === strColor.toLowerCase();
   },
-  fontName: (fontType) => {
-    var check = new Option().style;
-    check.fontFamily = fontType;
-    return check.fontFamily === fontType;
+  textFont: (fontType) => {
+    return fontType;
   },
   textSize: (pixelSize) => {
     var check = new Option().style;
     check.fontSize = pixelSize;
+
     return check.fontSize === pixelSize;
   }
 };
@@ -36,11 +35,18 @@ const initialState = {
   textColor: {
     titlebar: "black",
     taskbar: "white",
-    app: "white",
-    window
+    app: "white"
   },
   textSize: {
-    app: "20px"
+    app: "20px",
+    taskbar: "20px",
+    titlebar: "18px"
+  },
+  textFont: {
+    app: "PixeloidMono",
+    taskbar: "PixeloidMono",
+    titlebar: "PixeloidMono",
+    window: "PixeloidMono"
   }
 };
 
