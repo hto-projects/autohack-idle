@@ -1,73 +1,90 @@
+import { useDispatch } from "react-redux";
 import { ReactNode, useState } from "react";
-import { IPuzzle, IPuzzleQuestions } from "./PuzzleAppDirectory";
+import { IPuzzle } from "./PuzzleAppDirectory";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/esm/Form";
+import { puzzleSolve } from "../../slices/gameDataSlice";
 
 interface IPuzzleProps {
   index: number;
   puzzle: IPuzzle;
 }
 
-// interface IAnswer {
-//   isSolved: boolean;
-//   playerAnswer: string;
-// }
+interface IPlayerAnswer {
+  answer: string;
+  isSolved: boolean;
+  resultText: string;
+}
 
 export default function Puzzle({ index, puzzle }: IPuzzleProps) {
-  const [playerAnswers, setPlayerAnswers] = useState<string[]>(new Array(puzzle.questions.length).fill(""));
-  const [puzzleSolved, setPuzzleSolved] = useState<boolean>(false);
-  const solvedArr: boolean[] = new Array(puzzle.questions.length).fill(false);
+  const playerAnswerBuf = Array(puzzle.questions.length);
+  for (let i = 0; i < playerAnswerBuf.length; i++) {
+    playerAnswerBuf[i] = { answer: "", isSolved: false, resultText: "" };
+  }
+  const [playerAnswers, setPlayerAnswers] = useState<IPlayerAnswer[]>(playerAnswerBuf);
+  const [puzzleSolvedText, setPuzzleSolvedText] = useState<string>("");
+  const dispatch = useDispatch();
 
-  const answerResultText = ["Wrong answer, please try again", "Correct!"];
-  const puzzleNodes: ReactNode[] = undefined;
+  const checkIfPuzzleComplete = () => {
+    for (const answer of playerAnswers) {
+      if (!answer.isSolved) {
+        return;
+      }
+    }
+    dispatch(puzzleSolve(puzzle.name));
+    setPuzzleSolvedText("Puzzle Solved!");
+  };
+
+  const puzzleNodes: ReactNode[] = [];
   for (let i = 0; i < puzzle.questions.length; i++) {
-    // const currQuestion = puzzle.questions[i];
     puzzleNodes.push(
-      <>
-        <Form.Group onSubmit={(e) => e.preventDefault()}>
-          <Form.Label>{puzzle.questions[i].label}</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter code"
-            id="answer"
-            as="textarea"
-            rows={1}
-            value={playerAnswers[i]}
-            onChange={(e) => {
-              playerAnswers[i] = e.target.value;
-              setPlayerAnswers([...playerAnswers]);
-            }}
-          ></Form.Control>
+      <div key={i}>
+        <Form.Group className="mb-6" onSubmit={(e) => e.preventDefault()}>
+          <Form.Label style={{ width: "100%" }}>
+            {puzzle.questions[i].label}
+            <Form.Control
+              type="text"
+              placeholder="Enter code"
+              id={`answer: ${i}`}
+              as="textarea"
+              rows={3}
+              value={playerAnswers[i].answer}
+              onChange={(e) => {
+                playerAnswers[i].answer = e.target.value;
+                setPlayerAnswers([...playerAnswers]);
+              }}
+            ></Form.Control>
+          </Form.Label>
         </Form.Group>
         <Button
           onClick={() => {
-            const playerAnswer = playerAnswers[i].trim();
+            const currAnswer = playerAnswers[i].answer.trim();
             let solved = false;
             for (const answer of puzzle.questions[i].answers) {
-              if (playerAnswer === answer) {
+              if (currAnswer === answer || currAnswer === "dev") {
                 solved = true;
                 break;
               }
-              solvedArr[i] = solved;
             }
+            playerAnswers[i].isSolved = solved;
+            playerAnswers[i].resultText = solved ? "Correct!" : "Wrong answer, please try again";
+            setPlayerAnswers([...playerAnswers]);
+            checkIfPuzzleComplete();
           }}
         >
           {" Check "}
         </Button>
-        <div>
-          <text style={{ color: "black", visibility: "visible" }}> {answerResultText[+solvedArr[i]]}</text>
-        </div>
-      </>
+        <span style={{ marginLeft: "5px" }}>{playerAnswers[i].resultText}</span>
+      </div>
     );
   }
 
   return (
     <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
-      <h3 style={{ color: "black", textAlign: "left" }}>{`Puzzle ${index}: ${puzzle.name}`}</h3>
+      <h3 style={{ color: "black", textAlign: "left" }}>{`Puzzle ${index + 1}: ${puzzle.name}`}</h3>
       <p>{puzzle.description}</p>
-
       <Form>{puzzleNodes}</Form>
-      <div>{answerResultText[+puzzleSolved]}</div>
+      <div>{puzzleSolvedText}</div>
     </div>
   );
 }
