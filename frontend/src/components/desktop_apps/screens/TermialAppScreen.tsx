@@ -29,18 +29,28 @@ export default function TerminalAppScreen() {
         dispatch(setStyle({ effect: effect, target: target, value: value }));
         return target + " " + effect + " is now " + value;
       } else {
-        return "false";
+        return "Invalid Command";
       }
     }
   };
   return (
-    <div style={{ background: "black", width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        background: "black",
+        width: "98%",
+        height: "93%",
+        display: "flex",
+        flexDirection: "column",
+        scrollBehavior: "smooth",
+        overflow: "auto"
+      }}
+    >
       <text style={{ color: "white", fontSize: 25, marginLeft: 5 }}>
         {" "}
         AutoHack Idle [Version 0.0.0.1] (c) Hyland Corporation
       </text>
       <div style={{ background: "black", width: "10%", height: "5%", display: "flex", flexDirection: "column" }}></div>
-      <text style={{ color: "lightgreen", width: "100%", marginLeft: "7px" }}>
+      <text style={{ color: "lightgreen", width: "95%", marginLeft: "7px" }}>
         {allPreviousCommands.map((e) => (
           <>
             {e.input}

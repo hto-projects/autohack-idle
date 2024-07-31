@@ -20,7 +20,6 @@ export const validStyleFunctions = {
   textSize: (pixelSize) => {
     var check = new Option().style;
     check.fontSize = pixelSize;
-
     return check.fontSize === pixelSize;
   }
 };
@@ -45,8 +44,7 @@ const initialState = {
   textFont: {
     app: "PixeloidMono",
     taskbar: "PixeloidMono",
-    titlebar: "PixeloidMono",
-    window: "PixeloidMono"
+    titlebar: "PixeloidMono"
   }
 };
 
