@@ -8,6 +8,9 @@ import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
 import PuzzleAppScreen from "./screens/PuzzleAppScreen";
 import HelpAppScreen from "./screens/HelpAppScreen";
+import TerminalAppScreen from "./screens/TermialAppScreen";
+import { IGameState } from "../../store";
+import { useSelector } from "react-redux";
 
 interface AppWindowProps {
   open: AppType;
@@ -15,6 +18,7 @@ interface AppWindowProps {
 }
 
 const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
+  const windowBackgroundColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.window);
   let appWindowElements = null;
   switch (open) {
     case AppType.Collector:
@@ -44,12 +48,12 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
           style={{
             width: "32%",
             height: "67%",
-            background: "lightgrey",
+            background: windowBackgroundColor,
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
             justifyContent: "flex-start",
-            color: "black",
+            color: "white",
             position: "absolute",
             zIndex: "1",
             left: "65%",
@@ -61,6 +65,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
           {appWindowElements}
         </div>
       );
+    case AppType.Terminal:
+      appWindowElements = <TerminalAppScreen></TerminalAppScreen>;
   }
 
   return (
@@ -68,7 +74,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       style={{
         width: "80%",
         height: "80%",
-        background: "lightgrey",
+        background: windowBackgroundColor,
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
