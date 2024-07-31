@@ -54,13 +54,6 @@ const styleDataSlice = createSlice({
   reducers: {
     setStyle: (state, action: PayloadAction<{ effect: string; target: string; value: string }>) => {
       state[action.payload.effect][action.payload.target] = action.payload.value;
-      // console.log(action.payload.property);
-      // console.log(action.payload.value);
-      // if (state[action.payload.property] === undefined) {
-      //   console.log("error, style not found");
-      //   return;
-      // }
-      // state[action.payload.property] = action.payload.value;
     },
     resetStyle: (_state) => initialState
   }

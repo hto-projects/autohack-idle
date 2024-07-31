@@ -17,7 +17,6 @@ export default function TerminalAppScreen() {
     const inputValue = inputElement.value;
     const command: ICommand = { input: inputValue, response: generateResponse(inputValue) };
     setPreviousCommands([...allPreviousCommands, command]);
-    console.log(allPreviousCommands);
     return inputValue;
     function generateResponse(takenInput: string) {
       const [effect, target, value] = takenInput.split("/");
