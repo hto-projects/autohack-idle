@@ -8,8 +8,6 @@ import { purchaseUpgrade } from "../slices/gameDataSlice";
 export default function UpgradesContainer() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const upgradesState = gameData.ups;
-  // console.log(gameData);
-  // console.log(upgradesState);
 
   const dispatch = useDispatch();
 

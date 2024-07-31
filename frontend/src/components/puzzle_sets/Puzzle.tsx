@@ -61,6 +61,7 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
             const currAnswer = playerAnswers[i].answer.trim();
             let solved = false;
             for (const answer of puzzle.questions[i].answers) {
+              // DELETE THE OR === "dev" IN PROD
               if (currAnswer === answer || currAnswer === "dev") {
                 solved = true;
                 break;
