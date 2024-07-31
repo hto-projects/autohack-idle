@@ -1,5 +1,5 @@
-import { IPuzzleModule } from "./puzzle_sets/PuzzleAppDirectory";
-import PuzzleContainer from "./puzzle_sets/PuzzleContainer";
+import { IPuzzleModule } from "./puzzles/PuzzleAppDirectory";
+import PuzzleContainer from "./puzzles/PuzzleContainer";
 import { useState, ReactNode } from "react";
 import { IGameState } from "../store";
 import { useSelector } from "react-redux";

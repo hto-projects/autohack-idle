@@ -12,10 +12,10 @@ export enum PuzzleNames {
 }
 
 enum Labels {
-  JS = "Enter your JavaSript below",
-  HTML = "Enter your HTML below",
-  CSS = "Enter your CSS below",
-  Code = "Enter your Code Below"
+  JS = "Enter your JavaSript below:",
+  HTML = "Enter your HTML below:",
+  CSS = "Enter your CSS below:",
+  Code = "Enter your Code below:"
 }
 
 export interface IPuzzleQuestions {
@@ -56,7 +56,8 @@ export const PuzzleAppDirectory: IPuzzleModule = {
         {
           name: PuzzleNames.Collect_all_function,
           description:
-            'In this puzzle you will have to write a line of code to create a button that says "Collect All"',
+            'In this puzzle you will have to write some code, in JavaScript, to create a collectAll() function.  \
+            This funtion should prompt the message "You have collected all bits!" and return nothing.',
           questions: [
             {
               label: Labels.JS,

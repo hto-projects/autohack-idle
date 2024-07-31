@@ -47,12 +47,13 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
               placeholder="Enter code"
               id={`answer: ${i}`}
               as="textarea"
-              rows={3}
+              rows={5}
               value={playerAnswers[i].answer}
               onChange={(e) => {
                 playerAnswers[i].answer = e.target.value;
                 setPlayerAnswers([...playerAnswers]);
               }}
+              style={{ backgroundColor: "black", color: "#39ff14" }}
             ></Form.Control>
           </Form.Label>
         </Form.Group>
@@ -75,13 +76,17 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
         >
           {" Check "}
         </Button>
-        <span style={{ marginLeft: "5px" }}>{playerAnswers[i].resultText}</span>
+        <p></p>
+        <span>{playerAnswers[i].resultText}</span>
       </div>
     );
   }
 
   return (
-    <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+    <div
+      className={`normalLesson ${open && "showing"}`}
+      style={{ color: "grey", scrollBehavior: "smooth", overflow: "auto", height: "80%", width: "80%" }}
+    >
       <h3 style={{ color: "black", textAlign: "left" }}>{`Puzzle ${index + 1}: ${puzzle.name}`}</h3>
       <p>{puzzle.description}</p>
       <Form>{puzzleNodes}</Form>
