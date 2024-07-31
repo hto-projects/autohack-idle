@@ -15,7 +15,7 @@ export default function LearnLessonContainer({ titleElements, lessons, closeChap
     const buttons: ReactNode[] = [];
     for (let i = 0; i < lessons.length; i++) {
       buttons.push(
-        <button onClick={() => setVisibleLesson(i)}>
+        <button key={i} onClick={() => setVisibleLesson(i)}>
           Lesson {i + 1}: {lessons[i].name}
         </button>
       );
@@ -33,7 +33,7 @@ export default function LearnLessonContainer({ titleElements, lessons, closeChap
     const lesson = lessons[visibleLesson];
     selectorNode = (
       <>
-        <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
+        <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey", width: "90%", height: "95%" }}>
           <div style={{ display: "flex" }}>
             <h3 style={{ color: "black", textAlign: "left" }}>
               Lesson {visibleLesson + 1}: {lesson.name}

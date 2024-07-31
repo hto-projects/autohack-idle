@@ -1,6 +1,12 @@
 import { ReactNode } from "react";
 import C1L1 from "./C1L1";
 import C1L2 from "./C1L2";
+import C1L3 from "./C1L3";
+import C1L4 from "./C1L4";
+import C1L5 from "./C1L5";
+import C2L1 from "./C2L1";
+import C2L2 from "./C2L2";
+import C2L3 from "./C2L3";
 
 export interface ILesson {
   name: string;
@@ -26,9 +32,9 @@ export const learnAppDirectory: ILearnModule = {
   titleNode: undefined,
   chapters: [
     {
-      name: "Collect All Upgrade",
+      name: "Adding A Print All Button",
       description:
-        "Complete this chapter to learn how to code an upgrade that allows you to collect all bits available.",
+        "This chapter teaches you how to make a Print All button, with functionality, using For Loops and Arrays. This button is supposed to print all the pages that we need to print.  This can be used as an example for how to make the Collect All upgrade (Puzzle Set 1).",
       lessons: [
         {
           name: "Buttons in HTML",
@@ -37,13 +43,39 @@ export const learnAppDirectory: ILearnModule = {
         {
           name: "Functions in Javascript",
           body: <C1L2></C1L2>
+        },
+        {
+          name: "Arrays in JavaScript",
+          body: <C1L3></C1L3>
+        },
+        {
+          name: "For Loops in Javascript",
+          body: <C1L4></C1L4>
+        },
+        {
+          name: "Final Code",
+          body: <C1L5></C1L5>
         }
       ]
     },
     {
-      name: "Coming Soon",
-      description: "Not here yet!",
-      lessons: []
+      name: "Stylizing in CSS",
+      description:
+        "This chapter will teach you about CSS (Cascading Style Sheet) and how it can be used to change what a webpage looks like. CSS is often used alongside HTML, and usually changes different elements in HTML using certain identifiers.",
+      lessons: [
+        {
+          name: "Changing Colors",
+          body: <C2L1></C2L1>
+        },
+        {
+          name: "Changing Specific Elements",
+          body: <C2L2></C2L2>
+        },
+        {
+          name: "Final Code",
+          body: <C2L3></C2L3>
+        }
+      ]
     }
   ]
 };
