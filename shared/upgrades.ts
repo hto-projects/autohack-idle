@@ -30,6 +30,7 @@ const other: IUpgrade[] = [
     ]
   }
 ];
+
 const learn: IUpgrade[] = [
   {
     name: "Collect All",
@@ -46,6 +47,7 @@ const learn: IUpgrade[] = [
     ]
   }
 ];
+
 const al: IUpgrade[] = [
   {
     name: "Al the Auto-Collector",
@@ -67,6 +69,7 @@ const al: IUpgrade[] = [
     ]
   }
 ];
+
 const checks: IUpgrade[] = [
   {
     name: "Check for Bits",
@@ -86,7 +89,7 @@ const checks: IUpgrade[] = [
     name: "Double Checks",
     preReqs: ["Check for Bits"],
     description: "Check for bits twice as often",
-    picture: { image: "1🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 10,
     effects: [
       {
@@ -100,7 +103,7 @@ const checks: IUpgrade[] = [
     name: "Quadruple Checks",
     preReqs: ["Double Checks"],
     description: "Check for bits 4 times as often",
-    picture: { image: "2🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 40,
     effects: [
       {
@@ -114,7 +117,7 @@ const checks: IUpgrade[] = [
     name: "Octuple Checks",
     preReqs: ["Quadruple Checks"],
     description: "Check for bits 8 times as often",
-    picture: { image: "3🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 160,
     effects: [
       {
@@ -128,7 +131,7 @@ const checks: IUpgrade[] = [
     name: "Sexdecuple Checks",
     preReqs: ["Octuple Checks"],
     description: "Check for bits 16 times as often",
-    picture: { image: "4🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 320,
     effects: [
       {
@@ -142,7 +145,7 @@ const checks: IUpgrade[] = [
     name: "Tridogintuple Checks",
     preReqs: ["Sexdecuple Checks"],
     description: "Check for bits 32 times as often",
-    picture: { image: "5🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 640,
     effects: [
       {
