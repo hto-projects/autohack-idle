@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { DesktopAppImage } from "../../../Image";
 import { ImageType } from "../../../../../../shared/types";
 import { HelpAppImage } from "../../../Image";
+
 interface ItextBox {
   name: string;
   body: string;
 }
 
-const currentText: ItextBox[] = [
+const helpApps: ItextBox[] = [
   {
     name: "Help",
     body: "Hi! This is the help app and will provide brief descriptions and hints about the other parts of this game."
@@ -39,8 +39,8 @@ const currentText: ItextBox[] = [
 ];
 
 export default function HelpAppContainer() {
-  let [currentDisplay, setCurrentDisplay] = useState(currentText[0].name);
-  const [display] = currentText.filter((app) => app.name == currentDisplay);
+  let [currentDisplay, setCurrentDisplay] = useState(helpApps[0].name);
+  const [display] = helpApps.filter((app) => app.name == currentDisplay);
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
@@ -52,7 +52,7 @@ export default function HelpAppContainer() {
             marginRight: "43%"
           }}
         >
-          {currentText.map((app) => (
+          {helpApps.map((app) => (
             <button
               style={{ marginTop: "20px", fontSize: 23, marginRight: "20px" }}
               onClick={() => setCurrentDisplay(app.name)}
@@ -65,11 +65,7 @@ export default function HelpAppContainer() {
           <HelpAppImage picture={{ image: display.name.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
         </div>
       </div>
-      <div style={{ height: "60%", width: "100%", display: "flex", marginTop: "20%" }}>
-        <text style={{ color: "black", visibility: "visible", fontSize: 20, marginLeft: "1%", marginRight: "2%" }}>
-          {display.body}
-        </text>
-      </div>
+      <div style={{ height: "60%", width: "100%", display: "flex", marginTop: "20%" }}>{display.body}</div>
     </div>
   );
 }

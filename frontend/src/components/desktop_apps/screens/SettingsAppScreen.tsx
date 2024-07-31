@@ -1,6 +1,5 @@
-import { addBits, resetGameData } from "../../../slices/gameDataSlice";
+import { addBits, IGameData, resetGameData, sellData } from "../../../slices/gameDataSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { IGameData } from "../../../../../shared/types";
 import { IGameState } from "../../../store";
 import { resetStyle } from "../../../slices/styleDataSlice";
 
@@ -20,7 +19,7 @@ export default function SettingsAppScreen() {
         alert("Please enter a lower amount of Bits to add");
         alert(addBitsButton);
       } else {
-        dispatch(addBits({ additionalBits: additionalBitsAmount }));
+        dispatch(addBits(additionalBitsAmount));
       }
     }
   }

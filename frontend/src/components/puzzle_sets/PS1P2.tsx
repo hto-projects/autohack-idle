@@ -2,15 +2,15 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { puzzleSolve } from "../../slices/gameDataSlice";
 
-export default function PuzzleSet1() {
+export default function PuzzleSet2() {
   const [playerAnswer, setPlayerAnswer] = useState("");
-  const correctAnswer = "<button> Collect All </button>";
+  const correctAnswer = "Test";
   let [puzzleAnswerEffect, setPuzzleAnswer] = useState("");
   const dispatch = useDispatch();
 
   return (
     <div className={`normalLesson ${open && "showing"}`} style={{ color: "grey" }}>
-      <h3 style={{ color: "black", textAlign: "left" }}>Puzzle 1: Make a Collect All Button</h3>
+      <h3 style={{ color: "black", textAlign: "left" }}>Puzzle 2: Make a Collect All Button</h3>
       <p>In this puzzle you will have to write a line of code to create a button that says "Collect All"</p>
 
       <form onSubmit={(e) => e.preventDefault()}>
@@ -35,7 +35,7 @@ export default function PuzzleSet1() {
     let puzzleAnswer = playerAnswer;
     if (puzzleAnswer == correctAnswer) {
       setPuzzleAnswer("Solved");
-      dispatch(puzzleSolve("Make a Collect All Button"));
+      dispatch(puzzleSolve("Test"));
     } else {
       setPuzzleAnswer("Wrong Answer, please try again");
     }

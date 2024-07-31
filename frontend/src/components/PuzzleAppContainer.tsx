@@ -1,31 +1,36 @@
-import { IPuzzleModule, PuzzleAppDirectory } from "./puzzle_sets/PuzzleAppDirectory";
+import { IPuzzleModule } from "./puzzle_sets/PuzzleAppDirectory";
 import PuzzleContainer from "./puzzle_sets/PuzzleContainer";
 import { useState, ReactNode } from "react";
 import { IGameState } from "../store";
 import { useSelector } from "react-redux";
-import { IGameData, SetCompletedStatus } from "../../../shared/types";
+import { flatObjByProp } from "../../../shared/util";
+
 interface PuzzleAppContainerProps {
   puzzleObj: IPuzzleModule;
 }
 
 export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProps) {
-  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const [visiblePuzzleSets, setVisiblePuzzleSet] = useState(-1);
-  let node: ReactNode = undefined;
-  const getSetState = (checkedSet: number, gameData: IGameData): SetCompletedStatus => {
-    for (let i = 0; i < PuzzleAppDirectory.puzzleSets[checkedSet].puzzles.length; i++) {
-      if (!gameData.savedSolvedPuzzles.includes(PuzzleAppDirectory.puzzleSets[checkedSet].puzzles[i].name)) {
-        return SetCompletedStatus.incomplete;
+  const solvedPuzzles: string[] = useSelector((state: IGameState) => state.gameData.solvedPuzzles);
+
+  const getSetState = (checkedSet: number): string => {
+    const puzzleNames = flatObjByProp(puzzleObj.puzzleSets[checkedSet].puzzles, "name");
+    for (const puzzle of puzzleNames) {
+      if (!solvedPuzzles.includes(puzzle)) {
+        return "incomplete";
       }
     }
-    return SetCompletedStatus.complete;
+    return "complete";
   };
+
+  let node: ReactNode = undefined;
   if (visiblePuzzleSets === -1) {
     const buttons: ReactNode[] = [];
     for (let i = 0; i < puzzleObj.puzzleSets.length; i++) {
+      const currPuzSetName = puzzleObj.puzzleSets[i].name;
       buttons.push(
-        <button onClick={() => setVisiblePuzzleSet(i)}>
-          Set {i + 1}: {puzzleObj.puzzleSets[i].name} {getSetState(i, gameData)}
+        <button key={currPuzSetName} onClick={() => setVisiblePuzzleSet(i)}>
+          {`Set ${i + 1}: ${currPuzSetName} (${getSetState(i)})`}
         </button>
       );
     }
