@@ -1,6 +1,7 @@
 import { addBits, IGameData, resetGameData, sellData } from "../../../slices/gameDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IGameState } from "../../../store";
+import { resetStyle } from "../../../slices/styleDataSlice";
 
 export default function SettingsAppScreen() {
   const dispatch = useDispatch();
@@ -25,8 +26,10 @@ export default function SettingsAppScreen() {
 
   return (
     <>
-      <button onClick={() => confirm("This will reset all data ") && dispatch(resetGameData())}>Reset</button>
-
+      <button onClick={() => confirm("This will reset all data ") && dispatch(resetGameData())}>Reset game data</button>
+      <button onClick={() => confirm("This will reset all style data ") && dispatch(resetStyle())}>
+        Reset style data
+      </button>
       <button onClick={() => confirm("This will give you the Bits of your dreams ") && addBitsButton()}>
         Add Bits
       </button>
