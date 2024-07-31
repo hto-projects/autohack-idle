@@ -28,6 +28,62 @@ const other: IUpgrade[] = [
         modValue: 30
       }
     ]
+  },
+  {
+    name: "Bit Sweeper",
+    preReqs: [],
+    description: "Drag and hold your mouse around the screen and collect bits",
+    picture: { image: "🧹", type: ImageType.String },
+    cost: 15,
+    effects: [
+      {
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 30
+      }
+    ]
+  },
+  {
+    name: "Bit Sweeper",
+    preReqs: [],
+    description: "Drag and hold your mouse around the screen and collect bits",
+    picture: { image: "🧹", type: ImageType.String },
+    cost: 15,
+    effects: [
+      {
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 30
+      }
+    ]
+  },
+  {
+    name: "Bit Sweeper",
+    preReqs: [],
+    description: "Drag and hold your mouse around the screen and collect bits",
+    picture: { image: "🧹", type: ImageType.String },
+    cost: 15,
+    effects: [
+      {
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 30
+      }
+    ]
+  },
+  {
+    name: "Bit Sweeper",
+    preReqs: [],
+    description: "Drag and hold your mouse around the screen and collect bits",
+    picture: { image: "🧹", type: ImageType.String },
+    cost: 15,
+    effects: [
+      {
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 30
+      }
+    ]
   }
 ];
 

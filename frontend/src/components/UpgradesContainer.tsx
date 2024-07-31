@@ -2,21 +2,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Upgrade from "./Upgrade";
 import { IGameData, IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { IGameState } from "../store";
-import { categorizeUpgrades } from "../slices/gameDataSlice";
 import { purchaseUpgrade } from "../slices/gameDataSlice";
+import { useState } from "react";
+import UpgradeModal from "./UpgradeModal";
+
+export interface IModal {
+  xPos: number;
+  yPos: number;
+  upgrade: IUpgrade;
+  status: UpgradeStatus;
+}
 
 export default function UpgradesContainer() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
-  const upgradesState = gameData.ups;
-  console.log(gameData);
-  console.log(upgradesState);
-  // const acquiredUpgrades = upgradesState.acquired;
-  // const purchasableUpgrades = upgradesState.purchasable;
-
+  const [upgradeForModal, setModalUpgrade] = useState<IModal>({ xPos: 0, yPos: 0, upgrade: null, status: null });
   const dispatch = useDispatch();
 
   const getStatusForUpgrade = (up: IUpgrade): UpgradeStatus => {
-    if (upgradesState.acquired.includes(up)) {
+    if (gameData.ups.acquired.includes(up)) {
       return UpgradeStatus.Owned;
     }
     return gameData.currencyAmount >= up.cost ? UpgradeStatus.Available : UpgradeStatus.Unavailable;
@@ -46,16 +49,18 @@ export default function UpgradesContainer() {
       >
         {upgrades.map((up) => (
           <Upgrade
+            key={up.name}
             up={up}
             status={getStatusForUpgrade(up)}
-            key={up.name}
-            onBuy={attemptPurchase}
             currencyAmount={gameData.currencyAmount}
+            onBuy={attemptPurchase}
+            setModal={setModalUpgrade}
           ></Upgrade>
         ))}
       </div>
     );
   };
+
   return (
     <div
       className="upgrades-container"
@@ -68,8 +73,9 @@ export default function UpgradesContainer() {
         justifyContent: "space-evenly"
       }}
     >
-      {upgradeBox(upgradesState.acquired, "red")}
-      {upgradeBox(upgradesState.purchasable, "blue")}
+      {upgradeBox(gameData.ups.acquired, "red")}
+      {upgradeBox(gameData.ups.purchasable, "blue")}
+      {upgradeForModal.upgrade !== null && <UpgradeModal up={upgradeForModal}></UpgradeModal>}
     </div>
   );
 }
