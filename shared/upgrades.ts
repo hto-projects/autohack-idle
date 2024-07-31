@@ -1,26 +1,11 @@
-import { gameDataSlice } from "../frontend/src/slices/gameDataSlice";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
-export const starterUpgrades: IUpgrade[] = [
-  {
-    name: "Check for Bits",
-    preReqs: [],
-    description: "Once every second, look to see if there are any bits available for harvesting",
-    pictureArr: [{ image: "🔍", type: ImageType.String }],
-    cost: 0,
-    effects: [
-      {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
+const other: IUpgrade[] = [
   {
     name: "Chance for Bits",
     preReqs: [],
     description: "When checking for bits, succeed in finding one 50% of the time",
-    pictureArr: [{ image: "❇", type: ImageType.String }],
+    picture: { image: "❇", type: ImageType.String },
     cost: 0,
     effects: [
       {
@@ -31,24 +16,42 @@ export const starterUpgrades: IUpgrade[] = [
     ]
   },
   {
-    name: "Double Checks",
+    name: "Bit Sweeper",
     preReqs: [],
-    description: "Check for bits twice as often",
-    pictureArr: [{ image: "🔍 x 2 ", type: ImageType.String }],
-    cost: 10,
+    description: "Drag and hold your mouse around the screen and collect bits",
+    picture: { image: "🧹", type: ImageType.String },
+    cost: 15,
     effects: [
       {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Multiply,
-        modValue: 0.5
+        variableAffected: GameVariable.BitSweeperSize,
+        variableMod: VariableModFunction.Set,
+        modValue: 30
       }
     ]
-  },
+  }
+];
+const learn: IUpgrade[] = [
+  {
+    name: "Collect All",
+    preReqs: ["Make a Collect All Button", "Test"],
+    description: "Collects all bits on screen",
+    picture: { image: "💰", type: ImageType.String },
+    cost: 200,
+    effects: [
+      {
+        variableAffected: GameVariable.ButtonAvailable,
+        variableMod: VariableModFunction.Set,
+        modValue: 1
+      }
+    ]
+  }
+];
+const al: IUpgrade[] = [
   {
     name: "Al the Auto-Collector",
     preReqs: [],
     description: "Hire an A.I. intern to collect bits for you",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    picture: { image: "🤖", type: ImageType.String },
     cost: 2,
     effects: [
       {
@@ -62,241 +65,34 @@ export const starterUpgrades: IUpgrade[] = [
         modValue: 1000
       }
     ]
-  },
+  }
+];
+const checks: IUpgrade[] = [
   {
-    name: "Al the Auto-Collector, Upgraded ",
-    preReqs: ["Al the Auto-Collector"],
-    description: "Hire an upgraded A.I. intern to collect bits for you",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
-    cost: 5,
+    name: "Check for Bits",
+    preReqs: [],
+    description: "Once every second, look to see if there are any bits available for harvesting",
+    picture: { image: "🔍", type: ImageType.String },
+    cost: 0,
     effects: [
       {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 2
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableAffected: GameVariable.BitCheckInterval,
         variableMod: VariableModFunction.Set,
         modValue: 1000
       }
     ]
   },
   {
-    name: "Al the Auto-Collector, Upgraded V2",
-    preReqs: ["Al the Auto-Collector, Upgraded "],
-    description: "Hire an even more upgraded A.I. intern to collect bits for you",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
+    name: "Double Checks",
+    preReqs: ["Check for Bits"],
+    description: "Check for bits twice as often",
+    picture: { image: "1🔍", type: ImageType.String },
     cost: 10,
     effects: [
       {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 5
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
-  {
-    name: "Al the Auto-Collector, Upgraded V3",
-    preReqs: ["Al the Auto-Collector, Upgraded V2"],
-    description: "Hire an even more upgraded A.I. intern to collect bits for you",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
-    cost: 50,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 15
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
-  {
-    name: "Al the Auto-Collector, Upgraded V4",
-    preReqs: ["Al the Auto-Collector, Upgraded V3"],
-    description: "Hire an even more upgraded A.I. intern to collect bits for you",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
-    cost: 100,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 25
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
-  {
-    name: "Al the Auto-Collector, Upgraded V5",
-    preReqs: ["Al the Auto-Collector, Upgraded V4"],
-    description: "Hire an even more upgraded A.I. intern to collect bits for you",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
-    cost: 500,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 50
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
-  {
-    name: "Al the Auto-Collector, Perfected",
-    preReqs: ["Al the Auto-Collector, Upgraded V5"],
-    description: "Perfected automation of bit collection",
-    pictureArr: [{ image: "🤖", type: ImageType.String }],
-    cost: 2500,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 300
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 1000
-      }
-    ]
-  },
-  {
-    name: "Faster Al Storage",
-    preReqs: ["Al the Auto-Collector, Perfected"],
-    description: "Obtain bits even faster with this upgrade!",
-    pictureArr: [{ image: "💾", type: ImageType.String }],
-    cost: 2500,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 300
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 900
-      }
-    ]
-  },
-  {
-    name: "Faster Al Storage, Expanded",
-    preReqs: ["Faster Al Storage"],
-    description: "Obtain bits even faster with this upgrade!",
-    pictureArr: [{ image: "💾 x 2 ", type: ImageType.String }],
-    cost: 5000,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 300
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 800
-      }
-    ]
-  },
-  {
-    name: "Faster Al Storage, Expanded V2",
-    preReqs: ["Faster Al Storage, Expanded"],
-    description: "Obtain bits even faster with this upgrade!",
-    pictureArr: [{ image: "💾 x 3 ", type: ImageType.String }],
-    cost: 7500,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 300
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 700
-      }
-    ]
-  },
-  {
-    name: "Faster Al Storage, Expanded V3",
-    preReqs: ["Faster Al Storage, Expanded V2"],
-    description: "Obtain bits even faster with this upgrade!",
-    pictureArr: [{ image: "💾 x 4 ", type: ImageType.String }],
-    cost: 10000,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 300
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 500
-      }
-    ]
-  },
-  {
-    name: "Faster Al Storage, Maximum",
-    preReqs: ["Faster Al Storage, Expanded V3"],
-    description: "Obtain bits at the fastest possible speed while maintaining 100% functionality.",
-    pictureArr: [{ image: "💾 x 5 ", type: ImageType.String }],
-    cost: 15000,
-    effects: [
-      {
-        variableAffected: GameVariable.AutoBitGatheringAmount,
-        variableMod: VariableModFunction.Set,
-        modValue: 300
-      },
-      {
-        variableAffected: GameVariable.AutoBitGatheringInterval,
-        variableMod: VariableModFunction.Set,
-        modValue: 250
-      }
-    ]
-  },
-  {
-    name: "Bit Sweeper",
-    preReqs: [],
-    description: "Drag and hold your mouse around the screen and collect bits",
-    pictureArr: [{ image: "🧹", type: ImageType.String }],
-    cost: 15,
-    effects: [
-      {
-        variableAffected: GameVariable.BitSweeperSize,
-        variableMod: VariableModFunction.Set,
-        modValue: 30
-      }
-    ]
-  },
-  {
-    name: "Sweeper Sensors",
-    preReqs: ["Bit Sweeper"],
-    description: "Expand the size of your bit broom by double",
-    pictureArr: [{ image: "🧹 x 2 ", type: ImageType.String }],
-    cost: 50,
-    effects: [
-      {
-        variableAffected: GameVariable.BitSweeperSize,
-        variableMod: VariableModFunction.Set,
-        modValue: 60
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Multiply,
+        modValue: 0.5
       }
     ]
   },
@@ -304,7 +100,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Quadruple Checks",
     preReqs: ["Double Checks"],
     description: "Check for bits 4 times as often",
-    pictureArr: [{ image: "🔍 x 4 ", type: ImageType.String }],
+    picture: { image: "2🔍", type: ImageType.String },
     cost: 40,
     effects: [
       {
@@ -318,7 +114,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Octuple Checks",
     preReqs: ["Quadruple Checks"],
     description: "Check for bits 8 times as often",
-    pictureArr: [{ image: "🔍 x 8 ", type: ImageType.String }],
+    picture: { image: "3🔍", type: ImageType.String },
     cost: 160,
     effects: [
       {
@@ -329,24 +125,10 @@ export const starterUpgrades: IUpgrade[] = [
     ]
   },
   {
-    name: "Collect All",
-    preReqs: ["Make a Collect All Button", "Test"],
-    description: "Collects all bits on screen",
-    pictureArr: [{ image: "💰", type: ImageType.String }],
-    cost: 200,
-    effects: [
-      {
-        variableAffected: GameVariable.ButtonAvailable,
-        variableMod: VariableModFunction.Set,
-        modValue: 1
-      }
-    ]
-  },
-  {
     name: "Sexdecuple Checks",
     preReqs: ["Octuple Checks"],
     description: "Check for bits 16 times as often",
-    pictureArr: [{ image: "🔍 x 16 ", type: ImageType.String }],
+    picture: { image: "4🔍", type: ImageType.String },
     cost: 320,
     effects: [
       {
@@ -360,7 +142,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Tridogintuple Checks",
     preReqs: ["Sexdecuple Checks"],
     description: "Check for bits 32 times as often",
-    pictureArr: [{ image: "🔍 x 32 ", type: ImageType.String }],
+    picture: { image: "5🔍", type: ImageType.String },
     cost: 640,
     effects: [
       {
@@ -374,7 +156,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Sexaquadgintuiple Checks",
     preReqs: ["Tridogintuple Checks"],
     description: "Check for bits 64 times as often",
-    pictureArr: [{ image: "🔍 x 64 ", type: ImageType.String }],
+    picture: { image: "🔍", type: ImageType.String },
     cost: 1280,
     effects: [
       {
@@ -388,7 +170,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Centviginoctuple Checks",
     preReqs: ["Sexaquadgintuiple Checks"],
     description: "Check for bits 128 times as often",
-    pictureArr: [{ image: "🔍 x 128 ", type: ImageType.String }],
+    picture: { image: "🔍", type: ImageType.String },
     cost: 1280,
     effects: [
       {
@@ -402,7 +184,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Ducentquinquaginsextuple Checks",
     preReqs: ["Centviginoctuple Checks"],
     description: "Check for bits 256 times as often",
-    pictureArr: [{ image: "🔍 x 256 ", type: ImageType.String }],
+    picture: { image: "🔍", type: ImageType.String },
     cost: 2560,
     effects: [
       {
@@ -416,7 +198,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Quingendecsingle Checks",
     preReqs: ["Ducentquinquaginsextuple Checks"],
     description: "Check for bits 512 times as often",
-    pictureArr: [{ image: "🔍 x 512 ", type: ImageType.String }],
+    picture: { image: "🔍", type: ImageType.String },
     cost: 5120,
     effects: [
       {
@@ -430,7 +212,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Millviginquaduple Checks",
     preReqs: ["Quingendecsingle Checks"],
     description: "Check for bits 1024 times as often",
-    pictureArr: [{ image: "🔍 x 1024 ", type: ImageType.String }],
+    picture: { image: "🔍", type: ImageType.String },
     cost: 10240,
     effects: [
       {
@@ -444,7 +226,7 @@ export const starterUpgrades: IUpgrade[] = [
     name: "Bimillquadraginocttuple Checks",
     preReqs: ["Millviginquaduple Checks"],
     description: "Check for bits 2048 times as often",
-    pictureArr: [{ image: "🔍 x 2048 ", type: ImageType.String }],
+    picture: { image: "🔍", type: ImageType.String },
     cost: 20480,
     effects: [
       {
@@ -456,4 +238,4 @@ export const starterUpgrades: IUpgrade[] = [
   }
 ];
 
-export const allUpgrades: IUpgrade[] = starterUpgrades;
+export const allUpgrades: IUpgrade[] = [...checks, ...other, ...al, ...learn];

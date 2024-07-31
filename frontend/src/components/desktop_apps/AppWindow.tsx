@@ -3,10 +3,11 @@ import { AppType } from "../../../../shared/types";
 import UpgradeAppScreen from "./screens/UpgradeAppScreen";
 import BitMinerUpgradeScreen from "./screens/BitMinerAppScreen";
 import LearnAppScreen from "./screens/LearnAppScreen";
-import AuthContainer from "../auth/AuthContainer";
+import LoginContainer from "../auth/LoginContainer";
 import SettingsAppScreen from "./screens/SettingsAppScreen";
 import TitleBar from "./screens/TitleBar";
 import PuzzleAppScreen from "./screens/PuzzleAppScreen";
+import HelpAppScreen from "./screens/HelpAppScreen";
 
 interface AppWindowProps {
   open: AppType;
@@ -25,7 +26,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
     case AppType.Store:
       break;
     case AppType.Login:
-      appWindowElements = <AuthContainer></AuthContainer>;
+      appWindowElements = <LoginContainer></LoginContainer>;
       break;
     case AppType.Learn:
       appWindowElements = <LearnAppScreen></LearnAppScreen>;
@@ -36,6 +37,30 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
     case AppType.Puzzle:
       appWindowElements = <PuzzleAppScreen></PuzzleAppScreen>;
       break;
+    case AppType.Help:
+      appWindowElements = <HelpAppScreen></HelpAppScreen>;
+      return (
+        <div
+          style={{
+            width: "32%",
+            height: "67%",
+            background: "lightgrey",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            color: "black",
+            position: "absolute",
+            zIndex: "1",
+            left: "65%",
+            top: "5%",
+            border: "1px solid gray"
+          }}
+        >
+          <TitleBar open={open} setOpen={() => setOpen(null)}></TitleBar>
+          {appWindowElements}
+        </div>
+      );
   }
 
   return (
@@ -57,11 +82,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       }}
     >
       <TitleBar open={open} setOpen={() => setOpen(null)}></TitleBar>
-
       {appWindowElements}
-      {/* <p>
-        <button onClick={}>Close</button>
-      </p> */}
     </div>
   );
 };

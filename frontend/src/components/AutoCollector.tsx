@@ -3,13 +3,14 @@ import { GameVariable, IGameData } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { addBits } from "../slices/gameDataSlice";
 import { useEffect } from "react";
+import { IGameState } from "../store";
 import { UpgradeImage } from "./Image";
 import { ImageType } from "../../../shared/types";
 
 export default function AutoCollector() {
-  const gameData: IGameData = useSelector((state: any) => state.gameData);
-  const autoBitAmount: number = calculateVariableValue(gameData.upgrades, GameVariable.AutoBitGatheringAmount);
-  const autoBitInterval: number = calculateVariableValue(gameData.upgrades, GameVariable.AutoBitGatheringInterval);
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
+  const autoBitAmount: number = calculateVariableValue(gameData.ups.acquired, GameVariable.AutoBitGatheringAmount);
+  const autoBitInterval: number = calculateVariableValue(gameData.ups.acquired, GameVariable.AutoBitGatheringInterval);
 
   useEffect(() => {
     if (!(autoBitAmount && autoBitInterval)) {
