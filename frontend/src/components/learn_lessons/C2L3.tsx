@@ -21,6 +21,7 @@ h1 {
 
 #para1 {
   font-family: Georgia;
+  font-size: 20px;
 }`;
 
   return (
@@ -60,8 +61,8 @@ h1 {
         }}
       >
         <h2 style={{ color: "white", fontFamily: "Courier New" }}> Sample Webpage </h2>
-        <p style={{ fontFamily: "Courier New" }}> Paragraph 1 </p>
-        <p style={{ fontFamily: "Georgia" }}> Paragraph 2 </p>
+        <p style={{ fontFamily: "Georgia", fontSize: "20px" }}> Paragraph 1 </p>
+        <p style={{ fontFamily: "Courier New" }}> Paragraph 2 </p>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
     const buttons: ReactNode[] = [];
     for (let i = 0; i < learnObj.chapters.length; i++) {
       buttons.push(
-        <button onClick={() => setVisibleChapter(i)}>
+        <button key={i} onClick={() => setVisibleChapter(i)}>
           Chapter {i + 1}: {learnObj.chapters[i].name}
         </button>
       );

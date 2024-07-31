@@ -17,6 +17,10 @@ export default function C2L2() {
   const syntax5 = `#para1 {
   font-family: Georgia;
 }`;
+  const syntax6 = `#para1 {
+  font-family: Georgia;
+  font-size: 20px;
+}`;
 
   return (
     <div style={{ scrollBehavior: "smooth", overflow: "auto", height: "85%", width: "100%" }}>
@@ -137,8 +141,42 @@ export default function C2L2() {
         }}
       >
         <h2 style={{ color: "white", fontFamily: "Courier New" }}> Sample Webpage </h2>
-        <p style={{ fontFamily: "Courier New" }}> Paragraph 1 </p>
-        <p style={{ fontFamily: "Georgia" }}> Paragraph 2 </p>
+        <p style={{ fontFamily: "Georgia" }}> Paragraph 1 </p>
+        <p style={{ fontFamily: "Courier New" }}> Paragraph 2 </p>
+      </div>
+
+      <p>
+        {" "}
+        Let's also change the size of the first paragraph to make it stand out. To do this, use the font-size property.
+        I am going to make it bigger than the second paragraph, but smaller than the title, so I am going to change the
+        size of the tezt to 20px. Make sure to add the unit "px", which stands for pixels, or else the computer will not
+        know how big we want the text to be.
+      </p>
+
+      <h6 className="sample"> Sample Code (CSS): </h6>
+      <SyntaxHighlighter
+        language="css"
+        style={anOldHope}
+        className="syntax"
+        showLineNumbers="true"
+        showInlineLineNumbers="true"
+      >
+        {syntax6}
+      </SyntaxHighlighter>
+
+      <h6 className="sample"> Sample Output: </h6>
+      <div
+        style={{
+          marginLeft: "20%",
+          marginRight: "20%",
+          border: "2px solid black",
+          backgroundColor: "green",
+          color: "black"
+        }}
+      >
+        <h2 style={{ color: "white", fontFamily: "Courier New" }}> Sample Webpage </h2>
+        <p style={{ fontFamily: "Georgia", fontSize: "20px" }}> Paragraph 1 </p>
+        <p style={{ fontFamily: "Courier New" }}> Paragraph 2 </p>
       </div>
 
       <p>
