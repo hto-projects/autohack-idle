@@ -4,8 +4,10 @@ import authSlice, { IAuthData } from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
 import gameDataSlice, { IGameData } from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
+import styleDataSlice from "./slices/styleDataSlice";
 
 export interface IGameState {
+  styleData: any;
   auth: IAuthData;
   gameData: IGameData;
 }

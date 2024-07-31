@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { AppType, IGameData, IStyleData } from "../../../../../shared/types";
+import { AppType } from "../../../../../shared/types";
 import { useKeyDown } from "../../../../frontend-util";
 import { IGameState } from "../../../store";
 

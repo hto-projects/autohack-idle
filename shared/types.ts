@@ -62,6 +62,22 @@ export enum PuzzleSolvedStatus {
   solved = " (solved)"
 }
 
+export interface IGameData {
+  numBits: number;
+  totalNumBits: number;
+  currencyAmount: number;
+  userEmail: string;
+  ups: IUpgradesData;
+  savedSolvedPuzzles: string[];
+}
+
+export interface IUpgradesData {
+  acquired: IUpgrade[];
+  purchasable: IUpgrade[];
+  unavailable: IUpgrade[];
+  uncategorized: IUpgrade[];
+}
+
 export interface IRGBTriple {
   r: number;
   g: number;

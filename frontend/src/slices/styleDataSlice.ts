@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { IStyleData } from "../../../shared/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Taskbar from "../components/desktop_apps/Taskbar";
 
