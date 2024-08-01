@@ -55,13 +55,6 @@ export function calculateVariableValue(acquiredUpgrades: IUpgrade[], variable: G
   return variableValue;
 }
 
-export function calculateVirusMaxValue(trustySales: number, shadySales: number): number {
-  return 5 + shadySales;
-}
-export function calculateVirusSpawnRate(trustySales: number): number {
-  return 5 - trustySales;
-}
-
 export function RGBTripleToCSS(triple: IRGBTriple): string {
   return `rgb(${Math.floor(triple.r)}, ${Math.floor(triple.g)}, ${Math.floor(triple.b)})`;
 }
