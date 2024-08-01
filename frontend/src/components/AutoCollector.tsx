@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { IGameState } from "../store";
 import { UpgradeImage } from "./Image";
 import { ImageType } from "../../../shared/types";
+import { alVoice } from "./soundComponents/alSoundComponent";
+import { closeSound } from "./soundComponents/CloseSoundComponent";
 
 export default function AutoCollector() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
@@ -37,12 +39,14 @@ export default function AutoCollector() {
   if (showButton) {
     showButton.addEventListener("click", () => {
       dialog.showModal();
+      alVoice();
     });
   }
 
   if (closeButton) {
     closeButton.addEventListener("click", () => {
       dialog.close();
+      closeSound();
     });
   }
 

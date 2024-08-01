@@ -2,6 +2,8 @@ import UpgradesContainer from "../../UpgradesContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { categorizeUpgrades, IGameData, sellData } from "../../../slices/gameDataSlice";
 import { IGameState } from "../../../store";
+import { shadySound } from "../../soundComponents/shadySoundComponents";
+import { trustySound } from "../../soundComponents/trustySoundComponent";
 
 export default function UpgradeAppScreen() {
   const dispatch = useDispatch();
@@ -11,11 +13,21 @@ export default function UpgradeAppScreen() {
     dispatch(categorizeUpgrades());
   }
 
+  function trustySelling() {
+    dispatch(sellData(true));
+    trustySound();
+  }
+
+  function shadySelling() {
+    dispatch(sellData(false));
+    shadySound();
+  }
+
   return (
     <>
       <UpgradesContainer></UpgradesContainer>
-      <button onClick={() => dispatch(sellData(true))}>Sell Data to Trustworthy Organazations</button>
-      <button onClick={() => dispatch(sellData(false))}>Sell Data to Shady Organazations</button>
+      <button onClick={() => trustySelling()}>Sell Data to Trustworthy Organazations</button>
+      <button onClick={() => shadySelling()}>Sell Data to Shady Organazations</button>
     </>
   );
 }
