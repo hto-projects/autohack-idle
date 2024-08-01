@@ -37,7 +37,7 @@ const initialState = {
   },
   textSize: {
     app: "20px",
-    taskbar: "20px",
+    taskbar: "16px",
     titlebar: "18px"
   },
   textFont: {

@@ -33,6 +33,7 @@ export default function SettingsAppScreen() {
       <button onClick={() => confirm("This will give you the Bits of your dreams ") && addBitsButton()}>
         Add Bits
       </button>
+      <p>Lifetime Bits: {gameData.totalNumBits}</p>
     </>
   );
 }

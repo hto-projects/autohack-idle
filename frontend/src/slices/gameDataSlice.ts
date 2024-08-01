@@ -21,6 +21,8 @@ export interface IGameData {
   userEmail: string;
   ups: IUpgradesData;
   solvedPuzzles: string[];
+  trustySales: number;
+  shadySales: number;
 }
 
 const initialState: IGameData = {
@@ -34,7 +36,9 @@ const initialState: IGameData = {
     unavailable: [],
     uncategorized: allUpgrades
   },
-  solvedPuzzles: []
+  solvedPuzzles: [],
+  trustySales: 0,
+  shadySales: 0
 };
 
 const gameDataSlice = createSlice({
@@ -45,8 +49,19 @@ const gameDataSlice = createSlice({
       state.numBits += action.payload;
       state.totalNumBits += action.payload;
     },
-    sellData: (state) => {
-      state.currencyAmount += state.numBits / 10.0;
+    sellData: (state, action: PayloadAction<boolean>) => {
+      if (state.numBits === 0) {
+        return;
+      } else {
+        if (action.payload) {
+          state.trustySales += 1;
+          state.currencyAmount += state.numBits / 10.0;
+        } else {
+          state.shadySales += 1;
+          state.currencyAmount += state.numBits / 2.0;
+        }
+      }
+
       state.numBits = 0;
     },
     purchaseUpgrade: (state, action: PayloadAction<IUpgrade>) => {
@@ -123,7 +138,7 @@ const gameDataSlice = createSlice({
   }
 });
 
-const gameDataApiSlice = apiSlice.injectEndpoints({
+export const gameDataApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     saveGame: builder.mutation({
       query: (data) => ({
