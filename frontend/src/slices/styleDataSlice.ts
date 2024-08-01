@@ -36,13 +36,10 @@ const initialState = {
     app: "white"
   },
   textSize: {
-    app: "20px",
-    taskbar: "16px",
-    titlebar: "18px"
+    app: "20px"
   },
   textFont: {
     app: "PixeloidMono",
-    taskbar: "PixeloidMono",
     titlebar: "PixeloidMono"
   }
 };
