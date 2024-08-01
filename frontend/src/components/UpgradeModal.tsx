@@ -27,7 +27,6 @@ export default function UpgradeModal({ up, percentage, onBuy, setModalUpgrade }:
           disabled={percentage < 100}
         >
           Purchase
-          <Taskbar></Taskbar>
         </button>
       </>
     );

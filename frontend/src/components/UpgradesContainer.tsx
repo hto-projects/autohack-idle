@@ -19,14 +19,12 @@ export interface IModal {
   yPos: number;
   upgrade: IUpgrade;
   status: UpgradeStatus;
-  // acquiredUpgrade: boolean;
 }
 export const initialUpgradeForModalState: IModal = {
   xPos: 0,
   yPos: 0,
   upgrade: null,
   status: null
-  // acquiredUpgrade: false
 };
 
 export default function UpgradesContainer() {
