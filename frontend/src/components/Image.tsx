@@ -30,6 +30,7 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
 }
 
 export function UpgradeImage({ picture }: ImageWrapperProps) {
+  // console.log("upgrade picture");
   return (
     <Image
       className={"upgrade-image"}
@@ -49,5 +50,27 @@ export function DesktopAppImage({ picture }: ImageWrapperProps) {
       picture={updatedPicture}
       imgStyle={{ width: "128px", height: "128px", imageRendering: "pixelated" }}
     ></Image>
+  );
+}
+
+export function HelpAppImage({ picture }: ImageWrapperProps) {
+  let updatedPicture = structuredClone(picture);
+  updatedPicture.image = `app_icons/${picture.image}`;
+
+  return (
+    <div>
+      <Image
+        className={"desktop-image"}
+        picture={updatedPicture}
+        imgStyle={{
+          width: "380px",
+          height: "380px",
+          imageRendering: "pixelated",
+          marginTop: "10px",
+          marginLeft: "-70%",
+          display: "flex"
+        }}
+      ></Image>
+    </div>
   );
 }

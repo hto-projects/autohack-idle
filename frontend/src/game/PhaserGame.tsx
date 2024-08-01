@@ -7,15 +7,15 @@ import { addBits } from "../slices/gameDataSlice";
 import { IGameData, GameVariable } from "../../../shared/types";
 import { calculateVariableValue, calculateVirusMaxValue, calculateVirusSpawnRate } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
-import { resetUpgrades } from "../slices/upgradesSlice";
-import { Collect } from "./scenes/Collect";
+
+interface IProps {}
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
   scene: Scene | null;
 }
 
-interface IProps {}
+let visible = false;
 
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
   const gameData: IGameData = useSelector((state: any) => state.gameData);
@@ -23,10 +23,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   const game = useRef<Phaser.Game | null>(null!);
 
-  var visible = false;
-
-  if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable) === 1) {
-    var visible = true;
+  if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
   }
 
   useLayoutEffect(() => {
@@ -59,7 +56,6 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   useEffect(() => {
     EventBus.on("reset-game-data", () => {
       dispatch(resetGameData());
-      dispatch(resetUpgrades());
     });
 
     return () => {
@@ -69,7 +65,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   useEffect(() => {
     EventBus.on("add-bit", () => {
-      dispatch(addBits({ additionalBits: 1 }));
+      dispatch(addBits(1));
     });
 
     return () => {
@@ -84,6 +80,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   useEffect(() => {
     EventBus.on("current-scene-ready", () => {
       EventBus.emit("change-bits", gameData.numBits);
+      const bci = calculateVariableValue(gameData.ups.acquired, GameVariable.BitCheckInterval);
+      const bap = calculateVariableValue(gameData.ups.acquired, GameVariable.BitAppearanceProbability);
+      const sweepCheck = calculateVariableValue(gameData.ups.acquired, GameVariable.BitSweeperSize);
       const bci = calculateVariableValue(gameData.upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(gameData.upgrades, GameVariable.BitAppearanceProbability);
       const sweepCheck = calculateVariableValue(gameData.upgrades, GameVariable.BitSweeperSize);
@@ -106,7 +105,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   }, [ref, gameData.numBits]);
 
   function collectAll() {
-    if (calculateVariableValue(gameData.upgrades, GameVariable.ButtonAvailable)) {
+    if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable)) {
       EventBus.emit("collect-all");
     }
   }

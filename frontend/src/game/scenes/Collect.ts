@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import { EventBus } from "../EventBus";
-import { GameVariable } from "../../../../shared/types";
+import { GameVariable, IUpgrade } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 import Bit from "../Bit";
 import Virus from "../Virus";
@@ -81,7 +81,7 @@ export class Collect extends Scene {
       });
     });
 
-    EventBus.on("upgrade-purchased", (upgrades) => {
+    EventBus.on("upgrade-purchased", (upgrades: IUpgrade[]) => {
       const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
 

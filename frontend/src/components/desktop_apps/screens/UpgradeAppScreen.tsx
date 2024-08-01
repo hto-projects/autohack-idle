@@ -1,6 +1,7 @@
 import UpgradesContainer from "../../UpgradesContainer";
-import { useDispatch, useSelector } from "react-redux";
-import { sellData } from "../../../slices/gameDataSlice";
+import { useDispatch, useSelector, useSelector } from "react-redux";
+import { categorizeUpgrades, IGameData, sellData } from "../../../slices/gameDataSlice";
+import { IGameState } from "../../../store";
 import { IGameData } from "../../../../../shared/types";
 import { IGameState } from "../../../store";
 
@@ -8,6 +9,9 @@ export default function UpgradeAppScreen() {
   const dispatch = useDispatch();
 
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
+  if (gameData.ups.uncategorized.length > 0) {
+    dispatch(categorizeUpgrades());
+  }
 
   return (
     <>
