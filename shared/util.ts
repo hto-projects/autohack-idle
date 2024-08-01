@@ -51,7 +51,10 @@ export function calculateVariableValue(ownedUpgradeNames: string[], variable: Ga
 }
 
 export function calculateVirusMaxValue(trustySales: number, shadySales: number): number {
-  return 5 - trustySales + shadySales;
+  return 5 + shadySales;
+}
+export function calculateVirusSpawnRate(trustySales: number): number {
+  return 5 - trustySales;
 }
 
 export function RGBTripleToCSS(triple: IRGBTriple): string {

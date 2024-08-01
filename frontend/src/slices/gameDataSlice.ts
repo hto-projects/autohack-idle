@@ -25,19 +25,21 @@ export const gameDataSlice = createSlice({
       state.totalNumBits += action.payload.additionalBits;
     },
     sellData: (state, action) => {
-      state.currencyAmount += state.numBits / 10.0;
-      state.numBits = 0;
-      if (action.payload.soldToTrusty) {
-        state.trustySales += 1;
+      if (state.numBits === 0) {
+        return;
       } else {
-        state.shadySales += 1;
+        if (action.payload.soldToTrusty) {
+          state.trustySales += 1;
+          state.currencyAmount += state.numBits / 10.0;
+        } else {
+          state.shadySales += 1;
+          state.currencyAmount += state.numBits / 2.0;
+        }
       }
-    },
-    sellData2: (state) => {
-      state.currencyAmount += state.numBits / 2.0;
+
       state.numBits = 0;
-      EventBus.emit("sellData2");
     },
+
     purchaseUpgrade: (state, action) => {
       state.currencyAmount -= action.payload.upgradeToPurchase.cost;
       state.upgrades.push(action.payload.upgradeToPurchase.name);

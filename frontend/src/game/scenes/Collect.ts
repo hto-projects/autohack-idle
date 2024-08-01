@@ -27,12 +27,6 @@ export class Collect extends Scene {
     this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     // this.screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
-    EventBus.on("sellData2", () => {
-      this.virusMaxSpawn += 1;
-      alert("it works!!");
-      console.log("whats wrong?");
-    });
-
     this.anims.create({
       key: "virusAnim",
       frames: this.anims.generateFrameNumbers("virusSprite", { start: 0, end: 2 }),
@@ -76,6 +70,7 @@ export class Collect extends Scene {
         this.time.removeEvent(this.bitAppearEvent);
       }
       this.virusMaxSpawn = data.virusMaxSpawn;
+      this.virusSpawnVar = data.virusSpawnRate;
 
       this.bitAppearEvent = this.time.addEvent({
         callback: this.maybeAddBit,
