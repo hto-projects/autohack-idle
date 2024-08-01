@@ -116,14 +116,16 @@ export const PuzzleAppDirectory: IPuzzleModule = {
         {
           name: PuzzleNames.Change_Colors,
           description:
-            "Assume that you have a blank webpage with a title. Change the background of that website to black, and the color of all text on that website to white.",
+            "Assume that you have a blank webpage with a title. Change the background of that website to \
+             black, and the color of all text on that website to white. Follow these steps in chronological order.",
           questions: [{ label: Labels.CSS, answers: ["body {background-color: black; color: white;}"] }]
         },
         {
           name: PuzzleNames.Change_Text,
           description:
             'Assume that you have a black webpage with a white text. There is a title, made using the h1 element, and a paragraph, made using the p element. \
-            Change all titles on that webpage to be of size 40px. Also, change the first paragrapgh element, which has an id of "firstPara" to be the font Courier New.',
+            Change all titles on that webpage to be of size 40px. Also, change the first paragrapgh element, which has an id of "firstPara" to be the font Courier \
+             New. Follow these steps in chronological order.',
           questions: [{ label: Labels.CSS, answers: ["h1 {font-size: 40px;} #firstPara {font-family: Courier New;}"] }]
         }
       ]
