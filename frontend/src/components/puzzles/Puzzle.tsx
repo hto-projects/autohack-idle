@@ -59,11 +59,11 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
         </Form.Group>
         <Button
           onClick={() => {
-            const currAnswer = playerAnswers[i].answer.trim();
+            const currAnswer = playerAnswers[i].answer.replace(/\s/g, "");
             let solved = false;
             for (const answer of puzzle.questions[i].answers) {
               // DELETE THE OR === "dev" IN PROD
-              if (currAnswer === answer || currAnswer === "dev") {
+              if (currAnswer === answer.replace(/\s/g, "") || currAnswer === "dev") {
                 solved = true;
                 break;
               }
