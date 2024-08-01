@@ -4,7 +4,6 @@ import { GameVariable, IUpgrade } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 import Bit from "../Bit";
 import Virus from "../Virus";
-import gameDataSlice from "../../slices/gameDataSlice";
 
 export class Collect extends Scene {
   sweeper: Phaser.GameObjects.Rectangle;
