@@ -14,7 +14,8 @@ export default function UpgradeAppScreen() {
   return (
     <>
       <UpgradesContainer></UpgradesContainer>
-      <button onClick={() => dispatch(sellData())}>Sell Data</button>
+      <button onClick={() => dispatch(sellData(true))}>Sell Data to Trustworthy Organazations</button>
+      <button onClick={() => dispatch(sellData(false))}>Sell Data to Shady Organazations</button>
     </>
   );
 }

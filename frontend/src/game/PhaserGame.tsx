@@ -3,10 +3,11 @@ import StartGame from "./main";
 import { EventBus } from "./EventBus";
 import { Scene } from "phaser";
 import { useDispatch, useSelector } from "react-redux";
-import { addBits } from "../slices/gameDataSlice";
-import { IGameData, GameVariable } from "../../../shared/types";
+import { addBits, IGameData } from "../slices/gameDataSlice";
+import { GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
+import { IGameState } from "../store";
 
 interface IProps {}
 
@@ -18,7 +19,7 @@ export interface IRefPhaserGame {
 let visible = false;
 
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
-  const gameData: IGameData = useSelector((state: any) => state.gameData);
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const dispatch = useDispatch();
 
   const game = useRef<Phaser.Game | null>(null!);
@@ -83,10 +84,21 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
       const bci = calculateVariableValue(gameData.ups.acquired, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(gameData.ups.acquired, GameVariable.BitAppearanceProbability);
       const sweepCheck = calculateVariableValue(gameData.ups.acquired, GameVariable.BitSweeperSize);
+      let virusMaxSpawn = 0;
+      const virusMaxSpawnTemp = 5 + gameData.shadySales - gameData.trustySales;
+      if (virusMaxSpawnTemp > 10) {
+        virusMaxSpawn = 10;
+      } else if (virusMaxSpawn < 2) {
+        virusMaxSpawn = 2;
+      } else {
+        virusMaxSpawn = virusMaxSpawnTemp;
+      }
+
       EventBus.emit("change-rates", {
         bitCheckInterval: bci,
         bitAppearanceProbability: bap,
-        bitSweeperSize: sweepCheck
+        bitSweeperSize: sweepCheck,
+        virusMaxSpawn: virusMaxSpawn
       });
     });
 
