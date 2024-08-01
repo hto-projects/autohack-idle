@@ -8,7 +8,8 @@ export enum PuzzleNames {
   For_loop_to_collect_bits = "Make a For Loop to Collect Bits",
   Complete_collect_all_upgrade = "Make the Complete Collect All Upgrade",
   // PSet2
-  Test = "Test"
+  Change_Colors = "Change the Color Scheme of Website",
+  Change_Text = "Change the Way Text Looks"
 }
 
 enum Labels {
@@ -93,10 +94,9 @@ export const PuzzleAppDirectory: IPuzzleModule = {
         {
           name: PuzzleNames.Complete_collect_all_upgrade,
           description:
-            'In this puzzle you will have to write the entire code to make the Collect All upgrade. This is a combination of \
+            "In this puzzle you will have to write the entire code to make the Collect All upgrade. This is a combination of \
         all of the previous puzzles in this puzzle set. Hint: Make sure to place the for loop you have made in puzzle 4 \
-        into the function made in puzzle 2. Also, make sure to initialize the array outside of the function. Make sure \
-        to hit "Check Both" at the end to unlock the Collect All upgrade.',
+        into the function made in puzzle 2. Also, make sure to initialize the array outside of the function.",
           questions: [
             { label: Labels.HTML, answers: ['<button onClick = "collectAll()"> Collect All </button>'] },
             {
@@ -110,13 +110,21 @@ export const PuzzleAppDirectory: IPuzzleModule = {
       ]
     },
     {
-      name: "Coming Soon",
-      description: "Not here yet!",
+      name: "CSS Stylizing",
+      description: "Complete these puzzle sets to unlock an app that lets you customize your game!",
       puzzles: [
         {
-          name: PuzzleNames.Test,
-          description: "idk",
-          questions: [{ label: "test", answers: ["test"] }]
+          name: PuzzleNames.Change_Colors,
+          description:
+            "Assume that you have a blank webpage with a title. Change the background of that website to black, and the color of all text on that website to white.",
+          questions: [{ label: Labels.CSS, answers: ["body {background-color: black; color: white;}"] }]
+        },
+        {
+          name: PuzzleNames.Change_Text,
+          description:
+            'Assume that you have a black webpage with a white text. There is a title, made using the h1 element, and a paragraph, made using the p element. \
+            Change all titles on that webpage to be of size 40px. Also, change the first paragrapgh element, which has an id of "firstPara" to be the font Courier New.',
+          questions: [{ label: Labels.CSS, answers: ["h1 {font-size: 40px;} #firstPara {font-family: Courier New;}"] }]
         }
       ]
     }
