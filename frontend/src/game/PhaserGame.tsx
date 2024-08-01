@@ -65,7 +65,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   useEffect(() => {
     EventBus.on("add-bit", () => {
-      dispatch(addBits({ additionalBits: 1 }));
+      dispatch(addBits(1));
     });
 
     return () => {
