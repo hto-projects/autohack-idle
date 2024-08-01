@@ -95,8 +95,8 @@ export default function Register({ setScreen }) {
       <Row className="py-3">
         <Col>
           Already have an account?
-          <Button onClick={() => setScreen("sign in")} variant="light">
-            Sign In
+          <Button onClick={() => setScreen("login")} variant="light">
+            Login
           </Button>
         </Col>
       </Row>

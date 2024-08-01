@@ -4,6 +4,8 @@ import { calculateVariableValue } from "../../../shared/util";
 import { addBits, IGameData } from "../slices/gameDataSlice";
 import { useEffect } from "react";
 import { IGameState } from "../store";
+import { UpgradeImage } from "./Image";
+import { ImageType } from "../../../shared/types";
 
 export default function AutoCollector() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
@@ -27,15 +29,34 @@ export default function AutoCollector() {
   }
 
   const dispatch = useDispatch();
+  const dialog = document.querySelector("dialog");
+  const showButton = document.querySelector("dialog + button");
+  const closeButton = document.querySelector("dialog button");
 
   let bitsText = autoBitAmount > 1 ? "bits" : "bit";
+  if (showButton) {
+    showButton.addEventListener("click", () => {
+      dialog.showModal();
+    });
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+    });
+  }
 
   return (
     <div className="auto-collector">
-      <h2>🤖</h2>
-      <p>
-        You are currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
-      </p>
+      <dialog>
+        <button>Close</button>
+        <p>
+          Al is currently collecting {autoBitAmount} {bitsText} every {autoBitInterval} milliseconds.
+        </p>
+      </dialog>
+      <button style={{ fontSize: 25 }}>
+        <UpgradeImage picture={{ image: "/upgrade_icons/big Al", type: ImageType.Png }}></UpgradeImage>
+      </button>
     </div>
   );
 }

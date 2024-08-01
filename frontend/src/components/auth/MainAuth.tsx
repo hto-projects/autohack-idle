@@ -31,8 +31,8 @@ export default function MainAuth({ userInfo, setScreen }) {
         </>
       ) : (
         <>
-          <Button onClick={() => setScreen("sign in")} variant="light">
-            Sign In
+          <Button onClick={() => setScreen("login")} variant="light">
+            Login
           </Button>
           <Button onClick={() => setScreen("register")} variant="light">
             Register

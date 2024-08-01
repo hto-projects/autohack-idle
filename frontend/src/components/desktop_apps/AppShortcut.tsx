@@ -1,20 +1,22 @@
-import React from "react";
 import { AppType } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
-import { wrap } from "module";
 
 interface AppShortcutProps {
   appType: AppType;
   setOpen: (at: AppType) => void;
   icon?: string;
+  useSmaller?: boolean;
 }
 
-const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => {
-  const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
+export default function AppShortcut({ appType, setOpen, icon, useSmaller = false }: AppShortcutProps) {
   const appTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.app);
-  const appTextSize: string = useSelector((state: IGameState) => state.styleData.textSize.app);
   const appTextFont: string = useSelector((state: IGameState) => state.styleData.textFont.app);
+
+  const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
+  const size = useSmaller ? "64px" : "120px";
+  const appTextSize = useSmaller ? "18px" : "20px";
+
   return (
     <div
       style={{
@@ -28,8 +30,8 @@ const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => 
         style={{
           color: appTextColor,
           background: shownIcon,
-          width: "120px",
-          height: "120px",
+          width: size,
+          height: size,
           backgroundSize: "cover",
           marginLeft: "auto",
           marginRight: "auto",
@@ -44,6 +46,4 @@ const AppShortcut: React.FC<AppShortcutProps> = ({ appType, setOpen, icon }) => 
       {appType}
     </div>
   );
-};
-
-export default AppShortcut;
+}

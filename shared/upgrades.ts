@@ -68,6 +68,215 @@ const al: IUpgrade[] = [
         modValue: 1000
       }
     ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded ",
+    preReqs: ["Al the Auto-Collector"],
+    description: "Hire an upgraded A.I. intern to collect bits for you",
+    picture: { image: "🤖", type: ImageType.String },
+    cost: 5,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 2
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V2",
+    preReqs: ["Al the Auto-Collector, Upgraded "],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    picture: { image: "🤖", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 5
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V3",
+    preReqs: ["Al the Auto-Collector, Upgraded V2"],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    picture: { image: "🤖", type: ImageType.String },
+    cost: 50,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 15
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V4",
+    preReqs: ["Al the Auto-Collector, Upgraded V3"],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    picture: { image: "🤖", type: ImageType.String },
+    cost: 100,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 25
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Upgraded V5",
+    preReqs: ["Al the Auto-Collector, Upgraded V4"],
+    description: "Hire an even more upgraded A.I. intern to collect bits for you",
+    picture: { image: "🤖", type: ImageType.String },
+    cost: 500,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 50
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Al the Auto-Collector, Perfected",
+    preReqs: ["Al the Auto-Collector, Upgraded V5"],
+    description: "Perfected automation of bit collection",
+    picture: { image: "🤖", type: ImageType.String },
+    cost: 2500,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ]
+  },
+  {
+    name: "Faster Al Storage",
+    preReqs: ["Al the Auto-Collector, Perfected"],
+    description: "Obtain bits even faster with this upgrade!",
+    picture: { image: "💾", type: ImageType.String },
+    cost: 2500,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 900
+      }
+    ]
+  },
+  {
+    name: "Faster Al Storage, Expanded",
+    preReqs: ["Faster Al Storage"],
+    description: "Obtain bits even faster with this upgrade!",
+    picture: { image: "💾", type: ImageType.String },
+    cost: 10000,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 750
+      }
+    ]
+  },
+  {
+    name: "Faster Al Storage, Expanded V2",
+    preReqs: ["Faster Al Storage, Expanded"],
+    description: "Obtain bits even faster with this upgrade!",
+    picture: { image: "💾", type: ImageType.String },
+    cost: 25000,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 500
+      }
+    ]
+  },
+  {
+    name: "Faster Al Storage, Expanded V3",
+    preReqs: ["Faster Al Storage, Expanded V2"],
+    description: "Obtain bits even faster with this upgrade!",
+    picture: { image: "💾", type: ImageType.String },
+    cost: 50000,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      }
+    ]
+  },
+  {
+    name: "Faster Al Storage, Maximum",
+    preReqs: ["Faster Al Storage, Expanded V3"],
+    description: "Obtain bits at the fastest possible speed.",
+    picture: { image: "💾", type: ImageType.String },
+    cost: 100000,
+    effects: [
+      {
+        variableAffected: GameVariable.AutoBitGatheringAmount,
+        variableMod: VariableModFunction.Set,
+        modValue: 300
+      },
+      {
+        variableAffected: GameVariable.AutoBitGatheringInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 100
+      }
+    ]
   }
 ];
 
@@ -90,7 +299,7 @@ const checks: IUpgrade[] = [
     name: "Double Checks",
     preReqs: ["Check for Bits"],
     description: "Check for bits twice as often",
-    picture: { image: "1🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 10,
     effects: [
       {
@@ -104,7 +313,7 @@ const checks: IUpgrade[] = [
     name: "Quadruple Checks",
     preReqs: ["Double Checks"],
     description: "Check for bits 4 times as often",
-    picture: { image: "2🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 40,
     effects: [
       {
@@ -118,7 +327,7 @@ const checks: IUpgrade[] = [
     name: "Octuple Checks",
     preReqs: ["Quadruple Checks"],
     description: "Check for bits 8 times as often",
-    picture: { image: "3🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 160,
     effects: [
       {
@@ -132,7 +341,7 @@ const checks: IUpgrade[] = [
     name: "Sexdecuple Checks",
     preReqs: ["Octuple Checks"],
     description: "Check for bits 16 times as often",
-    picture: { image: "4🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 320,
     effects: [
       {
@@ -146,7 +355,7 @@ const checks: IUpgrade[] = [
     name: "Tridogintuple Checks",
     preReqs: ["Sexdecuple Checks"],
     description: "Check for bits 32 times as often",
-    picture: { image: "5🔍", type: ImageType.String },
+    picture: { image: "🔍", type: ImageType.String },
     cost: 640,
     effects: [
       {
