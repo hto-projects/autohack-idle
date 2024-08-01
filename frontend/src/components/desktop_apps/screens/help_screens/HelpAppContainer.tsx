@@ -10,7 +10,7 @@ interface ItextBox {
 const helpApps: ItextBox[] = [
   {
     name: "Help",
-    body: "Hi! This is the help app and will provide brief descriptions and hints about the other parts of this game."
+    body: "Hi! This is the help app and will provide brief descriptions and hints about the other parts of this game ."
   },
   {
     name: "Collector",
@@ -18,7 +18,7 @@ const helpApps: ItextBox[] = [
   },
   {
     name: "Upgrades",
-    body: "This is the ugrades app. This is where you can buy upgrades to increase your chance to find bits, how fast you check for bits, or unlock completly new features. Some of these will be hidden until you unlock them either by buying upgrades or from a few other methods."
+    body: "This is the ugrades app. This is where you can buy upgrades to increase your chance to find bits, how fast you check for bits, or unlock completly new features. Some of these will be hidden until you unlock them either by buying previous upgrades or from a few other methods."
   },
   {
     name: "Learn",
@@ -35,6 +35,10 @@ const helpApps: ItextBox[] = [
   {
     name: "Puzzle",
     body: "This is the puzzle app. This is where you will be asked to complete challenges to solve puzzles, which once you complete sets you will unlock new upgrades."
+  },
+  {
+    name: "Terminal",
+    body: "This is the terminal app. This is where you can input spesific commands in order to change the CSS of certain game objects. If its your first time use the /help command to get a brief explanation on how the commands work and how they should run."
   }
 ];
 
@@ -43,29 +47,51 @@ export default function HelpAppContainer() {
   const [display] = helpApps.filter((app) => app.name == currentDisplay);
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <div style={{ height: "50%", width: "100%", display: "flex", flexDirection: "row" }}>
+    <div style={{ height: "100%", width: "100%", overflowY: "auto", scrollBehavior: "smooth", overflowX: "hidden" }}>
+      <div style={{ height: "50%", width: "30%", display: "flex", flexDirection: "row" }}>
         <div
           style={{
             height: "30%",
             width: "50%",
-            marginRight: "43%"
+            marginRight: "40%"
           }}
         >
           {helpApps.map((app) => (
             <button
-              style={{ marginTop: "20px", fontSize: 23, marginRight: "20px" }}
+              style={{ marginTop: "20px", fontSize: 23, marginRight: "35px" }}
               onClick={() => setCurrentDisplay(app.name)}
             >
               {app.name}
             </button>
           ))}
         </div>
-        <div style={{ display: "flex", height: "50%", width: "100%" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "90%",
+            height: "50%",
+            marginLeft: "310px",
+            marginTop: "50px",
+            position: "relative",
+            transform: "scale(1.1)"
+          }}
+        >
           <HelpAppImage picture={{ image: display.name.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
         </div>
       </div>
-      <div style={{ height: "60%", width: "100%", display: "flex", marginTop: "20%" }}>{display.body}</div>
+      <div
+        style={{
+          height: "10%",
+          width: "100%",
+          display: "flex",
+          marginTop: "34%",
+          color: "black",
+          flexWrap: "wrap",
+          fontSize: 20
+        }}
+      >
+        {display.body}
+      </div>
     </div>
   );
 }
