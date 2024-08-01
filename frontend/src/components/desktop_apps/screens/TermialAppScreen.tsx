@@ -21,13 +21,22 @@ export default function TerminalAppScreen() {
     function generateResponse(takenInput: string) {
       takenInput = takenInput.trim();
       if (takenInput === "/help") {
-        return "This terminal app uses a very basic syntax being Effect/Target/Value to order to know what to change, where, and to what. For what spesific values are allowed for eack use the /Effect, /Target, or /Value commands. ";
+        return "This terminal app uses a very basic syntax being Effect/Target/Value to order \
+        to know what to change, where, and to what. For what spesific values are allowed for each\
+         use the /Effect, /Target, or /Value commands. ";
       } else if (takenInput === "/Effect") {
-        return "This is what the terminal command will do, such as color, font, or size changes. Valid Effects:   textColor/     textSize/     textFont/     backgroundColor/";
+        return "This is what the terminal command will do, such as color, font, or size changes. \
+        Valid Effects:   textColor/     textSize/     textFont/     backgroundColor/";
       } else if (takenInput === "/Target") {
-        return "This is the game object that the terminal command will effect. One small note is that the textFont/, textColor/, and textSize/ effects can't be used on the last target.  Valid Targets:  /app/     /taskbar/    /titlebar/     /window/";
+        return "This is the game object that the terminal command will effect. Notes: The textSize/\
+         effect can only impact the app target. The textFont/ and textColor/ effects can't be used on\
+          the window target. The textFont/ effect also cannot be used on the taskbar target. Valid \
+          Targets:  /app/     /taskbar/    /titlebar/     /window/";
       } else if (takenInput === "/Value") {
-        return "This is what value the terimal command will change the targeted object to. This is the most expansive field as it can be any valid color or pixel size so examples are given instead of all possible values, also this is the only field that isn't case-sensitive.  Examples:    green   Salmon    20px     arial    pixeloidMono    mOnOspAce YeLLow";
+        return "This is what value the terimal command will change the targeted object to. This is \
+        the most expansive field as it can be any valid color or pixel size so examples are given instead\
+         of all possible values, also this is the only field that isn't case-sensitive.  Examples:    green   \
+         Salmon    20px     arial    pixeloidMono    mOnOspAce YeLLow";
       }
       {
         const [effect, target, value] = takenInput.split("/");
