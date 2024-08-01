@@ -35,7 +35,7 @@ const Taskbar: React.FC = () => {
       <div>{display}</div>
       <p style={{ textAlign: "center", marginRight: "70%", marginBottom: "0%" }}>
         Bits: {gameData.numBits}
-        <br></br>CodeCash: {Number(gameData.currencyAmount.toFixed(1))}
+        <br></br>Pixel Payout: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
       <AutoCollector></AutoCollector>
     </div>
