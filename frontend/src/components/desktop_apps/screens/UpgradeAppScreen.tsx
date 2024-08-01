@@ -1,7 +1,6 @@
 import UpgradesContainer from "../../UpgradesContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { categorizeUpgrades, sellData } from "../../../slices/gameDataSlice";
-import { IGameData } from "../../../../../shared/types";
+import { categorizeUpgrades, IGameData, sellData } from "../../../slices/gameDataSlice";
 import { IGameState } from "../../../store";
 
 export default function UpgradeAppScreen() {

@@ -1,5 +1,7 @@
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import HTML from "react-syntax-highlighter/dist/esm/languages/hljs/vbscript-html";
+SyntaxHighlighter.registerLanguage("HTML", HTML);
 
 export default function C1L1() {
   const syntax1 = `<button> Click Me </button>;`;
@@ -16,7 +18,13 @@ export default function C1L1() {
       <p> First, we need to make a button that the user can click.</p>
 
       <h6 className="sample"> Sample Code: </h6>
-      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+      <SyntaxHighlighter
+        language="HTML"
+        style={anOldHope}
+        className="syntax"
+        showLineNumbers="true"
+        showInlineLineNumbers="true"
+      >
         {syntax1}
       </SyntaxHighlighter>
 
@@ -30,7 +38,13 @@ export default function C1L1() {
       </p>
 
       <h6 className="sample"> Sample Code: </h6>
-      <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+      <SyntaxHighlighter
+        language="HTML"
+        style={anOldHope}
+        className="syntax"
+        showLineNumbers="true"
+        showInlineLineNumbers="true"
+      >
         {syntax2}
       </SyntaxHighlighter>
 

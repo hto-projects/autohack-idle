@@ -4,6 +4,9 @@ import C1L2 from "./C1L2";
 import C1L3 from "./C1L3";
 import C1L4 from "./C1L4";
 import C1L5 from "./C1L5";
+import C2L1 from "./C2L1";
+import C2L2 from "./C2L2";
+import C2L3 from "./C2L3";
 
 export interface ILesson {
   name: string;
@@ -56,9 +59,23 @@ export const learnAppDirectory: ILearnModule = {
       ]
     },
     {
-      name: "Coming Soon",
-      description: "Not here yet!",
-      lessons: []
+      name: "Stylizing in CSS",
+      description:
+        "This chapter will teach you about CSS (Cascading Style Sheet) and how it can be used to change what a webpage looks like. CSS is often used alongside HTML, and usually changes different elements in HTML using certain identifiers.",
+      lessons: [
+        {
+          name: "Changing Colors",
+          body: <C2L1></C2L1>
+        },
+        {
+          name: "Changing Specific Elements",
+          body: <C2L2></C2L2>
+        },
+        {
+          name: "Final Code",
+          body: <C2L3></C2L3>
+        }
+      ]
     }
   ]
 };

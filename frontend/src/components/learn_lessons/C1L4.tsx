@@ -2,6 +2,8 @@ import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 SyntaxHighlighter.registerLanguage("javascript", js);
+import HTML from "react-syntax-highlighter/dist/esm/languages/hljs/vbscript-html";
+SyntaxHighlighter.registerLanguage("HTML", HTML);
 
 export default function C1L4() {
   const syntax1 = `<button onclick = “printAllPages()”> Print All </button>`;
@@ -47,7 +49,13 @@ function printAllPages() {
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
         <div style={{ width: "54%" }}>
           <h6 className="sample"> Sample Code (HTML): </h6>
-          <SyntaxHighlighter style={anOldHope} className="syntax" showLineNumbers="true" showInlineLineNumbers="true">
+          <SyntaxHighlighter
+            language="HTML"
+            style={anOldHope}
+            className="syntax"
+            showLineNumbers="true"
+            showInlineLineNumbers="true"
+          >
             {syntax1}
           </SyntaxHighlighter>
         </div>
@@ -73,7 +81,7 @@ function printAllPages() {
         element in an array. Use the following syntax to make a for loop:{" "}
       </p>
 
-      <h6 className="sample"> Sample Code: </h6>
+      <h6 className="sample"> Sample Code (JavaScript): </h6>
       <SyntaxHighlighter
         language="javascript"
         style={anOldHope}
@@ -120,7 +128,7 @@ function printAllPages() {
 
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
         <div style={{ width: "50%" }}>
-          <h6 className="sample"> Sample Code 1: </h6>
+          <h6 className="sample"> Sample Code 1 (JavaScript): </h6>
           <SyntaxHighlighter
             language="javascript"
             style={anOldHope}
@@ -142,7 +150,7 @@ function printAllPages() {
           </div>
         </div>
         <div style={{ width: "50%" }}>
-          <h6 className="sample"> Sample Code (JavaScript): </h6>
+          <h6 className="sample"> Sample Code 2 (JavaScript): </h6>
           <SyntaxHighlighter
             language="javascript"
             style={anOldHope}
@@ -170,7 +178,7 @@ function printAllPages() {
         the Print All button is clicked.{" "}
       </p>
 
-      <h6 className="sample"> Sample Code: </h6>
+      <h6 className="sample"> Sample Code (JavaScript): </h6>
       <SyntaxHighlighter
         language="javascript"
         style={anOldHope}

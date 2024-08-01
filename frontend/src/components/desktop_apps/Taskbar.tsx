@@ -12,18 +12,22 @@ const Taskbar: React.FC = () => {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
   const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
-
+  const taskBarColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
+  const taskBarTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
+  const taskBarTextSize: string = useSelector((state: IGameState) => state.styleData.textSize.taskbar);
+  const taskBarTextFont: string = useSelector((state: IGameState) => state.styleData.textFont.taskbar);
   return (
     <div
       id="taskbar"
       style={{
-        background: "#333",
+        background: taskBarColor,
         width: "100%",
         height: "100%",
-        color: "white",
+        color: taskBarTextColor,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        fontSize: taskBarTextSize
       }}
     >
       <div style={{ marginRight: "1%", marginTop: "1%" }}>

@@ -14,9 +14,10 @@ export default function LearnLessonContainer({ titleElements, lessons, closeChap
   if (visibleLesson === -1) {
     const buttons: ReactNode[] = [];
     for (let i = 0; i < lessons.length; i++) {
+      const lessonName = lessons[i].name;
       buttons.push(
-        <button onClick={() => setVisibleLesson(i)}>
-          Lesson {i + 1}: {lessons[i].name}
+        <button key={lessonName} onClick={() => setVisibleLesson(i)}>
+          Lesson {i + 1}: {lessonName}
         </button>
       );
     }

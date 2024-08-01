@@ -1,4 +1,4 @@
-import { PuzzleAppDirectory } from "../../puzzle_sets/PuzzleAppDirectory";
+import { PuzzleAppDirectory } from "../../puzzles/PuzzleAppDirectory";
 import PuzzleContainer from "../../PuzzleAppContainer";
 
 export default function PuzzleAppScreen() {

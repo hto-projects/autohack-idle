@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { GameVariable, IGameData } from "../../../shared/types";
+import { GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
-import { addBits } from "../slices/gameDataSlice";
+import { addBits, IGameData } from "../slices/gameDataSlice";
 import { useEffect } from "react";
 import { IGameState } from "../store";
 import { UpgradeImage } from "./Image";
@@ -18,7 +18,7 @@ export default function AutoCollector() {
     }
 
     const autoCollectRunner = setInterval(() => {
-      dispatch(addBits({ additionalBits: autoBitAmount }));
+      dispatch(addBits(autoBitAmount));
     }, autoBitInterval);
 
     return () => clearInterval(autoCollectRunner);

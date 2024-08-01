@@ -30,10 +30,12 @@ const other: IUpgrade[] = [
     ]
   }
 ];
+
 const learn: IUpgrade[] = [
   {
     name: "Collect All",
-    preReqs: ["Make a Collect All Button", "Test"],
+    // Might be recommend to prepend every puzzle prereq string with "puz: " for debugging
+    preReqs: ["Make a Collect All Button"],
     description: "Collects all bits on screen",
     picture: { image: "💰", type: ImageType.String },
     cost: 200,
@@ -46,6 +48,7 @@ const learn: IUpgrade[] = [
     ]
   }
 ];
+
 const al: IUpgrade[] = [
   {
     name: "Al the Auto-Collector",
@@ -276,6 +279,7 @@ const al: IUpgrade[] = [
     ]
   }
 ];
+
 const checks: IUpgrade[] = [
   {
     name: "Check for Bits",
