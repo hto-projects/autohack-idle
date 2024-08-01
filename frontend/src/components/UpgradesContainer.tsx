@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import Upgrade from "./Upgrade";
-import { IGameData, IRGBTriple, IUpgrade, UpgradeStatus } from "../../../shared/types";
+import { IRGBTriple, IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { IGameState } from "../store";
-import { purchaseUpgrade } from "../slices/gameDataSlice";
+import { IGameData, purchaseUpgrade } from "../slices/gameDataSlice";
 import { useState } from "react";
 import UpgradeModal from "./UpgradeModal";
 import { RGBTripleToCSS } from "../../../shared/util";
