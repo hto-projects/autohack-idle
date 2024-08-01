@@ -1,14 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./slices/authSlice";
+import { enableMapSet } from "immer";
+import authSlice, { IAuthData } from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
-import gameDataSlice from "./slices/gameDataSlice";
+import gameDataSlice, { IGameData } from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
-import { IGameData } from "../../shared/types";
+import styleDataSlice from "./slices/styleDataSlice";
 
 export interface IGameState {
-  auth: { userInfo };
+  styleData: any;
+  auth: IAuthData;
   gameData: IGameData;
-  completedPuzzles?: { solvedPuzzles };
 }
 
 function loadState() {
@@ -17,7 +18,6 @@ function loadState() {
     if (serializedState === null) {
       return undefined;
     }
-
     return JSON.parse(serializedState);
   } catch (e) {
     return undefined;
@@ -38,7 +38,8 @@ const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authSlice.reducer,
-    gameData: gameDataSlice.reducer
+    gameData: gameDataSlice.reducer,
+    styleData: styleDataSlice.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,

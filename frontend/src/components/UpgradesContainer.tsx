@@ -43,7 +43,7 @@ export default function UpgradesContainer() {
 
   const attemptPurchase = (up: IUpgrade) => {
     if (gameData.currencyAmount >= up.cost) {
-      dispatch(purchaseUpgrade({ upgradeToPurchase: up }));
+      dispatch(purchaseUpgrade(up));
     }
   };
 

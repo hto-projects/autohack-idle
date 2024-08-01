@@ -13,8 +13,6 @@ interface ImageWrapperProps {
 
 export function Image({ className, picture, imgStyle }: ImageProps) {
   let imageNode: ReactNode = null;
-  // console.log("picture");
-  // console.log(picture);
   switch (picture.type) {
     case ImageType.String:
       imageNode = picture.image;
@@ -37,7 +35,11 @@ export function UpgradeImage({ picture }: ImageWrapperProps) {
     <Image
       className={"upgrade-image"}
       picture={picture}
-      imgStyle={{ verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%" }}
+      imgStyle={
+        {
+          /*verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%"*/
+        }
+      }
     ></Image>
   );
 }

@@ -1,7 +1,6 @@
 import UpgradesContainer from "../../UpgradesContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { categorizeUpgrades, sellData } from "../../../slices/gameDataSlice";
-import { IGameData } from "../../../../../shared/types";
+import { categorizeUpgrades, IGameData, sellData } from "../../../slices/gameDataSlice";
 import { IGameState } from "../../../store";
 
 export default function UpgradeAppScreen() {
@@ -15,7 +14,8 @@ export default function UpgradeAppScreen() {
   return (
     <>
       <UpgradesContainer></UpgradesContainer>
-      <button onClick={() => dispatch(sellData())}>Sell Data</button>
+      <button onClick={() => dispatch(sellData(true))}>Sell Data to Trustworthy Organazations</button>
+      <button onClick={() => dispatch(sellData(false))}>Sell Data to Shady Organazations</button>
     </>
   );
 }

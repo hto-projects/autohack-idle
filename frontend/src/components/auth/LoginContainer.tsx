@@ -14,7 +14,7 @@ export default function LoginContainer() {
   let screenComponent;
 
   switch (screenShowing) {
-    case "sign in":
+    case "login":
       screenComponent = <Login setScreen={setScreenShowing}></Login>;
       break;
     case "register":

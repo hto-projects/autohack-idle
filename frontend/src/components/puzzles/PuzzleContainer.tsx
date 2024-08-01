@@ -1,21 +1,23 @@
 import { useState, ReactNode } from "react";
-import { IPuzzle, IPuzzleSet, PuzzleAppDirectory } from "./PuzzleAppDirectory";
-import { IGameData, PuzzleSolvedStatus, SetCompletedStatus } from "../../../../shared/types";
+import { IPuzzle } from "./PuzzleAppDirectory";
+import { PuzzleSolvedStatus } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
+import { IGameData } from "../../slices/gameDataSlice";
+import Puzzle from "./Puzzle";
 
-export interface PuzzleContainerProps {
+interface IPuzzleContainerProps {
   titleElements: ReactNode;
   puzzles: IPuzzle[];
 }
 
-export default function PuzzleApp({ titleElements, puzzles }: PuzzleContainerProps) {
-  let selectorNode: ReactNode = undefined;
+export default function PuzzleContainer({ titleElements, puzzles }: IPuzzleContainerProps) {
+  let node: ReactNode = undefined;
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const [visiblePuzzle, setVisiblePuzzle] = useState(-1);
 
-  const getPuzStatus = (checkedPuz: number, gameData: IGameData): PuzzleSolvedStatus => {
-    if (gameData.savedSolvedPuzzles.includes(puzzles[checkedPuz].name)) {
+  const getPuzStatus = (checkedPuz: number): PuzzleSolvedStatus => {
+    if (gameData.solvedPuzzles.includes(puzzles[checkedPuz].name)) {
       return PuzzleSolvedStatus.solved;
     }
     return PuzzleSolvedStatus.unsolved;
@@ -24,13 +26,14 @@ export default function PuzzleApp({ titleElements, puzzles }: PuzzleContainerPro
   if (visiblePuzzle === -1) {
     const buttons: ReactNode[] = [];
     for (let i = 0; i < puzzles.length; i++) {
+      const currPuzName = puzzles[i].name;
       buttons.push(
-        <button onClick={() => setVisiblePuzzle(i)}>
-          Puzzle {i + 1}: {puzzles[i].name} {getPuzStatus(i, gameData)}
+        <button key={currPuzName} onClick={() => setVisiblePuzzle(i)}>
+          Puzzle {i + 1}: {currPuzName} {getPuzStatus(i)}
         </button>
       );
     }
-    selectorNode = (
+    node = (
       <>
         <div>{titleElements}</div>
         {buttons}
@@ -38,9 +41,9 @@ export default function PuzzleApp({ titleElements, puzzles }: PuzzleContainerPro
     );
   } else {
     const puzzle = puzzles[visiblePuzzle];
-    selectorNode = (
+    node = (
       <>
-        {puzzle.body}
+        <Puzzle index={visiblePuzzle} puzzle={puzzle}></Puzzle>
         <button onClick={() => setVisiblePuzzle(-1)} style={{ marginTop: ".5%" }}>
           Close Puzzle
         </button>
@@ -48,5 +51,5 @@ export default function PuzzleApp({ titleElements, puzzles }: PuzzleContainerPro
     );
   }
 
-  return selectorNode;
+  return node;
 }

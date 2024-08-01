@@ -1,13 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IGameData, IUpgrade } from "../../../shared/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IUpgrade } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
-import puzzleSolved from "../components/puzzle_sets/PuzzleSet1Puzzle1";
-
 import { allUpgrades } from "../../../shared/upgrades";
 import { flatObjByProp, intersection } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
+
+export interface IUpgradesData {
+  acquired: IUpgrade[];
+  purchasable: IUpgrade[];
+  unavailable: IUpgrade[];
+  uncategorized: IUpgrade[];
+}
+
+export interface IGameData {
+  numBits: number;
+  totalNumBits: number;
+  currencyAmount: number;
+  userEmail: string;
+  ups: IUpgradesData;
+  solvedPuzzles: string[];
+  trustySales: number;
+  shadySales: number;
+}
 
 const initialState: IGameData = {
   numBits: 0,
@@ -20,24 +36,37 @@ const initialState: IGameData = {
     unavailable: [],
     uncategorized: allUpgrades
   },
-  savedSolvedPuzzles: []
+  solvedPuzzles: [],
+  trustySales: 0,
+  shadySales: 0
 };
 
 const gameDataSlice = createSlice({
   name: "gameData",
   initialState: initialState,
   reducers: {
-    addBits: (state, action) => {
-      state.numBits += action.payload.additionalBits;
-      state.totalNumBits += action.payload.additionalBits;
+    addBits: (state, action: PayloadAction<number>) => {
+      state.numBits += action.payload;
+      state.totalNumBits += action.payload;
     },
-    sellData: (state) => {
-      state.currencyAmount += state.numBits / 10.0;
+    sellData: (state, action: PayloadAction<boolean>) => {
+      if (state.numBits === 0) {
+        return;
+      } else {
+        if (action.payload) {
+          state.trustySales += 1;
+          state.currencyAmount += state.numBits / 10.0;
+        } else {
+          state.shadySales += 1;
+          state.currencyAmount += state.numBits / 2.0;
+        }
+      }
+
       state.numBits = 0;
     },
-    purchaseUpgrade: (state, action) => {
+    purchaseUpgrade: (state, action: PayloadAction<IUpgrade>) => {
       const ups = state.ups;
-      const upgrade = action.payload.upgradeToPurchase as IUpgrade;
+      const upgrade = action.payload;
       state.currencyAmount -= upgrade.cost;
       ups.acquired.push(upgrade);
       let index = -1;
@@ -53,10 +82,10 @@ const gameDataSlice = createSlice({
       }
       ups.purchasable.splice(index, 1);
       const purchasableBuffer: IUpgrade[] = [];
-      const acquiredUpNames = flatObjByProp(ups.acquired, "name");
+      const acquiredPrereqs = [...flatObjByProp(ups.acquired, "name"), ...state.solvedPuzzles];
       for (let i = 0; i < ups.unavailable.length; i++) {
         const currUp = ups.unavailable[i];
-        const intersect = intersection(acquiredUpNames, currUp.preReqs);
+        const intersect = intersection(acquiredPrereqs, currUp.preReqs);
         if (intersect.length == currUp.preReqs.length) {
           const [newPurchasableUp] = ups.unavailable.splice(i, 1);
           purchasableBuffer.push(newPurchasableUp);
@@ -65,12 +94,13 @@ const gameDataSlice = createSlice({
       ups.purchasable.push(...purchasableBuffer);
       EventBus.emit("upgrade-purchased", ups.acquired);
     },
-    puzzleSolve: (state, action) => {
-      // const puz = action.payload.savedSolvedPuzzle;
-      // if (!state.savedSolvedPuzzles.includes(action.payload)) {
-      //   state.savedSolvedPuzzles.push(action.payload);
-      //   state.upgrades.push(action.payload);
-      // }
+    puzzleSolve: (state, action: PayloadAction<string>) => {
+      // Debugging
+      if (state.solvedPuzzles.includes(action.payload)) {
+        console.log("Puzzle already in set");
+        return;
+      }
+      state.solvedPuzzles.push(action.payload);
     },
     categorizeUpgrades: (state) => {
       const ups = state.ups;
@@ -81,6 +111,12 @@ const gameDataSlice = createSlice({
           let prereqInAquired = false;
           for (const acquired of ups.acquired) {
             if (prereq === acquired.name) {
+              prereqInAquired = true;
+              break;
+            }
+          }
+          for (const puzzle of state.solvedPuzzles) {
+            if (prereq === puzzle) {
               prereqInAquired = true;
               break;
             }
@@ -99,16 +135,10 @@ const gameDataSlice = createSlice({
       }
     },
     resetGameData: (_state) => initialState
-    // Not being used currently?
-    // setGameData: (state, action) => {
-    //   state.currencyAmount = action.payload.currencyAmount;
-    //   state.numBits = action.payload.numBits;
-    //   state.upgrades = action.payload.upgrades;
-    // },
   }
 });
 
-const gameDataApiSlice = apiSlice.injectEndpoints({
+export const gameDataApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     saveGame: builder.mutation({
       query: (data) => ({
