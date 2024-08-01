@@ -37,7 +37,7 @@ const Taskbar: React.FC = () => {
         <p style={{ width: "200%" }}>{userInfo !== null && `Hi, ${userInfo.name}`}</p>
       </div>
       <div>{display}</div>
-      <p style={{ textAlign: "center", marginRight: "65%", marginBottom: "0%", width: "120%" }}>
+      <p style={{ textAlign: "center", marginRight: "65%", marginBottom: "0%", marginLeft: "5%", width: "200%" }}>
         Bits: {gameData.numBits}
         <br></br>PixelPayout: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
