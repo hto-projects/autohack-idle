@@ -18,7 +18,7 @@ const Desktop: React.FC = () => {
         {/* <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Learn} setOpen={setOpenWindow}></AppShortcut>
         {/* {<AppShortcut appType={AppType.Login} setOpen={setOpenWindow}></AppShortcut>} */}
-        <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut>
+        {/* <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Terminal} setOpen={setOpenWindow}></AppShortcut>

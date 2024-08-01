@@ -60,7 +60,9 @@ export default function Login({ setScreen }) {
           ></Form.Control>
         </Form.Group>
 
-        <Button disabled={isLoading} type="submit" variant="primary" className="mt-3"></Button>
+        <Button disabled={isLoading} type="submit" variant="primary" className="mt-3">
+          Login
+        </Button>
       </Form>
 
       {isLoading && <Loader />}
