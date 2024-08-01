@@ -11,11 +11,18 @@ export interface IModal {
   yPos: number;
   upgrade: IUpgrade;
   status: UpgradeStatus;
+  percentage: number;
 }
 
 export default function UpgradesContainer() {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
-  const [upgradeForModal, setModalUpgrade] = useState<IModal>({ xPos: 0, yPos: 0, upgrade: null, status: null });
+  const [upgradeForModal, setModalUpgrade] = useState<IModal>({
+    xPos: 0,
+    yPos: 0,
+    upgrade: null,
+    status: null,
+    percentage: 0
+  });
   const dispatch = useDispatch();
 
   const getStatusForUpgrade = (up: IUpgrade): UpgradeStatus => {
@@ -54,6 +61,7 @@ export default function UpgradesContainer() {
             status={getStatusForUpgrade(up)}
             currencyAmount={gameData.currencyAmount}
             onBuy={attemptPurchase}
+            upgradeForModal={upgradeForModal}
             setModal={setModalUpgrade}
           ></Upgrade>
         ))}

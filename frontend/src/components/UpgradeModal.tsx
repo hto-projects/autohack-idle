@@ -1,4 +1,5 @@
-import { IUpgrade, UpgradeStatus } from "../../../shared/types";
+import { useSelector } from "react-redux";
+import { IGameState } from "../store";
 import { IModal } from "./UpgradesContainer";
 
 interface IUpgradeModalProps {
@@ -6,19 +7,34 @@ interface IUpgradeModalProps {
 }
 
 export default function UpgradeModal({ up }: IUpgradeModalProps) {
-  const width = 180;
-  const height = 50;
+  const _ = useSelector((state: IGameState) => state.gameData.numBits);
+  const width = 380;
+  const height = 100;
   return (
     <div
       style={{
         backgroundColor: "orange",
         position: "fixed",
         top: up.yPos - height,
-        left: up.xPos + 15,
+        left: up.xPos + 6,
         width: width,
-        height: height
+        height: height,
+        textAlign: "center"
       }}
     >
+      <div style={{ margin: "5px", borderRadius: "10px", backgroundColor: "gray" }}>
+        <div
+          style={{
+            backgroundColor: "blue",
+            borderRadius: "10px",
+            width: `${up.percentage}%`,
+            height: "100%",
+            fontSize: "12px"
+          }}
+        >
+          {`${up.percentage}%`}
+        </div>
+      </div>
       {up.upgrade.name}
     </div>
   );
