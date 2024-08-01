@@ -148,6 +148,16 @@ body {
   opacity: 0.2;
 }
 
+.upgradeModal {
+  background-color: "orange";
+  border-radius: "10px";
+  position: "fixed";
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  text-align: "center";
+}
+
 .syntax {
   margin-left: 10%;
   margin-right: 10%;
