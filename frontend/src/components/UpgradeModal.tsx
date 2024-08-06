@@ -1,6 +1,8 @@
 import { bgAvailableCSS, IModal, initialUpgradeForModalState } from "./UpgradesContainer";
 import { IUpgrade } from "../../../shared/types";
 import { ReactNode } from "react";
+import Taskbar from "./desktop_apps/Taskbar";
+import TitleBar from "./desktop_apps/screens/TitleBar";
 
 interface IUpgradeModalProps {
   up: IModal;
@@ -68,7 +70,7 @@ export default function UpgradeModal({ up, percentage, onBuy, setModalUpgrade }:
         ></div>
       </div>
       <span>{`${up.upgrade.name}: ${up.upgrade.cost} pixels`}</span>
-      <span>{up.upgrade.description}</span>
+      <div style={{ width: "80%" }}>{up.upgrade.description}</div>
       {buttonNode}
     </div>
   );

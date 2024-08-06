@@ -3,7 +3,7 @@ import Upgrade from "./Upgrade";
 import { IRGBTriple, IUpgrade, UpgradeStatus } from "../../../shared/types";
 import { IGameState } from "../store";
 import { IGameData, purchaseUpgrade } from "../slices/gameDataSlice";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import UpgradeModal from "./UpgradeModal";
 import { RGBTripleToCSS } from "../../../shared/util";
 
@@ -40,13 +40,13 @@ export default function UpgradesContainer() {
     return gameData.currencyAmount >= up.cost ? UpgradeStatus.Available : UpgradeStatus.Unavailable;
   };
 
-  const attemptPurchase = (up: IUpgrade) => {
+  const attemptPurchase = (up: IUpgrade): void => {
     if (gameData.currencyAmount >= up.cost) {
       dispatch(purchaseUpgrade(up));
     }
   };
 
-  const upgradeBox = (upgrades: IUpgrade[], name: string) => {
+  const upgradeBox = (upgrades: IUpgrade[], name: string): ReactNode => {
     return (
       <div className="upgrade-box" style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
         {name}
@@ -70,7 +70,13 @@ export default function UpgradesContainer() {
               up={up}
               status={getStatusForUpgrade(up)}
               currencyAmount={gameData.currencyAmount}
-              setModal={setModalUpgrade}
+              setModal={(modal: IModal) => {
+                if (upgradeForModal.upgrade !== null && modal.upgrade.name === upgradeForModal.upgrade.name) {
+                  setModalUpgrade(initialUpgradeForModalState);
+                } else {
+                  setModalUpgrade(modal);
+                }
+              }}
             ></Upgrade>
           ))}
         </div>
