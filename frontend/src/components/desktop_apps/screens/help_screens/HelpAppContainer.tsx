@@ -38,7 +38,7 @@ const helpApps: ItextBox[] = [
   },
   {
     name: "Terminal",
-    body: "This is the terminal app. This is where you can input spesific commands in order to change the CSS of certain game objects. If its your first time use the /help command to get a brief explanation on how the commands work and how they should run."
+    body: "This is the terminal app. This is where you can input spesific commands in order to change the CSS of certain game objects. If its your first time use the help command to get a brief explanation on how the commands work and how they should run."
   }
 ];
 
