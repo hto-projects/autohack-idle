@@ -29,7 +29,15 @@ export interface LessonProps {
 }
 
 export const learnAppDirectory: ILearnModule = {
-  titleNode: undefined,
+  titleNode: (
+    <div>
+      <h3> Learn Chapters: </h3>
+      <p style={{ marginRight: "5%", marginLeft: "5%" }}>
+        Choose a chapter to learn about some coding principles. This knowlege may come in handy when trying to complete
+        the puzzles in Puzzle.
+      </p>
+    </div>
+  ),
   chapters: [
     {
       name: "Adding A Print All Button",
@@ -61,7 +69,7 @@ export const learnAppDirectory: ILearnModule = {
     {
       name: "Stylizing in CSS",
       description:
-        "This chapter will teach you about CSS (Cascading Style Sheet) and how it can be used to change what a webpage looks like. CSS is often used alongside HTML, and usually changes different elements in HTML using certain identifiers.",
+        "This chapter will teach you about CSS (Cascading Style Sheet) and how it can be used to change what a webpage looks like. CSS is often used alongside HTML, and usually changes different elements in HTML using certain identifiers. This chapter can help you solve the puzzles in puzzle set 2.",
       lessons: [
         {
           name: "Changing Colors",
