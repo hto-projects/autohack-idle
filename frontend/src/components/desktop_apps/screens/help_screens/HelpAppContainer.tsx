@@ -45,15 +45,17 @@ const helpApps: ItextBox[] = [
 export default function HelpAppContainer() {
   let [currentDisplay, setCurrentDisplay] = useState(helpApps[0].name);
   const [display] = helpApps.filter((app) => app.name == currentDisplay);
+  //overflowX: "hidden"
 
   return (
-    <div style={{ height: "100%", width: "100%", overflowY: "auto", scrollBehavior: "smooth", overflowX: "hidden" }}>
-      <div style={{ height: "50%", width: "30%", display: "flex", flexDirection: "row" }}>
+    <div style={{ height: "100%", width: "100%", overflowY: "auto", scrollBehavior: "smooth" }}>
+      <div style={{ height: "75%", width: "100%", display: "flex", flexDirection: "row", backgroundColor: "green" }}>
         <div
           style={{
-            height: "30%",
-            width: "50%",
-            marginRight: "40%"
+            height: "100%",
+            width: "25%",
+            //marginRight: "40%",
+            backgroundColor: "red"
           }}
         >
           {helpApps.map((app) => (
@@ -67,13 +69,11 @@ export default function HelpAppContainer() {
         </div>
         <div
           style={{
-            display: "flex",
-            width: "90%",
-            height: "50%",
+            height: "100%",
+            width: "100%",
             marginLeft: "310px",
             marginTop: "50px",
-            position: "relative",
-            transform: "scale(1.1)"
+            backgroundColor: "purple"
           }}
         >
           <HelpAppImage picture={{ image: display.name.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
@@ -87,7 +87,8 @@ export default function HelpAppContainer() {
           marginTop: "34%",
           color: "black",
           flexWrap: "wrap",
-          fontSize: 20
+          fontSize: 20,
+          backgroundColor: "yellow"
         }}
       >
         {display.body}

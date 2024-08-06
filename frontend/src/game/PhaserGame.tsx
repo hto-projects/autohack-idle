@@ -115,7 +115,16 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   return (
     <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
-      <button style={{ visibility: visible ? "visible" : "hidden" }} onClick={collectAll}>
+      <button
+        style={{
+          visibility: visible ? "visible" : "hidden",
+          marginBottom: "1%",
+          width: "15%",
+          height: "5%",
+          fontSize: "18px"
+        }}
+        onClick={collectAll}
+      >
         Collect All
       </button>
       <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "90%" }}></div>
