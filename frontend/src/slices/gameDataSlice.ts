@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUpgrade } from "../../../shared/types";
+import { GameVariable, ImageType, IUpgrade, VariableModFunction } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import { allUpgrades } from "../../../shared/upgrades";
@@ -31,7 +31,36 @@ const initialState: IGameData = {
   currencyAmount: 0,
   userEmail: "",
   ups: {
-    acquired: [],
+    acquired: [
+      {
+        name: "Check for Bits",
+        description: "Once every second, look to see if there are any bits available for harvesting",
+        picture: { image: "🔍", type: ImageType.String },
+        cost: 0,
+        effects: [
+          {
+            variableAffected: GameVariable.BitCheckInterval,
+            variableMod: VariableModFunction.Set,
+            modValue: 1000
+          }
+        ],
+        preReqs: []
+      },
+      {
+        name: "Chance for Bits",
+        description: "When checking for bits, succeed in finding one 50% of the time",
+        picture: { image: "❇", type: ImageType.String },
+        cost: 0,
+        effects: [
+          {
+            variableAffected: GameVariable.BitAppearanceProbability,
+            variableMod: VariableModFunction.Set,
+            modValue: 0.5
+          }
+        ],
+        preReqs: []
+      }
+    ],
     purchasable: [],
     unavailable: [],
     uncategorized: allUpgrades
