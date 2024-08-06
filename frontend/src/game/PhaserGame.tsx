@@ -87,7 +87,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
       let virusMaxSpawn = 0;
       const virusMaxSpawnTemp = 5 + gameData.shadySales - gameData.trustySales;
       if (virusMaxSpawnTemp > 10) {
-        virusMaxSpawn = 10;
+        virusMaxSpawn = 20;
       } else if (virusMaxSpawn < 2) {
         virusMaxSpawn = 2;
       } else {
