@@ -12,12 +12,12 @@ export default function TerminalAppScreen() {
   const dispatch = useDispatch();
   const [allPreviousCommands, setPreviousCommands] = useState<ICommand[]>([]);
   const styleData = useSelector((state: IGameState) => state.styleData);
+
   const checkForCommands = () => {
     const inputElement = document.getElementById("command") as HTMLInputElement;
     const inputValue = inputElement.value;
     const command: ICommand = { input: inputValue, response: generateResponse(inputValue) };
-    setPreviousCommands([...allPreviousCommands, command]);
-    return inputValue;
+
     function generateResponse(takenInput: string) {
       takenInput = takenInput.trim();
       if (takenInput === "/help") {
@@ -38,20 +38,23 @@ export default function TerminalAppScreen() {
          of all possible values, also this is the only field that isn't case-sensitive.  Examples:    green   \
          Salmon    20px     arial    pixeloidMono    mOnOspAce YeLLow";
       }
-      {
-        const [effect, target, value] = takenInput.split("/");
-        if (
-          styleData[effect] !== undefined &&
-          styleData[effect][target] !== undefined &&
-          validStyleFunctions[effect](value)
-        ) {
-          dispatch(setStyle({ effect: effect, target: target, value: value }));
-          return target + " " + effect + " is now " + value;
-        } else {
-          return "Invalid Command";
-        }
+
+      const [effect, target, value] = takenInput.split("/");
+
+      if (
+        styleData[effect] !== undefined &&
+        styleData[effect][target] !== undefined &&
+        validStyleFunctions[effect](value)
+      ) {
+        dispatch(setStyle({ effect: effect, target: target, value: value }));
+        return target + " " + effect + " is now " + value;
+      } else {
+        return "Invalid Command";
       }
     }
+
+    setPreviousCommands([...allPreviousCommands, command]);
+    return inputValue;
   };
   return (
     <div
