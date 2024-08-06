@@ -1,7 +1,7 @@
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
 const other: IUpgrade[] = [
-  {
+  /*{
     name: "Chance for Bits",
     preReqs: [],
     description: "When checking for bits, succeed in finding one 50% of the time",
@@ -14,7 +14,7 @@ const other: IUpgrade[] = [
         modValue: 0.5
       }
     ]
-  },
+  },*/
   {
     name: "Bit Sweeper",
     preReqs: [],
@@ -281,7 +281,7 @@ const al: IUpgrade[] = [
 ];
 
 const checks: IUpgrade[] = [
-  {
+  /*{
     name: "Check for Bits",
     preReqs: [],
     description: "Once every second, look to see if there are any bits available for harvesting",
@@ -294,7 +294,7 @@ const checks: IUpgrade[] = [
         modValue: 1000
       }
     ]
-  },
+  },*/
   {
     name: "Double Checks",
     preReqs: ["Check for Bits"],
