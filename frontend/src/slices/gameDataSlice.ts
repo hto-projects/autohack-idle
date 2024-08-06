@@ -96,11 +96,11 @@ const gameDataSlice = createSlice({
     },
     puzzleSolve: (state, action: PayloadAction<string>) => {
       // Debugging
-      if (state.solvedPuzzles.includes(action.payload)) {
+      if (state.solvedPuzzles.includes("Puz: " + action.payload)) {
         console.log("Puzzle already in set");
         return;
       }
-      state.solvedPuzzles.push(action.payload);
+      state.solvedPuzzles.push("Puz: " + action.payload);
     },
     categorizeUpgrades: (state) => {
       const ups = state.ups;
