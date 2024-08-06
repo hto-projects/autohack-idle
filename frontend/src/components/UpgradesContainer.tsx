@@ -20,6 +20,7 @@ export interface IModal {
   upgrade: IUpgrade;
   status: UpgradeStatus;
 }
+
 export const initialUpgradeForModalState: IModal = {
   xPos: 0,
   yPos: 0,
@@ -45,31 +46,34 @@ export default function UpgradesContainer() {
     }
   };
 
-  const upgradeBox = (upgrades: IUpgrade[], bgColor: string) => {
+  const upgradeBox = (upgrades: IUpgrade[], name: string) => {
     return (
-      <div
-        style={{
-          backgroundColor: bgColor,
-          width: "400px",
-          height: "600px",
-          gap: "5px", // Having individual rowGap and columnGap is also a possibility
-          display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "row",
-          justifyContent: "normal",
-          alignContent: "start",
-          alignItems: "start"
-        }}
-      >
-        {upgrades.map((up) => (
-          <Upgrade
-            key={up.name}
-            up={up}
-            status={getStatusForUpgrade(up)}
-            currencyAmount={gameData.currencyAmount}
-            setModal={setModalUpgrade}
-          ></Upgrade>
-        ))}
+      <div className="upgrade-box" style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
+        {name}
+        <div
+          style={{
+            backgroundColor: "dimgray",
+            width: "400px",
+            height: "100%",
+            gap: "5px", // Having individual rowGap and columnGap is also a possibility
+            display: "flex",
+            flexWrap: "wrap",
+            flexDirection: "row",
+            justifyContent: "normal",
+            alignContent: "start",
+            alignItems: "start"
+          }}
+        >
+          {upgrades.map((up) => (
+            <Upgrade
+              key={up.name}
+              up={up}
+              status={getStatusForUpgrade(up)}
+              currencyAmount={gameData.currencyAmount}
+              setModal={setModalUpgrade}
+            ></Upgrade>
+          ))}
+        </div>
       </div>
     );
   };
@@ -78,16 +82,16 @@ export default function UpgradesContainer() {
     <div
       className="upgrades-container"
       style={{
-        marginTop: "20px",
-        marginBottom: "20px",
-        width: "100%",
+        height: "100%",
+        paddingTop: "20px",
+        paddingBottom: "20px",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-evenly"
       }}
     >
-      {upgradeBox(gameData.ups.acquired, "red")}
-      {upgradeBox(gameData.ups.purchasable, "blue")}
+      {upgradeBox(gameData.ups.acquired, "Acquired Upgrades")}
+      {upgradeBox(gameData.ups.purchasable, "Purchasable Upgrades")}
       {upgradeForModal.upgrade !== null && (
         <UpgradeModal
           up={upgradeForModal}

@@ -1,7 +1,6 @@
 import { bgAvailableCSS, IModal, initialUpgradeForModalState } from "./UpgradesContainer";
 import { IUpgrade } from "../../../shared/types";
 import { ReactNode } from "react";
-import Taskbar from "./desktop_apps/Taskbar";
 
 interface IUpgradeModalProps {
   up: IModal;
@@ -43,7 +42,7 @@ export default function UpgradeModal({ up, percentage, onBuy, setModalUpgrade }:
         alignItems: "center",
         bottom: document.defaultView.innerHeight - up.yPos,
         left: up.xPos,
-        width: width,
+        // width: width,
         textAlign: "center"
       }}
     >
