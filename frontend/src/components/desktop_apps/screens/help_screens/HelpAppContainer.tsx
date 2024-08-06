@@ -45,17 +45,30 @@ const helpApps: ItextBox[] = [
 export default function HelpAppContainer() {
   let [currentDisplay, setCurrentDisplay] = useState(helpApps[0].name);
   const [display] = helpApps.filter((app) => app.name == currentDisplay);
-  //overflowX: "hidden"
 
   return (
-    <div style={{ height: "100%", width: "100%", overflowY: "auto", scrollBehavior: "smooth" }}>
-      <div style={{ height: "75%", width: "100%", display: "flex", flexDirection: "row", backgroundColor: "green" }}>
+    <div
+      style={{
+        height: "100%",
+        width: "95%",
+        overflowY: "auto",
+        scrollBehavior: "smooth",
+        overflowX: "hidden",
+        marginLeft: "1%"
+      }}
+    >
+      <div
+        style={{
+          height: "75%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "row"
+        }}
+      >
         <div
           style={{
             height: "100%",
-            width: "25%",
-            //marginRight: "40%",
-            backgroundColor: "red"
+            width: "25%"
           }}
         >
           {helpApps.map((app) => (
@@ -70,10 +83,7 @@ export default function HelpAppContainer() {
         <div
           style={{
             height: "100%",
-            width: "100%",
-            marginLeft: "310px",
-            marginTop: "50px",
-            backgroundColor: "purple"
+            width: "74%"
           }}
         >
           <HelpAppImage picture={{ image: display.name.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
@@ -81,17 +91,15 @@ export default function HelpAppContainer() {
       </div>
       <div
         style={{
-          height: "10%",
+          height: "24%",
           width: "100%",
           display: "flex",
-          marginTop: "34%",
           color: "black",
           flexWrap: "wrap",
-          fontSize: 20,
-          backgroundColor: "yellow"
+          fontSize: 20
         }}
       >
-        {display.body}
+        <p style={{ marginRight: "2%", marginLeft: "2%" }}> {display.body} </p>
       </div>
     </div>
   );

@@ -69,7 +69,8 @@ export function HelpAppImage({ picture }: ImageWrapperProps) {
         width: "480px",
         height: "480px",
         imageRendering: "pixelated",
-        marginTop: "10px"
+        marginTop: "3%",
+        marginLeft: "3.5%"
       }}
     ></Image>
   );
