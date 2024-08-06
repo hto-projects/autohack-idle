@@ -23,8 +23,7 @@ export const validStyleFunctions: IValidStyleFunctions = {
     return check.color === strColor.toLowerCase();
   },
   textFont: (fontType) => {
-    // return fontType;
-    return true;
+    return true; // originally "return fontType"
   },
   textSize: (pixelSize) => {
     var check = new Option().style;

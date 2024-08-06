@@ -42,7 +42,6 @@ export default function UpgradeModal({ up, percentage, onBuy, setModalUpgrade }:
         alignItems: "center",
         bottom: document.defaultView.innerHeight - up.yPos,
         left: up.xPos,
-        // width: width,
         textAlign: "center"
       }}
     >
