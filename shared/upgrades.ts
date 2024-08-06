@@ -70,7 +70,7 @@ const al: IUpgrade[] = [
     ]
   },
   {
-    name: "Al the Auto-Collector, Upgraded ",
+    name: "Al the Auto-Collector, Upgraded",
     preReqs: ["Al the Auto-Collector"],
     description: "Hire an upgraded A.I. intern to collect bits for you",
     picture: { image: "🤖", type: ImageType.String },
