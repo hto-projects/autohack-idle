@@ -185,7 +185,7 @@ const al: IUpgrade[] = [
   },
   {
     name: "Faster Al Storage",
-    preReqs: ["Al the Auto-Collector, Perfected"],
+    preReqs: ["Al the Auto-Collector"],
     description: "Obtain bits even faster with this upgrade!",
     picture: { image: "💾", type: ImageType.String },
     cost: 2500,
@@ -413,34 +413,6 @@ const checks: IUpgrade[] = [
     description: "Check for bits 512 times as often",
     picture: { image: "🔍", type: ImageType.String },
     cost: 5120,
-    effects: [
-      {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Multiply,
-        modValue: 0.5
-      }
-    ]
-  },
-  {
-    name: "Millviginquaduple Checks",
-    preReqs: ["Quingendecsingle Checks"],
-    description: "Check for bits 1024 times as often",
-    picture: { image: "🔍", type: ImageType.String },
-    cost: 10240,
-    effects: [
-      {
-        variableAffected: GameVariable.BitCheckInterval,
-        variableMod: VariableModFunction.Multiply,
-        modValue: 0.5
-      }
-    ]
-  },
-  {
-    name: "Bimillquadraginocttuple Checks",
-    preReqs: ["Millviginquaduple Checks"],
-    description: "Check for bits 2048 times as often",
-    picture: { image: "🔍", type: ImageType.String },
-    cost: 20480,
     effects: [
       {
         variableAffected: GameVariable.BitCheckInterval,
