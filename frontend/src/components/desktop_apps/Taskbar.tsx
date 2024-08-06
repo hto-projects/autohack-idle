@@ -13,9 +13,9 @@ const Taskbar: React.FC = () => {
 
   const gameData: IGameData = useSelector((state: any) => state.gameData);
   const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
-  const taskBarColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
-  const taskBarTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
-  const taskBarTextSize: string = useSelector((state: IGameState) => state.styleData.textSize.taskbar);
+  const taskBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
+  const taskBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
+  const taskBarTextSize = useSelector((state: IGameState) => state.styleData.textSize.taskbar);
 
   return (
     <div

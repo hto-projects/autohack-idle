@@ -9,7 +9,7 @@ const Desktop: React.FC = () => {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
 
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-  const desktopColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
+  const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
   return (
     <div id="desktop" style={{ background: desktopColor, width: "100%", height: "100%", flexWrap: "wrap" }}>
       <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
