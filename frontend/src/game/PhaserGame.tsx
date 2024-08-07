@@ -16,8 +16,6 @@ export interface IRefPhaserGame {
   scene: Scene | null;
 }
 
-let visible = false;
-
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const dispatch = useDispatch();
@@ -107,10 +105,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     };
   }, [ref, gameData.numBits]);
 
-  function collectAll() {
-    if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable)) {
-      EventBus.emit("collect-all");
-    }
+  let visible = false;
+  if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
+    visible = true;
   }
 
   return (
@@ -123,7 +120,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
           height: "5%",
           fontSize: "18px"
         }}
-        onClick={collectAll}
+        onClick={() => EventBus.emit("collect-all")}
       >
         Collect All
       </button>

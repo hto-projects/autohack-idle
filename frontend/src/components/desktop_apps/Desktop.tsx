@@ -9,7 +9,7 @@ const Desktop: React.FC = () => {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
 
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-  const desktopColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
+  const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
   return (
     <div
       id="desktop"

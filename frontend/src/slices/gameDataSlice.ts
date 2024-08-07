@@ -124,9 +124,7 @@ const gameDataSlice = createSlice({
       EventBus.emit("upgrade-purchased", ups.acquired);
     },
     puzzleSolve: (state, action: PayloadAction<string>) => {
-      // Debugging
       if (state.solvedPuzzles.includes(action.payload)) {
-        console.log("Puzzle already in set");
         return;
       }
       state.solvedPuzzles.push(action.payload);
