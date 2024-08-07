@@ -16,8 +16,6 @@ export interface IRefPhaserGame {
   scene: Scene | null;
 }
 
-let visible = false;
-
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const dispatch = useDispatch();
@@ -107,15 +105,14 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     };
   }, [ref, gameData.numBits]);
 
-  function collectAll() {
-    if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable)) {
-      EventBus.emit("collect-all");
-    }
+  let visible = false;
+  if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
+    visible = true;
   }
 
   return (
     <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
-      <button style={{ visibility: visible ? "visible" : "hidden" }} onClick={collectAll}>
+      <button style={{ visibility: visible ? "visible" : "hidden" }} onClick={() => EventBus.emit("collect-all")}>
         Collect All
       </button>
       <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "90%" }}></div>

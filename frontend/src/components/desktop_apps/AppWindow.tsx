@@ -18,7 +18,7 @@ interface AppWindowProps {
 }
 
 const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
-  const windowBackgroundColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.window);
+  const windowBackgroundColor = useSelector((state: IGameState) => state.styleData.backgroundColor.window);
   let appWindowElements = null;
   switch (open) {
     case AppType.Collector:

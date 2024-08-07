@@ -11,7 +11,7 @@ export default function Desktop() {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-  const desktopColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
+  const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
 
   let terminalVis = true;
   for (let i = 0; i < PuzzleAppDirectory.puzzleSets[1].puzzles.length; i++) {

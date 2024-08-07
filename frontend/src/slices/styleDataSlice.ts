@@ -1,8 +1,17 @@
-import { ReactElement } from "react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Taskbar from "../components/desktop_apps/Taskbar";
 
-export const validStyleFunctions = {
+type TStyleFunction = {
+  (key: string): boolean;
+};
+
+export interface IValidStyleFunctions {
+  backgroundColor: TStyleFunction;
+  textColor: TStyleFunction;
+  textFont: TStyleFunction;
+  textSize: TStyleFunction;
+}
+
+export const validStyleFunctions: IValidStyleFunctions = {
   backgroundColor: (strColor) => {
     var check = new Option().style;
     check.color = strColor;
@@ -14,7 +23,7 @@ export const validStyleFunctions = {
     return check.color === strColor.toLowerCase();
   },
   textFont: (fontType) => {
-    return fontType;
+    return true; // originally "return fontType"
   },
   textSize: (pixelSize) => {
     var check = new Option().style;
@@ -23,7 +32,31 @@ export const validStyleFunctions = {
   }
 };
 
-const initialState = {
+export interface IStyleData {
+  backgroundColor: {
+    titlebar: string;
+    taskbar: string;
+    desktop: string;
+    window: string;
+  };
+  textColor: {
+    titlebar: string;
+    taskbar: string;
+    app: string;
+  };
+  textSize: {
+    app: string;
+    taskbar: string;
+    titlebar: string;
+  };
+  textFont: {
+    app: string;
+    taskbar: string;
+    titlebar: string;
+  };
+}
+
+const initialState: IStyleData = {
   backgroundColor: {
     titlebar: "#9caf88",
     taskbar: "darkblue",
@@ -54,5 +87,6 @@ const styleDataSlice = createSlice({
     resetStyle: (_state) => initialState
   }
 });
+
 export const { setStyle, resetStyle } = styleDataSlice.actions;
 export default styleDataSlice;

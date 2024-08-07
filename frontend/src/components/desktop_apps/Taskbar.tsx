@@ -8,13 +8,13 @@ import { IGameState } from "../../store";
 import { IGameData } from "../../slices/gameDataSlice";
 
 const Taskbar: React.FC = () => {
-  const gameData: IGameData = useSelector((state: any) => state.gameData);
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-  const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
-  const taskBarColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
-  const taskBarTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
 
+  const gameData: IGameData = useSelector((state: any) => state.gameData);
+  const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
+  const taskBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
+  const taskBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
   return (
     <div
       id="taskbar"
