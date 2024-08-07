@@ -53,11 +53,12 @@ export default function AppShortcut({ appType, setOpen, icon, useSmaller = false
 }
 function setSize(useSmaller: boolean) {
   let size = "18px";
+  let userTextSize = useSelector((state: IGameState) => state.styleData.textSize.app);
   if (!useSmaller) {
-    if (useSelector((state: IGameState) => state.styleData.textSize.app) === null) {
+    if (userTextSize === null) {
       size = "20px";
     } else {
-      size = useSelector((state: IGameState) => state.styleData.textSize.app);
+      size = userTextSize;
     }
   }
   return size;

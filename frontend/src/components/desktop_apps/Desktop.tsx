@@ -7,7 +7,7 @@ import { IGameState } from "../../store";
 import { IGameData } from "../../slices/gameDataSlice";
 import { PuzzleAppDirectory } from "../puzzles/PuzzleAppDirectory";
 
-const Desktop: React.FC = () => {
+export default function Desktop() {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
@@ -36,6 +36,4 @@ const Desktop: React.FC = () => {
       {display}
     </div>
   );
-};
-
-export default Desktop;
+}
