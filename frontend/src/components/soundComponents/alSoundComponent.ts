@@ -1,7 +1,7 @@
-import alSound from "./../../assets/Sounds/Other/al.wav";
+import alVoice from "./../../assets/Sounds/Other/al.wav";
 
-export function alVoice() {
-  const audioElement = new Audio(alSound);
+export function alSound() {
+  const audioElement = new Audio(alVoice);
 
   audioElement.play();
 }

@@ -1,6 +1,6 @@
 import { Physics } from "phaser";
 import { Collect } from "./scenes/Collect";
-import { Explosion } from "../components/soundComponents/ExplosionSoundComponent";
+import { explosionSound } from "../components/soundComponents/ExplosionSoundComponent";
 
 export default class Virus extends Physics.Arcade.Sprite {
   declare static scene: Collect;
@@ -37,7 +37,7 @@ export default class Virus extends Physics.Arcade.Sprite {
     this.removeAllListeners();
     this.anims.stop();
     this.anims.play("virusDeathAnim");
-    Explosion();
+    explosionSound();
     Virus.scene.time.delayedCall(50000, () => {
       super.destroy();
     });

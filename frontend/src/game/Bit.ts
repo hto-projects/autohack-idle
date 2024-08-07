@@ -1,7 +1,6 @@
 import { GameObjects } from "phaser";
 import { EventBus } from "./EventBus";
 import { Collect } from "./scenes/Collect";
-import { bitCollectSound } from "../components/soundComponents/BitCollectSoundComponent";
 
 export default class Bit extends GameObjects.Text {
   declare static scene: Collect;
@@ -50,6 +49,5 @@ export default class Bit extends GameObjects.Text {
     if (spawnVirus && Math.random() <= Bit.scene.virusSpawnVar) {
       Bit.scene.createVirus();
     }
-    bitCollectSound();
   }
 }
