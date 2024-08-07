@@ -16,8 +16,6 @@ export default function TerminalAppScreen() {
   const checkForCommands = () => {
     const inputElement = document.getElementById("command") as HTMLInputElement;
     const inputValue = inputElement.value;
-    console.log(inputElement);
-    console.log(inputValue);
     let responseValue: string = null;
 
     switch (inputValue.trim()) {
@@ -49,9 +47,6 @@ export default function TerminalAppScreen() {
       default:
         inputValue.trim();
         const [effect, target, value] = inputValue.split("/");
-        console.log(effect);
-        console.log(target);
-        console.log(value);
         if (
           styleData[effect] !== undefined &&
           styleData[effect][target] !== undefined &&

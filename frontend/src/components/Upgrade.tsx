@@ -48,8 +48,6 @@ export default function Upgrade({ up, status, onBuy, currencyAmount }: IUpgradeP
       console.log(`Upgrade ${up} has invalid status ${status}`);
       break;
   }
-  // console.log("foo");
-  // console.log(up.picture);
 
   return (
     <div className={`upgrade status-${status}`} onClick={onClickEvent} style={{ background: bgColor }}>

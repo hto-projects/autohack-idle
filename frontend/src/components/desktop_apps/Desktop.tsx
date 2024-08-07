@@ -17,6 +17,7 @@ export default function Desktop() {
   for (let i = 0; i < PuzzleAppDirectory.puzzleSets[1].puzzles.length; i++) {
     if (!gameData.solvedPuzzles.includes(PuzzleAppDirectory.puzzleSets[1].puzzles[i].name)) {
       terminalVis = false;
+      break;
     }
   }
 

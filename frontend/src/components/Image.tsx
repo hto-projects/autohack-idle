@@ -30,7 +30,6 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
 }
 
 export function UpgradeImage({ picture }: ImageWrapperProps) {
-  // console.log("upgrade picture");
   return (
     <Image
       className={"upgrade-image"}
