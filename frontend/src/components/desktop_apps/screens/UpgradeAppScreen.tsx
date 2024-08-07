@@ -13,7 +13,9 @@ export default function UpgradeAppScreen() {
 
   return (
     <>
-      <UpgradesContainer></UpgradesContainer>
+      <div style={{ height: "75%", width: "100%" }}>
+        <UpgradesContainer></UpgradesContainer>
+      </div>
       <button onClick={() => dispatch(sellData(true))}>Sell Data to Trustworthy Organazations</button>
       <button onClick={() => dispatch(sellData(false))}>Sell Data to Shady Organazations</button>
     </>
