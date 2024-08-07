@@ -1,3 +1,4 @@
+import { PuzzleNames } from "../frontend/src/components/puzzles/PuzzleAppDirectory";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
 const other: IUpgrade[] = [
@@ -34,8 +35,13 @@ const other: IUpgrade[] = [
 const learn: IUpgrade[] = [
   {
     name: "Collect All",
-    // Might be recommend to prepend every puzzle prereq string with "puz: " for debugging
-    preReqs: ["Make a Collect All Button"],
+    preReqs: [
+      PuzzleNames.Collect_all_button,
+      PuzzleNames.Collect_all_function,
+      PuzzleNames.Bits_array,
+      PuzzleNames.For_loop_to_collect_bits,
+      PuzzleNames.Complete_collect_all_upgrade
+    ],
     description: "Collects all bits on screen",
     picture: { image: "💰", type: ImageType.String },
     cost: 200,
