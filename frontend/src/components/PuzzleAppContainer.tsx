@@ -34,7 +34,7 @@ export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProp
         <button
           key={currPuzSetName}
           onClick={() => setVisiblePuzzleSet(i)}
-          style={{ fontSize: "22px", width: "45%", height: "10%", borderWidth: "3px", marginBottom: "1%" }}
+          style={{ fontSize: "22px", width: "45%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
         >
           {`Set ${i + 1}: ${currPuzSetName} (${getSetState(i)})`}
         </button>
@@ -44,7 +44,7 @@ export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProp
       <>
         <div>{puzzleObj.titleNode}</div>
         {buttons}
-        <div style={{ marginLeft: "33%" }}>
+        <div style={{ marginRight: "4%", marginTop: "-3%" }}>
           <HelpAppImage picture={{ image: "puzzle", type: ImageType.Png }}></HelpAppImage>{" "}
         </div>
       </>

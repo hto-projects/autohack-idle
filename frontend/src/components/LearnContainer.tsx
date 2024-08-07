@@ -20,7 +20,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
         <button
           key={currChapter}
           onClick={() => setVisibleChapter(i)}
-          style={{ fontSize: "22px", width: "45%", height: "10%", borderWidth: "3px", marginBottom: "1%" }}
+          style={{ fontSize: "22px", width: "45%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
         >
           Chapter {i + 1}: {currChapter}
         </button>
@@ -30,7 +30,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
       <>
         <div>{learnObj.titleNode}</div>
         {buttons}
-        <div style={{ marginLeft: "33%" }}>
+        <div style={{ marginRight: "4%", marginTop: "-2%", marginBottom: "-1%" }}>
           <HelpAppImage picture={{ image: "learn", type: ImageType.Png }}></HelpAppImage>{" "}
         </div>
       </>
