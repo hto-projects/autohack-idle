@@ -30,7 +30,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
       <>
         <div>{learnObj.titleNode}</div>
         {buttons}
-        <div style={{ marginRight: "4%", marginTop: "-2%", marginBottom: "-1%" }}>
+        <div style={{ marginRight: "3%", marginTop: "-2%", marginBottom: "-1%" }}>
           <HelpAppImage picture={{ image: "learn", type: ImageType.Png }}></HelpAppImage>{" "}
         </div>
       </>

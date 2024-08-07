@@ -14,7 +14,7 @@ export default function AppShortcut({ appType, setOpen, icon, useSmaller = false
   const appTextFont: string = useSelector((state: IGameState) => state.styleData.textFont.app);
 
   const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
-  const size = useSmaller ? "64px" : "120px";
+  const size = useSmaller ? "64px" : "160px";
   const appTextSize = useSmaller ? "18px" : "20px";
 
   return (

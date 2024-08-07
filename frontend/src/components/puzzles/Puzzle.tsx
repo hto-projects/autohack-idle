@@ -85,7 +85,7 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
   return (
     <div
       className={`normalLesson ${open && "showing"}`}
-      style={{ color: "grey", scrollBehavior: "smooth", overflow: "auto", height: "80%", width: "80%" }}
+      style={{ color: "grey", scrollBehavior: "smooth", overflow: "auto", height: "85%", width: "80%" }}
     >
       <h3 style={{ color: "black", textAlign: "left" }}>{`Puzzle ${index + 1}: ${puzzle.name}`}</h3>
       <p>{puzzle.description}</p>

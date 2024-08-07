@@ -178,3 +178,10 @@ body {
   color: darkGreen;
   margin-left: 5%;
 }
+
+#desktop {
+  background: url("assets/backgrounds/BackgroundBasic3.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
