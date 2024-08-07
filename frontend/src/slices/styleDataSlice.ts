@@ -1,6 +1,4 @@
-import { ReactElement } from "react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Taskbar from "../components/desktop_apps/Taskbar";
 
 export const validStyleFunctions = {
   backgroundColor: (strColor) => {
@@ -23,12 +21,14 @@ export const validStyleFunctions = {
   }
 };
 
-const initialState = {
+export const initialState = {
   backgroundColor: {
     titlebar: "#9caf88",
-    taskbar: "darkblue",
-    desktop: "blue",
-    window: "lightgrey"
+    taskbar: "#333",
+    desktop: "url('assets/backgrounds/BackgroundBasic.png')",
+    window: "lightgrey",
+    horizontalbar: "#A69681",
+    verticalbar: "#A69681"
   },
   textColor: {
     titlebar: "black",

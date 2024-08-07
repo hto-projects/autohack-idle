@@ -14,10 +14,13 @@ const Desktop: React.FC = () => {
     <div
       id="desktop"
       style={{
-        //background: desktopColor,
+        background: desktopColor,
         width: "100%",
         height: "100%",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "top"
       }}
     >
       <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
@@ -28,7 +31,7 @@ const Desktop: React.FC = () => {
         {/* {<AppShortcut appType={AppType.Login} setOpen={setOpenWindow}></AppShortcut>} */}
         {/* <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut>
+        {/* <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Terminal} setOpen={setOpenWindow}></AppShortcut>
       </div>
       {display}

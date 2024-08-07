@@ -82,7 +82,10 @@ export const PuzzleAppDirectory: IPuzzleModule = {
           questions: [
             {
               label: Labels.JS,
-              answers: ["const allBits = []; allBits[0] = Bit1; allBits[1] = Bit2; allBits[2] = Bit3;"]
+              answers: [
+                "const allBits = []; allBits[0] = Bit1; allBits[1] = Bit2; allBits[2] = Bit3;",
+                "const allBits = [Bit1, Bit2,Bit3];"
+              ]
             }
           ]
         },

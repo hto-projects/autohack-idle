@@ -179,9 +179,7 @@ body {
   margin-left: 5%;
 }
 
-#desktop {
-  background: url("assets/backgrounds/BackgroundBasic3.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
+#appText {
+  text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000,
+    -1px 1px #000;
 }
