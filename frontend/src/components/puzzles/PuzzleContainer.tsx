@@ -17,7 +17,7 @@ export default function PuzzleContainer({ titleElements, puzzles }: IPuzzleConta
   const [visiblePuzzle, setVisiblePuzzle] = useState(-1);
 
   const getPuzStatus = (checkedPuz: number): PuzzleSolvedStatus => {
-    if (gameData.solvedPuzzles.includes("Puz: " + puzzles[checkedPuz].name)) {
+    if (gameData.solvedPuzzles.includes(puzzles[checkedPuz].name)) {
       return PuzzleSolvedStatus.solved;
     }
     return PuzzleSolvedStatus.unsolved;

@@ -16,7 +16,7 @@ export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProp
   const getSetState = (checkedSet: number): string => {
     const puzzleNames = flatObjByProp(puzzleObj.puzzleSets[checkedSet].puzzles, "name");
     for (const puzzle of puzzleNames) {
-      if (!solvedPuzzles.includes("Puz: " + puzzle)) {
+      if (!solvedPuzzles.includes(puzzle)) {
         return "incomplete";
       }
     }

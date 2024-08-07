@@ -95,12 +95,10 @@ const gameDataSlice = createSlice({
       EventBus.emit("upgrade-purchased", ups.acquired);
     },
     puzzleSolve: (state, action: PayloadAction<string>) => {
-      // Debugging
-      if (state.solvedPuzzles.includes("Puz: " + action.payload)) {
-        console.log("Puzzle already in set");
+      if (state.solvedPuzzles.includes(action.payload)) {
         return;
       }
-      state.solvedPuzzles.push("Puz: " + action.payload);
+      state.solvedPuzzles.push(action.payload);
     },
     categorizeUpgrades: (state) => {
       const ups = state.ups;

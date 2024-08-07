@@ -16,8 +16,6 @@ export interface IRefPhaserGame {
   scene: Scene | null;
 }
 
-let visible = false;
-
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const dispatch = useDispatch();
@@ -107,10 +105,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     };
   }, [ref, gameData.numBits]);
 
+  let visible = false;
   if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
     visible = true;
-  } else {
-    visible = false;
   }
 
   return (
