@@ -1,7 +1,7 @@
 import { AppType } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
-import { openSound } from "../soundComponents/openSoundComponent";
+import { playSoundEffect } from "../../soundEffect";
 
 interface AppShortcutProps {
   appType: AppType;
@@ -42,7 +42,7 @@ export default function AppShortcut({ appType, setOpen, icon, useSmaller = false
         }}
         onClick={() => {
           setOpen(appType);
-          openSound();
+          playSoundEffect("open");
         }}
       ></div>
       {appType}

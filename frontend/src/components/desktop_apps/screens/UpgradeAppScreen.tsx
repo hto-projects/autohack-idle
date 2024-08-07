@@ -2,8 +2,7 @@ import UpgradesContainer from "../../UpgradesContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { categorizeUpgrades, IGameData, sellData } from "../../../slices/gameDataSlice";
 import { IGameState } from "../../../store";
-import { shadySound } from "../../soundComponents/shadySoundComponents";
-import { trustySound } from "../../soundComponents/trustySoundComponent";
+import { playSoundEffect } from "../../../soundEffect";
 
 export default function UpgradeAppScreen() {
   const dispatch = useDispatch();
@@ -15,12 +14,12 @@ export default function UpgradeAppScreen() {
 
   function trustySelling() {
     dispatch(sellData(true));
-    trustySound();
+    playSoundEffect("trustworthy");
   }
 
   function shadySelling() {
     dispatch(sellData(false));
-    shadySound();
+    playSoundEffect("shady");
   }
 
   return (
