@@ -1,5 +1,5 @@
-import { PuzzleNames } from "../frontend/src/components/puzzles/PuzzleAppDirectory";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
+import { PuzzleNames } from "../frontend/src/components/puzzles/PuzzleAppDirectory";
 
 const other: IUpgrade[] = [
   /*{
