@@ -61,19 +61,16 @@ export function HelpAppImage({ picture }: ImageWrapperProps) {
   updatedPicture.image = `app_icons/${picture.image}`;
 
   return (
-    <div>
-      <Image
-        className={"desktop-image"}
-        picture={updatedPicture}
-        imgStyle={{
-          width: "380px",
-          height: "380px",
-          imageRendering: "pixelated",
-          marginTop: "10px",
-          marginLeft: "-70%",
-          display: "flex"
-        }}
-      ></Image>
-    </div>
+    <Image
+      className={"help-image"}
+      picture={updatedPicture}
+      imgStyle={{
+        width: "480px",
+        height: "480px",
+        imageRendering: "pixelated",
+        marginTop: "3%",
+        marginLeft: "3.5%"
+      }}
+    ></Image>
   );
 }

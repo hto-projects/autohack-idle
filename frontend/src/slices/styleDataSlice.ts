@@ -38,6 +38,8 @@ export interface IStyleData {
     taskbar: string;
     desktop: string;
     window: string;
+    horizontalbar: string;
+    verticalbar: string;
   };
   textColor: {
     titlebar: string;
@@ -56,12 +58,14 @@ export interface IStyleData {
   };
 }
 
-const initialState: IStyleData = {
+export const initialState: IStyleData = {
   backgroundColor: {
     titlebar: "#9caf88",
-    taskbar: "darkblue",
-    desktop: "blue",
-    window: "lightgrey"
+    taskbar: "#333",
+    desktop: "url('assets/backgrounds/BackgroundBasic.png')",
+    window: "lightgrey",
+    horizontalbar: "#A69681",
+    verticalbar: "#A69681"
   },
   textColor: {
     titlebar: "black",

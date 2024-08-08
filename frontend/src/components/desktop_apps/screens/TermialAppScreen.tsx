@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setStyle, validStyleFunctions } from "../../../slices/styleDataSlice";
+import { initialState, setStyle, validStyleFunctions } from "../../../slices/styleDataSlice";
 import { IGameState } from "../../../store";
 
 interface ICommand {
@@ -33,8 +33,8 @@ export default function TerminalAppScreen() {
         responseValue =
           "This is the game object that the terminal command will effect. Notes: The textSize/\
          effect can only impact the app target. The textFont/ and textColor/ effects can't be used on\
-          the window target. The textFont/ effect also cannot be used on the taskbar target. Valid \
-          Targets:  /app/     /taskbar/    /titlebar/     /window/";
+          the window target. The textFont/ effect also cannot be used on the taskbar 3 targets. Valid \
+          Targets:  /app/     /taskbar/    /titlebar/    /horizontalbar/    /verticalbar/     /window/";
         break;
       case "Value":
         responseValue =
@@ -46,11 +46,10 @@ export default function TerminalAppScreen() {
       default:
         inputValue.trim();
         const [effect, target, value] = inputValue.split("/");
-        if (
-          styleData[effect] !== undefined &&
-          styleData[effect][target] !== undefined &&
-          validStyleFunctions[effect](value)
-        ) {
+        if (styleData[effect] !== undefined && styleData[effect][target] !== undefined && value === "initial") {
+          dispatch(setStyle({ effect: effect, target: target, value: initialState[effect][target] }));
+          responseValue = target + " " + effect + " is now " + value;
+        } else if (validStyleFunctions[effect](value)) {
           dispatch(setStyle({ effect: effect, target: target, value: value }));
           responseValue = target + " " + effect + " is now " + value;
         } else {

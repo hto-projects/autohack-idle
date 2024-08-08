@@ -15,6 +15,7 @@ const Taskbar: React.FC = () => {
   const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
   const taskBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
   const taskBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
+  const taskBarTextSize = useSelector((state: IGameState) => state.styleData.textSize.taskbar);
   return (
     <div
       id="taskbar"
@@ -26,22 +27,29 @@ const Taskbar: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        fontSize: "18px"
+        fontSize: taskBarTextSize,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover"
       }}
     >
       <div style={{ marginRight: "2%", marginLeft: "1%", marginTop: "1%" }}>
         <AppShortcut appType={AppType.Login} setOpen={setOpenWindow} useSmaller={true}></AppShortcut>
       </div>
       <div>
-        <p style={{ width: "200%" }}>{userInfo !== null && `Hi, ${userInfo.name}`}</p>
+        <p id="appText" style={{ width: "200%" }}>
+          {userInfo !== null && `Hi, ${userInfo.name}!`}
+        </p>
       </div>
       <div>{display}</div>
-      <p style={{ textAlign: "center", marginRight: "65%", marginBottom: "0%", marginLeft: "5%", width: "200%" }}>
+      <p id="appText" style={{ textAlign: "center", marginRight: "35%", marginLeft: "35%", width: "200%" }}>
         Bits: {gameData.numBits}
         <br></br>PixelPayout: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
       <div style={{ marginRight: "2%" }}>
         <AutoCollector></AutoCollector>
+      </div>
+      <div style={{ marginRight: "1%" }}>
+        <AppShortcut appType={AppType.Help} setOpen={setOpenWindow} useSmaller={true}></AppShortcut>
       </div>
       <div style={{ marginRight: "1%" }}>
         <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow} useSmaller={true}></AppShortcut>
