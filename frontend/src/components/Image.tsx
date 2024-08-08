@@ -19,7 +19,7 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
       break;
     case ImageType.Png:
       imageNode = (
-        <img src={`public/assets/${picture.image}.png`} alt={picture.image.replace("/", "_")} style={imgStyle}></img>
+        <img src={`assets/${picture.image}.png`} alt={picture.image.replace("/", "_")} style={imgStyle}></img>
       );
       break;
     default:
