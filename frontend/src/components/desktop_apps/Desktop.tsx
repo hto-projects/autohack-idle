@@ -34,6 +34,7 @@ export default function Desktop() {
         backgroundPosition: "top"
       }}
     >
+      {/* <audio src="./../../../public/assets/audio/music/Virus Attack !!.wav" autoPlay loop></audio> */}
       <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
@@ -47,5 +48,6 @@ export default function Desktop() {
       </div>
       {display}
     </div>
+    //audio is in as a placeholder for Leo's song
   );
 }

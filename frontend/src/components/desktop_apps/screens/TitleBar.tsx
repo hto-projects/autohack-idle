@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { AppType } from "../../../../../shared/types";
 import { useKeyDown } from "../../../../frontend-util";
 import { IGameState } from "../../../store";
-
+import { playSoundEffect } from "../../../soundEffect";
 interface TitleBarProps {
   open: AppType;
   setOpen: () => void;
@@ -38,7 +38,13 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
         {open}
       </div>
       <div style={{ width: "100%" }}>
-        <button style={{ textAlign: "center", backgroundColor: "red", color: "white" }} onClick={setOpen}>
+        <button
+          style={{ textAlign: "center", backgroundColor: "red", color: "white" }}
+          onClick={() => {
+            playSoundEffect("close");
+            setOpen();
+          }}
+        >
           X
         </button>
       </div>
