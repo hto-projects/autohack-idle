@@ -38,7 +38,7 @@ const helpApps: ItextBox[] = [
   },
   {
     name: "Terminal",
-    body: "This is the terminal app. This is where you can input specific commands in order to change the CSS of certain game objects. This works by typing in the atribute you want to change (ex: backgroundColor), the part of the game you want to target (ex: taskbar), and the value you want to change it to (ex: red). It looks like effect/target/value (ex: backgroundColor/taskbar/red)."
+    body: "This is the terminal app. This is where you can input specific commands in order to change the CSS of certain game objects. If it's your first time, use the help command to get a brief explanation on how the commands work and how they should run."
   }
 ];
 

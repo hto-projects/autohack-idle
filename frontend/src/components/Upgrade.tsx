@@ -45,7 +45,12 @@ export default function Upgrade({ up, status, currencyAmount, setModal }: IUpgra
   };
 
   return (
-    <div ref={ref} className={`upgrade status-${status}`} onClick={onClickEvent} style={{ background: bgColor }}>
+    <div
+      ref={ref}
+      className={`upgrade status-${status}`}
+      onClick={onClickEvent}
+      style={{ background: bgColor, fontSize: "70px" }}
+    >
       <UpgradeImage picture={up.picture}></UpgradeImage>
     </div>
   );
