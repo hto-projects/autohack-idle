@@ -1,6 +1,8 @@
 import { useState, ReactNode } from "react";
 import LearnLessonContainer from "./LearnLessonContainer";
 import { ILearnModule } from "./learn_lessons/LearnAppDirectory";
+import { HelpAppImage } from "./Image";
+import { ImageType, IAppImage } from "../../../shared/types";
 
 interface LearnContainerProps {
   learnObj: ILearnModule;
@@ -15,7 +17,11 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
     for (let i = 0; i < learnObj.chapters.length; i++) {
       const currChapter = learnObj.chapters[i].name;
       buttons.push(
-        <button key={currChapter} onClick={() => setVisibleChapter(i)}>
+        <button
+          key={currChapter}
+          onClick={() => setVisibleChapter(i)}
+          style={{ fontSize: "22px", width: "45%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
+        >
           Chapter {i + 1}: {currChapter}
         </button>
       );
@@ -24,6 +30,9 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
       <>
         <div>{learnObj.titleNode}</div>
         {buttons}
+        <div style={{ marginRight: "3%", marginTop: "-2%", marginBottom: "-1%" }}>
+          <HelpAppImage picture={{ image: "learn", type: ImageType.Png }}></HelpAppImage>{" "}
+        </div>
       </>
     );
   } else {
@@ -34,7 +43,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
           titleElements={
             <div>
               <h3>{chapter.name}</h3>
-              <p>{chapter.description}</p>
+              <p style={{ marginRight: "5%", marginLeft: "5%" }}>{chapter.description}</p>
             </div>
           }
           lessons={chapter.lessons}
@@ -44,5 +53,9 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
     );
   }
 
-  return <div className={"learnContainer"}>{node}</div>;
+  return (
+    <div className={"learnContainer"} style={{ height: "99%" }}>
+      {node}
+    </div>
+  );
 }

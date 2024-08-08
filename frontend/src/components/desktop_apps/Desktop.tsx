@@ -9,9 +9,20 @@ const Desktop: React.FC = () => {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
 
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-  const desktopColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
+  const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
   return (
-    <div id="desktop" style={{ background: desktopColor, width: "100%", height: "100%", flexWrap: "wrap" }}>
+    <div
+      id="desktop"
+      style={{
+        background: desktopColor,
+        width: "100%",
+        height: "100%",
+        flexWrap: "wrap",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "top"
+      }}
+    >
       <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
@@ -20,7 +31,7 @@ const Desktop: React.FC = () => {
         {/* {<AppShortcut appType={AppType.Login} setOpen={setOpenWindow}></AppShortcut>} */}
         {/* <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
-        <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut>
+        {/* <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut> */}
         <AppShortcut appType={AppType.Terminal} setOpen={setOpenWindow}></AppShortcut>
       </div>
       {display}

@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { enableMapSet } from "immer";
 import authSlice, { IAuthData } from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
 import gameDataSlice, { IGameData } from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
-import styleDataSlice from "./slices/styleDataSlice";
+import styleDataSlice, { IStyleData } from "./slices/styleDataSlice";
 
 export interface IGameState {
-  styleData: any;
+  styleData: IStyleData;
   auth: IAuthData;
   gameData: IGameData;
 }

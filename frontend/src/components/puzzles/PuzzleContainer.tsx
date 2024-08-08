@@ -28,7 +28,11 @@ export default function PuzzleContainer({ titleElements, puzzles }: IPuzzleConta
     for (let i = 0; i < puzzles.length; i++) {
       const currPuzName = puzzles[i].name;
       buttons.push(
-        <button key={currPuzName} onClick={() => setVisiblePuzzle(i)}>
+        <button
+          key={currPuzName}
+          onClick={() => setVisiblePuzzle(i)}
+          style={{ fontSize: "18px", width: "40%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
+        >
           Puzzle {i + 1}: {currPuzName} {getPuzStatus(i)}
         </button>
       );

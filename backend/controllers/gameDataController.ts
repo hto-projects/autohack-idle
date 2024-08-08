@@ -1,5 +1,5 @@
 import GameDataModel from "../models/gameDataModel";
-import { IGameData } from "../../shared/types";
+import { IGameData } from "../../frontend/src/slices/gameDataSlice";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel";
 
