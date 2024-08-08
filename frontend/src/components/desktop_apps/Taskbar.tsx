@@ -40,11 +40,11 @@ const Taskbar: React.FC = () => {
         </p>
       </div>
       <div>{display}</div>
-      <p id="appText" style={{ textAlign: "center", marginRight: "35%", marginLeft: "35%", width: "200%" }}>
+      <p id="appText" style={{ textAlign: "center", marginRight: "34%", marginLeft: "34%", width: "200%" }}>
         Bits: {gameData.numBits}
         <br></br>PixelPayout: {Number(gameData.currencyAmount.toFixed(1))}
       </p>
-      <div style={{ marginRight: "2%" }}>
+      <div style={{ marginRight: "2%", textAlign: "center" }}>
         <AutoCollector></AutoCollector>
       </div>
       <div style={{ marginRight: "1%" }}>
