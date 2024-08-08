@@ -10,12 +10,10 @@ import { IGameData } from "../../slices/gameDataSlice";
 const Taskbar: React.FC = () => {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-
   const gameData: IGameData = useSelector((state: any) => state.gameData);
   const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
   const taskBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
   const taskBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
-  const taskBarTextSize = useSelector((state: IGameState) => state.styleData.textSize.taskbar);
   return (
     <div
       id="taskbar"
@@ -27,9 +25,10 @@ const Taskbar: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        fontSize: taskBarTextSize,
+        fontSize: "16px",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        fontFamily: "PixeloidMono"
       }}
     >
       <div style={{ marginRight: "2%", marginLeft: "1%", marginTop: "1%" }}>

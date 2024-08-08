@@ -13,8 +13,9 @@ export default function TerminalAppScreen() {
   const styleData = useSelector((state: IGameState) => state.styleData);
 
   const checkForCommands = () => {
-    const inputElement = document.getElementById("command") as HTMLInputElement;
+    const inputElement = document.getElementById("GETIT") as HTMLInputElement;
     const inputValue = inputElement.value;
+    console.log(inputValue);
     let responseValue: string = null;
 
     switch (inputValue.trim()) {
@@ -26,34 +27,46 @@ export default function TerminalAppScreen() {
         break;
       case "Effect":
         responseValue =
-          "This is what the terminal command will do, such as color, font, or size changes. \
-        Valid Effects:   textColor/     textSize/     textFont/     backgroundColor/";
+          "This is what the terminal command will do, such as color or size changes. \
+        Valid Effects:   textColor/     textSize/    backgroundColor/";
         break;
       case "Target":
         responseValue =
-          "This is the game object that the terminal command will effect. Notes: The textSize/\
-         effect can only impact the app target. The textFont/ and textColor/ effects can't be used on\
-          the window target. The textFont/ effect also cannot be used on the taskbar 3 targets. Valid \
-          Targets:  /app/     /taskbar/    /titlebar/    /horizontalbar/    /verticalbar/     /window/";
+          "This is the game object that the terminal command will effect. The app target refers \
+           to the app icons amd window refers to the actual window that pops up when an app is clicked.\
+            Notes: The backgroundColor/ effect cannot impact the app target. The textSize/ effect can only impact the app target. The textColor/ \
+            effects can't be used on the last 3 targets. Valid  Targets:  /app/     /taskbar/  \
+              /titlebar/    /horizontalbar/    /verticalbar/     /window/";
         break;
       case "Value":
         responseValue =
           "This is what value the terimal command will change the targeted object to. This is \
-        the most expansive field as it can be any valid color or pixel size so examples are given instead\
-         of all possible values, also this is the only field that isn't case-sensitive.  Examples:    green   \
-         Salmon    20px     arial    pixeloidMono    mOnOspAce YeLLow";
+          the most expansive field as it can be any valid color or pixel size so examples are given instead\
+         of all possible values, also this is the only field that isn't case-sensitive. Note: If you want \
+         to set something back to initial, use /initial for the value feild. Examples:    green   \
+         Salmon    20px";
         break;
       default:
         inputValue.trim();
         const [effect, target, value] = inputValue.split("/");
-        if (styleData[effect] !== undefined && styleData[effect][target] !== undefined && value === "initial") {
+        if (styleData[effect] === undefined) {
+          responseValue = `Invalid Effect: ${effect}`;
+          break;
+        }
+
+        if (styleData[effect][target] === undefined) {
+          responseValue = `Invalid Target: ${target}`;
+          break;
+        }
+
+        if (value === "initial") {
           dispatch(setStyle({ effect: effect, target: target, value: initialState[effect][target] }));
-          responseValue = target + " " + effect + " is now " + value;
+          responseValue = `${target} ${effect} is now it's initial value`;
         } else if (validStyleFunctions[effect](value)) {
           dispatch(setStyle({ effect: effect, target: target, value: value }));
-          responseValue = target + " " + effect + " is now " + value;
+          responseValue = `${target} ${effect} is now ${value}`;
         } else {
-          responseValue = "Invalid Command";
+          responseValue = `Invalid Value: ${value}`;
         }
         break;
     }
@@ -76,12 +89,11 @@ export default function TerminalAppScreen() {
         overflow: "auto"
       }}
     >
-      <text style={{ color: "white", fontSize: 25, marginLeft: 5 }}>
-        {" "}
+      <span style={{ color: "white", fontSize: 25, marginLeft: 5 }}>
         AutoHack Idle [Version 0.0.0.1] (c) Hyland Corporation
-      </text>
+      </span>
       <div style={{ background: "black", width: "10%", height: "5%", display: "flex", flexDirection: "column" }}></div>
-      <text style={{ color: "lightgreen", width: "50%", marginLeft: "7px", flex: "flex", flexWrap: "wrap" }}>
+      <span style={{ color: "lightgreen", width: "50%", marginLeft: "7px", flex: "flex", flexWrap: "wrap" }}>
         {allPreviousCommands.map((e) => (
           <>
             {e.input}
@@ -90,7 +102,7 @@ export default function TerminalAppScreen() {
             <br></br>
           </>
         ))}
-      </text>
+      </span>
       <div>
         <form
           onSubmit={(e) => {
@@ -99,7 +111,7 @@ export default function TerminalAppScreen() {
           }}
         >
           <input
-            id="command"
+            id="GETIT"
             style={{
               color: "white",
               background: "black",

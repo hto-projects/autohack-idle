@@ -7,7 +7,6 @@ type TStyleFunction = {
 export interface IValidStyleFunctions {
   backgroundColor: TStyleFunction;
   textColor: TStyleFunction;
-  textFont: TStyleFunction;
   textSize: TStyleFunction;
 }
 
@@ -21,9 +20,6 @@ export const validStyleFunctions: IValidStyleFunctions = {
     var check = new Option().style;
     check.color = strColor;
     return check.color === strColor.toLowerCase();
-  },
-  textFont: (fontType) => {
-    return true; // originally "return fontType"
   },
   textSize: (pixelSize) => {
     var check = new Option().style;
@@ -48,13 +44,6 @@ export interface IStyleData {
   };
   textSize: {
     app: string;
-    taskbar: string;
-    titlebar: string;
-  };
-  textFont: {
-    app: string;
-    taskbar: string;
-    titlebar: string;
   };
 }
 
@@ -74,10 +63,6 @@ export const initialState: IStyleData = {
   },
   textSize: {
     app: "20px"
-  },
-  textFont: {
-    app: "PixeloidMono",
-    titlebar: "PixeloidMono"
   }
 };
 
