@@ -12,15 +12,15 @@ export default function UpgradeAppScreen() {
     dispatch(categorizeUpgrades());
   }
 
-  function trustySelling() {
+  const trustySelling = () => {
     dispatch(sellData(true));
     playSoundEffect("trustworthy");
-  }
+  };
 
-  function shadySelling() {
+  const shadySelling = () => {
     dispatch(sellData(false));
     playSoundEffect("shady");
-  }
+  };
 
   return (
     <>
