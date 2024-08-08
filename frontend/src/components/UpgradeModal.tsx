@@ -1,8 +1,6 @@
 import { bgAvailableCSS, IModal, initialUpgradeForModalState } from "./UpgradesContainer";
 import { IUpgrade } from "../../../shared/types";
 import { ReactNode } from "react";
-import Taskbar from "./desktop_apps/Taskbar";
-import TitleBar from "./desktop_apps/screens/TitleBar";
 
 interface IUpgradeModalProps {
   up: IModal;
@@ -11,7 +9,6 @@ interface IUpgradeModalProps {
   setModalUpgrade: React.Dispatch<React.SetStateAction<IModal>>;
 }
 
-const width = 380;
 const borderRadius = "16px";
 
 export default function UpgradeModal({ up, percentage, onBuy, setModalUpgrade }: IUpgradeModalProps) {
@@ -36,7 +33,7 @@ export default function UpgradeModal({ up, percentage, onBuy, setModalUpgrade }:
   return (
     <div
       style={{
-        backgroundColor: "orange",
+        backgroundColor: "green",
         borderRadius: "6px",
         position: "fixed",
         display: "flex",

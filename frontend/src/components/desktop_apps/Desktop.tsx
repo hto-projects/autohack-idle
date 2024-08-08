@@ -4,12 +4,23 @@ import AppWindow from "./AppWindow";
 import AppShortcut from "./AppShortcut";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
+import { IGameData } from "../../slices/gameDataSlice";
+import { PuzzleAppDirectory } from "../puzzles/PuzzleAppDirectory";
 
-const Desktop: React.FC = () => {
+export default function Desktop() {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
-
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
   const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
+
+  let terminalVis = true;
+  for (let i = 0; i < PuzzleAppDirectory.puzzleSets[1].puzzles.length; i++) {
+    if (!gameData.solvedPuzzles.includes(PuzzleAppDirectory.puzzleSets[1].puzzles[i].name)) {
+      terminalVis = false;
+      break;
+    }
+  }
+
   return (
     <div
       id="desktop"
@@ -26,17 +37,15 @@ const Desktop: React.FC = () => {
       <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
-        {/* <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut> */}
+        <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
+        <AppShortcut appType={AppType.Terminal} setOpen={setOpenWindow} visible={terminalVis}></AppShortcut>
         <AppShortcut appType={AppType.Learn} setOpen={setOpenWindow}></AppShortcut>
+        {/* <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut> */}
+        {/* <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut> */}
         {/* {<AppShortcut appType={AppType.Login} setOpen={setOpenWindow}></AppShortcut>} */}
         {/* <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut> */}
-        <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
-        {/* <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut> */}
-        <AppShortcut appType={AppType.Terminal} setOpen={setOpenWindow}></AppShortcut>
       </div>
       {display}
     </div>
   );
-};
-
-export default Desktop;
+}

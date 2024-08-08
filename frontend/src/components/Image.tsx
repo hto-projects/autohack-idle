@@ -30,16 +30,33 @@ export function Image({ className, picture, imgStyle }: ImageProps) {
 }
 
 export function UpgradeImage({ picture }: ImageWrapperProps) {
-  // console.log("upgrade picture");
   return (
     <Image
       className={"upgrade-image"}
       picture={picture}
-      imgStyle={
-        {
-          /*verticalAlign: "-17%", width: "21.97px", height: "21px", marginRight: "1%"*/
-        }
-      }
+      imgStyle={{
+        verticalAlign: "17%",
+        width: "21.97px",
+        height: "21px",
+        marginRight: "1%",
+        fontSize: "700px"
+      }}
+    ></Image>
+  );
+}
+
+export function ALImage({ picture }: ImageWrapperProps) {
+  return (
+    <Image
+      className={"al-image"}
+      picture={picture}
+      imgStyle={{
+        verticalAlign: ".01%",
+        width: "25px",
+        height: "25px",
+        marginRight: "1%",
+        fontSize: "35px"
+      }}
     ></Image>
   );
 }
