@@ -42,7 +42,15 @@ export interface IPuzzleModule {
 }
 
 export const PuzzleAppDirectory: IPuzzleModule = {
-  titleNode: undefined,
+  titleNode: (
+    <div>
+      <h3> Puzzle Sets: </h3>
+      <p style={{ marginRight: "5%", marginLeft: "5%" }}>
+        Choose which puzzle set you want to try to solve. Once all of the puzzles in a puzzle set are solved, you may
+        unlock a new feature!
+      </p>
+    </div>
+  ),
   puzzleSets: [
     {
       name: "Collect All Upgrade",
@@ -74,7 +82,10 @@ export const PuzzleAppDirectory: IPuzzleModule = {
           questions: [
             {
               label: Labels.JS,
-              answers: ["const allBits = []; allBits[0] = Bit1; allBits[1] = Bit2; allBits[2] = Bit3;"]
+              answers: [
+                "const allBits = []; allBits[0] = Bit1; allBits[1] = Bit2; allBits[2] = Bit3;",
+                "const allBits = [Bit1, Bit2,Bit3];"
+              ]
             }
           ]
         },

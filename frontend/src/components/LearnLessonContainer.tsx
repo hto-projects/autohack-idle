@@ -16,7 +16,11 @@ export default function LearnLessonContainer({ titleElements, lessons, closeChap
     for (let i = 0; i < lessons.length; i++) {
       const lessonName = lessons[i].name;
       buttons.push(
-        <button key={lessonName} onClick={() => setVisibleLesson(i)}>
+        <button
+          key={lessonName}
+          onClick={() => setVisibleLesson(i)}
+          style={{ fontSize: "18px", width: "40%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
+        >
           Lesson {i + 1}: {lessonName}
         </button>
       );

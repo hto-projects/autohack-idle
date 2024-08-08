@@ -4,6 +4,8 @@ import { useState, ReactNode } from "react";
 import { IGameState } from "../store";
 import { useSelector } from "react-redux";
 import { flatObjByProp } from "../../../shared/util";
+import { ImageType } from "../../../shared/types";
+import { HelpAppImage } from "./Image";
 
 interface PuzzleAppContainerProps {
   puzzleObj: IPuzzleModule;
@@ -29,7 +31,11 @@ export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProp
     for (let i = 0; i < puzzleObj.puzzleSets.length; i++) {
       const currPuzSetName = puzzleObj.puzzleSets[i].name;
       buttons.push(
-        <button key={currPuzSetName} onClick={() => setVisiblePuzzleSet(i)}>
+        <button
+          key={currPuzSetName}
+          onClick={() => setVisiblePuzzleSet(i)}
+          style={{ fontSize: "22px", width: "45%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
+        >
           {`Set ${i + 1}: ${currPuzSetName} (${getSetState(i)})`}
         </button>
       );
@@ -38,6 +44,9 @@ export default function PuzzleAppContainer({ puzzleObj }: PuzzleAppContainerProp
       <>
         <div>{puzzleObj.titleNode}</div>
         {buttons}
+        <div style={{ marginRight: "4%", marginTop: "-3%" }}>
+          <HelpAppImage picture={{ image: "puzzle", type: ImageType.Png }}></HelpAppImage>{" "}
+        </div>
       </>
     );
   } else {

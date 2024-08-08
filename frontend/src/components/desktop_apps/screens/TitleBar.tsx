@@ -10,10 +10,10 @@ interface TitleBarProps {
 
 export default function TitleBar({ open, setOpen }: TitleBarProps) {
   useKeyDown(setOpen, ["Escape"]);
-  const titleBarColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.titlebar);
-  const titleBarTextColor: string = useSelector((state: IGameState) => state.styleData.textColor.titlebar);
-  const titleBarTextFont: string = useSelector((state: IGameState) => state.styleData.textFont.titlebar);
-  const titleBarTextSize: string = useSelector((state: IGameState) => state.styleData.textSize.titlebar);
+  const titleBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.titlebar);
+  const titleBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.titlebar);
+  const titleBarTextFont = useSelector((state: IGameState) => state.styleData.textFont.titlebar);
+  const titleBarTextSize = useSelector((state: IGameState) => state.styleData.textSize.titlebar);
 
   return (
     <div

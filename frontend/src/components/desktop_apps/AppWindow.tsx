@@ -18,7 +18,7 @@ interface AppWindowProps {
 }
 
 const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
-  const windowBackgroundColor: string = useSelector((state: IGameState) => state.styleData.backgroundColor.window);
+  const windowBackgroundColor = useSelector((state: IGameState) => state.styleData.backgroundColor.window);
   let appWindowElements = null;
   switch (open) {
     case AppType.Collector:
@@ -46,8 +46,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
       return (
         <div
           style={{
-            width: "32%",
-            height: "67%",
+            width: "40%",
+            height: "78%",
             background: windowBackgroundColor,
             display: "flex",
             alignItems: "center",
@@ -56,7 +56,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
             color: "white",
             position: "absolute",
             zIndex: "1",
-            left: "65%",
+            left: "54%",
             top: "5%",
             border: "1px solid gray"
           }}
