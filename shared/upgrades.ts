@@ -10,6 +10,7 @@ const other: IUpgrade[] = [
     cost: 0,
     effects: [
       {
+    
         variableAffected: GameVariable.BitAppearanceProbability,
         variableMod: VariableModFunction.Set,
         modValue: 0.5
@@ -96,7 +97,7 @@ const al: IUpgrade[] = [
   },
   {
     name: "Al the Auto-Collector, Upgraded V2",
-    preReqs: ["Al the Auto-Collector, Upgraded "],
+    preReqs: ["Al the Auto-Collector, Upgraded"],
     description: "Hire an even more upgraded A.I. intern to collect bits for you",
     picture: { image: "🤖", type: ImageType.String },
     cost: 10,

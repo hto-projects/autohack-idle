@@ -61,7 +61,9 @@ export default function UpgradesContainer() {
             flexDirection: "row",
             justifyContent: "normal",
             alignContent: "start",
-            alignItems: "start"
+            alignItems: "start",
+            scrollBehavior: "smooth",
+            overflow: "auto"
           }}
         >
           {upgrades.map((up) => (

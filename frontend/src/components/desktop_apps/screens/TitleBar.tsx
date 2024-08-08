@@ -12,8 +12,6 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
   useKeyDown(setOpen, ["Escape"]);
   const titleBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.titlebar);
   const titleBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.titlebar);
-  const titleBarTextFont = useSelector((state: IGameState) => state.styleData.textFont.titlebar);
-  const titleBarTextSize = useSelector((state: IGameState) => state.styleData.textSize.titlebar);
 
   return (
     <div
@@ -25,7 +23,7 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
         textAlign: "right",
         marginBottom: "10px",
         color: titleBarTextColor,
-        fontFamily: titleBarTextFont
+        fontFamily: "PixeloidMono"
       }}
     >
       <div
@@ -33,8 +31,8 @@ export default function TitleBar({ open, setOpen }: TitleBarProps) {
           marginLeft: "1%",
           textAlign: "center",
           verticalAlign: "middle",
-          fontSize: titleBarTextSize,
-          fontFamily: titleBarTextFont
+          fontSize: "16px",
+          fontFamily: "PixeloidMono"
         }}
       >
         {open}
