@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setStyle, validStyleFunctions } from "../../../slices/styleDataSlice";
+import { initialState, setStyle, validStyleFunctions } from "../../../slices/styleDataSlice";
 import { IGameState } from "../../../store";
 
 interface ICommand {
@@ -24,17 +24,17 @@ export default function TerminalAppScreen() {
       } else if (takenInput === "/Effect") {
         return "This is what the terminal command will do, such as color, font, or size changes. Valid Effects:   textColor/     textSize/     textFont/     backgroundColor/";
       } else if (takenInput === "/Target") {
-        return "This is the game object that the terminal command will effect. One small note is that the textFont/, textColor/, and textSize/ effects can't be used on the last target.  Valid Targets:  /app/     /taskbar/    /titlebar/     /window/";
+        return "This is the game object that the terminal command will effect. One small note is that the textFont/, textColor/, and textSize/ effects can't be used on the last 3 targets.  Valid Targets:  /app/     /taskbar/    /titlebar/    /horizontalbar/    /verticalbar/     /window/";
       } else if (takenInput === "/Value") {
         return "This is what value the terimal command will change the targeted object to. This is the most expansive field as it can be any valid color or pixel size so examples are given instead of all possible values, also this is the only field that isn't case-sensitive.  Examples:    green   Salmon    20px     arial    pixeloidMono    mOnOspAce YeLLow";
       }
       {
         const [effect, target, value] = takenInput.split("/");
-        if (
-          styleData[effect] !== undefined &&
-          styleData[effect][target] !== undefined &&
-          validStyleFunctions[effect](value)
-        ) {
+        if (styleData[effect] !== undefined && styleData[effect][target] !== undefined && value === "initial") {
+          dispatch(setStyle({ effect: effect, target: target, value: initialState[effect][target] }));
+          return target + " " + effect + " is now " + value;
+        } else if (validStyleFunctions[effect](value)) {
+          console.log(value);
           dispatch(setStyle({ effect: effect, target: target, value: value }));
           return target + " " + effect + " is now " + value;
         } else {

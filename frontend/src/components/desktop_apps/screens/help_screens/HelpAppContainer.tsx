@@ -47,13 +47,28 @@ export default function HelpAppContainer() {
   const [display] = helpApps.filter((app) => app.name == currentDisplay);
 
   return (
-    <div style={{ height: "100%", width: "100%", overflowY: "auto", scrollBehavior: "smooth", overflowX: "hidden" }}>
-      <div style={{ height: "50%", width: "30%", display: "flex", flexDirection: "row" }}>
+    <div
+      style={{
+        height: "100%",
+        width: "95%",
+        overflowY: "auto",
+        scrollBehavior: "smooth",
+        overflowX: "hidden",
+        marginLeft: "1%"
+      }}
+    >
+      <div
+        style={{
+          height: "75%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "row"
+        }}
+      >
         <div
           style={{
-            height: "30%",
-            width: "50%",
-            marginRight: "40%"
+            height: "100%",
+            width: "25%"
           }}
         >
           {helpApps.map((app) => (
@@ -67,13 +82,8 @@ export default function HelpAppContainer() {
         </div>
         <div
           style={{
-            display: "flex",
-            width: "90%",
-            height: "50%",
-            marginLeft: "310px",
-            marginTop: "50px",
-            position: "relative",
-            transform: "scale(1.1)"
+            height: "100%",
+            width: "74%"
           }}
         >
           <HelpAppImage picture={{ image: display.name.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
@@ -81,16 +91,15 @@ export default function HelpAppContainer() {
       </div>
       <div
         style={{
-          height: "10%",
+          height: "24%",
           width: "100%",
           display: "flex",
-          marginTop: "34%",
           color: "black",
           flexWrap: "wrap",
           fontSize: 20
         }}
       >
-        {display.body}
+        <p style={{ marginRight: "2%", marginLeft: "2%" }}> {display.body} </p>
       </div>
     </div>
   );

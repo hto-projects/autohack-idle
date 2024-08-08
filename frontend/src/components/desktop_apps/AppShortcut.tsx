@@ -12,7 +12,6 @@ interface AppShortcutProps {
 export default function AppShortcut({ appType, setOpen, icon, useSmaller = false }: AppShortcutProps) {
   const appTextColor = useSelector((state: IGameState) => state.styleData.textColor.app);
   const appTextFont = useSelector((state: IGameState) => state.styleData.textFont.app);
-
   const shownIcon = `url(assets/app_icons/${icon ?? `${appType.toLowerCase()}`}.png)`;
   const size = useSmaller ? "64px" : "120px";
   const appTextSize = useSmaller ? "18px" : "20px";
@@ -43,7 +42,7 @@ export default function AppShortcut({ appType, setOpen, icon, useSmaller = false
           setOpen(appType);
         }}
       ></div>
-      {appType}
+      <p id="appText"> {appType} </p>
     </div>
   );
 }
