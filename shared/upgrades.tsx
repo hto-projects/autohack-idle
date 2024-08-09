@@ -1,22 +1,38 @@
 import { PuzzleNames } from "../frontend/src/components/puzzles/PuzzleAppDirectory";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
-const other: IUpgrade[] = [
-  /*{
+export const starterUpgrades: IUpgrade[] = [
+  {
+    name: "Check for Bits",
+    description: "Once every second, look to see if there are any bits available for harvesting",
+    picture: { image: "🔍", type: ImageType.String },
+    cost: 0,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ],
+    preReqs: []
+  },
+  {
     name: "Chance for Bits",
-    preReqs: [],
     description: "When checking for bits, succeed in finding one 50% of the time",
     picture: { image: "❇", type: ImageType.String },
     cost: 0,
     effects: [
       {
-    
         variableAffected: GameVariable.BitAppearanceProbability,
         variableMod: VariableModFunction.Set,
         modValue: 0.5
       }
-    ]
-  },*/
+    ],
+    preReqs: []
+  }
+];
+
+const other: IUpgrade[] = [
   {
     name: "Bit Sweeper",
     preReqs: [],
@@ -28,6 +44,191 @@ const other: IUpgrade[] = [
         variableAffected: GameVariable.BitSweeperSize,
         variableMod: VariableModFunction.Set,
         modValue: 30
+      }
+    ]
+  }
+];
+
+const packet: IUpgrade[] = [
+  {
+    name: "Crumb",
+    preReqs: [],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 2
+      }
+    ]
+  },
+  {
+    name: "Nibble",
+    preReqs: ["Crumb"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 4
+      }
+    ]
+  },
+  {
+    name: "Byte",
+    preReqs: ["Nibble"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 8
+      }
+    ]
+  },
+  {
+    name: "Word",
+    preReqs: ["Byte"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 16
+      }
+    ]
+  },
+  {
+    name: "Double Word",
+    preReqs: ["Word"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 32
+      }
+    ]
+  },
+  {
+    name: "Quad Word",
+    preReqs: ["Double Word"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 64
+      }
+    ]
+  },
+  {
+    name: "Quad Word",
+    preReqs: ["Quad Word"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 64
+      }
+    ]
+  },
+  {
+    name: "Kibibit",
+    preReqs: ["Quad Word"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 1024
+      }
+    ]
+  },
+  {
+    name: "Sector",
+    preReqs: ["Kibibit"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 512 * 8
+      }
+    ]
+  },
+  {
+    name: "Kibibyte",
+    preReqs: ["Sector"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 1024 * 8
+      }
+    ]
+  },
+  {
+    name: "CD-ROM Sector",
+    preReqs: ["Kibibyte"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 4096 * 8
+      }
+    ]
+  },
+  {
+    name: "Page",
+    preReqs: ["CD-ROM Sector"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 4096 * 8
+      }
+    ]
+  },
+  {
+    name: "Sector",
+    preReqs: ["Page"],
+    description: "",
+    picture: { image: "1", type: ImageType.String },
+    cost: 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 512 * 8
       }
     ]
   }
@@ -458,4 +659,4 @@ const checks: IUpgrade[] = [
   }
 ];
 
-export const allUpgrades: IUpgrade[] = [...checks, ...other, ...al, ...learn];
+export const allUpgrades: IUpgrade[] = [...checks, ...other, ...al, ...packet, ...learn];

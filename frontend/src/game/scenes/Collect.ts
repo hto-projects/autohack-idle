@@ -1,9 +1,10 @@
-import { Scene } from "phaser";
+import { Physics, Scene } from "phaser";
 import { EventBus } from "../EventBus";
 import { GameVariable, IUpgrade } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
-import Bit from "../Bit";
+import Bit, { charset } from "../Bit";
 import Virus from "../Virus";
+import { Z_NO_FLUSH } from "zlib";
 
 export class Collect extends Scene {
   sweeper: Phaser.GameObjects.Rectangle;
@@ -49,8 +50,8 @@ export class Collect extends Scene {
     this.virusGroup = new Phaser.GameObjects.Group(this);
 
     this.physics.add.collider(this.virusGroup, this.virusGroup);
-    // the virus and bit parameters to the callback must be any because the types expected by overlap's callback parameter do not include a body member, while ClickableBit and Virus do
-    this.physics.add.overlap(this.virusGroup, this.bitGroup, (_virus: any, bit: any) => {
+    // the virus and bit parameters to the callback must be any because the types expected by overlap's callback parameter do not include a body member, while ClickableBit and Virus do // new: solution may have been found?
+    this.physics.add.overlap(this.virusGroup, this.bitGroup, (_virus: Virus, bit: Physics.Arcade.Sprite) => {
       if (Math.random() < this.virusSpawnVar) {
         this.createVirus(bit.body.position.x, bit.body.position.y);
       }
@@ -82,6 +83,9 @@ export class Collect extends Scene {
     EventBus.on("upgrade-purchased", (upgrades: IUpgrade[]) => {
       const bci = calculateVariableValue(upgrades, GameVariable.BitCheckInterval);
       const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
+
+      Bit.value = calculateVariableValue(upgrades, GameVariable.BitClickValue);
+      Bit.maxCharsetIndexValue = Math.min(Bit.value * 2 - 1, charset.length - 1);
 
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);

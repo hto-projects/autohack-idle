@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GameVariable, ImageType, IUpgrade, VariableModFunction } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
-import { allUpgrades } from "../../../shared/upgrades";
+import { allUpgrades, starterUpgrades } from "../../../shared/upgrades";
 import { flatObjByProp, intersection } from "../../../shared/util";
 
 const GAME_API_PATH = "/api/game-data";
@@ -30,41 +30,7 @@ const initialState: IGameData = {
   totalNumBits: 0,
   currencyAmount: 0,
   userEmail: "",
-  ups: {
-    acquired: [
-      {
-        name: "Check for Bits",
-        description: "Once every second, look to see if there are any bits available for harvesting",
-        picture: { image: "🔍", type: ImageType.String },
-        cost: 0,
-        effects: [
-          {
-            variableAffected: GameVariable.BitCheckInterval,
-            variableMod: VariableModFunction.Set,
-            modValue: 1000
-          }
-        ],
-        preReqs: []
-      },
-      {
-        name: "Chance for Bits",
-        description: "When checking for bits, succeed in finding one 50% of the time",
-        picture: { image: "❇", type: ImageType.String },
-        cost: 0,
-        effects: [
-          {
-            variableAffected: GameVariable.BitAppearanceProbability,
-            variableMod: VariableModFunction.Set,
-            modValue: 0.5
-          }
-        ],
-        preReqs: []
-      }
-    ],
-    purchasable: [],
-    unavailable: [],
-    uncategorized: allUpgrades
-  },
+  ups: { acquired: starterUpgrades, purchasable: [], unavailable: [], uncategorized: allUpgrades },
   solvedPuzzles: [],
   trustySales: 0,
   shadySales: 0
@@ -98,18 +64,18 @@ const gameDataSlice = createSlice({
       const upgrade = action.payload;
       state.currencyAmount -= upgrade.cost;
       ups.acquired.push(upgrade);
-      let index = -1;
+      let upgradeIndex = -1;
       for (let i = 0; i < ups.purchasable.length; i++) {
         if (upgrade.name == ups.purchasable[i].name) {
-          index = i;
+          upgradeIndex = i;
           break;
         }
       }
-      if (index == -1) {
+      if (upgradeIndex == -1) {
         console.log(`ERR: could not find index of upgrade: ${upgrade.name}`);
         return;
       }
-      ups.purchasable.splice(index, 1);
+      ups.purchasable.splice(upgradeIndex, 1);
       const purchasableBuffer: IUpgrade[] = [];
       const acquiredPrereqs = [...flatObjByProp(ups.acquired, "name"), ...state.solvedPuzzles];
       for (let i = 0; i < ups.unavailable.length; i++) {

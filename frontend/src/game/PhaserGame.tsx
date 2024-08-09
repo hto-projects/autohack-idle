@@ -8,6 +8,7 @@ import { GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
 import { IGameState } from "../store";
+import Bit from "./Bit";
 
 interface IProps {}
 
@@ -64,7 +65,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
   useEffect(() => {
     EventBus.on("add-bit", () => {
-      dispatch(addBits(1));
+      dispatch(addBits(Bit.value));
     });
 
     return () => {

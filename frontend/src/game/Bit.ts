@@ -4,10 +4,10 @@ import { Collect } from "./scenes/Collect";
 
 export default class Bit extends GameObjects.Text {
   declare static scene: Collect;
-  static charset: Array<string> = ["0", "1"];
-  charsetI: number;
+  static maxCharsetIndexValue = 1;
+  static value = 1;
+  charsetIndex: number;
   startheight: number = 0;
-  toDestroy: boolean = false;
 
   constructor(x: number, y: number) {
     super(Bit.scene, x, y, "1", {});
@@ -30,17 +30,16 @@ export default class Bit extends GameObjects.Text {
       }
     });
 
-    this.charsetI = Phaser.Math.Between(0, Bit.charset.length - 1);
+    this.charsetIndex = Phaser.Math.Between(0, Bit.maxCharsetIndexValue);
   }
 
   changeText() {
     let newIndex: number;
     do {
-      newIndex = Phaser.Math.Between(0, Bit.charset.length - 1);
-    } while (this.charsetI === newIndex);
-
-    this.charsetI = newIndex;
-    this.setText(Bit.charset[this.charsetI]);
+      newIndex = Phaser.Math.Between(0, Bit.maxCharsetIndexValue);
+    } while (this.charsetIndex === newIndex);
+    this.charsetIndex = newIndex;
+    this.setText(charset[this.charsetIndex]);
   }
 
   collect(spawnVirus = true) {
@@ -51,3 +50,70 @@ export default class Bit extends GameObjects.Text {
     }
   }
 }
+
+export const charset: string[] = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+  "+",
+  "/"
+];
