@@ -4,7 +4,6 @@ import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import { allUpgrades } from "../../../shared/upgrades";
 import { flatObjByProp, intersection } from "../../../shared/util";
-import { useDispatch } from "react-redux";
 
 const GAME_API_PATH = "/api/game-data";
 
