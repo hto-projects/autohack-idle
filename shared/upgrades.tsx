@@ -53,9 +53,9 @@ const packet: IUpgrade[] = [
   {
     name: "Crumb",
     preReqs: [],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 2 bits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 2 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -67,9 +67,9 @@ const packet: IUpgrade[] = [
   {
     name: "Nibble",
     preReqs: ["Crumb"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 4 bits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 4 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -81,9 +81,9 @@ const packet: IUpgrade[] = [
   {
     name: "Byte",
     preReqs: ["Nibble"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 8 bits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -95,9 +95,9 @@ const packet: IUpgrade[] = [
   {
     name: "Word",
     preReqs: ["Byte"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 2 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 16 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -109,9 +109,9 @@ const packet: IUpgrade[] = [
   {
     name: "Double Word",
     preReqs: ["Word"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 4 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 32 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -123,23 +123,9 @@ const packet: IUpgrade[] = [
   {
     name: "Quad Word",
     preReqs: ["Double Word"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
-    effects: [
-      {
-        variableAffected: GameVariable.BitClickValue,
-        variableMod: VariableModFunction.Set,
-        modValue: 64
-      }
-    ]
-  },
-  {
-    name: "Quad Word",
-    preReqs: ["Quad Word"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 8 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 64 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -151,9 +137,9 @@ const packet: IUpgrade[] = [
   {
     name: "Kibibit",
     preReqs: ["Quad Word"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 128 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 1024 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
@@ -165,70 +151,56 @@ const packet: IUpgrade[] = [
   {
     name: "Sector",
     preReqs: ["Kibibit"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 4 kibibits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 1024 * 4 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
         variableMod: VariableModFunction.Set,
-        modValue: 512 * 8
+        modValue: 1024 * 4
       }
     ]
   },
   {
     name: "Kibibyte",
     preReqs: ["Sector"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 8 kibibits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8192 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
         variableMod: VariableModFunction.Set,
-        modValue: 1024 * 8
+        modValue: 8192
       }
     ]
   },
   {
     name: "CD-ROM Sector",
     preReqs: ["Kibibyte"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 2 kibibytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8192 * 2 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
         variableMod: VariableModFunction.Set,
-        modValue: 4096 * 8
+        modValue: 8192 * 2
       }
     ]
   },
   {
     name: "Page",
     preReqs: ["CD-ROM Sector"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
+    description: "Each bit collected is now worth 4 kibibytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8192 * 4 * 10,
     effects: [
       {
         variableAffected: GameVariable.BitClickValue,
         variableMod: VariableModFunction.Set,
-        modValue: 4096 * 8
-      }
-    ]
-  },
-  {
-    name: "Sector",
-    preReqs: ["Page"],
-    description: "",
-    picture: { image: "1", type: ImageType.String },
-    cost: 10,
-    effects: [
-      {
-        variableAffected: GameVariable.BitClickValue,
-        variableMod: VariableModFunction.Set,
-        modValue: 512 * 8
+        modValue: 8192 * 4
       }
     ]
   }
