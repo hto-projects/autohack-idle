@@ -97,7 +97,6 @@ export class Collect extends Scene {
     });
 
     EventBus.on("collect-all", () => {
-      console.log("collecting");
       this.collectAll();
     });
 
