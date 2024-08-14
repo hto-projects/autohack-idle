@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
+import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from "react";
 import StartGame from "./main";
 import { EventBus } from "./EventBus";
 import { Scene } from "phaser";
@@ -19,6 +19,7 @@ export interface IRefPhaserGame {
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const dispatch = useDispatch();
+  const [cooldown, setCooldown] = useState(0);
 
   const game = useRef<Phaser.Game | null>(null!);
 
@@ -109,22 +110,45 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
     visible = true;
   }
-
-  return (
-    <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
-      <button
-        style={{
-          visibility: visible ? "visible" : "hidden",
-          marginBottom: "1%",
-          width: "15%",
-          height: "5%",
-          fontSize: "18px"
-        }}
-        onClick={() => EventBus.emit("collect-all")}
-      >
-        Collect All
-      </button>
-      <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "90%" }}></div>
-    </div>
-  );
+  function reduceCooldown() {
+    setCooldown(cooldown - 1);
+  }
+  if (cooldown <= 0) {
+    return (
+      <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
+        <button
+          style={{
+            visibility: visible ? "visible" : "hidden",
+            marginBottom: "1%",
+            width: "15%",
+            height: "5%",
+            fontSize: "18px"
+          }}
+          onClick={() => EventBus.emit("collect-all") && setCooldown(5)}
+        >
+          Collect All
+        </button>
+        <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "90%" }}></div>
+      </div>
+    );
+  } else {
+    setTimeout(reduceCooldown, 1000);
+    return (
+      <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
+        <button
+          style={{
+            visibility: visible ? "visible" : "hidden",
+            marginBottom: "1%",
+            width: "15%",
+            height: "5%",
+            fontSize: "18px"
+          }}
+          disabled={true}
+        >
+          Cooldown:{cooldown}
+        </button>
+        <div id="game-container" style={{ flex: 1, textAlign: "center", width: "100%", height: "90%" }}></div>
+      </div>
+    );
+  }
 });
