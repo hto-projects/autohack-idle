@@ -127,7 +127,10 @@ const gameDataSlice = createSlice({
         }
       }
     },
-    resetGameData: (_state) => initialState
+    resetGameData: (_state) => {
+      EventBus.emit("reset-bit");
+      return initialState;
+    }
   }
 });
 

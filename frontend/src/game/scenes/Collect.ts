@@ -4,7 +4,6 @@ import { GameVariable, IUpgrade } from "../../../../shared/types";
 import { calculateVariableValue } from "../../../../shared/util";
 import Bit, { charset } from "../Bit";
 import Virus from "../Virus";
-import { Z_NO_FLUSH } from "zlib";
 
 export class Collect extends Scene {
   sweeper: Phaser.GameObjects.Rectangle;
@@ -85,7 +84,7 @@ export class Collect extends Scene {
       const bap = calculateVariableValue(upgrades, GameVariable.BitAppearanceProbability);
 
       Bit.value = calculateVariableValue(upgrades, GameVariable.BitClickValue);
-      Bit.maxCharsetIndexValue = Math.min(Bit.value * 2 - 1, charset.length - 1);
+      Bit.maxCharsetIndexValue = Math.min(Bit.value ** 2 - 1, charset.length - 1);
 
       if (this.bitAppearEvent) {
         this.time.removeEvent(this.bitAppearEvent);
@@ -102,6 +101,11 @@ export class Collect extends Scene {
 
     EventBus.on("collect-all", () => {
       this.collectAll();
+    });
+
+    EventBus.on("reset-bit", () => {
+      Bit.value = 1;
+      Bit.maxCharsetIndexValue = 1;
     });
 
     EventBus.emit("current-scene-ready", this);
