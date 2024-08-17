@@ -25,7 +25,7 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
   const [puzzleSolvedText, setPuzzleSolvedText] = useState<string>("");
   const dispatch = useDispatch();
 
-  const checkIfPuzzleComplete = () => {
+  const checkIfPuzzleComplete = (): void => {
     for (const answer of playerAnswers) {
       if (!answer.isSolved) {
         return;
@@ -74,7 +74,7 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
             checkIfPuzzleComplete();
           }}
         >
-          {" Check "}
+          Check
         </Button>
         <p></p>
         <span>{playerAnswers[i].resultText}</span>
