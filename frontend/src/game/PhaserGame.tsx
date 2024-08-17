@@ -3,12 +3,11 @@ import StartGame from "./main";
 import { EventBus } from "./EventBus";
 import { Scene } from "phaser";
 import { useDispatch, useSelector } from "react-redux";
-import { addBits, IGameData } from "../slices/gameDataSlice";
+import { addBits, IGameData, setPreviousCooldown } from "../slices/gameDataSlice";
 import { GameVariable } from "../../../shared/types";
 import { calculateVariableValue } from "../../../shared/util";
 import { resetGameData } from "../slices/gameDataSlice";
 import { IGameState } from "../store";
-
 interface IProps {}
 
 export interface IRefPhaserGame {
@@ -17,15 +16,14 @@ export interface IRefPhaserGame {
 }
 
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame(props, ref) {
+  var savedCooldown = useSelector((state: IGameState) => state.gameData.previousCooldown);
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   const dispatch = useDispatch();
-  const [cooldown, setCooldown] = useState(0);
+  const [cooldown, setCooldown] = useState(savedCooldown);
 
   const game = useRef<Phaser.Game | null>(null!);
-
   if (calculateVariableValue(gameData.ups.acquired, GameVariable.ButtonAvailable) === 1) {
   }
-
   useLayoutEffect(() => {
     if (game.current === null) {
       game.current = StartGame("game-container");
@@ -112,8 +110,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
   }
   function reduceCooldown() {
     setCooldown(cooldown - 1);
+    dispatch(setPreviousCooldown(cooldown));
   }
-  if (cooldown <= 0) {
+  if (cooldown === 0) {
     return (
       <div style={{ flex: 1, textAlign: "center", width: "100%", height: "100%" }}>
         <button
