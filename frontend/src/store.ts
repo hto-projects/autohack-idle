@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice, { IAuthData } from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
-import gameDataSlice, { IGameData } from "./slices/gameDataSlice";
+import gameDataSlice, { IGameData, saveCurrentTime } from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
 import styleDataSlice, { IStyleData } from "./slices/styleDataSlice";
+import { useDispatch } from "react-redux";
+import { Temporal } from "temporal-polyfill";
 
 export interface IGameState {
   styleData: IStyleData;
@@ -12,15 +14,26 @@ export interface IGameState {
 }
 
 function loadState() {
+  let deserializedState: IGameState;
   try {
     const serializedState = localStorage.getItem("state");
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    deserializedState = JSON.parse(serializedState);
   } catch (e) {
     return undefined;
   }
+
+  try {
+    console.log(deserializedState);
+    const previousLoginTimeSerialized = deserializedState?.gameData?.previousLoginTime;
+    if (!["", undefined].includes(previousLoginTimeSerialized)) {
+      const currTime = Temporal.Now.instant().until(Temporal.Instant.from(previousLoginTimeSerialized));
+      console.log(currTime);
+    }
+  } catch (e) {}
+  return deserializedState;
 }
 
 function saveState(state: IGameState) {
@@ -47,6 +60,8 @@ const store = configureStore({
 
 store.subscribe(
   throttle(() => {
+    const dispatch = useDispatch();
+    dispatch(saveCurrentTime());
     saveState(store.getState());
   }, 1000)
 );
