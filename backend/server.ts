@@ -1,12 +1,13 @@
-import cors from 'cors';
+import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
-dotenv.config();
 import connectDB from "./config/db";
 import cookieParser from "cookie-parser";
 import { notFound, errorHandler } from "./middleware/errorMiddleware";
 import userRoutes from "./routes/userRoutes";
 import gameDataRoutes from "./routes/gameDataRoutes";
+
+dotenv.config();
 
 const port = process.env.PORT || 5000;
 
@@ -20,7 +21,7 @@ const corsOptions = {
   origin: frontEndUrl,
   optionsSuccessStatus: 200,
   credentials: true
-}
+};
 
 app.use(cors(corsOptions));
 
@@ -32,7 +33,7 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 app.use("/api/game-data", gameDataRoutes);
 
-app.get('/up-check', (_req, res: any) => {
+app.get("/up-check", (_req, res: any) => {
   res.status(200).send("<h1>AUTOHACK IDLE BACKEND OPERATION NORMAL</h1>").end();
 });
 
