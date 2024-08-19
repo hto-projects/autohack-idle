@@ -1,11 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice, { IAuthData } from "./slices/authSlice";
 import apiSlice from "./slices/apiSlice";
-import gameDataSlice, { IGameData, saveCurrentTime } from "./slices/gameDataSlice";
+import gameDataSlice, { addBits, IGameData, saveCurrentTime } from "./slices/gameDataSlice";
 import throttle from "lodash/throttle";
 import styleDataSlice, { IStyleData } from "./slices/styleDataSlice";
-import { useDispatch } from "react-redux";
 import { Temporal } from "temporal-polyfill";
+import { calculateVariableValue } from "../../shared/util";
+import { GameVariable } from "../../shared/types";
+
+export interface IpreviousLoginInfo {
+  bits: number;
+  durationObj: Temporal.Duration;
+}
+
+export const previousLoginInfo: IpreviousLoginInfo = {
+  bits: 0,
+  durationObj: undefined
+};
 
 export interface IGameState {
   styleData: IStyleData;
@@ -26,13 +37,22 @@ function loadState() {
   }
 
   try {
-    console.log(deserializedState);
-    const previousLoginTimeSerialized = deserializedState?.gameData?.previousLoginTime;
-    if (!["", undefined].includes(previousLoginTimeSerialized)) {
-      const currTime = Temporal.Now.instant().until(Temporal.Instant.from(previousLoginTimeSerialized));
-      console.log(currTime);
+    const previousLoginTime = deserializedState.gameData.previousLoginTime;
+    const acquiredUps = deserializedState.gameData.ups.acquired;
+    previousLoginInfo.durationObj = Temporal.Instant.from(previousLoginTime).until(Temporal.Now.instant(), {
+      largestUnit: "hour"
+    });
+    const deltaSeconds = previousLoginInfo.durationObj.total("seconds");
+    const autoBitAmount = calculateVariableValue(acquiredUps, GameVariable.AutoBitGatheringAmount);
+    const autoBitInterval = calculateVariableValue(acquiredUps, GameVariable.AutoBitGatheringInterval);
+
+    if (!isNaN(autoBitAmount) && !isNaN(autoBitInterval)) {
+      const bitsToAdd = Math.round((deltaSeconds * autoBitAmount) / (autoBitInterval / 1000));
+      deserializedState.gameData.numBits += bitsToAdd;
+      previousLoginInfo.bits = bitsToAdd;
     }
-  } catch (e) {}
+  } catch (e) {} // if any of the code errors just continue
+
   return deserializedState;
 }
 
@@ -60,7 +80,7 @@ const store = configureStore({
 
 store.subscribe(
   throttle(() => {
-    dispatch(saveCurrentTime());
+    store.dispatch(saveCurrentTime());
     saveState(store.getState());
   }, 1000)
 );

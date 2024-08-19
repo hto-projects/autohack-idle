@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GameVariable, ImageType, IUpgrade, VariableModFunction } from "../../../shared/types";
 import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
@@ -80,8 +80,6 @@ const gameDataSlice = createSlice({
     addBits: (state, action: PayloadAction<number>) => {
       state.numBits += action.payload;
       state.totalNumBits += action.payload;
-      console.log(current(state).ups);
-      state.previousLoginTime = Temporal.Now.instant().toJSON();
     },
     sellData: (state, action: PayloadAction<boolean>) => {
       if (state.numBits === 0) {
@@ -167,7 +165,8 @@ const gameDataSlice = createSlice({
       }
     },
     saveCurrentTime(state) {
-      state.previousLoginTime = Temporal.Now.instant().toJSON();
+      // state.previousLoginTime = Temporal.Now.instant().toJSON();
+      state.previousLoginTime = Temporal.Instant.from("2024-08-19T17:20:30-4:00").toJSON();
     },
     resetGameData: (_state) => initialState
   }
@@ -196,5 +195,5 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
 export const { addBits, sellData, purchaseUpgrade, categorizeUpgrades, resetGameData, puzzleSolve, saveCurrentTime } =
   gameDataSlice.actions;
-// export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve, setGameData } = gameDataSlice.actions;
+
 export default gameDataSlice;
