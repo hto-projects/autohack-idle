@@ -3,6 +3,7 @@ import { AppType } from "../../../../../shared/types";
 import { useKeyDown } from "../../../../frontend-util";
 import { IGameState } from "../../../store";
 import { playSoundEffect } from "../../../soundEffect";
+import { setPreviousCooldown } from "../../../slices/gameDataSlice";
 interface TitleBarProps {
   open: AppType;
   setOpen: () => void;

@@ -23,6 +23,7 @@ export interface IGameData {
   solvedPuzzles: string[];
   trustySales: number;
   shadySales: number;
+  previousCooldown: number;
 }
 
 const initialState: IGameData = {
@@ -67,7 +68,8 @@ const initialState: IGameData = {
   },
   solvedPuzzles: [],
   trustySales: 0,
-  shadySales: 0
+  shadySales: 0,
+  previousCooldown: 0
 };
 
 const gameDataSlice = createSlice({
@@ -152,6 +154,9 @@ const gameDataSlice = createSlice({
         }
       }
     },
+    setPreviousCooldown: (state, action) => {
+      state.previousCooldown = action.payload;
+    },
     resetGameData: (_state) => initialState
   }
 });
@@ -191,7 +196,14 @@ function categorizeUnavailableUpgrades(ups: IUpgradesData, solvedPuzzles: string
 }
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, sellData, purchaseUpgrade, categorizeUpgrades, resetGameData, puzzleSolve } =
-  gameDataSlice.actions;
+export const {
+  addBits,
+  sellData,
+  purchaseUpgrade,
+  categorizeUpgrades,
+  resetGameData,
+  puzzleSolve,
+  setPreviousCooldown
+} = gameDataSlice.actions;
 // export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve, setGameData } = gameDataSlice.actions;
 export default gameDataSlice;
