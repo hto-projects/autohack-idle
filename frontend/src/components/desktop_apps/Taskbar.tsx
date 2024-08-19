@@ -7,13 +7,16 @@ import AppShortcut from "./AppShortcut";
 import { IGameState } from "../../store";
 import { IGameData } from "../../slices/gameDataSlice";
 
-const Taskbar: React.FC = () => {
-  const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
-  const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
-  const gameData: IGameData = useSelector((state: any) => state.gameData);
+interface TaskbarProps {
+  setOpenWindow: React.Dispatch<React.SetStateAction<AppType>>;
+}
+
+export default function Taskbar({ setOpenWindow }: TaskbarProps) {
+  const gameData = useSelector((state: IGameState) => state.gameData);
   const userInfo = useSelector((state: IGameState) => state.auth.userInfo);
   const taskBarColor = useSelector((state: IGameState) => state.styleData.backgroundColor.taskbar);
   const taskBarTextColor = useSelector((state: IGameState) => state.styleData.textColor.taskbar);
+
   return (
     <div
       id="taskbar"
@@ -39,7 +42,6 @@ const Taskbar: React.FC = () => {
           {userInfo !== null && `Hi, ${userInfo.name}!`}
         </p>
       </div>
-      <div>{display}</div>
       <p id="appText" style={{ textAlign: "center", marginRight: "34%", marginLeft: "34%", width: "200%" }}>
         Bits: {gameData.numBits}
         <br></br>PixelPayout: {Number(gameData.currencyAmount.toFixed(1))}
@@ -55,6 +57,4 @@ const Taskbar: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Taskbar;
+}

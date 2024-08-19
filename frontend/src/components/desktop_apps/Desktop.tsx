@@ -7,11 +7,16 @@ import { IGameState } from "../../store";
 import { IGameData } from "../../slices/gameDataSlice";
 import { PuzzleAppDirectory } from "../puzzles/PuzzleAppDirectory";
 
-export default function Desktop() {
-  const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
+interface DesktopProps {
+  openWindow: AppType;
+  setOpenWindow: React.Dispatch<React.SetStateAction<AppType>>;
+}
+
+export default function Desktop({ openWindow, setOpenWindow }: DesktopProps) {
   const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
-  const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
   const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
+
+  const display = openWindow === null ? null : <AppWindow open={openWindow} setOpen={setOpenWindow}></AppWindow>;
 
   let terminalVis = true;
   for (let i = 0; i < PuzzleAppDirectory.puzzleSets[1].puzzles.length; i++) {
@@ -34,6 +39,7 @@ export default function Desktop() {
         backgroundPosition: "top"
       }}
     >
+      {/* audio is in as a placeholder for Leo's song */}
       {/* <audio src="./../../../public/assets/audio/music/Virus Attack !!.wav" autoPlay loop></audio> */}
       <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
@@ -41,13 +47,8 @@ export default function Desktop() {
         <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Terminal} setOpen={setOpenWindow} visible={terminalVis}></AppShortcut>
         <AppShortcut appType={AppType.Learn} setOpen={setOpenWindow}></AppShortcut>
-        {/* <AppShortcut appType={AppType.Help} setOpen={setOpenWindow}></AppShortcut> */}
-        {/* <AppShortcut appType={AppType.Store} setOpen={setOpenWindow}></AppShortcut> */}
-        {/* {<AppShortcut appType={AppType.Login} setOpen={setOpenWindow}></AppShortcut>} */}
-        {/* <AppShortcut appType={AppType.Settings} setOpen={setOpenWindow}></AppShortcut> */}
       </div>
       {display}
     </div>
-    //audio is in as a placeholder for Leo's song
   );
 }
