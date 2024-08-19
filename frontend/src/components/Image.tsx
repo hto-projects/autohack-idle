@@ -83,11 +83,9 @@ export function HelpAppImage({ picture }: ImageWrapperProps) {
       className={"help-image"}
       picture={updatedPicture}
       imgStyle={{
-        width: "480px",
-        height: "480px",
         imageRendering: "pixelated",
-        marginTop: "3%",
-        marginLeft: "3.5%"
+        width: "100%",
+        height: "100%"
       }}
     ></Image>
   );

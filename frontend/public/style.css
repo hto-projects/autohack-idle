@@ -39,7 +39,7 @@ body {
 }
 
 #app {
-  width: 100%;
+  width: 100vh;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -179,7 +179,22 @@ body {
   margin-left: 5%;
 }
 
-#appText {
+.appText {
   text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000,
     -1px 1px #000;
+}
+
+#taskbar > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px, dotted, lime; */
+}
+
+#taskbar > div > * {
+  align-items: center;
+  padding: 3px 10px;
+  /* border: 2px, dotted, rgb(206, 0, 34); */
 }

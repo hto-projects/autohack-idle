@@ -41,7 +41,14 @@ export default function Desktop({ openWindow, setOpenWindow }: DesktopProps) {
     >
       {/* audio is in as a placeholder for Leo's song */}
       {/* <audio src="./../../../public/assets/audio/music/Virus Attack !!.wav" autoPlay loop></audio> */}
-      <div style={{ padding: "20px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          padding: "20px 0px 0px 20px",
+          gap: "20px"
+        }}
+      >
         <AppShortcut appType={AppType.Collector} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Upgrades} setOpen={setOpenWindow}></AppShortcut>
         <AppShortcut appType={AppType.Puzzle} setOpen={setOpenWindow}></AppShortcut>
