@@ -14,9 +14,12 @@ export const saveGame = asyncHandler(async (req: any, res) => {
 
       if (existingData) {
         existingData.numBits = gameData.numBits;
+        existingData.totalNumBits = gameData.totalNumBits;
         existingData.currencyAmount = gameData.currencyAmount;
-        existingData.upgrades = gameData.upgrades;
-        existingData.savedSolvedPuzzles = gameData.savedSolvedPuzzles;
+        existingData.upgrades = gameData.ups;
+        existingData.solvedPuzzles = gameData.solvedPuzzles;
+        existingData.trustySales = gameData.trustySales;
+        existingData.shadySales = gameData.shadySales;
 
         await existingData.save();
       } else {
