@@ -76,17 +76,7 @@ const gameDataSlice = createSlice({
         return;
       }
       ups.purchasable.splice(upgradeIndex, 1);
-      const purchasableBuffer: IUpgrade[] = [];
-      const acquiredPrereqs = [...flatObjByProp(ups.acquired, "name"), ...state.solvedPuzzles];
-      for (let i = 0; i < ups.unavailable.length; i++) {
-        const currUp = ups.unavailable[i];
-        const intersect = intersection(acquiredPrereqs, currUp.preReqs);
-        if (intersect.length == currUp.preReqs.length) {
-          const [newPurchasableUp] = ups.unavailable.splice(i, 1);
-          purchasableBuffer.push(newPurchasableUp);
-        }
-      }
-      ups.purchasable.push(...purchasableBuffer);
+      categorizeUnavailableUpgrades(ups, state.solvedPuzzles);
       EventBus.emit("upgrade-purchased", ups.acquired);
     },
     puzzleSolve: (state, action: PayloadAction<string>) => {
@@ -94,6 +84,7 @@ const gameDataSlice = createSlice({
         return;
       }
       state.solvedPuzzles.push(action.payload);
+      categorizeUnavailableUpgrades(state.ups, state.solvedPuzzles);
     },
     categorizeUpgrades: (state) => {
       const ups = state.ups;
@@ -153,6 +144,20 @@ export const gameDataApiSlice = apiSlice.injectEndpoints({
     })
   })
 });
+
+function categorizeUnavailableUpgrades(ups: IUpgradesData, solvedPuzzles: string[]): void {
+  const purchasableBuffer: IUpgrade[] = [];
+  const acquiredPrereqs = [...flatObjByProp(ups.acquired, "name"), ...solvedPuzzles];
+  for (let i = 0; i < ups.unavailable.length; i++) {
+    const currUp = ups.unavailable[i];
+    const intersect = intersection(acquiredPrereqs, currUp.preReqs);
+    if (intersect.length == currUp.preReqs.length) {
+      const [newPurchasableUp] = ups.unavailable.splice(i, 1);
+      purchasableBuffer.push(newPurchasableUp);
+    }
+  }
+  ups.purchasable.push(...purchasableBuffer);
+}
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
 export const { addBits, sellData, purchaseUpgrade, categorizeUpgrades, resetGameData, puzzleSolve } =
