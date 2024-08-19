@@ -47,7 +47,6 @@ export default function AppShortcut({ appType, setOpen, icon, useSmaller = false
               marginLeft: "auto",
               marginRight: "auto",
               imageRendering: "pixelated",
-              // flexWrap: "wrap",
               backgroundRepeat: "no-repeat"
             }}
             onClick={() => {

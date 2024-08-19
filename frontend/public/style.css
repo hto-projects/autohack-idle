@@ -190,11 +190,9 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  /* border: 2px, dotted, lime; */
 }
 
 #taskbar > div > * {
   align-items: center;
   padding: 3px 10px;
-  /* border: 2px, dotted, rgb(206, 0, 34); */
 }
