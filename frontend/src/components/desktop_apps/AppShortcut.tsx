@@ -2,7 +2,6 @@ import { AppType } from "../../../../shared/types";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
 import { playSoundEffect } from "../../soundEffect";
-import { ReactNode } from "react";
 
 interface AppShortcutProps {
   appType: AppType;

@@ -47,7 +47,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
         <div
           style={{
             width: "40%",
-            height: "78%",
+            height: "70%",
             background: windowBackgroundColor,
             display: "flex",
             alignItems: "center",
@@ -57,7 +57,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ open, setOpen }) => {
             position: "absolute",
             zIndex: "1",
             left: "54%",
-            top: "5%",
+            top: "0%",
             border: "1px solid gray"
           }}
         >
