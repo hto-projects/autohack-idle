@@ -60,7 +60,6 @@ const store = configureStore({
 
 store.subscribe(
   throttle(() => {
-    const dispatch = useDispatch();
     dispatch(saveCurrentTime());
     saveState(store.getState());
   }, 1000)
