@@ -2,7 +2,7 @@ import { useState, ReactNode } from "react";
 import LearnLessonContainer from "./LearnLessonContainer";
 import { ILearnModule } from "./learn_lessons/LearnAppDirectory";
 import { HelpAppImage } from "./Image";
-import { ImageType, IAppImage } from "../../../shared/types";
+import { ImageType } from "../../../shared/types";
 
 interface LearnContainerProps {
   learnObj: ILearnModule;
@@ -20,9 +20,9 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
         <button
           key={currChapter}
           onClick={() => setVisibleChapter(i)}
-          style={{ fontSize: "22px", width: "45%", height: "8%", borderWidth: "3px", marginBottom: "1%" }}
+          style={{ fontSize: "22px", width: "50%", borderWidth: "3px", marginBottom: "1%" }}
         >
-          Chapter {i + 1}: {currChapter}
+          {`Chapter ${i + 1}: ${currChapter}`}
         </button>
       );
     }
@@ -30,8 +30,8 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
       <>
         <div>{learnObj.titleNode}</div>
         {buttons}
-        <div style={{ marginRight: "3%", marginTop: "-2%", marginBottom: "-1%" }}>
-          <HelpAppImage picture={{ image: "learn", type: ImageType.Png }}></HelpAppImage>{" "}
+        <div style={{ height: "50%" }}>
+          <HelpAppImage picture={{ image: "learn", type: ImageType.Png }}></HelpAppImage>
         </div>
       </>
     );
@@ -43,7 +43,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
           titleElements={
             <div>
               <h3>{chapter.name}</h3>
-              <p style={{ marginRight: "5%", marginLeft: "5%" }}>{chapter.description}</p>
+              <p>{chapter.description}</p>
             </div>
           }
           lessons={chapter.lessons}
@@ -53,9 +53,5 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
     );
   }
 
-  return (
-    <div className={"learnContainer"} style={{ height: "99%" }}>
-      {node}
-    </div>
-  );
+  return <div className="learnContainer">{node}</div>;
 }

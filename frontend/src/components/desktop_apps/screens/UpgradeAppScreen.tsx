@@ -5,9 +5,10 @@ import { IGameState } from "../../../store";
 import { playSoundEffect } from "../../../soundEffect";
 
 export default function UpgradeAppScreen() {
+  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
+
   const dispatch = useDispatch();
 
-  const gameData: IGameData = useSelector((state: IGameState) => state.gameData);
   if (gameData.ups.uncategorized.length > 0) {
     dispatch(categorizeUpgrades());
   }
