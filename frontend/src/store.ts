@@ -47,7 +47,7 @@ function loadState() {
     const autoBitInterval = calculateVariableValue(acquiredUps, GameVariable.AutoBitGatheringInterval);
 
     if (!isNaN(autoBitAmount) && !isNaN(autoBitInterval)) {
-      const bitsToAdd = Math.round((deltaSeconds * autoBitAmount) / (autoBitInterval / 1000));
+      const bitsToAdd = Math.floor((deltaSeconds * autoBitAmount) / (autoBitInterval / 1000));
       deserializedState.gameData.numBits += bitsToAdd;
       previousLoginInfo.bits = bitsToAdd;
     }

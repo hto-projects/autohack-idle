@@ -165,8 +165,7 @@ const gameDataSlice = createSlice({
       }
     },
     saveCurrentTime(state) {
-      // state.previousLoginTime = Temporal.Now.instant().toJSON();
-      state.previousLoginTime = Temporal.Instant.from("2024-08-19T17:20:30-4:00").toJSON();
+      state.previousLoginTime = Temporal.Now.instant().toJSON();
     },
     resetGameData: (_state) => initialState
   }
