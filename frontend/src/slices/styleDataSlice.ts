@@ -51,7 +51,7 @@ export const initialState: IStyleData = {
   backgroundColor: {
     titlebar: "#9caf88",
     taskbar: "#333",
-    desktop: "url('assets/backgrounds/BackgroundBasic.png')",
+    desktop: "url('assets/backgrounds/basic.png')",
     window: "lightgrey",
     horizontalbar: "#A69681",
     verticalbar: "#A69681"

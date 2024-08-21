@@ -2,7 +2,7 @@ import { useState, ReactNode } from "react";
 import LearnLessonContainer from "./LearnLessonContainer";
 import { ILearnModule } from "./learn_lessons/LearnAppDirectory";
 import { HelpAppImage } from "./Image";
-import { ImageType, IAppImage } from "../../../shared/types";
+import { ImageType } from "../../../shared/types";
 
 interface LearnContainerProps {
   learnObj: ILearnModule;
@@ -54,7 +54,7 @@ export default function LearnContainer({ learnObj }: LearnContainerProps) {
   }
 
   return (
-    <div className={"learnContainer"} style={{ height: "99%" }}>
+    <div id="learnContainer" style={{ height: "99%" }}>
       {node}
     </div>
   );
