@@ -4,6 +4,7 @@ import apiSlice from "./apiSlice";
 import { EventBus } from "../game/EventBus";
 import { allUpgrades } from "../../../shared/upgrades";
 import { flatObjByProp, intersection } from "../../../shared/util";
+import { Temporal } from "temporal-polyfill";
 
 const GAME_API_PATH = "/api/game-data";
 
@@ -19,6 +20,7 @@ export interface IGameData {
   totalNumBits: number;
   currencyAmount: number;
   userEmail: string;
+  previousLoginTime: string; //I'm pretty sure Temporal doesn't support TS yet
   ups: IUpgradesData;
   solvedPuzzles: string[];
   trustySales: number;
@@ -30,6 +32,7 @@ const initialState: IGameData = {
   totalNumBits: 0,
   currencyAmount: 0,
   userEmail: "",
+  previousLoginTime: "",
   ups: {
     acquired: [
       {
@@ -152,6 +155,9 @@ const gameDataSlice = createSlice({
         }
       }
     },
+    saveCurrentTime(state) {
+      state.previousLoginTime = Temporal.Now.instant().toJSON();
+    },
     resetGameData: (_state) => initialState
   }
 });
@@ -191,7 +197,7 @@ function categorizeUnavailableUpgrades(ups: IUpgradesData, solvedPuzzles: string
 }
 
 export const { useSaveGameMutation, useLoadGameMutation } = gameDataApiSlice;
-export const { addBits, sellData, purchaseUpgrade, categorizeUpgrades, resetGameData, puzzleSolve } =
+export const { addBits, sellData, purchaseUpgrade, categorizeUpgrades, resetGameData, puzzleSolve, saveCurrentTime } =
   gameDataSlice.actions;
-// export const { addBits, sellData, purchaseUpgrade, resetGameData, puzzleSolve, setGameData } = gameDataSlice.actions;
+
 export default gameDataSlice;
