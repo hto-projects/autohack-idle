@@ -37,7 +37,7 @@ export default function ModuleContainer({ module }: IContainerProps) {
           <p style={{ marginRight: "5%", marginLeft: "5%" }}>{module.titleText}</p>
         </div>
         {buttons}
-        <div style={{ marginRight: "3%", marginTop: "-2%", marginBottom: "-1%" }}>
+        <div style={{ height: "60%" }}>
           <HelpAppImage picture={{ image: module.names.module.toLowerCase(), type: ImageType.Png }}></HelpAppImage>
         </div>
       </>
