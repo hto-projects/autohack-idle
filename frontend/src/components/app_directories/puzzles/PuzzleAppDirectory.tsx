@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { flatObjByProp } from "../../../../../shared/util";
+import { IModule } from "../directoryTypes";
 
 export enum PuzzleNames {
   // PSet1
@@ -12,7 +13,7 @@ export enum PuzzleNames {
   Change_Text = "Change the Way Text Looks"
 }
 
-enum Labels {
+export enum Labels {
   JS = "Enter your JavaSript below:",
   HTML = "Enter your HTML below:",
   CSS = "Enter your CSS below:",
@@ -25,44 +26,50 @@ export interface IPuzzleQuestions {
 }
 
 export interface IPuzzle {
+  kind: "puzzle";
   name: PuzzleNames;
   description: string;
   questions: IPuzzleQuestions[];
 }
 
-export interface IPuzzleSet {
-  name: string;
-  description: string;
-  puzzles: IPuzzle[];
-}
-
-export interface IPuzzleModule {
-  titleNode: ReactNode;
-  puzzleSets: IPuzzleSet[];
-}
-
-export const PuzzleAppDirectory: IPuzzleModule = {
-  titleNode: (
-    <div>
-      <h3> Puzzle Sets: </h3>
-      <p style={{ marginRight: "5%", marginLeft: "5%" }}>
-        Choose which puzzle set you want to try to solve. Once all of the puzzles in a puzzle set are solved, you may
-        unlock a new feature!
-      </p>
-    </div>
-  ),
-  puzzleSets: [
+export const PuzzleAppDirectory: IModule = {
+  names: {
+    module: "Puzzle",
+    section: "Set",
+    segment: "Puzzle"
+  },
+  titleText:
+    "Choose which puzzle set you want to try to solve. Once all of the \
+     puzzles in a puzzle set are solved, you may unlock a new feature!",
+  genSectionText: function (i, name, gameData) {
+    const solvedPuzzles: string[] = gameData.solvedPuzzles;
+    const puzzleNames = flatObjByProp(this.sections[i].segments, "name");
+    let status = "complete";
+    for (const puzzle of puzzleNames) {
+      if (!solvedPuzzles.includes(puzzle)) {
+        status = "incomplete";
+      }
+    }
+    return `Set ${i + 1}: ${name} (${status})`;
+  },
+  genSegmentText: function (i, name, gameData) {
+    const status = gameData.solvedPuzzles.includes(name) ? "solved" : "unsolved";
+    return `Puzzle ${i + 1}: ${name} (${status})`;
+  },
+  sections: [
     {
       name: "Collect All Upgrade",
       description: "Complete this puzzle set to unlock the collect all upgrade.",
-      puzzles: [
+      segments: [
         {
+          kind: "puzzle",
           name: PuzzleNames.Collect_all_button,
           description:
             'In this puzzle you will have to write a line of code to create a button that says "Collect All"',
           questions: [{ label: Labels.HTML, answers: ["<button> Collect All </button>"] }]
         },
         {
+          kind: "puzzle",
           name: PuzzleNames.Collect_all_function,
           description:
             'In this puzzle you will have to write some code, in JavaScript, to create a collectAll() function.  \
@@ -75,6 +82,7 @@ export const PuzzleAppDirectory: IPuzzleModule = {
           ]
         },
         {
+          kind: "puzzle",
           name: PuzzleNames.Bits_array,
           description:
             'In this puzzle you will have to write some code, in JavaScript, to make an array that contains 3 bits. \
@@ -90,6 +98,7 @@ export const PuzzleAppDirectory: IPuzzleModule = {
           ]
         },
         {
+          kind: "puzzle",
           name: PuzzleNames.For_loop_to_collect_bits,
           description:
             'In this puzzle you will have to write some code, in JavaScript, \
@@ -103,11 +112,12 @@ export const PuzzleAppDirectory: IPuzzleModule = {
           ]
         },
         {
+          kind: "puzzle",
           name: PuzzleNames.Complete_collect_all_upgrade,
           description:
             "In this puzzle you will have to write the entire code to make the Collect All upgrade. This is a combination of \
-        all of the previous puzzles in this puzzle set. Hint: Make sure to place the for loop you have made in puzzle 4 \
-        into the function made in puzzle 2. Also, make sure to initialize the array outside of the function.",
+            all of the previous puzzles in this puzzle set. Hint: Make sure to place the for loop you have made in puzzle 4 \
+            into the function made in puzzle 2. Also, make sure to initialize the array outside of the function.",
           questions: [
             { label: Labels.HTML, answers: ['<button onClick = "collectAll()"> Collect All </button>'] },
             {
@@ -123,8 +133,9 @@ export const PuzzleAppDirectory: IPuzzleModule = {
     {
       name: "CSS Stylizing",
       description: "Complete these puzzle sets to unlock an app that lets you customize your game!",
-      puzzles: [
+      segments: [
         {
+          kind: "puzzle",
           name: PuzzleNames.Change_Colors,
           description:
             "Assume that you have a blank webpage with a title. Change the background of that website to \
@@ -132,6 +143,7 @@ export const PuzzleAppDirectory: IPuzzleModule = {
           questions: [{ label: Labels.CSS, answers: ["body {background-color: black; color: white;}"] }]
         },
         {
+          kind: "puzzle",
           name: PuzzleNames.Change_Text,
           description:
             'Assume that you have a black webpage with a white text. There is a title, made using the h1 element, and a paragraph, made using the p element. \

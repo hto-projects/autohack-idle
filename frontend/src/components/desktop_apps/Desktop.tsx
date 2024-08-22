@@ -5,7 +5,7 @@ import AppShortcut from "./AppShortcut";
 import { useSelector } from "react-redux";
 import { IGameState } from "../../store";
 import { IGameData } from "../../slices/gameDataSlice";
-import { PuzzleAppDirectory } from "../puzzles/PuzzleAppDirectory";
+import { PuzzleAppDirectory } from "../app_directories/puzzles/PuzzleAppDirectory";
 
 export default function Desktop() {
   const [openWindow, setOpenWindow] = React.useState(null as AppType | null);
@@ -14,8 +14,8 @@ export default function Desktop() {
   const desktopColor = useSelector((state: IGameState) => state.styleData.backgroundColor.desktop);
 
   let terminalVis = true;
-  for (let i = 0; i < PuzzleAppDirectory.puzzleSets[1].puzzles.length; i++) {
-    if (!gameData.solvedPuzzles.includes(PuzzleAppDirectory.puzzleSets[1].puzzles[i].name)) {
+  for (let i = 0; i < PuzzleAppDirectory.sections[1].segments.length; i++) {
+    if (!gameData.solvedPuzzles.includes(PuzzleAppDirectory.sections[1].segments[i].name)) {
       terminalVis = false;
       break;
     }

@@ -1,6 +1,6 @@
-import { PuzzleAppDirectory } from "../../puzzles/PuzzleAppDirectory";
-import PuzzleContainer from "../../PuzzleAppContainer";
+import { PuzzleAppDirectory } from "../../app_directories/puzzles/PuzzleAppDirectory";
+import ModuleContainer from "../ModuleContainer";
 
 export default function PuzzleAppScreen() {
-  return <PuzzleContainer puzzleObj={PuzzleAppDirectory}></PuzzleContainer>;
+  return <ModuleContainer module={PuzzleAppDirectory}></ModuleContainer>;
 }

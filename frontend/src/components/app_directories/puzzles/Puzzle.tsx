@@ -1,12 +1,11 @@
 import { useDispatch } from "react-redux";
 import { ReactNode, useState } from "react";
-import { IPuzzle } from "./PuzzleAppDirectory";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/esm/Form";
-import { puzzleSolve } from "../../slices/gameDataSlice";
+import { puzzleSolve } from "../../../slices/gameDataSlice";
+import { IPuzzle } from "../directoryTypes";
 
 interface IPuzzleProps {
-  index: number;
   puzzle: IPuzzle;
 }
 
@@ -16,7 +15,7 @@ interface IPlayerAnswer {
   resultText: string;
 }
 
-export default function Puzzle({ index, puzzle }: IPuzzleProps) {
+export default function Puzzle({ puzzle }: IPuzzleProps) {
   const playerAnswerBuf = Array(puzzle.questions.length);
   for (let i = 0; i < playerAnswerBuf.length; i++) {
     playerAnswerBuf[i] = { answer: "", isSolved: false, resultText: "" };
@@ -83,14 +82,9 @@ export default function Puzzle({ index, puzzle }: IPuzzleProps) {
   }
 
   return (
-    <div
-      className={`normalLesson ${open && "showing"}`}
-      style={{ color: "grey", scrollBehavior: "smooth", overflow: "auto", height: "85%", width: "80%" }}
-    >
-      <h3 style={{ color: "black", textAlign: "left" }}>{`Puzzle ${index + 1}: ${puzzle.name}`}</h3>
-      <p>{puzzle.description}</p>
+    <>
       <Form>{puzzleNodes}</Form>
       <div>{puzzleSolvedText}</div>
-    </div>
+    </>
   );
 }
