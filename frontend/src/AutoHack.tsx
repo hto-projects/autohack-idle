@@ -2,8 +2,8 @@ import { useState } from "react";
 import StartScreen from "./StartScreen";
 import Desktop from "./components/desktop_apps/Desktop";
 import Taskbar from "./components/desktop_apps/Taskbar";
-import HorizontalBar from "./components/desktop_apps/screens/HorizontalBar";
-import VerticalBar from "./components/desktop_apps/screens/VerticalBar";
+import HorizontalBar from "./components/HorizontalBar";
+import VerticalBar from "./components/VerticalBar";
 
 export default function AutoHack() {
   const [startShown, setStartShown] = useState<boolean>(true);
