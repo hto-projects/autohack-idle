@@ -5,7 +5,6 @@ SyntaxHighlighter.registerLanguage("HTML", HTML);
 
 export default function C1L1() {
   const syntax1 = `<button> Click Me </button>;`;
-
   const syntax2 = `<button onclick = “printAllPages()”> Print All </button>`;
 
   return (
