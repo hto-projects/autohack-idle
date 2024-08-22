@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { AppType } from "../../../../../shared/types";
-import { useKeyDown } from "../../../../frontend-util";
-import { IGameState } from "../../../store";
-import { playSoundEffect } from "../../../soundEffect";
+import { AppType } from "../../../../shared/types";
+import { useKeyDown } from "../../../frontend-util";
+import { IGameState } from "../../store";
+import { playSoundEffect } from "../../soundEffect";
 
 interface TitleBarProps {
   open: AppType;
