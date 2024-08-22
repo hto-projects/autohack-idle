@@ -7,6 +7,7 @@ interface ICommand {
   input: string;
   response: string;
 }
+
 export default function TerminalAppScreen() {
   const dispatch = useDispatch();
   const [allPreviousCommands, setPreviousCommands] = useState<ICommand[]>([]);
