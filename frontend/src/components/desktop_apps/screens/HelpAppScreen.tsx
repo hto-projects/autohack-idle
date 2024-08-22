@@ -10,7 +10,7 @@ interface ItextBox {
 const helpApps: ItextBox[] = [
   {
     name: "Help",
-    body: "Hi! This is the help app and will provide brief descriptions and hints about the other parts of this game ."
+    body: "Hi! This is the help app and will provide brief descriptions and hints about the other parts of this game."
   },
   {
     name: "Collector",
