@@ -1,6 +1,7 @@
 export enum GameVariable {
   BitCheckInterval,
   BitAppearanceProbability,
+  BitClickValue,
   AutoBitGatheringAmount,
   AutoBitGatheringInterval,
   BitSweeperSize,

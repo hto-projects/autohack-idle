@@ -1,22 +1,38 @@
 import { PuzzleNames } from "../frontend/src/components/puzzles/PuzzleAppDirectory";
 import { GameVariable, VariableModFunction, IUpgrade, ImageType } from "./types";
 
-const other: IUpgrade[] = [
-  /*{
+export const starterUpgrades: IUpgrade[] = [
+  {
+    name: "Check for Bits",
+    description: "Once every second, look to see if there are any bits available for harvesting",
+    picture: { image: "🔍", type: ImageType.String },
+    cost: 0,
+    effects: [
+      {
+        variableAffected: GameVariable.BitCheckInterval,
+        variableMod: VariableModFunction.Set,
+        modValue: 1000
+      }
+    ],
+    preReqs: []
+  },
+  {
     name: "Chance for Bits",
-    preReqs: [],
     description: "When checking for bits, succeed in finding one 50% of the time",
     picture: { image: "❇", type: ImageType.String },
     cost: 0,
     effects: [
       {
-    
         variableAffected: GameVariable.BitAppearanceProbability,
         variableMod: VariableModFunction.Set,
         modValue: 0.5
       }
-    ]
-  },*/
+    ],
+    preReqs: []
+  }
+];
+
+const other: IUpgrade[] = [
   {
     name: "Bit Sweeper",
     preReqs: [],
@@ -28,6 +44,163 @@ const other: IUpgrade[] = [
         variableAffected: GameVariable.BitSweeperSize,
         variableMod: VariableModFunction.Set,
         modValue: 30
+      }
+    ]
+  }
+];
+
+const packet: IUpgrade[] = [
+  {
+    name: "Crumb",
+    preReqs: [],
+    description: "Each bit collected is now worth 2 bits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 2 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 2
+      }
+    ]
+  },
+  {
+    name: "Nibble",
+    preReqs: ["Crumb"],
+    description: "Each bit collected is now worth 4 bits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 4 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 4
+      }
+    ]
+  },
+  {
+    name: "Byte",
+    preReqs: ["Nibble"],
+    description: "Each bit collected is now worth 8 bits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 8
+      }
+    ]
+  },
+  {
+    name: "Word",
+    preReqs: ["Byte"],
+    description: "Each bit collected is now worth 2 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 16 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 16
+      }
+    ]
+  },
+  {
+    name: "Double Word",
+    preReqs: ["Word"],
+    description: "Each bit collected is now worth 4 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 32 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 32
+      }
+    ]
+  },
+  {
+    name: "Quad Word",
+    preReqs: ["Double Word"],
+    description: "Each bit collected is now worth 8 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 64 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 64
+      }
+    ]
+  },
+  {
+    name: "Kibibit",
+    preReqs: ["Quad Word"],
+    description: "Each bit collected is now worth 128 bytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 1024 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 1024
+      }
+    ]
+  },
+  {
+    name: "Sector",
+    preReqs: ["Kibibit"],
+    description: "Each bit collected is now worth 4 kibibits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 1024 * 4 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 1024 * 4
+      }
+    ]
+  },
+  {
+    name: "Kibibyte",
+    preReqs: ["Sector"],
+    description: "Each bit collected is now worth 8 kibibits",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8192 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 8192
+      }
+    ]
+  },
+  {
+    name: "CD-ROM Sector",
+    preReqs: ["Kibibyte"],
+    description: "Each bit collected is now worth 2 kibibytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8192 * 2 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 8192 * 2
+      }
+    ]
+  },
+  {
+    name: "Page",
+    preReqs: ["CD-ROM Sector"],
+    description: "Each bit collected is now worth 4 kibibytes",
+    picture: { image: "1️⃣", type: ImageType.String },
+    cost: 8192 * 4 * 10,
+    effects: [
+      {
+        variableAffected: GameVariable.BitClickValue,
+        variableMod: VariableModFunction.Set,
+        modValue: 8192 * 4
       }
     ]
   }
@@ -458,4 +631,4 @@ const checks: IUpgrade[] = [
   }
 ];
 
-export const allUpgrades: IUpgrade[] = [...checks, ...other, ...al, ...learn];
+export const allUpgrades: IUpgrade[] = [...checks, ...other, ...al, ...packet, ...learn];
